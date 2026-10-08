@@ -4,31 +4,38 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Work — Kayonne Creatives</title>
+  <meta name="description" content="How Kayonne Creatives presents work: challenge, approach, what shipped, and the result." />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,460&family=Outfit:wght@340;480&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/site.css" />
 </head>
-<body>
+<body data-scene="work">
+  <canvas id="stage"></canvas><div class="veil"></div>
   <header class="nav">
     <a class="mark" href="index.html"><i></i> Kayonne Creatives</a>
     <nav class="nav-links">
-      <a href="work.html">Work</a>
       <a href="build.html">Build</a>
       <a href="localize.html">Localize</a>
+      <a href="work.html" aria-current="page">Work</a>
+      <a href="process.html">Process</a>
+      <a href="about.html">About</a>
     </nav>
     <a class="btn" href="contact.html">Book a call</a>
   </header>
-  <main class="page-hero">
-    <p class="kicker">Work</p>
-    <h1>Frames from the studio.</h1>
-    <p class="lede">Replace these with real client launches as soon as you have them. The layout is ready for named results.</p>
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Work</p>
+      <h1>Proof, not a gallery of frames.</h1>
+      <p class="lede">A case study here will follow the same shape buyers expect: the brief, the hard part, what shipped, and the result. These three are the formats. Named client stories go in when you have them. We will not invent numbers.</p>
+    </section>
+    <section class="section">
+      <div class="cards">
+        <article class="panel"><p class="kicker">Commerce</p><h3>A store that holds a speed budget.</h3><p>Brief, approach, what shipped, result. Ready for a real launch name.</p></article>
+        <article class="panel"><p class="kicker">Product</p><h3>An app from first screen to listing.</h3><p>Surface, retention screens, and the handover. Ready for a real product name.</p></article>
+        <article class="panel"><p class="kicker">Locale</p><h3>A site that ranks in more than one language.</h3><p>Glossary, hreflang, and review. Ready for a real market list.</p></article>
+      </div>
+    </section>
   </main>
-  <section class="section">
-    <div class="work-grid">
-      <figure class="card"><img src="assets/work-web.jpg" alt="" /><figcaption><strong>Commerce site</strong><span>Speed budget held through launch.</span></figcaption></figure>
-      <figure class="card"><img src="assets/work-app.jpg" alt="" /><figcaption><strong>Product app</strong><span>Mobile surface, dark UI, retention screens.</span></figcaption></figure>
-      <figure class="card"><img src="assets/work-locale.jpg" alt="" /><figcaption><strong>Locale system</strong><span>Languages, metadata, and review in one desk.</span></figcaption></figure>
-    </div>
-  </section>
-  <footer class="footer"><a href="index.html">Back home</a></footer>
+  <footer class="footer"><a href="index.html">Back home</a><a href="contact.html">hello@kayonnecreatives.com</a></footer>
+  <script type="module" src="js/scene.js"></script>
 </body>
 </html>

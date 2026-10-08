@@ -4,40 +4,47 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Contact — Kayonne Creatives</title>
+  <meta name="description" content="Start a build or a localization quote with Kayonne Creatives." />
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,460&family=Outfit:wght@340;480&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/site.css" />
 </head>
-<body>
+<body data-scene="contact">
+  <canvas id="stage"></canvas><div class="veil"></div>
   <header class="nav">
     <a class="mark" href="index.html"><i></i> Kayonne Creatives</a>
     <nav class="nav-links">
-      <a href="work.html">Work</a>
       <a href="build.html">Build</a>
       <a href="localize.html">Localize</a>
+      <a href="work.html">Work</a>
+      <a href="process.html">Process</a>
+      <a href="about.html">About</a>
     </nav>
     <a class="btn" href="contact.html">Book a call</a>
   </header>
-  <main class="page-hero">
-    <p class="kicker">Contact</p>
-    <h1>Tell us the job.</h1>
-    <p class="lede">A build, a speed fix, or a localization quote. Messages go to hello@kayonnecreatives.com.</p>
-    <form class="quote" style="max-width:640px" action="mailto:hello@kayonnecreatives.com" method="post" enctype="text/plain">
-      <label>Name</label>
-      <input name="name" required />
-      <label>Email</label>
-      <input type="email" name="email" required />
-      <label>What do you need?</label>
-      <select name="lane">
-        <option>Build a website</option>
-        <option>Build an app</option>
-        <option>Speed and SEO</option>
-        <option>Localize a site or product</option>
-      </select>
-      <label>Details</label>
-      <textarea name="details" rows="5"></textarea>
-      <button class="btn" type="submit">Send</button>
-    </form>
+  <main>
+    <section class="page-hero">
+      <p class="eyebrow">Contact</p>
+      <h1>Tell us the job.</h1>
+      <p class="lede">A build, a speed fix, or a localization quote. Messages go to hello@kayonnecreatives.com.</p>
+      <form class="quote" style="max-width:640px" action="mailto:hello@kayonnecreatives.com" method="post" enctype="text/plain">
+        <label>Name</label>
+        <input name="name" required />
+        <label>Email</label>
+        <input type="email" name="email" required />
+        <label>What do you need?</label>
+        <select name="lane">
+          <option>Build a website</option>
+          <option>Build an app</option>
+          <option>Speed and SEO</option>
+          <option>Localize a site or product</option>
+        </select>
+        <label>Site, file, or notes</label>
+        <textarea name="details" rows="5"></textarea>
+        <button class="btn" type="submit">Send</button>
+      </form>
+    </section>
   </main>
-  <footer class="footer"><a href="index.html">Back home</a></footer>
+  <footer class="footer"><a href="index.html">Back home</a><span>kayonnecreatives.com</span></footer>
+  <script type="module" src="js/scene.js"></script>
 </body>
 </html>
