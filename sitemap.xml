@@ -1,42 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://kayonnecreatives.com/</loc></url>
-  <url><loc>https://kayonnecreatives.com/de</loc></url>
-  <url><loc>https://kayonnecreatives.com/services</loc></url>
-  <url><loc>https://kayonnecreatives.com/de/services</loc></url>
-  <url><loc>https://kayonnecreatives.com/websites</loc></url>
-  <url><loc>https://kayonnecreatives.com/web-apps</loc></url>
-  <url><loc>https://kayonnecreatives.com/mobile-apps</loc></url>
-  <url><loc>https://kayonnecreatives.com/seo</loc></url>
-  <url><loc>https://kayonnecreatives.com/speed</loc></url>
-  <url><loc>https://kayonnecreatives.com/care</loc></url>
-  <url><loc>https://kayonnecreatives.com/localization</loc></url>
-  <url><loc>https://kayonnecreatives.com/games</loc></url>
-  <url><loc>https://kayonnecreatives.com/documents</loc></url>
-  <url><loc>https://kayonnecreatives.com/medical</loc></url>
-  <url><loc>https://kayonnecreatives.com/patents</loc></url>
-  <url><loc>https://kayonnecreatives.com/legal</loc></url>
-  <url><loc>https://kayonnecreatives.com/subtitling</loc></url>
-  <url><loc>https://kayonnecreatives.com/quality</loc></url>
-  <url><loc>https://kayonnecreatives.com/languages</loc></url>
-  <url><loc>https://kayonnecreatives.com/de/languages</loc></url>
-  <url><loc>https://kayonnecreatives.com/industries</loc></url>
-  <url><loc>https://kayonnecreatives.com/work</loc></url>
-  <url><loc>https://kayonnecreatives.com/process</loc></url>
-  <url><loc>https://kayonnecreatives.com/de/process</loc></url>
-  <url><loc>https://kayonnecreatives.com/pricing</loc></url>
-  <url><loc>https://kayonnecreatives.com/de/pricing</loc></url>
-  <url><loc>https://kayonnecreatives.com/about</loc></url>
-  <url><loc>https://kayonnecreatives.com/de/about</loc></url>
-  <url><loc>https://kayonnecreatives.com/faq</loc></url>
-  <url><loc>https://kayonnecreatives.com/insights</loc></url>
-  <url><loc>https://kayonnecreatives.com/contact</loc></url>
-  <url><loc>https://kayonnecreatives.com/de/contact</loc></url>
-  <url><loc>https://kayonnecreatives.com/privacy</loc></url>
-  <url><loc>https://kayonnecreatives.com/cookies</loc></url>
-  <url><loc>https://kayonnecreatives.com/terms</loc></url>
-  <url><loc>https://kayonnecreatives.com/studio</loc></url>
-  <url><loc>https://kayonnecreatives.com/demo</loc></url>
-  <url><loc>https://kayonnecreatives.com/insights/localise-a-website</loc></url>
-  <url><loc>https://kayonnecreatives.com/insights/speed-mistakes</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url><loc>https://kayonnecreatives.com/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/"/></url>
+  <url><loc>https://kayonnecreatives.com/services/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/services/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/services/"/></url>
+  <url><loc>https://kayonnecreatives.com/websites/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/websites/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/websites/"/></url>
+  <url><loc>https://kayonnecreatives.com/web-apps/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/web-apps/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/web-apps/"/></url>
+  <url><loc>https://kayonnecreatives.com/mobile-apps/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/mobile-apps/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/mobile-apps/"/></url>
+  <url><loc>https://kayonnecreatives.com/domains-email/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/domains-email/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/domains-email/"/></url>
+  <url><loc>https://kayonnecreatives.com/seo/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/seo/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/seo/"/></url>
+  <url><loc>https://kayonnecreatives.com/speed/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/speed/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/speed/"/></url>
+  <url><loc>https://kayonnecreatives.com/care/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/care/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/care/"/></url>
+  <url><loc>https://kayonnecreatives.com/certified-translation/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/certified-translation/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/certified-translation/"/></url>
+  <url><loc>https://kayonnecreatives.com/documents/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/documents/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/documents/"/></url>
+  <url><loc>https://kayonnecreatives.com/localization/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/localization/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/localization/"/></url>
+  <url><loc>https://kayonnecreatives.com/games/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/games/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/games/"/></url>
+  <url><loc>https://kayonnecreatives.com/medical/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/medical/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/medical/"/></url>
+  <url><loc>https://kayonnecreatives.com/patents/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/patents/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/patents/"/></url>
+  <url><loc>https://kayonnecreatives.com/legal/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/legal/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/legal/"/></url>
+  <url><loc>https://kayonnecreatives.com/subtitling/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/subtitling/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/subtitling/"/></url>
+  <url><loc>https://kayonnecreatives.com/proofreading/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/proofreading/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/proofreading/"/></url>
+  <url><loc>https://kayonnecreatives.com/quality/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/quality/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/quality/"/></url>
+  <url><loc>https://kayonnecreatives.com/languages/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/languages/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/languages/"/></url>
+  <url><loc>https://kayonnecreatives.com/industries/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/industries/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/industries/"/></url>
+  <url><loc>https://kayonnecreatives.com/work/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/work/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/work/"/></url>
+  <url><loc>https://kayonnecreatives.com/process/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/process/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/process/"/></url>
+  <url><loc>https://kayonnecreatives.com/pricing/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/pricing/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/pricing/"/></url>
+  <url><loc>https://kayonnecreatives.com/about/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/about/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/about/"/></url>
+  <url><loc>https://kayonnecreatives.com/faq/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/faq/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/faq/"/></url>
+  <url><loc>https://kayonnecreatives.com/insights/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/insights/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/insights/"/></url>
+  <url><loc>https://kayonnecreatives.com/insights/localise-a-website/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/insights/localise-a-website/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/insights/localise-a-website/"/></url>
+  <url><loc>https://kayonnecreatives.com/insights/speed-mistakes/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/insights/speed-mistakes/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/insights/speed-mistakes/"/></url>
+  <url><loc>https://kayonnecreatives.com/contact/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/contact/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/contact/"/></url>
+  <url><loc>https://kayonnecreatives.com/privacy/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/privacy/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/privacy/"/></url>
+  <url><loc>https://kayonnecreatives.com/cookies/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/cookies/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/cookies/"/></url>
+  <url><loc>https://kayonnecreatives.com/terms/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/terms/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/terms/"/></url>
+  <url><loc>https://kayonnecreatives.com/demo/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/demo/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/demo/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/services/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/services/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/services/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/websites/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/websites/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/websites/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/web-apps/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/web-apps/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/web-apps/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/mobile-apps/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/mobile-apps/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/mobile-apps/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/domains-email/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/domains-email/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/domains-email/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/seo/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/seo/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/seo/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/speed/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/speed/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/speed/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/care/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/care/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/care/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/certified-translation/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/certified-translation/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/certified-translation/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/documents/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/documents/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/documents/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/localization/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/localization/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/localization/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/games/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/games/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/games/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/medical/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/medical/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/medical/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/patents/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/patents/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/patents/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/legal/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/legal/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/legal/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/subtitling/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/subtitling/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/subtitling/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/proofreading/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/proofreading/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/proofreading/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/quality/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/quality/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/quality/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/languages/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/languages/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/languages/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/industries/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/industries/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/industries/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/work/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/work/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/work/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/process/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/process/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/process/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/pricing/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/pricing/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/pricing/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/about/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/about/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/about/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/faq/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/faq/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/faq/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/insights/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/insights/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/insights/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/insights/localise-a-website/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/insights/localise-a-website/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/insights/localise-a-website/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/insights/speed-mistakes/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/insights/speed-mistakes/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/insights/speed-mistakes/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/contact/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/contact/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/contact/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/privacy/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/privacy/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/privacy/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/cookies/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/cookies/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/cookies/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/terms/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/terms/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/terms/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/demo/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/demo/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/demo/"/></url>
+  <url><loc>https://kayonnecreatives.com/studio/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/studio/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/studio/"/></url>
+  <url><loc>https://kayonnecreatives.com/de/studio/</loc><xhtml:link rel="alternate" hreflang="en" href="https://kayonnecreatives.com/studio/"/><xhtml:link rel="alternate" hreflang="de" href="https://kayonnecreatives.com/de/studio/"/></url>
 </urlset>

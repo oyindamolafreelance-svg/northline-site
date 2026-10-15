@@ -21,6 +21,8 @@ jobs:
       - uses: actions/configure-pages@v5
         with:
           enablement: true
+      - name: Leave the build source out of the published site
+        run: rm -rf _src README.md
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .
