@@ -52,10 +52,10 @@ const M = {
   teal: new THREE.MeshStandardMaterial({ color: 0x5cc4b8, metalness: 0.5, roughness: 0.25, emissive: 0x0b3a35 }),
   paper: new THREE.MeshStandardMaterial({ color: 0xf3ece0, metalness: 0, roughness: 0.6 }),
   glass: new THREE.MeshPhysicalMaterial({ color: 0xa8ddd5, metalness: 0, roughness: 0.05, transparent: true, opacity: 0.32, clearcoat: 1 }),
-  wire: new THREE.MeshBasicMaterial({ color: 0xe4b07a, wireframe: true, transparent: true, opacity: 0.3 }),
-  glow: new THREE.MeshBasicMaterial({ color: 0xffe2b8 }),
-  tealGlow: new THREE.MeshBasicMaterial({ color: 0x8ff0e3 }),
-  line: new THREE.LineBasicMaterial({ color: 0xe4b07a, transparent: true, opacity: 0.45 }),
+  wire: new THREE.MeshBasicMaterial({ color: 0xa8582a, wireframe: true, transparent: true, opacity: 0.35 }),
+  glow: new THREE.MeshBasicMaterial({ color: 0xd9894e }),
+  tealGlow: new THREE.MeshBasicMaterial({ color: 0x1f9e90 }),
+  line: new THREE.LineBasicMaterial({ color: 0xa8582a, transparent: true, opacity: 0.55 }),
 };
 
 function rng(seed) {
@@ -78,7 +78,7 @@ function tex(w, h, draw) {
 }
 
 const glyphCache = {};
-function glyph(ch, color = "#f0d2ae") {
+function glyph(ch, color = "#a8582a") {
   const k = ch + color;
   if (!glyphCache[k]) {
     glyphCache[k] = new THREE.SpriteMaterial({
@@ -254,7 +254,7 @@ const makers = {
     const lg = new THREE.BufferGeometry();
     lg.setAttribute("position", new THREE.Float32BufferAttribute(pos, 3));
     g.add(new THREE.LineSegments(lg, M.line));
-    const at = glyph("@", "#e4b07a"); at.scale.setScalar(1.1); g.add(at);
+    const at = glyph("@", "#a8582a"); at.scale.setScalar(1.1); g.add(at);
     const pulses = [];
     for (let i = 0; i < 14; i++) {
       const m = new THREE.Mesh(new THREE.SphereGeometry(0.05, 10, 8), i % 2 ? M.glow : M.tealGlow);
@@ -410,7 +410,7 @@ const makers = {
     const net = new THREE.Mesh(new THREE.SphereGeometry(1.8, 28, 18), M.wire);
     g.add(core, net);
     const dots = new THREE.BufferGeometry().setFromPoints(fib(420, 1.78));
-    g.add(new THREE.Points(dots, new THREE.PointsMaterial({ color: 0xe4b07a, size: 0.045 })));
+    g.add(new THREE.Points(dots, new THREE.PointsMaterial({ color: 0xa8582a, size: 0.045 })));
     const pts = fib(9, 1.8), arcs = [];
     for (let i = 0; i < 8; i++) {
       const a = pts[i], b = pts[(i * 4 + 3) % 9];
@@ -681,7 +681,7 @@ const makers = {
     const g = new THREE.Group();
     const solid = new THREE.Mesh(new THREE.IcosahedronGeometry(1.25, 0), new THREE.MeshStandardMaterial({ color: 0xc27a48, metalness: 1, roughness: 0.2, flatShading: true }));
     const cage = new THREE.Mesh(new THREE.IcosahedronGeometry(1.95, 1), M.wire);
-    const q = glyph("?", "#5cc4b8"); q.scale.setScalar(0.9); q.position.z = 1.4;
+    const q = glyph("?", "#127569"); q.scale.setScalar(0.9); q.position.z = 1.4;
     g.add(solid, cage, q);
     g.userData.update = (t, dt, e) => {
       solid.rotation.set(t * 0.5, t * 0.7, 0);
@@ -746,7 +746,7 @@ const pPos = new Float32Array(P * 3);
 for (let i = 0; i < P; i++) { pPos[i * 3] = (pr() - 0.5) * 40; pPos[i * 3 + 1] = (pr() - 0.5) * 26; pPos[i * 3 + 2] = -pr() * 30 + 4; }
 const pGeo = new THREE.BufferGeometry();
 pGeo.setAttribute("position", new THREE.BufferAttribute(pPos, 3));
-const dust = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xe4b07a, size: 0.05, transparent: true, opacity: 0.65, blending: THREE.AdditiveBlending, depthWrite: false }));
+const dust = new THREE.Points(pGeo, new THREE.PointsMaterial({ color: 0xb06a3a, size: 0.05, transparent: true, opacity: 0.5, depthWrite: false }));
 if (DUST) scene.add(dust);
 
 // ---------- scene switching with a springy pop ----------
