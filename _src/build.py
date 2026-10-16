@@ -24,28 +24,61 @@ EMAIL = "hello@kayonnecreatives.com"
 YEAR = datetime.date.today().year
 LANGS = {"en": content_en, "de": content_de}
 
-# (slug, English name, German name)
-DIGITAL = [
-    ("websites", "Websites", "Websites"),
-    ("web-apps", "Web apps", "Web-Apps"),
-    ("mobile-apps", "Mobile apps", "Mobile Apps"),
-    ("domains-email", "Domains and business email", "Domains und geschäftliche E-Mail"),
-    ("seo", "SEO", "SEO"),
-    ("speed", "Speed and accessibility", "Ladezeit und Barrierefreiheit"),
-    ("care", "Care plans", "Wartungspläne"),
-]
-LANGUAGE = [
-    ("certified-translation", "Certified translation (UK)", "Certified Translation (UK)"),
-    ("documents", "Document translation", "Dokumentübersetzung"),
-    ("localization", "Website and app localisation", "Website- und App-Lokalisierung"),
-    ("games", "Game localisation", "Spielelokalisierung"),
-    ("medical", "Medical translation", "Medizinische Übersetzung"),
-    ("patents", "Patent translation", "Patentübersetzung"),
-    ("legal", "Legal translation", "Juristische Übersetzung"),
-    ("subtitling", "Subtitling and transcription", "Untertitelung und Transkription"),
-    ("proofreading", "Proofreading and revision", "Korrektorat und Revision"),
-    ("quality", "MTPE and quality checks", "MTPE und Qualitätsprüfung"),
-]
+# The three teams. Each item: (slug, English name, German name, English blurb, German blurb).
+TEAMS = {
+    "digital": {
+        "en": "Digital", "de": "Digital", "hub": "digital", "cls": "d",
+        "en_line": "The build team: sites, shops, apps and the plumbing behind them.",
+        "de_line": "Das Entwicklungsteam: Websites, Shops, Apps und die Technik dahinter.",
+        "items": [
+            ("websites", "Websites", "Websites", "Business sites, shops, landing pages", "Unternehmensseiten, Shops, Landingpages"),
+            ("web-design-glasgow", "Web design Glasgow", "Webdesign Glasgow", "A local team you can meet", "Ein Team vor Ort in Glasgow"),
+            ("web-apps", "Web apps", "Web-Apps", "Custom tools and PWAs", "Individuelle Tools und PWAs"),
+            ("mobile-apps", "Mobile apps", "Mobile Apps", "iOS and Android", "iOS und Android"),
+            ("domains-email", "Domains and business email", "Domains und geschäftliche E-Mail", "Domain, inbox, SPF/DKIM/DMARC", "Domain, Postfach, SPF/DKIM/DMARC"),
+            ("seo", "SEO", "SEO", "Technical, local, multilingual", "Technisch, lokal, mehrsprachig"),
+            ("speed", "Speed and accessibility", "Ladezeit und Barrierefreiheit", "Core Web Vitals, WCAG 2.2 AA", "Core Web Vitals, WCAG 2.2 AA"),
+            ("care", "Care plans", "Wartungspläne", "Updates, backups, monitoring", "Updates, Backups, Monitoring"),
+            ("website-check", "Free website check", "Kostenloser Website-Check", "Speed, mobile and SEO basics", "Ladezeit, Mobilansicht, SEO-Grundlagen"),
+        ],
+    },
+    "language": {
+        "en": "Language", "de": "Sprache", "hub": "language", "cls": "l",
+        "en_line": "The translation team: qualified linguists, a second check on every job.",
+        "de_line": "Das Übersetzungsteam: qualifizierte Fachleute, zweite Prüfung bei jedem Auftrag.",
+        "items": [
+            ("certified-translation", "Certified translation (UK)", "Certified Translation (UK)", "Home Office, courts, universities", "Home Office, Gerichte, Hochschulen"),
+            ("certified-translation-glasgow", "Certified translation Glasgow", "Certified Translation Glasgow", "Local, signed, accepted", "Vor Ort, unterschrieben, anerkannt"),
+            ("documents", "Document translation", "Dokumentübersetzung", "Certificates, statements, manuals", "Urkunden, Zeugnisse, Handbücher"),
+            ("legal", "Legal translation", "Juristische Übersetzung", "Contracts and court papers", "Verträge und Gerichtsunterlagen"),
+            ("medical", "Medical translation", "Medizinische Übersetzung", "Life sciences, under NDA", "Life Sciences, mit NDA"),
+            ("patents", "Patent translation", "Patentübersetzung", "Claims kept consistent", "Einheitliche Ansprüche"),
+            ("subtitling", "Subtitling and transcription", "Untertitelung und Transkription", "SRT, VTT, SDH, burned-in", "SRT, VTT, SDH, eingebrannt"),
+            ("proofreading", "Proofreading and revision", "Korrektorat und Revision", "Check a translation you have", "Vorhandene Übersetzung prüfen"),
+            ("quality", "MTPE and quality checks", "MTPE und Qualitätsprüfung", "Post-editing and LQA", "Post-Editing und LQA"),
+            ("apostille", "Apostille and legalisation", "Apostille und Legalisation", "Using UK papers abroad", "Britische Dokumente im Ausland"),
+            ("languages", "All languages", "Alle Sprachen", "Into and out of English", "Aus dem und ins Englische"),
+        ],
+    },
+    "global": {
+        "en": "Global", "de": "Global", "hub": "global", "cls": "b",
+        "en_line": "Both teams together: your site and your words, ready for the next market.",
+        "de_line": "Beide Teams zusammen: Website und Texte, bereit für den nächsten Markt.",
+        "items": [
+            ("international-launch", "International launch", "Internationaler Marktstart", "One team, one launch plan", "Ein Team, ein Startplan"),
+            ("localization", "Website and app localisation", "Website- und App-Lokalisierung", "Your product, in their language", "Ihr Produkt in ihrer Sprache"),
+            ("multilingual-seo", "Multilingual SEO", "Mehrsprachige SEO", "Found in every market", "In jedem Markt gefunden"),
+            ("ecommerce-localisation", "Shop localisation", "Shop-Lokalisierung", "Shopify and WooCommerce", "Shopify und WooCommerce"),
+            ("games", "Game localisation", "Spielelokalisierung", "Strings, stores, subtitles", "Strings, Stores, Untertitel"),
+            ("readiness-check", "Free readiness check", "Kostenloser Readiness-Check", "Is your site ready to translate?", "Ist Ihre Website übersetzungsbereit?"),
+            ("demo", "Live localisation demo", "Live-Lokalisierungsdemo", "Watch a page change language", "Eine Seite wechselt die Sprache"),
+        ],
+    },
+}
+# Footer and older code use these flat lists.
+DIGITAL = [(s, en, de) for s, en, de, *_ in TEAMS["digital"]["items"] if s not in ("website-check", "web-design-glasgow")]
+LANGUAGE = [(s, en, de) for s, en, de, *_ in TEAMS["language"]["items"] if s not in ("languages", "certified-translation-glasgow")] + \
+    [(s, en, de) for s, en, de, *_ in TEAMS["global"]["items"] if s in ("localization", "multilingual-seo")]
 
 UI = {
     "en": {
@@ -88,66 +121,105 @@ def name_of(item, lang):
     return item[1] if lang == "en" else item[2]
 
 
+def mega(lang, key):
+    team = TEAMS[key]
+    p = lambda x: path(lang, x)  # noqa: E731
+    idx = 0 if lang == "en" else 1
+    items = []
+    for slug, en, de, den, dde in team["items"]:
+        name, desc = (en, den) if lang == "en" else (de, dde)
+        img = f"/img/scenes/{SCENES.get(slug, 'default')}.webp"
+        items.append(f'<li><a href="{p(slug)}" data-img="{img}" data-desc="{esc(desc)}"><span class="roll"><span>{esc(name)}</span></span>'
+                     f'<small>{esc(desc)}</small></a></li>')
+    line = team[lang + "_line"]
+    label = team[lang]
+    meet = {"en": f"Meet the {label} team", "de": f"Zum Team {label}"}[lang]
+    hub_img = f"/img/scenes/{SCENES.get(team['hub'], 'default')}.webp"
+    return f"""<details class="menu team-{team['cls']}" data-mega>
+        <summary><span class="roll"><span>{label}</span></span></summary>
+        <div class="drop">
+          <ul class="mega-list">{''.join(items)}</ul>
+          <a class="mega-preview" href="{p(team['hub'])}">
+            <img src="{hub_img}" alt="" width="900" height="675" loading="lazy" data-default="{hub_img}">
+            <span class="mega-desc" data-default="{esc(line)}">{esc(line)}</span>
+            <span class="mega-more">{meet} →</span>
+          </a>
+        </div>
+      </details>"""
+
+
 def header(lang, slug):
     t = UI[lang]
     other = "de" if lang == "en" else "en"
     p = lambda s: path(lang, s)  # noqa: E731
-    dig = "".join(f'<li><a href="{p(s)}">{esc(name_of(i, lang))}</a></li>' for i in DIGITAL for s in [i[0]])
-    lan = "".join(f'<li><a href="{p(s)}">{esc(name_of(i, lang))}</a></li>' for i in LANGUAGE for s in [i[0]])
-    top = [("languages", t["languages"]), ("pricing", t["pricing"]), ("work", t["work"]),
-           ("about", t["about"]), ("insights", t["insights"])]
-    top_links = "".join(f'<a href="{p(s)}">{esc(n)}</a>' for s, n in top)
+    top = [("work", t["work"]), ("pricing", t["pricing"]), ("about", t["about"])]
+    top_links = "".join(f'<a href="{p(s)}"><span class="roll"><span>{esc(n)}</span></span></a>' for s, n in top)
+    def drawer_team(key):
+        team = TEAMS[key]
+        lis = "".join(f'<li><a href="{p(s)}">{esc(en if lang == "en" else de)}</a></li>' for s, en, de, *_ in team["items"])
+        return f'<div class="team-{team["cls"]}"><p class="kicker"><a href="{p(team["hub"])}">{team[lang]}</a></p><ul>{lis}</ul></div>'
     drawer_more = "".join(f'<li><a href="{p(s)}">{esc(n)}</a></li>' for s, n in
-                          top + [("process", t["process"]), ("faq", t["faq"])])
+                          top + [("process", t["process"]), ("insights", t["insights"]), ("faq", t["faq"])])
     return f"""<a class="skip" href="#content">{t['skip']}</a>
+<div class="progress" aria-hidden="true"></div>
 <header class="nav">
   <div class="shell nav-row">
-    <a class="mark" href="{p('')}">Kayonne</a>
+    <a class="mark" href="{p('')}"><span class="roll"><span>Kayonne</span></span></a>
     <nav class="links" aria-label="{t['services']}">
-      <details class="menu">
-        <summary>{t['services']}</summary>
-        <div class="drop">
-          <div><p class="kicker">{t['digital']}</p><ul>{dig}</ul></div>
-          <div><p class="kicker">{t['language']}</p><ul>{lan}</ul></div>
-        </div>
-      </details>
+      {mega(lang, "digital")}
+      {mega(lang, "language")}
+      {mega(lang, "global")}
       {top_links}
     </nav>
     <div class="nav-actions">
       <a class="btn ghost" href="{path(other, slug)}" hreflang="{other}" lang="{other}" title="{UI[lang]['switch']}">{t['switch_short']}</a>
-      <a class="btn nav-quote" href="{p('contact')}">{t['quote']}</a>
+      <a class="btn nav-quote magnetic" href="{p('contact')}">{t['quote']}</a>
       <button class="btn ghost burger" type="button" aria-expanded="false" aria-controls="drawer">{t['menu']}</button>
     </div>
   </div>
   <div class="shell drawer" id="drawer">
     <p class="drawer-cta"><a class="btn" href="{p('contact')}">{t['quote']}</a></p>
-    <div><p class="kicker">{t['digital']}</p><ul>{dig}</ul></div>
-    <div><p class="kicker">{t['language']}</p><ul>{lan}</ul></div>
+    {drawer_team("digital")}
+    {drawer_team("language")}
+    {drawer_team("global")}
     <div><p class="kicker">{t['company']}</p><ul>{drawer_more}</ul></div>
   </div>
 </header>"""
 
 
+HELLOS = ["Hello", "Hallo", "Bonjour", "こんにちは", "Hola", "你好", "Ciao", "안녕하세요", "Olá", "Cześć",
+          "Merhaba", "Привіт", "مرحبا", "नमस्ते", "Hej", "Xin chào", "Salut", "Γεια σας"]
+
+
+def marquee():
+    words = "".join(f'<span lang="und">{w}</span><i>✦</i>' for w in HELLOS)
+    return (f'<div class="marquee" aria-hidden="true"><div class="marquee-track">{words}{words}</div></div>'
+            f'<div class="marquee rev" aria-hidden="true"><div class="marquee-track">{words}{words}</div></div>')
+
+
 def footer(lang):
     t = UI[lang]
     p = lambda s: path(lang, s)  # noqa: E731
-    dig = "".join(f'<li><a href="{p(i[0])}">{esc(name_of(i, lang))}</a></li>' for i in DIGITAL)
-    lan = "".join(f'<li><a href="{p(i[0])}">{esc(name_of(i, lang))}</a></li>' for i in LANGUAGE)
+    cols = ""
+    for key in ("digital", "language", "global"):
+        team = TEAMS[key]
+        lis = "".join(f'<li><a href="{p(s)}">{esc(en if lang == "en" else de)}</a></li>' for s, en, de, *_ in team["items"])
+        cols += f'<div class="team-{team["cls"]}"><p class="kicker"><a href="{p(team["hub"])}">{team[lang]}</a></p><ul>{lis}</ul></div>'
     comp = "".join(f'<li><a href="{p(s)}">{esc(t[k])}</a></li>' for s, k in [
-        ("about", "about"), ("process", "process"), ("industries", "industries"), ("languages", "languages"),
+        ("about", "about"), ("process", "process"), ("industries", "industries"),
         ("pricing", "pricing"), ("work", "work"), ("faq", "faq"), ("insights", "insights"), ("contact", "contact")])
     legal = " · ".join(f'<a href="{p(s)}">{esc(t[s])}</a>' for s in ("privacy", "cookies", "terms"))
-    return f"""<footer><div class="shell foot">
+    return f"""{marquee()}<footer><div class="shell foot">
     <div>
       <p class="mark">Kayonne Creatives</p>
       <p class="note">{t['tagline']}</p>
       <p><a href="mailto:{EMAIL}">{EMAIL}</a></p>
       <p class="note">{t['place']}</p>
     </div>
-    <div><p class="kicker">{t['digital']}</p><ul>{dig}</ul></div>
-    <div><p class="kicker">{t['language']}</p><ul>{lan}</ul></div>
+    {cols}
     <div><p class="kicker">{t['company']}</p><ul>{comp}</ul></div>
   </div>
+  <p class="shell wordmark" aria-hidden="true">Kayonne</p>
   <div class="shell foot-base note"><p>© {YEAR} Kayonne Creatives · {t['place']}</p><p>{legal}</p></div>
 </footer>"""
 
@@ -156,11 +228,29 @@ SCRIPT = """<script>
 (function(){
   var b=document.querySelector(".burger"),d=document.getElementById("drawer");
   if(b&&d){b.addEventListener("click",function(){var o=d.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");});}
-  var m=document.querySelector("details.menu");
-  if(m){
-    document.addEventListener("click",function(e){if(m.open&&!m.contains(e.target))m.open=false;});
-    document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.open){m.open=false;m.querySelector("summary").focus();}});
-  }
+  var menus=[].slice.call(document.querySelectorAll("details[data-mega]"));
+  var hover=window.matchMedia("(hover: hover) and (min-width: 1000px)").matches;
+  function closeAll(except){menus.forEach(function(m){if(m!==except)m.open=false;});}
+  menus.forEach(function(m){
+    var t;
+    m.addEventListener("toggle",function(){if(m.open)closeAll(m);});
+    if(hover){
+      m.addEventListener("mouseenter",function(){clearTimeout(t);m.open=true;});
+      m.addEventListener("mouseleave",function(){t=setTimeout(function(){m.open=false;},180);});
+    }
+    var img=m.querySelector(".mega-preview img"),desc=m.querySelector(".mega-desc");
+    [].slice.call(m.querySelectorAll(".mega-list a")).forEach(function(a){
+      function show(){
+        if(img&&img.getAttribute("src")!==a.dataset.img){img.classList.remove("swap");void img.offsetWidth;img.src=a.dataset.img;img.classList.add("swap");}
+        if(desc)desc.textContent=a.dataset.desc;
+      }
+      a.addEventListener("mouseenter",show);a.addEventListener("focus",show);
+    });
+  });
+  document.addEventListener("click",function(e){menus.forEach(function(m){if(m.open&&!m.contains(e.target))m.open=false;});});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape"){menus.forEach(function(m){if(m.open){m.open=false;m.querySelector("summary").focus();}});}});
+  var q=new URLSearchParams(location.search).get("service"),sel=document.getElementById("f-service");
+  if(q&&sel){[].slice.call(sel.options).forEach(function(o){if(o.text===q)sel.value=o.value||o.text;});}
 })();
 </script>
 <script src="/js/motion.js" defer></script>"""
@@ -175,11 +265,17 @@ SCENES = {
     "insights": "sheets", "insights/localise-a-website": "globe", "insights/speed-mistakes": "tunnel",
     "contact": "plane", "thanks": "plane", "privacy": "shield", "cookies": "shield", "terms": "scales",
     "studio": "cubes", "demo": "globe", "404": "ico",
+    "digital": "windows", "language": "sheets", "global": "globe", "web-design-glasgow": "windows",
+    "website-check": "lens", "certified-translation-glasgow": "seal", "apostille": "scales",
+    "multilingual-seo": "bars", "international-launch": "plane", "ecommerce-localisation": "tiles",
+    "readiness-check": "check",
+    "insights/home-office-certified-translation": "seal", "insights/website-cost-glasgow": "windows",
+    "insights/multilingual-seo-keywords": "bars",
 }
 
 
 def intro_html(page, slug):
-    scene = SCENES.get(slug, "default")
+    scene = page.get("scene") or SCENES.get(slug, "globe" if slug.startswith("languages/") else "default")
     art = ""
     if os.path.exists(f"img/scenes/{scene}.webp"):
         art = (f'<figure class="intro-art"><img src="/img/scenes/{scene}.webp" alt="" width="900" height="675" '
@@ -302,9 +398,31 @@ def raw_main(lang, page, slug):
     return intro + body + tail
 
 
+def team_cards(lang, key):
+    team = TEAMS[key]
+    out = []
+    for s_, en, de, den, dde in team["items"]:
+        name, desc = (en, den) if lang == "en" else (de, dde)
+        out.append(f'<li><a class="card img-card team-{team["cls"]}" href="{path(lang, s_)}">'
+                   f'<img src="/img/scenes/{SCENES.get(s_, "default")}.webp" alt="" width="900" height="675" loading="lazy" decoding="async">'
+                   f'<strong>{esc(name)}</strong><span class="note">{esc(desc)}</span></a></li>')
+    return '<ul class="grid-3 link-cards img-cards">' + "".join(out) + "</ul>"
+
+
+def pair_cards(lang):
+    mod = LANGS[lang]
+    out = []
+    for slug, page in mod.PAGES.items():
+        if slug.startswith("languages/"):
+            out.append(f'<li><a class="card" href="{path(lang, slug)}"><strong>{page["label"]}</strong>'
+                       f'<span class="note">{esc(strip(page["h1"]))}</span></a></li>')
+    return '<ul class="grid-3 link-cards">' + "".join(out) + "</ul>"
+
+
 def render(lang, slug, page, weights=""):
     main = service_main(lang, page, slug) if page.get("kind") == "service" else raw_main(lang, page, slug)
-    main = main.replace("{{WEIGHTS}}", weights)
+    main = main.replace("{{WEIGHTS}}", weights).replace("{{PAIRS}}", pair_cards(lang) if "{{PAIRS}}" in main else "")
+    main = re.sub(r"\{\{TEAM:(\w+)\}\}", lambda m: team_cards(lang, m.group(1)), main)
     cls = "page" + (" home" if slug == "" else "")
     link_slug = "" if slug == "404" else slug
     return (head(lang, slug, page) + "\n<body>\n" + header(lang, link_slug) +

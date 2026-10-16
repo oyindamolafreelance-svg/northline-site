@@ -79,7 +79,7 @@ PAGES[""] = dict(
     <p class="kicker">Glasgow · worldwide</p>
     <h1>We build it. Then we take it to every market.</h1>
     <p class="lede">Kayonne Creatives is a digital and language agency in Glasgow. We build websites and apps, and professional linguists translate them into European and Asian languages. You can hire the build, the translation, or both.</p>
-    <p class="actions"><a class="btn" href="/contact/">Get a quote</a> <a class="btn ghost" href="/services/">See our services</a></p>
+    <p class="actions"><a class="btn magnetic" href="/digital/">Build a site</a> <a class="btn magnetic" href="/language/">Translate a document</a> <a class="btn ghost magnetic" href="/global/">Launch abroad</a></p>
   </div>
   <div class="orbit" aria-hidden="true"><div class="ring"><span>ä</span><span>あ</span><span>中</span><span>é</span><span>ø</span></div></div>
 </section>
@@ -89,18 +89,31 @@ PAGES[""] = dict(
   <li class="card note">Professional linguists across Europe and Asia</li>
   <li class="card note">Processes aligned with ISO 17100 when a client requires it</li>
 </ul></section>
-<section data-scene="windows">
-  <h2>Digital</h2>
-  {cards(DIGITAL_CARDS)}
+<section class="teams" data-scene="windows" aria-label="Our two teams">
+  <a class="team team-d" href="/digital/">
+    <p class="kicker">Kayonne Digital</p>
+    <h2>The build team</h2>
+    <p>Websites, online shops and apps, the domain and email behind them, and the SEO that gets them found.</p>
+    <ul class="ticks"><li>Websites and shops</li><li>Web and mobile apps</li><li>Domains and business email</li><li>SEO, speed and care</li></ul>
+    <span class="team-more">Meet the build team →</span>
+  </a>
+  <a class="team team-l" href="/language/">
+    <p class="kicker">Kayonne Language</p>
+    <h2>The translation team</h2>
+    <p>Qualified translators for certified, legal, medical and patent work, subtitles and proofreading, with a second check on every job.</p>
+    <ul class="ticks"><li>Certified for the Home Office</li><li>Legal, medical, patents</li><li>Subtitling and transcription</li><li>Proofreading and revision</li></ul>
+    <span class="team-more">Meet the translation team →</span>
+  </a>
 </section>
-<section data-scene="globe">
-  <h2>Language</h2>
-  {cards(LANGUAGE_CARDS)}
-</section>
-<section data-scene="film">
-  <h2>Localisation, in motion</h2>
+<section class="global-band card" data-scene="globe">
+  <div>
+    <p class="kicker">Kayonne Global</p>
+    <h2>Both teams. One launch.</h2>
+    <p>Most firms build the site or translate it. We do both on the same project, so your site is ready for the next market without a hand-off in the middle.</p>
+    <ol class="mini-steps"><li>Audit</li><li>Research</li><li>Build</li><li>Translate</li><li>Check</li><li>Launch</li></ol>
+    <p class="actions"><a class="btn magnetic" href="/global/">See how it works</a> <a class="btn ghost" href="/readiness-check/">Free readiness check</a></p>
+  </div>
   {LOC_VIDEO_EN}
-  <p><a class="btn ghost" href="/demo/">Try the live demo</a></p>
 </section>
 <section data-scene="network">
   <h2>Europe and Asia, with one team.</h2>
@@ -456,6 +469,7 @@ PAGES["languages"] = dict(
     body=f"<section>{LANG_WALLS}</section>"
          "<section><h2>A note on two of them</h2><p><strong>German (Switzerland):</strong> written Swiss German follows Swiss Standard German. It uses ss instead of ß and has its own vocabulary. Spoken Swiss German dialect is covered for subtitles and transcription.</p>"
          "<p><strong>Cantonese:</strong> for subtitles and transcription of spoken Cantonese, and for Traditional Chinese written for Hong Kong readers.</p></section>"
+         "<section data-scene=\"film\"><h2>Pages for the most requested languages</h2>{{PAIRS}}</section>"
          "<section><h2>Not on the list?</h2><p>Ask. The quote names the linguist, or we decline the pair.</p></section>",
 )
 
@@ -600,7 +614,8 @@ FORM_SERVICES = [
                   "Medical translation", "Patent translation", "Legal translation", "Subtitling or transcription",
                   "Proofreading or revision", "MTPE or LQA"]),
     ("Digital", ["Website", "Online shop", "Web app", "Mobile app", "Domain and business email", "SEO", "Speed or accessibility audit", "Care plan"]),
-    ("Both", ["Website and translation", "Something else"]),
+    ("Both", ["Website and translation", "International launch", "Shop localisation", "Multilingual SEO", "Something else"]),
+    ("Free", ["Free website check", "Free readiness check"]),
 ]
 
 
@@ -837,4 +852,337 @@ NOT_FOUND = dict(
     lede='The link may be old or mistyped. <span lang="de">Diese Seite gibt es nicht.</span>',
     body='<p class="actions"><a class="btn" href="/">Home</a> <a class="btn ghost" href="/de/" lang="de">Startseite (Deutsch)</a> <a class="btn ghost" href="/contact/">Contact</a></p>',
     no_cta=True,
+)
+
+
+# ---------------------------------------------------------------------------
+# Team hubs, new money pages, language pages and articles
+# ---------------------------------------------------------------------------
+
+def team_video(key, caption, label):
+    return video(f"team-{key}", caption, 1280, 720, label)
+
+
+STATEMENT_EN = """<figure class="statement" aria-label="Example of the statement attached to a certified translation">
+<p class="kicker">Example statement</p>
+<p class="st-title">Certificate of translation accuracy</p>
+<p>I confirm that the attached document is a true and accurate translation of the original birth certificate from Polish into English.</p>
+<dl><dt>Translator</dt><dd>Full name and signature</dd><dt>Date</dt><dd>Date of translation</dd><dt>Contact</dt><dd>hello@kayonnecreatives.com</dd><dt>Company</dt><dd>Kayonne Creatives, Glasgow</dd></dl>
+<figcaption class="note">These are the four things the Home Office asks to see: confirmation of accuracy, the date, the translator's full name and signature, and contact details.</figcaption>
+</figure>"""
+
+PAGES["digital"] = dict(
+    title="Kayonne Digital | Web design, apps and SEO, Glasgow",
+    desc="The Kayonne Digital team builds websites, online shops and apps, sets up domains and business email, and handles SEO, speed and care.",
+    label="Kayonne Digital", h1="The build team.",
+    lede="Designers and developers who build websites, shops and apps, set up the domain and email behind them, and keep them fast and found. Based in Glasgow, working with businesses across the UK.",
+    body="""<section data-scene="windows"><h2>What the team builds</h2>{{TEAM:digital}}</section>
+<section data-scene="tiles" class="grid-2 split-copy"><div><h2>Who you work with</h2><p>A project lead in Glasgow, a designer and a developer on every build. You see designs before anything is coded, a test site before launch, and a speed report at handover.</p><p>When your site needs another language, the <a href="/language/">language team</a> sits next door. No second agency, no hand-off by email.</p></div>"""
+    + team_video("digital", "The Digital team's work in 3D: browser windows, an app grid and phones.", "Kayonne Digital reel") + """</section>
+<section data-scene="bars"><h2>Packages</h2><ul class="grid-4 link-cards plain-cards">
+<li class="card"><strong>One-page site</strong><span class="note">Offer, contact form, map. For a launch or a sole trader.</span></li>
+<li class="card"><strong>Business site</strong><span class="note">Five to eight pages, blog, local SEO setup.</span></li>
+<li class="card"><strong>Online shop</strong><span class="note">Shopify or WooCommerce, payments, delivery rules.</span></li>
+<li class="card"><strong>Multilingual site</strong><span class="note">Any package in two or more languages.</span></li>
+</ul><p><a class="btn ghost" href="/pricing/">How we price</a></p></section>
+<section data-scene="lens" class="offer card"><div><p class="kicker">Free</p><h2>Website check</h2><p>Send your address. We look at speed on a phone, mobile layout, search basics and the contact form, and email you a short written list of what to fix first.</p></div><p><a class="btn magnetic" href="/website-check/">Get a free check</a></p></section>""",
+    faq=[("Do you only work in Glasgow?", "No. The team is in Glasgow and works with clients across the UK and abroad. Local clients can meet in person."),
+         ("Who owns the site?", "You do, once the agreed fees are paid. Domain, hosting and email accounts are in your name."),
+         ("Can you translate the site too?", "Yes. That is what the <a href=\"/global/\">Global</a> service is for.")],
+)
+
+PAGES["language"] = dict(
+    title="Kayonne Language | Certified and specialist translation, UK",
+    desc="The Kayonne Language team: qualified translators for certified, legal, medical and patent translation, subtitling and proofreading, with a second check on every job.",
+    label="Kayonne Language", h1="The translation team.",
+    lede="Qualified translators led from Glasgow by a translator with an MA in Translation Studies and the CIOL Diploma in Translation. Every job is checked by a second linguist before it leaves us.",
+    body="""<section data-scene="sheets"><h2>What the team translates</h2>{{TEAM:language}}</section>
+<section data-scene="seal" class="grid-2 split-copy"><div><h2>Certified for the Home Office</h2><p>The UK has no sworn translators. A certified translation carries a signed statement that it is accurate, with the date and the translator's details. Ours include everything the Home Office asks for.</p><p><a class="btn magnetic" href="/certified-translation/">Certified translation</a></p></div>""" + STATEMENT_EN + """</section>
+<section data-scene="path"><h2>How a translator joins the team</h2><ol class="grid-4 steps">
+<li class="card"><h3>Qualified</h3><p>A translation degree or a professional qualification such as the CIOL Diploma.</p></li>
+<li class="card"><h3>Native</h3><p>They translate into their own first language.</p></li>
+<li class="card"><h3>Specialist</h3><p>Legal, medical and patent work goes only to linguists with experience in that field.</p></li>
+<li class="card"><h3>Checked</h3><p>A second linguist revises every job before delivery.</p></li>
+</ol></section>
+<section data-scene="film" class="grid-2 split-copy"><div><h2>Languages</h2><p>European and Asian languages, into and out of English. The most requested have their own pages: <a href="/languages/polish/">Polish</a>, <a href="/languages/romanian/">Romanian</a>, <a href="/languages/arabic/">Arabic</a>, <a href="/languages/urdu/">Urdu</a>, <a href="/languages/chinese/">Chinese</a>, <a href="/languages/spanish/">Spanish</a>, <a href="/languages/french/">French</a>, <a href="/languages/german/">German</a>, <a href="/languages/ukrainian/">Ukrainian</a> and <a href="/languages/portuguese/">Portuguese</a>.</p><p><a class="btn ghost" href="/languages/">All languages</a></p></div>"""
+    + team_video("language", "The Language team's work in 3D: a certified seal, documents and subtitles.", "Kayonne Language reel") + """</section>
+<section data-scene="shield"><h2>Your documents stay private</h2><ul class="ticks"><li>Only the people on your job see the files.</li><li>NDA on request, before you send anything.</li><li>Files deleted within 90 days of delivery unless you ask us to keep them.</li><li>Never used to train public AI models.</li></ul></section>""",
+    faq=[("Do you translate into English or out of it?", "Both. Most certified work is into English, for UK authorities."),
+         ("Is a certified translation the same as a sworn one?", "No. See <a href=\"/certified-translation/\">certified translation</a> and <a href=\"/apostille/\">apostille and legalisation</a>."),
+         ("How do I get a price?", "Upload the document on the <a href=\"/contact/\">quote form</a>. You get a fixed price before we start.")],
+)
+
+PAGES["global"] = dict(
+    title="Kayonne Global | Website localisation and international launch",
+    desc="Kayonne Global brings the build and translation teams together: localised websites and shops, multilingual SEO and international launches, from one Glasgow team.",
+    label="Kayonne Global", h1="Both teams. One launch.",
+    lede="Most firms do one half: they build the site, or they translate it. Kayonne Global puts the build team and the translation team on the same project, so your site is ready for the next market without a hand-off in the middle.",
+    body="""<section data-scene="globe"><h2>What we take abroad</h2>{{TEAM:global}}</section>
+<section data-scene="plane"><h2>How a launch runs</h2><ol class="grid-3 steps">
+<li class="card"><h3>Audit</h3><p>Is the site ready to translate? Text in images, fixed-width buttons, hard-coded dates.</p></li>
+<li class="card"><h3>Research</h3><p>Search terms researched in each market by a native speaker, not translated from English.</p></li>
+<li class="card"><h3>Build</h3><p>Language folders, hreflang, local currency and dates, layout that survives longer words.</p></li>
+<li class="card"><h3>Translate</h3><p>A specialist translates in context. A second linguist revises.</p></li>
+<li class="card"><h3>Check</h3><p>Every page checked in the browser, in every language, on a phone.</p></li>
+<li class="card"><h3>Launch</h3><p>Sitemaps and Search Console for each market, plus a report on what to watch.</p></li>
+</ol></section>
+<section data-scene="film" class="grid-2 split-copy"><div><h2>See it happen</h2><p>One product card in English, German, Japanese and Arabic. The words change, and so do the date, the currency and the reading direction.</p><p><a class="btn ghost" href="/demo/">Try the live demo</a></p></div>""" + LOC_VIDEO_EN + """</section>
+<section data-scene="check"><h2>Why not just use a translation plugin?</h2><div class="table-wrap"><table>
+<thead><tr><th scope="col"></th><th scope="col">Machine plugin alone</th><th scope="col">Kayonne Global</th></tr></thead>
+<tbody>
+<tr><td>Speed to first draft</td><td>Minutes</td><td>Days</td></tr>
+<tr><td>Search terms per market</td><td>Translated from English</td><td>Researched by a native speaker</td></tr>
+<tr><td>Brand names, tone, legal claims</td><td>Not checked</td><td>Glossary agreed first, revised by a second linguist</td></tr>
+<tr><td>Layout with longer words</td><td>Not checked</td><td>Checked on desktop and phone</td></tr>
+<tr><td>Best for</td><td>Low-risk pages, internal tools</td><td>Pages that sell, legal pages, checkout</td></tr>
+</tbody></table></div><p class="note">A plugin can be the right first step. We can also review and fix machine output instead of starting again. See <a href="/quality/">MTPE</a>.</p></section>
+<section data-scene="check" class="offer card"><div><p class="kicker">Free</p><h2>International readiness check</h2><p>We look at your site and tell you what would break in translation, which market to start with, and roughly what it would take.</p></div><p><a class="btn magnetic" href="/readiness-check/">Check my site</a></p></section>""",
+    faq=[("Which markets do you know best?", "Europe and Asia. Germany and the German-speaking countries are a particular focus."),
+         ("Can you work with our existing developer?", "Yes. We can supply translations, keyword research and hreflang specifications to your team."),
+         ("Do you handle the shop too?", "Yes. See <a href=\"/ecommerce-localisation/\">shop localisation</a>.")],
+)
+
+PAGES["web-design-glasgow"] = svc(
+    title="Web design Glasgow | Kayonne Creatives",
+    desc="Web design in Glasgow from a local team: business websites, online shops and redesigns, fast and found, with the option to add other languages.",
+    label="Web design Glasgow", h1="Web design in Glasgow, by a team you can meet.",
+    lede="We design and build websites for Glasgow businesses: trades, clinics, shops, consultants and startups. Clear pages, fast on a phone, set up for local search, and ready for another language if you sell abroad.",
+    why=["A local team you can meet in person", "Local SEO and Google Business Profile set up with the site", "Translation in-house when you need a second language"],
+    incl=["Business websites", "Online shops", "Redesigns of slow or outdated sites", "Domain and business email", "Google Business Profile setup", "Care plans after launch"],
+    steps=[("Meet", "A call or a coffee in Glasgow to agree what the site must do."),
+           ("Design", "You approve the look before anything is built."),
+           ("Build", "We build, connect the domain and set up email."),
+           ("Launch", "Speed report, local SEO checklist and training.")],
+    who="Glasgow and West of Scotland businesses that want a site that brings in enquiries.",
+    faq=[("How much does a website cost in Glasgow?", "Local prices run from a few hundred pounds for a template to several thousand for a custom build. See our <a href=\"/insights/website-cost-glasgow/\">guide to website costs</a>."),
+         ("Can you help with Google Maps?", "Yes. We set up and tidy your Google Business Profile so you show up in local searches."),
+         ("Can we meet?", "Yes. Tell us in the quote form and we'll arrange it.")],
+)
+
+PAGES["website-check"] = dict(
+    title="Free website check | Kayonne Digital",
+    desc="Send your website address and get a free written check of speed on a phone, mobile layout, search basics and your contact form.",
+    label="Kayonne Digital · Free", h1="A free check of your website.",
+    lede="Send us your website address. A developer looks at it the way a customer and Google would, then emails you a short list of what to fix first. No obligation.",
+    body="""<section data-scene="lens"><h2>What we check</h2><ul class="grid-4 link-cards plain-cards">
+<li class="card"><strong>Speed on a phone</strong><span class="note">Core Web Vitals, with the numbers.</span></li>
+<li class="card"><strong>Mobile layout</strong><span class="note">Text, buttons and menus at phone width.</span></li>
+<li class="card"><strong>Search basics</strong><span class="note">Titles, descriptions, headings, indexing.</span></li>
+<li class="card"><strong>Contact form</strong><span class="note">We send a test and see if it arrives.</span></li>
+</ul></section>
+<section data-scene="ring" class="offer card"><div><h2>Request your check</h2><p>Choose "Free website check" on the form and put your website address in the message.</p></div><p><a class="btn magnetic" href="/contact/?service=Free+website+check">Request a check</a></p></section>""",
+)
+
+PAGES["readiness-check"] = dict(
+    title="Free international readiness check | Kayonne Global",
+    desc="Find out what would break when your website is translated, which market to start with, and what it would take. Free check from Kayonne Global.",
+    label="Kayonne Global · Free", h1="Is your website ready for another language?",
+    lede="We look at your site with a developer's eyes and a translator's eyes, then tell you what would break in translation and which market makes sense first.",
+    body="""<section data-scene="check"><h2>What we look at</h2><ul class="grid-4 link-cards plain-cards">
+<li class="card"><strong>Text in images</strong><span class="note">Words baked into pictures can't be translated.</span></li>
+<li class="card"><strong>Layout</strong><span class="note">Buttons and menus that break when German runs 30% longer.</span></li>
+<li class="card"><strong>Platform</strong><span class="note">Whether your CMS or shop handles languages well.</span></li>
+<li class="card"><strong>Market fit</strong><span class="note">Search demand, currency, payment and legal pages.</span></li>
+</ul></section>
+<section data-scene="plane" class="offer card"><div><h2>Request your check</h2><p>Choose "Free readiness check" on the form, add your website address and the markets you're thinking about.</p></div><p><a class="btn magnetic" href="/contact/?service=Free+readiness+check">Request a check</a></p></section>""",
+)
+
+PAGES["certified-translation-glasgow"] = svc(
+    title="Certified translation Glasgow | Kayonne Language",
+    desc="Certified translation in Glasgow for the Home Office, UKVI, Scottish courts, universities and banks. Signed statement, checked by a second linguist.",
+    label="Certified translation Glasgow", h1="Certified translation in Glasgow.",
+    lede="Certified translations from a Glasgow team, for visas, settlement, citizenship, Scottish courts, universities, employers and banks. Each one comes with a signed statement of accuracy, the date and the translator's details.",
+    why=["Led by a CIOL-qualified translator in Glasgow", "A second linguist checks every certified translation", "Upload a photo or scan from anywhere in Scotland"],
+    incl=["Birth, marriage and divorce certificates", "Passports and ID", "Driving licences", "Degrees and transcripts", "Bank statements", "Court and solicitor papers"],
+    extra=f"<section data-scene=\"seal\" class=\"grid-2 split-copy\"><div><h2>What you receive</h2><p>A translation laid out like the original, and a signed statement like this one. Delivered as a PDF you can upload or print.</p></div>{STATEMENT_EN}</section>",
+    steps=[("Upload", "A clear photo or scan on the <a href=\"/contact/?service=Certified+translation+(UK)\">quote form</a>."),
+           ("Quote", "A fixed price and a delivery date."),
+           ("Translate", "Translated, then checked against the original by a second linguist."),
+           ("Deliver", "Signed PDF by email.")],
+    who="People in Glasgow and across Scotland applying to the Home Office, universities or employers, and the solicitors who help them.",
+    faq=[("Will it be accepted by the Home Office?", "It includes the confirmation of accuracy, date, full name and signature, and contact details that the Home Office asks for. Read <a href=\"/insights/home-office-certified-translation/\">what the Home Office needs</a>."),
+         ("Do Scottish courts accept it?", "Courts usually accept a certified translation. Some cases need a sworn affidavit or notarisation; your solicitor will know, and we can arrange it."),
+         ("Can I drop the document off?", "Send a scan or photo; you keep your original.")],
+)
+
+PAGES["apostille"] = dict(
+    title="Apostille and legalisation for UK documents | Kayonne Language",
+    desc="How to use UK documents and translations abroad: what an apostille is, who issues it, when a translation needs notarising, and when embassy legalisation is needed.",
+    label="Kayonne Language · Guide", h1="Apostille and legalisation, in plain words.",
+    lede="If a UK document or translation will be used abroad, the receiving country may want proof that the signature or stamp on it is genuine. That proof is usually an apostille.",
+    body="""<article class="prose">
+<h2>What an apostille is</h2>
+<p>An apostille is a certificate attached to a public document that confirms the signature, seal or stamp on it is genuine. In the UK, apostilles are issued by the Legalisation Office of the Foreign, Commonwealth and Development Office (FCDO).</p>
+<h2>Which countries accept it</h2>
+<p>Countries that have joined the Hague Apostille Convention accept an apostille without further steps. Countries outside the Convention may also ask for the document to be legalised by their embassy or consulate.</p>
+<h2>Where translation comes in</h2>
+<p>An apostille confirms a signature, not a translation. If the receiving country needs a translation, it may ask for the translation to be certified and then notarised by a UK solicitor or notary public, so that the apostille can be attached to the notary's signature.</p>
+<h2>A typical order of steps</h2>
+<ol><li>Ask the receiving authority exactly what it needs.</li><li>Get the translation certified.</li><li>Have it notarised if required.</li><li>Get the apostille from the FCDO.</li><li>Legalise at the embassy if the country is outside the Convention.</li></ol>
+<p>We can produce the certified translation and arrange the notary and apostille steps through partners. The quote lists each step and who does it.</p>
+<p class="note">Rules and fees change. Check the current guidance on gov.uk before you apply.</p>
+</article>""",
+)
+
+PAGES["multilingual-seo"] = svc(
+    title="Multilingual SEO agency | Kayonne Global",
+    desc="Multilingual and international SEO: keyword research by native speakers in each market, hreflang, translated metadata and locale URLs, from a team that builds and translates.",
+    label="Multilingual SEO", h1="Found in every language you sell in.",
+    lede="People in Germany don't search for what people in Glasgow search for, even when they want the same thing. We research search terms in each market with native speakers, then build the pages to match.",
+    why=["Keyword research by native speakers, not translated keywords", "The same team fixes the code, writes the pages and translates them", "Reports per market from Search Console"],
+    incl=["International keyword research", "Hreflang and language folders", "Translated titles, descriptions and URLs", "Local content briefs", "Technical audits for multilingual sites", "Market-by-market reporting"],
+    steps=[("Markets", "Which countries, which languages, which pages first."),
+           ("Research", "Native speakers research what people actually type."),
+           ("Build", "Folders, hreflang, metadata and internal links."),
+           ("Report", "Search Console per market, every month.")],
+    who="Businesses already selling in the UK that want to be found in Germany, Europe or Asia.",
+    faq=[("Can't we just translate our keywords?", "Usually not. See <a href=\"/insights/multilingual-seo-keywords/\">why translated keywords fail</a>."),
+         ("Do you guarantee rankings?", "No one can. We fix what we control and report on it.")],
+)
+
+PAGES["international-launch"] = svc(
+    title="International website launch | Kayonne Global",
+    desc="Take your website into a new market with one team: audit, keyword research, build, translation, checks and launch, managed from Glasgow.",
+    label="International launch", h1="Your next market, launched by one team.",
+    lede="A fixed plan to take your site or shop into a new language: the build team prepares the site, the translation team writes it in the new language, and one project lead runs both.",
+    why=["One project lead instead of an agency plus a translator", "Search terms researched before a word is translated", "Every page checked on a phone in every language"],
+    incl=["Readiness audit", "Market keyword research", "Language folders, hreflang and local formats", "Translation and second-linguist revision", "Legal page checks such as an Impressum for Germany", "Launch report and 30-day review"],
+    steps=[("Plan", "Markets, pages and launch date agreed in writing."),
+           ("Prepare", "The site is made translation-ready."),
+           ("Localise", "Translation, revision and in-context checks."),
+           ("Launch", "Go live, submit sitemaps, review after 30 days.")],
+    who="UK businesses entering Germany, Europe or Asia for the first time.",
+    faq=[("How long does a launch take?", "It depends on the number of pages and languages. The quote gives a date for each stage."),
+         ("Do you need access to our site?", "Yes, or to your developer. Accounts stay in your name.")],
+)
+
+PAGES["ecommerce-localisation"] = svc(
+    title="Shopify and WooCommerce store localisation | Kayonne Global",
+    desc="Translate and localise your Shopify or WooCommerce store: products, checkout, emails, currency and SEO, with human translation and a second-linguist check.",
+    label="Shop localisation", h1="Your shop, open in another language.",
+    lede="We localise Shopify and WooCommerce stores end to end: product pages, collections, checkout, order emails, currency and the search terms people use to find you.",
+    why=["Products, checkout and emails all translated, not just the home page", "Prices, currency and formats set per market", "Product titles researched for search in each market"],
+    incl=["Shopify Markets setup", "WooCommerce with WPML or Polylang", "Product and collection translation", "Checkout and email templates", "Currency, tax display and formats", "Multilingual SEO for products"],
+    steps=[("Review", "We check your theme, apps and catalogue size."),
+           ("Set up", "Markets, languages, currencies and URLs."),
+           ("Translate", "Products first, then pages, checkout and emails."),
+           ("Test", "A test order in every language before launch.")],
+    who="Online shops ready to sell in Germany, France, Spain or further afield.",
+    faq=[("Do you translate thousands of products?", "Yes. Large catalogues can use machine translation with human post-editing on your best sellers."),
+         ("Will it slow the shop down?", "No. We check speed before and after.")],
+)
+
+# ---------- language pair pages ----------
+LANG_PAIRS = {
+    "polish": dict(name="Polish", native="Polski",
+        note="Names and places keep their Polish letters (ą, ć, ę, ł, ń, ó, ś, ź, ż) exactly as on the original, so they match passports and records.",
+        docs=["Birth certificates (odpis aktu urodzenia)", "Marriage certificates", "Driving licences", "School and university certificates", "Police certificates"]),
+    "romanian": dict(name="Romanian", native="Română",
+        note="We keep ș and ț in names exactly as written, and translate stamps and handwritten notes on civil status certificates.",
+        docs=["Birth certificates (certificat de naștere)", "Marriage certificates", "Criminal record certificates", "Diplomas and transcripts", "Bank statements"]),
+    "arabic": dict(name="Arabic", native="العربية",
+        note="Arabic reads right to left and some documents use Hijri dates. We give the Gregorian date where the reader needs it and spell names to match the passport.",
+        docs=["Birth and marriage certificates", "Family registers", "Degrees and transcripts", "Court papers", "Medical reports"]),
+    "urdu": dict(name="Urdu", native="اردو",
+        note="Urdu is written right to left in Nastaliq script. Names can be spelled differently across documents, so tell us the spelling on your passport and we will use it throughout.",
+        docs=["Birth certificates (NADRA)", "Marriage certificates (nikah nama)", "Family registration certificates", "Educational certificates", "Bank statements"]),
+    "chinese": dict(name="Chinese", native="中文",
+        note="Simplified Chinese is used in mainland China and Singapore, Traditional in Hong Kong and Taiwan. Chinese names put the family name first; we keep the order used on the passport.",
+        docs=["Household registers (hukou)", "Notarial certificates", "Degree certificates and transcripts", "Business licences", "Bank statements"]),
+    "spanish": dict(name="Spanish", native="Español",
+        note="Spain and Latin America differ in vocabulary and formats, so tell us the country. Spanish documents often show two surnames, and we keep both.",
+        docs=["Birth certificates (partida de nacimiento)", "Marriage certificates", "Academic records", "Contracts", "Medical reports"]),
+    "french": dict(name="French", native="Français",
+        note="French from France, Belgium, Switzerland, Canada and Africa differs in terms and formats. We follow the country of the document or its reader.",
+        docs=["Birth certificates (acte de naissance)", "Marriage certificates", "Diplomas", "Contracts", "Company documents"]),
+    "german": dict(name="German", native="Deutsch",
+        note="Swiss documents use ss instead of ß. For German authorities that need a sworn translation (beglaubigte Übersetzung), we arrange an authorised partner.",
+        docs=["Birth certificates (Geburtsurkunde)", "Marriage certificates", "Certificates of good conduct", "Degrees and transcripts", "Employment references"]),
+    "ukrainian": dict(name="Ukrainian", native="Українська",
+        note="Names are transliterated exactly as in the Ukrainian passport so every document matches. We also translate Russian-language documents issued in Ukraine.",
+        docs=["Birth certificates", "Marriage certificates", "Diplomas and transcripts", "Driving licences", "Medical records"]),
+    "portuguese": dict(name="Portuguese", native="Português",
+        note="Portuguese from Portugal and from Brazil differ in spelling and terms, so tell us which. Long Portuguese and Brazilian names are kept in full.",
+        docs=["Birth certificates (certidão de nascimento)", "Marriage certificates", "Diplomas", "Criminal record certificates", "Bank statements"]),
+}
+
+for _slug, _l in LANG_PAIRS.items():
+    PAGES[f"languages/{_slug}"] = svc(
+        title=f"{_l['name']} translation services UK | {_l['name']} to English | Kayonne",
+        desc=f"Certified and professional {_l['name']} translation, into and out of English: documents for the Home Office, legal, medical and business texts, websites and subtitles.",
+        label=f"{_l['name']} · <span lang=\"und\">{_l['native']}</span>", h1=f"{_l['name']} translation, into and out of English.",
+        lede=f"Qualified {_l['name']} translators for certified documents, legal and medical texts, business content, websites and subtitles. Every job checked by a second linguist.",
+        why=[_l["note"], "Certified translations with the statement the Home Office asks for", "A second linguist checks every job"],
+        incl=[f"{_l['name']} to English certified translation", f"English to {_l['name']} translation"] + _l["docs"],
+        steps=[("Upload", "Send a photo, scan or file on the quote form."),
+               ("Quote", "A fixed price and a date."),
+               ("Translate", f"A native {_l['name']} translator works on it."),
+               ("Check", "A second linguist revises before delivery.")],
+        who=f"People and businesses who need {_l['name']} documents in English, or English content in {_l['name']}.",
+        faq=[(f"Do you provide certified {_l['name']} translations?", f"Yes. Certified {_l['name']} to English translations come with a signed statement of accuracy. See <a href=\"/certified-translation/\">certified translation</a>."),
+             ("How do I get a price?", f"Upload the document on the <a href=\"/contact/\">quote form</a> and choose {_l['name']} as the language.")],
+    )
+
+# ---------- articles ----------
+PAGES["insights/home-office-certified-translation"] = dict(
+    title="What the Home Office needs from a certified translation | Kayonne",
+    desc="What a certified translation for a UK visa or settlement application must include, common mistakes that cause problems, and an example statement.",
+    label="Insights · Certified translation", h1="What the Home Office needs from a certified translation",
+    lede="If a document for your visa, settlement or citizenship application is not in English or Welsh, you need a translation that the Home Office can check. Here is what it should include.",
+    body="""<article class="prose">
+<p class="byline">By the Kayonne Language team, led by a CIOL-qualified translator.</p>
+<h2>The short answer</h2>
+<p>Home Office guidance asks for a translation that includes: confirmation from the translator that it is an accurate translation of the original document, the date of the translation, the translator's full name and signature, and the translator's contact details.</p>
+<h2>Who can translate it</h2>
+<p>The UK has no sworn translators, so a professional translator or translation company certifies the translation. You cannot translate and certify your own documents.</p>
+<h2>Mistakes that cause delays</h2>
+<ul><li><b>Names spelled differently</b> from the passport. Give your translator the passport spelling.</li><li><b>Stamps and handwriting left out.</b> Everything on the page should be translated or described.</li><li><b>Missing pages</b>, including the back of a certificate.</li><li><b>No contact details</b>, so the translation cannot be verified.</li></ul>
+<h2>An example statement</h2>
+""" + STATEMENT_EN + """
+<h2>How we handle it</h2>
+<p>We translate the full document, keep the layout close to the original, check names against your passport, and have a second linguist review it. You receive a signed PDF. See <a href="/certified-translation/">certified translation</a>.</p>
+<p class="note">Guidance can change. Check the current requirements on gov.uk for your application.</p>
+</article>""",
+)
+
+PAGES["insights/website-cost-glasgow"] = dict(
+    title="How much does a website cost in Glasgow in 2026? | Kayonne",
+    desc="Website prices in Glasgow in 2026: templates, small business sites, custom builds and shops, what changes the price, and the running costs people forget.",
+    label="Insights · Websites", h1="How much does a website cost in Glasgow in 2026?",
+    lede="Prices for a website in Glasgow range from a few hundred pounds to well over ten thousand. Here is what you get at each level and what moves the price.",
+    body="""<article class="prose">
+<p class="byline">By the Kayonne Digital team.</p>
+<h2>Typical ranges we found</h2>
+<div class="table-wrap"><table><thead><tr><th scope="col">Type</th><th scope="col">Typical Glasgow price</th></tr></thead><tbody>
+<tr><td>Template site</td><td class="n">from about £300</td></tr>
+<tr><td>Small business site, up to 5 pages</td><td class="n">about £400 to £1,500</td></tr>
+<tr><td>Custom design from a studio</td><td class="n">usually from £2,000 to £5,000</td></tr>
+<tr><td>Larger builds and shops</td><td class="n">£5,000 to £10,000 and up</td></tr>
+<tr><td>Pay-monthly sites</td><td class="n">about £25 to £50 a month</td></tr>
+</tbody></table></div>
+<p class="note">Based on prices Glasgow studios published in 2026. Check current prices with each studio.</p>
+<h2>What changes the price</h2>
+<ul><li>Number of pages and how much writing you need.</li><li>A shop: products, payments and delivery rules.</li><li>Custom design versus a template.</li><li>Bookings, logins or integrations with other software.</li><li>More than one language.</li></ul>
+<h2>Running costs people forget</h2>
+<ul><li>Domain renewal every year.</li><li>Hosting.</li><li>Business email, such as Google Workspace or Microsoft 365, per user per month.</li><li>Updates and backups, either your time or a care plan.</li></ul>
+<h2>How we price</h2>
+<p>Every site gets a fixed written quote after a short brief. See <a href="/pricing/">pricing</a> or <a href="/website-check/">get a free check</a> of your current site first.</p>
+</article>""",
+)
+
+PAGES["insights/multilingual-seo-keywords"] = dict(
+    title="Multilingual SEO: why you can't just translate your keywords | Kayonne",
+    desc="Why translated keywords fail in international SEO, with examples, and how to research search terms in each market properly.",
+    label="Insights · Multilingual SEO", h1="Multilingual SEO: why you can't just translate your keywords",
+    lede="A keyword that brings you customers in the UK can bring nobody in Germany once it is translated word for word. Here is why, and what to do instead.",
+    body="""<article class="prose">
+<p class="byline">By the Kayonne Global team.</p>
+<h2>People search in their own words</h2>
+<p>A British shopper looks for <i>trainers</i>, an American for <i>sneakers</i>. In Germany a mobile phone is a <i>Handy</i>, a word a dictionary would never give you. A direct translation is often correct and still not what anyone types.</p>
+<h2>The same intent, different searches</h2>
+<p>Even when the meaning lines up, search habits differ: some markets use shorter queries, some add the city, some search in English for technical products. Each market needs its own research.</p>
+<h2>How to do it properly</h2>
+<ol><li>List the pages that sell, not every page.</li><li>Have a native speaker research what people search for in that market.</li><li>Check search intent: does the term bring buyers or students?</li><li>Write titles, headings and URLs around those terms.</li><li>Add hreflang so each market sees the right version.</li><li>Track each market separately in Search Console.</li></ol>
+<p>That is how we run <a href="/multilingual-seo/">multilingual SEO</a>.</p>
+</article>""",
 )
