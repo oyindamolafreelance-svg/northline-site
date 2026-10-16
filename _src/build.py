@@ -162,7 +162,33 @@ SCRIPT = """<script>
     document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.open){m.open=false;m.querySelector("summary").focus();}});
   }
 })();
-</script>"""
+</script>
+<script src="/js/motion.js" defer></script>"""
+
+# The 3D object shown at the top of each page (see js/scene.js for the list).
+SCENES = {
+    "": "hero", "services": "hero", "websites": "windows", "web-apps": "cubes", "mobile-apps": "phone",
+    "domains-email": "network", "seo": "bars", "speed": "tunnel", "care": "shield", "certified-translation": "seal",
+    "documents": "sheets", "localization": "globe", "games": "dice", "medical": "helix", "patents": "gears",
+    "legal": "scales", "subtitling": "film", "proofreading": "lens", "quality": "check", "languages": "globe",
+    "industries": "shards", "work": "windows", "process": "path", "pricing": "bars", "about": "orbit", "faq": "ico",
+    "insights": "sheets", "insights/localise-a-website": "globe", "insights/speed-mistakes": "tunnel",
+    "contact": "plane", "thanks": "plane", "privacy": "shield", "cookies": "shield", "terms": "scales",
+    "studio": "cubes", "demo": "globe", "404": "ico",
+}
+
+
+def intro_html(page, slug):
+    scene = SCENES.get(slug, "default")
+    art = ""
+    if os.path.exists(f"img/scenes/{scene}.webp"):
+        art = (f'<figure class="intro-art"><img src="/img/scenes/{scene}.webp" alt="" width="900" height="675" '
+               f'decoding="async" fetchpriority="low"></figure>')
+    inner = f'<p class="kicker">{page.get("label", "")}</p><h1>{page["h1"]}</h1>'
+    if page.get("lede"):
+        inner += f'<p class="lede">{page["lede"]}</p>'
+    cls = "intro has-art" if art else "intro"
+    return f'<header class="{cls}" data-scene="{scene}">{inner}{art}</header>'
 
 
 def org_schema(lang):
@@ -241,48 +267,43 @@ def faq_html(faq, t):
     if not faq:
         return ""
     items = "".join(f'<details class="card"><summary>{q}</summary><p>{a}</p></details>' for q, a in faq)
-    return f'<section><h2>{t["questions"]}</h2><div class="stack">{items}</div></section>'
+    return f'<section data-scene="ico"><h2>{t["questions"]}</h2><div class="stack">{items}</div></section>'
 
 
 def cta(lang):
     t = UI[lang]
-    return (f'<section class="cta card"><p>{t["cta_text"]}</p>'
+    return (f'<section class="cta card" data-scene="ring"><p>{t["cta_text"]}</p>'
             f'<p><a class="btn" href="{path(lang, "contact")}">{t["quote"]}</a></p></section>')
 
 
-def service_main(lang, page):
+def service_main(lang, page, slug):
     t = UI[lang]
-    parts = [f'<header class="intro"><p class="kicker">{page["label"]}</p><h1>{page["h1"]}</h1><p class="lede">{page["lede"]}</p></header>']
+    parts = [intro_html(page, slug)]
     if page.get("why"):
-        parts.append(f'<section><h2>{t["why"]}</h2><ul class="ticks">{lis(page["why"])}</ul></section>')
+        parts.append(f'<section data-scene="orbit"><h2>{t["why"]}</h2><ul class="ticks">{lis(page["why"])}</ul></section>')
     if page.get("incl"):
-        parts.append(f'<section><h2>{t["incl"]}</h2><ul class="ticks cols">{lis(page["incl"])}</ul></section>')
+        parts.append(f'<section data-scene="tiles"><h2>{t["incl"]}</h2><ul class="ticks cols">{lis(page["incl"])}</ul></section>')
     parts.append(page.get("extra", ""))
     if page.get("steps"):
         steps = "".join(f'<li class="card"><h3>{a}</h3><p>{b}</p></li>' for a, b in page["steps"])
-        parts.append(f'<section><h2>{t["steps"]}</h2><ol class="grid-4 steps">{steps}</ol></section>')
+        parts.append(f'<section data-scene="path"><h2>{t["steps"]}</h2><ol class="grid-4 steps">{steps}</ol></section>')
     if page.get("who"):
-        parts.append(f'<section><h2>{t["who"]}</h2><p>{page["who"]}</p></section>')
+        parts.append(f'<section data-scene="shards"><h2>{t["who"]}</h2><p>{page["who"]}</p></section>')
     parts.append(faq_html(page.get("faq"), t))
     parts.append(cta(lang))
     return "".join(parts)
 
 
-def raw_main(lang, page):
+def raw_main(lang, page, slug):
     t = UI[lang]
     body = page["body"]
-    intro = ""
-    if page.get("h1"):
-        intro = f'<p class="kicker">{page.get("label", "")}</p><h1>{page["h1"]}</h1>'
-        if page.get("lede"):
-            intro += f'<p class="lede">{page["lede"]}</p>'
-        intro = f'<header class="intro">{intro}</header>'
+    intro = intro_html(page, slug) if page.get("h1") else ""
     tail = faq_html(page.get("faq"), t) + ("" if page.get("no_cta") else cta(lang))
     return intro + body + tail
 
 
 def render(lang, slug, page, weights=""):
-    main = service_main(lang, page) if page.get("kind") == "service" else raw_main(lang, page)
+    main = service_main(lang, page, slug) if page.get("kind") == "service" else raw_main(lang, page, slug)
     main = main.replace("{{WEIGHTS}}", weights)
     cls = "page" + (" home" if slug == "" else "")
     link_slug = "" if slug == "404" else slug
@@ -297,7 +318,7 @@ def kb(n):
 
 def weights_table(lang):
     heads = {"en": ("Page", "HTML", "Compressed (gzip)"), "de": ("Seite", "HTML", "Komprimiert (gzip)")}[lang]
-    shared = {"en": "Shared stylesheet and fonts", "de": "Gemeinsames Stylesheet und Schriften"}[lang]
+    shared = {"en": "Shared stylesheet, fonts and motion script", "de": "Gemeinsames Stylesheet, Schriften und Animationsskript"}[lang]
     import gzip
     rows = []
     for slug in ("", "services", "websites", "certified-translation", "contact", "languages"):
@@ -305,9 +326,14 @@ def weights_table(lang):
         label = LANGS[lang].PAGES[slug]["title"].split(" | ")[0] if slug else UI[lang]["home"]
         rows.append(f'<tr><td><a href="{path(lang, slug)}">{esc(label)}</a></td><td class="n">{kb(len(data))}</td>'
                     f'<td class="n">{kb(len(gzip.compress(data)))}</td></tr>')
-    assets = ["css/site.css"] + sorted("fonts/" + f for f in os.listdir("fonts"))
+    assets = ["css/site.css", "js/motion.js"] + sorted("fonts/" + f for f in os.listdir("fonts"))
     total = sum(os.path.getsize(a) for a in assets)
     rows.append(f'<tr><td>{shared}</td><td class="n">{kb(total)}</td><td class="n">–</td></tr>')
+    three = ["js/scene.js", "js/three.module.min.js", "js/RoomEnvironment.js"]
+    raw3 = sum(os.path.getsize(a) for a in three)
+    gz3 = sum(len(gzip.compress(open(a, "rb").read())) for a in three)
+    label3 = {"en": "3D scenes (three.js), loaded after the page", "de": "3D-Szenen (three.js), nach der Seite geladen"}[lang]
+    rows.append(f'<tr><td>{label3}</td><td class="n">{kb(raw3)}</td><td class="n">{kb(gz3)}</td></tr>')
     return (f'<div class="table-wrap"><table><thead><tr><th scope="col">{heads[0]}</th><th scope="col">{heads[1]}</th>'
             f'<th scope="col">{heads[2]}</th></tr></thead><tbody>{"".join(rows)}</tbody></table></div>')
 

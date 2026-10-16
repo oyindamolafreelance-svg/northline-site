@@ -14,6 +14,16 @@ The pages are generated. Do not edit the HTML files by hand.
 Shared header, footer, menus and page head live in `_src/build.py`. Styles are in `css/site.css`.
 Fonts are self-hosted in `fonts/`, so no visitor data goes to Google.
 
+## 3D, images and video
+
+- `js/motion.js` runs the section animations, card tilt and video playback, then loads the 3D backdrop.
+- `js/scene.js` holds every 3D scene. A section picks its scene with `data-scene="name"`; the page-top
+  scene for each page is set in `SCENES` in `_src/build.py`. three.js is served from `js/` (MIT licence in
+  `js/three-LICENSE.txt`).
+- Visitors who ask for reduced motion or to save data get no 3D and no autoplay; they see the still images
+  in `img/scenes/` instead.
+- Videos are in `media/`. How to re-render stills and videos: `_src/media/README.md`.
+
 ## Quote form
 
 The form on `/contact/` posts to FormSubmit (formsubmit.co), which emails it to hello@kayonnecreatives.com.

@@ -1,5 +1,8 @@
 """German page content. Same keys as content_en.PAGES. Strings may contain HTML."""
-from content_en import DEMO_BODY, DEMO_STRINGS, EMAIL, demo_script, quote_form  # noqa: F401
+from content_en import DEMO_BODY, DEMO_STRINGS, EMAIL, demo_script, quote_form, shot, video  # noqa: F401
+
+LOC_VIDEO = video("localisation", "Eine Produktkarte auf Englisch, Deutsch, Japanisch und Arabisch. Wörter, Datum, Währung und Leserichtung ändern sich.", 1100, 482, "Video zur Lokalisierungsdemo")
+REEL = video("showreel", "Die 3D-Szenen dieser Website, eine für jede Leistung.", 1280, 720, "Showreel der 3D-Szenen dieser Website")
 
 EUROPE = ["Deutsch", "Deutsch (Schweiz)", "Niederländisch", "Französisch", "Spanisch", "Italienisch", "Portugiesisch",
           "Polnisch", "Schwedisch", "Dänisch", "Norwegisch", "Finnisch", "Tschechisch", "Slowakisch", "Ungarisch",
@@ -59,7 +62,7 @@ PAGES[""] = dict(
     desc="Agentur in Glasgow für Websites, Apps und Übersetzungen. Wir bauen Ihre Website, und professionelle Übersetzer "
          "bringen sie in europäische und asiatische Sprachen. Einzeln oder zusammen buchbar.",
     body=f"""
-<section class="hero">
+<section class="hero" data-scene="hero">
   <div>
     <p class="kicker">Glasgow · weltweit</p>
     <h1>Wir bauen es. Dann bringen wir es in jeden Markt.</h1>
@@ -68,27 +71,32 @@ PAGES[""] = dict(
   </div>
   <div class="orbit" aria-hidden="true"><div class="ring"><span>ä</span><span>あ</span><span>中</span><span>é</span><span>ø</span></div></div>
 </section>
-<section><ul class="grid-4 creds">
+<section data-scene="shards"><ul class="grid-4 creds">
   <li class="card note">MA in Translation Studies, Middlebury Institute in Monterey</li>
   <li class="card note">CIOL Diploma in Translation, mit Auszeichnung (Merit)</li>
   <li class="card note">Professionelle Übersetzer in Europa und Asien</li>
   <li class="card note">Abläufe nach ISO 17100, wenn ein Auftrag es verlangt</li>
 </ul></section>
-<section>
+<section data-scene="windows">
   <h2>Digital</h2>
   {cards(DIGITAL_CARDS)}
 </section>
-<section>
+<section data-scene="globe">
   <h2>Sprache</h2>
   {cards(LANGUAGE_CARDS)}
 </section>
-<section>
+<section data-scene="film">
+  <h2>Lokalisierung in Bewegung</h2>
+  {LOC_VIDEO}
+  <p><a class="btn ghost" href="/de/demo/">Live-Demo ausprobieren</a></p>
+</section>
+<section data-scene="network">
   <h2>Europa und Asien, mit einem Team.</h2>
   <p class="lede">Professionelle Übersetzer decken die folgenden Sprachen ab. Ihr Ansprechpartner ist eine Projektleitung in Glasgow.</p>
   {LANG_WALLS}
   <p><a class="btn ghost" href="/de/languages/">Alle Sprachen</a></p>
 </section>
-<section>
+<section data-scene="path">
   <h2>So läuft ein Projekt</h2>
   <ol class="grid-4 steps">
     <li class="card"><h3>Briefing</h3><p class="note">Wir halten Auftrag, Sprachen und Termin schriftlich fest.</p></li>
@@ -295,7 +303,7 @@ PAGES["localization"] = svc(
     why=["Layout geprüft, wenn der Text länger wird", "Suchbegriffe in der Zielsprache recherchiert", "Ein Angebot auf Basis einer URL oder Datei"],
     incl=["Website-Übersetzung", "App- und Software-Lokalisierung", "Lokalisierung von Store-Einträgen", "Transkreation für Sätze, die sich nicht direkt übersetzen lassen",
           "Ein Glossar für Ihr Produkt", "Prüfung von Rechts-nach-links-Layouts für Arabisch und Persisch", "Übersetzung neuer Inhalte, sobald Sie sie veröffentlichen"],
-    extra="""<section><h2>Mehr als die Wörter</h2><p>Zur Lokalisierung gehören auch Datumsformate, Währungen, Zahlenformate, Adressen, Zahlungsarten und rechtliche Seiten. Deutsche Kunden erwarten zum Beispiel ein Impressum. <a href="/de/demo/">Sehen Sie, wie eine Seite die Sprache wechselt</a>.</p></section>""",
+    extra="""<section data-scene="film"><h2>Mehr als die Wörter</h2><p>Zur Lokalisierung gehören auch Datumsformate, Währungen, Zahlenformate, Adressen, Zahlungsarten und rechtliche Seiten. Deutsche Kunden erwarten zum Beispiel ein Impressum. <a href="/de/demo/">Sehen Sie, wie eine Seite die Sprache wechselt</a>.</p>""" + LOC_VIDEO + "</section>",
     steps=[("Dateien", "Senden Sie eine URL, eine String-Datei oder einen Seitenexport."),
            ("Begriffe", "Wir legen Namen, Tonalität und unveränderliche Begriffe fest."),
            ("Übersetzung", "Eine Fachkraft übersetzt im Kontext, dann folgt das Lektorat."),
@@ -466,7 +474,10 @@ PAGES["work"] = dict(
 <li class="card"><strong>Beispiel Patent</strong><span class="note">Ansprüche, die mit einer früheren englischen Fassung derselben Patentfamilie übereinstimmen mussten. Alle Zahlen, Bezugszeichen und die Reihenfolge der Ansprüche wurden geprüft.</span></li>
 <li><a class="card" href="/de/studio/"><strong>Diese Website</strong><span class="note">Von uns gebaut, auf Englisch und Deutsch. Sehen Sie, wie sie aufgebaut ist und wie viel jede Seite wiegt.</span></a></li>
 <li><a class="card" href="/de/demo/"><strong>Lokalisierungsdemo</strong><span class="note">Eine Seite wechselt Sprache, Datumsformat, Währung und Leserichtung.</span></a></li>
-</ul></section>""",
+</ul></section>
+<section data-scene="windows"><h2>Diese Website</h2><div class="shots">""" + shot("/img/work/site-desktop.webp", "Die Startseite von Kayonne Creatives auf einem Laptop, mit der 3D-Szene neben der Überschrift", 1280, 800) + shot("/img/work/site-phone-de.webp", "Die deutsche Startseite auf einem Smartphone", 390, 844) + """</div></section>
+<section data-scene="film"><h2>Lokalisierungsdemo</h2>""" + LOC_VIDEO + """</section>
+<section data-scene="hero"><h2>3D-Showreel</h2>""" + REEL + """</section>""",
 )
 
 PAGES["process"] = dict(
@@ -701,7 +712,8 @@ PAGES["studio"] = dict(
     label="Unsere eigene Website", h1="Diese Website ist das digitale Beispiel.",
     lede="Wir verkaufen Ladezeit, Auffindbarkeit und saubere Entwicklung, also ist diese Website so gebaut wie für unsere Kunden. Hier die Fakten, die Sie selbst prüfen können.",
     body="""<section><h2>Was drinsteckt</h2><ul class="ticks">
-<li>Reines HTML und CSS, mit einem kleinen Skript für das Menü</li>
+<li>Reines HTML und CSS. Skripte steuern nur das Menü, die Animationen und die 3D-Szenen</li>
+<li>3D-Szenen mit three.js, von dieser Website geladen. Sie starten erst, wenn die Seite bereit ist, und schalten sich ab, wenn Ihr Gerät reduzierte Bewegung oder Datensparen verlangt</li>
 <li>Zwei Schriftdateien, von dieser Website geladen, nicht von Google</li>
 <li>Keine Cookies, keine Analyse, keine Tracker von Dritten</li>
 <li>Jede Seite auf Englisch und Deutsch, verknüpft mit hreflang</li>

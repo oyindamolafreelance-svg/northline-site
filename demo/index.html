@@ -49,7 +49,7 @@
     <div><p class="kicker">Company</p><ul><li><a href="/languages/">Languages</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/work/">Work</a></li><li><a href="/about/">About</a></li><li><a href="/insights/">Insights</a></li><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li></ul></div>
   </div>
 </header>
-<main id="content" class="shell page"><header class="intro"><p class="kicker">Localisation demo</p><h1>See a page change language.</h1><p class="lede">This sample is not a client. It shows what localisation changes besides the words: text length, dates, currency and reading direction. Pick a language.</p></header><section class="demo">
+<main id="content" class="shell page"><header class="intro has-art" data-scene="globe"><p class="kicker">Localisation demo</p><h1>See a page change language.</h1><p class="lede">This sample is not a client. It shows what localisation changes besides the words: text length, dates, currency and reading direction. Pick a language.</p><figure class="intro-art"><img src="/img/scenes/globe.webp" alt="" width="900" height="675" decoding="async" fetchpriority="low"></figure></header><section class="demo">
 <div class="demo-tabs" role="group" aria-label="Language"><button type="button" class="btn ghost" data-k="en" lang="en">English</button><button type="button" class="btn ghost" data-k="de" lang="de">Deutsch</button><button type="button" class="btn ghost" data-k="ja" lang="ja">日本語</button><button type="button" class="btn ghost" data-k="ar" lang="ar">العربية</button></div>
 <div class="grid-2">
   <div class="card demo-card" id="demo-card" aria-live="polite"><h3></h3><p class="d-body"></p><p class="d-total"></p><button type="button" class="btn" tabindex="-1">.</button></div>
@@ -58,7 +58,7 @@
   </dl>
 </div>
 <p class="note">Sample prices. Dates and currencies are formatted by your browser for each locale, the same way a localised site does it.</p>
-</section><section class="cta card"><p>Tell us what you need. You get a written quote before any work starts.</p><p><a class="btn" href="/contact/">Get a quote</a></p></section></main>
+</section><section class="cta card" data-scene="ring"><p>Tell us what you need. You get a written quote before any work starts.</p><p><a class="btn" href="/contact/">Get a quote</a></p></section></main>
 <footer><div class="shell foot">
     <div>
       <p class="mark">Kayonne Creatives</p>
@@ -82,7 +82,8 @@
     document.addEventListener("keydown",function(e){if(e.key==="Escape"&&m.open){m.open=false;m.querySelector("summary").focus();}});
   }
 })();
-</script><script>
+</script>
+<script src="/js/motion.js" defer></script><script>
 (function(){
   var S={"en": {"label": "English", "dir": "ltr", "locale": "en-GB", "currency": "GBP", "price": 49.99, "title": "Spring sale: 20% off every plan", "body": "Your order ships on {date}.", "total": "Total", "button": "Add to basket"}, "de": {"label": "Deutsch", "dir": "ltr", "locale": "de-DE", "currency": "EUR", "price": 57.99, "title": "Frühjahrsaktion: 20 % Rabatt auf alle Tarife", "body": "Ihre Bestellung wird am {date} versendet.", "total": "Gesamt", "button": "In den Warenkorb"}, "ja": {"label": "日本語", "dir": "ltr", "locale": "ja-JP", "currency": "JPY", "price": 9500, "title": "春のセール：全プラン20%オフ", "body": "ご注文の商品は{date}に発送されます。", "total": "合計", "button": "カートに入れる"}, "ar": {"label": "العربية", "dir": "rtl", "locale": "ar-AE", "currency": "AED", "price": 229, "title": "تخفيضات الربيع: خصم ٢٠٪ على جميع الباقات", "body": "سيتم شحن طلبك في {date}.", "total": "الإجمالي", "button": "أضف إلى السلة"}};
   var when=new Date(Date.UTC(2026,10,3,12));

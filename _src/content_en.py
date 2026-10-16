@@ -48,6 +48,20 @@ def cards(items, prefix="/"):
         for s, n, d in items) + "</ul>"
 
 
+def video(name, caption, w, h, label):
+    return (f'<figure class="media"><video data-autoplay muted loop playsinline controls preload="none" '
+            f'poster="/media/{name}.webp" width="{w}" height="{h}" aria-label="{label}">'
+            f'<source src="/media/{name}.mp4" type="video/mp4"><source src="/media/{name}.webm" type="video/webm"></video><figcaption>{caption}</figcaption></figure>')
+
+
+def shot(src, alt, w, h):
+    return f'<figure class="media"><img src="{src}" alt="{alt}" width="{w}" height="{h}" loading="lazy" decoding="async"></figure>'
+
+
+LOC_VIDEO_EN = video("localisation", "One product card in English, German, Japanese and Arabic. The words, the date, the currency and the reading direction all change.", 1100, 482, "Localisation demo video")
+REEL_EN = video("showreel", "The 3D scenes from this website, one for each service.", 1280, 720, "Showreel of the 3D scenes on this website")
+
+
 def svc(**kw):
     kw["kind"] = "service"
     return kw
@@ -60,7 +74,7 @@ PAGES[""] = dict(
     desc="Glasgow agency for websites, apps and translation. We build your site, then professional linguists "
          "take it into European and Asian languages. Hire one service or both.",
     body=f"""
-<section class="hero">
+<section class="hero" data-scene="hero">
   <div>
     <p class="kicker">Glasgow · worldwide</p>
     <h1>We build it. Then we take it to every market.</h1>
@@ -69,27 +83,32 @@ PAGES[""] = dict(
   </div>
   <div class="orbit" aria-hidden="true"><div class="ring"><span>ä</span><span>あ</span><span>中</span><span>é</span><span>ø</span></div></div>
 </section>
-<section><ul class="grid-4 creds">
+<section data-scene="shards"><ul class="grid-4 creds">
   <li class="card note">MA in Translation Studies, Middlebury Institute at Monterey</li>
   <li class="card note">CIOL Diploma in Translation, Merit</li>
   <li class="card note">Professional linguists across Europe and Asia</li>
   <li class="card note">Processes aligned with ISO 17100 when a client requires it</li>
 </ul></section>
-<section>
+<section data-scene="windows">
   <h2>Digital</h2>
   {cards(DIGITAL_CARDS)}
 </section>
-<section>
+<section data-scene="globe">
   <h2>Language</h2>
   {cards(LANGUAGE_CARDS)}
 </section>
-<section>
+<section data-scene="film">
+  <h2>Localisation, in motion</h2>
+  {LOC_VIDEO_EN}
+  <p><a class="btn ghost" href="/demo/">Try the live demo</a></p>
+</section>
+<section data-scene="network">
   <h2>Europe and Asia, with one team.</h2>
   <p class="lede">Professional linguists cover the languages below. You deal with one project lead in Glasgow.</p>
   {LANG_WALLS}
   <p><a class="btn ghost" href="/languages/">See all languages</a></p>
 </section>
-<section>
+<section data-scene="path">
   <h2>How a project runs</h2>
   <ol class="grid-4 steps">
     <li class="card"><h3>Brief</h3><p class="note">We write down the job, the languages and the date.</p></li>
@@ -297,7 +316,7 @@ PAGES["localization"] = svc(
     why=["Layout checked when the text gets longer", "Search terms researched in the target language", "A quote from a URL or a file"],
     incl=["Website translation", "App and software localisation", "Store listing localisation", "Transcreation for lines that cannot be translated directly",
           "A glossary for your product", "Right-to-left layout checks for Arabic and Persian", "Translation of new content as you publish it"],
-    extra="""<section><h2>More than the words</h2><p>Localisation also covers dates, currencies, number formats, address forms, payment methods and legal pages. German buyers, for example, expect an Impressum page. <a href="/demo/">See a page change language</a> to watch what changes.</p></section>""",
+    extra="""<section data-scene="film"><h2>More than the words</h2><p>Localisation also covers dates, currencies, number formats, address forms, payment methods and legal pages. German buyers, for example, expect an Impressum page. <a href="/demo/">See a page change language</a> to watch what changes.</p>""" + LOC_VIDEO_EN + "</section>",
     steps=[("Files", "Send a URL, a string file or a page export."),
            ("Terms", "We agree names, tone and what must not change."),
            ("Translate", "A translator works in context, then an editor reviews."),
@@ -468,7 +487,10 @@ PAGES["work"] = dict(
 <li class="card"><strong>Patent sample</strong><span class="note">Claims translated to stay aligned with an earlier English text in the same patent family. Every number, reference and claim order was checked.</span></li>
 <li><a class="card" href="/studio/"><strong>This website</strong><span class="note">Built by us in English and German. See how it is built and how much each page weighs.</span></a></li>
 <li><a class="card" href="/demo/"><strong>Localisation demo</strong><span class="note">Watch one page change language, date format, currency and reading direction.</span></a></li>
-</ul></section>""",
+</ul></section>
+<section data-scene="windows"><h2>This website</h2><div class="shots">""" + shot("/img/work/site-desktop.webp", "The Kayonne Creatives home page on a laptop, with the 3D scene beside the headline", 1280, 800) + shot("/img/work/site-phone-de.webp", "The German home page on a phone", 390, 844) + """</div></section>
+<section data-scene="film"><h2>Localisation demo</h2>""" + LOC_VIDEO_EN + """</section>
+<section data-scene="hero"><h2>3D showreel</h2>""" + REEL_EN + """</section>""",
 )
 
 PAGES["process"] = dict(
@@ -735,7 +757,8 @@ PAGES["studio"] = dict(
     label="Our own site", h1="This website is the digital sample.",
     lede="We sell speed, search and build quality, so this site is built the way we build for clients. Here are the facts you can check yourself.",
     body="""<section><h2>What is in it</h2><ul class="ticks">
-<li>Plain HTML and CSS, with one small script for the menu</li>
+<li>Plain HTML and CSS. Scripts only run the menu, the animations and the 3D scenes</li>
+<li>3D scenes built with three.js and served from this site. They load after the page is ready and switch off when your device asks for reduced motion or to save data</li>
 <li>Two font files, served from this site, not from Google</li>
 <li>No cookies, no analytics and no third-party trackers</li>
 <li>Every page in English and German, linked with hreflang</li>

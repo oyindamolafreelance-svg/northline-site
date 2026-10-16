@@ -4,7 +4,8 @@
 @font-face{font-family:Outfit;font-style:normal;font-weight:300 500;font-display:swap;src:url(/fonts/outfit-latin-ext.woff2) format("woff2");unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C4,U+2113,U+2C60-2C7F,U+A720-A7FF}
 :root{--bg:#0e1014;--fg:#f6f1e8;--muted:#b3aa9e;--panel:#171b22;--line:#2c313b;--accent:#e4b07a;--ink:#1c140c;color-scheme:dark}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:clip}
+body{overflow-x:clip}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 body{margin:0;background:var(--bg);color:var(--fg);font-family:Outfit,"Helvetica Neue",Arial,sans-serif;font-weight:340;line-height:1.6}
 h1,h2,h3{font-family:Fraunces,"Times New Roman",serif;font-weight:460;letter-spacing:-.02em;line-height:1.12;text-wrap:balance}
@@ -137,3 +138,41 @@ footer p{margin:.3rem 0}
   .grid-4{grid-template-columns:repeat(4,1fr)}
   .foot{grid-template-columns:1.3fr 1fr 1fr 1fr}
 }
+/* 3D backdrop, reveals and media */
+#stage{position:fixed;inset:0;width:100vw;height:100vh;z-index:0;pointer-events:none;opacity:0;transition:opacity 1.4s ease}
+.has3d #stage{opacity:1}
+.has3d main :is(p,li,dd,dt,summary,figcaption,h2,h3,.kicker,td,th){text-shadow:0 0 18px var(--bg),0 0 6px var(--bg)}
+main,footer{position:relative;z-index:1}
+.nav{z-index:20}
+.has3d .orbit .ring{visibility:hidden}
+.has3d .orbit{background:transparent;border-color:transparent}
+@media(max-width:899px){.has3d #stage{opacity:.42}}
+.motion .rv{opacity:0;transform:perspective(1200px) rotateX(18deg) translateY(70px) scale(.96);transform-origin:50% 0}
+.motion .rv,.motion .in{transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,.84,.24,1)}
+.motion .rv.in{opacity:1;transform:none}
+.motion .rv:not(.in) :is(.link-cards>li,.steps>li,.stack>details,.lang-wall>li,.creds>li,.ticks>li){opacity:0}
+.motion .rv.in :is(.link-cards>li,.steps>li,.stack>details,.creds>li,.ticks>li){animation:pop .9s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:calc(var(--n,0)*55ms + .15s)}
+.motion .rv.in .lang-wall>li{animation:chip .6s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:calc(var(--n,0)*18ms + .2s)}
+@keyframes pop{from{opacity:0;transform:perspective(800px) rotateX(-35deg) rotateY(12deg) translateY(40px) translateZ(-60px)}}
+@keyframes chip{from{opacity:0;transform:scale(.3) rotate(-12deg)}}
+.tilt{position:relative;transition:transform .25s ease,border-color .25s;transform-style:preserve-3d;will-change:transform}
+.tilt::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(circle at var(--gx,50%) var(--gy,50%),rgb(228 176 122 / .22),transparent 55%);opacity:0;transition:opacity .3s}
+.tilt:hover::after{opacity:1}
+.hero h1,.intro h1{background:linear-gradient(100deg,var(--fg) 40%,#f3c995 50%,var(--fg) 60%);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shine 7s ease-in-out infinite}
+@keyframes shine{0%,100%{background-position:100% 0}50%{background-position:0 0}}
+.intro{position:relative}
+.intro-art{margin:0;max-width:520px}
+.intro-art img{display:block;width:100%;height:auto;filter:drop-shadow(0 30px 60px rgb(0 0 0 / .5))}
+@media(min-width:1000px){
+  .intro.has-art{grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);column-gap:2rem;align-items:center}
+  .intro.has-art>:not(.intro-art){grid-column:1}
+  .intro.has-art .intro-art{grid-column:2;grid-row:1 / span 3}
+  .has3d .intro-art{opacity:0;transition:opacity 1s}
+}
+.media{margin:0;display:grid;gap:.6rem}
+.media video,.media img{display:block;width:100%;height:auto;border-radius:1.15rem;border:1px solid var(--line);background:var(--panel)}
+.media figcaption{color:var(--muted);font-size:.92rem}
+.shots{display:grid;gap:1rem}
+@media(min-width:700px){.shots{grid-template-columns:2fr 1fr}}
+@media(prefers-reduced-motion:reduce){.hero h1,.intro h1{animation:none;background:none;color:var(--fg)}}
+.has3d main .btn{text-shadow:none}

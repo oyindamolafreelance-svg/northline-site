@@ -49,15 +49,16 @@
     <div><p class="kicker">Company</p><ul><li><a href="/languages/">Languages</a></li><li><a href="/pricing/">Pricing</a></li><li><a href="/work/">Work</a></li><li><a href="/about/">About</a></li><li><a href="/insights/">Insights</a></li><li><a href="/process/">Process</a></li><li><a href="/faq/">FAQ</a></li></ul></div>
   </div>
 </header>
-<main id="content" class="shell page"><header class="intro"><p class="kicker">Our own site</p><h1>This website is the digital sample.</h1><p class="lede">We sell speed, search and build quality, so this site is built the way we build for clients. Here are the facts you can check yourself.</p></header><section><h2>What is in it</h2><ul class="ticks">
-<li>Plain HTML and CSS, with one small script for the menu</li>
+<main id="content" class="shell page"><header class="intro has-art" data-scene="cubes"><p class="kicker">Our own site</p><h1>This website is the digital sample.</h1><p class="lede">We sell speed, search and build quality, so this site is built the way we build for clients. Here are the facts you can check yourself.</p><figure class="intro-art"><img src="/img/scenes/cubes.webp" alt="" width="900" height="675" decoding="async" fetchpriority="low"></figure></header><section><h2>What is in it</h2><ul class="ticks">
+<li>Plain HTML and CSS. Scripts only run the menu, the animations and the 3D scenes</li>
+<li>3D scenes built with three.js and served from this site. They load after the page is ready and switch off when your device asks for reduced motion or to save data</li>
 <li>Two font files, served from this site, not from Google</li>
 <li>No cookies, no analytics and no third-party trackers</li>
 <li>Every page in English and German, linked with hreflang</li>
 <li>Labelled form fields, keyboard navigation and a skip link</li>
 <li>Hosted on GitHub Pages, with HTTPS</li></ul></section>
-<section><h2>What each page weighs</h2><p>The size of the HTML for a selection of pages. The stylesheet and fonts are shared and are only downloaded once.</p><div class="table-wrap"><table><thead><tr><th scope="col">Page</th><th scope="col">HTML</th><th scope="col">Compressed (gzip)</th></tr></thead><tbody><tr><td><a href="/">Home</a></td><td class="n">15.6 KB</td><td class="n">3.9 KB</td></tr><tr><td><a href="/services/">Services</a></td><td class="n">10.4 KB</td><td class="n">2.5 KB</td></tr><tr><td><a href="/websites/">Website design and development, Glasgow</a></td><td class="n">11.4 KB</td><td class="n">3.0 KB</td></tr><tr><td><a href="/certified-translation/">Certified translation UK, Home Office and UKVI</a></td><td class="n">11.8 KB</td><td class="n">3.1 KB</td></tr><tr><td><a href="/contact/">Get a quote</a></td><td class="n">13.1 KB</td><td class="n">3.3 KB</td></tr><tr><td><a href="/languages/">Languages we translate</a></td><td class="n">9.3 KB</td><td class="n">2.4 KB</td></tr><tr><td>Shared stylesheet and fonts</td><td class="n">179.4 KB</td><td class="n">–</td></tr></tbody></table></div></section>
-<section><p>Check it yourself with <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fkayonnecreatives.com%2F">PageSpeed Insights</a>.</p></section><section class="cta card"><p>Tell us what you need. You get a written quote before any work starts.</p><p><a class="btn" href="/contact/">Get a quote</a></p></section></main>
+<section><h2>What each page weighs</h2><p>The size of the HTML for a selection of pages. The stylesheet and fonts are shared and are only downloaded once.</p><div class="table-wrap"><table><thead><tr><th scope="col">Page</th><th scope="col">HTML</th><th scope="col">Compressed (gzip)</th></tr></thead><tbody><tr><td><a href="/">Home</a></td><td class="n">16.4 KB</td><td class="n">4.2 KB</td></tr><tr><td><a href="/services/">Services</a></td><td class="n">10.6 KB</td><td class="n">2.7 KB</td></tr><tr><td><a href="/websites/">Website design and development, Glasgow</a></td><td class="n">11.7 KB</td><td class="n">3.2 KB</td></tr><tr><td><a href="/certified-translation/">Certified translation UK, Home Office and UKVI</a></td><td class="n">12.1 KB</td><td class="n">3.2 KB</td></tr><tr><td><a href="/contact/">Get a quote</a></td><td class="n">13.4 KB</td><td class="n">3.4 KB</td></tr><tr><td><a href="/languages/">Languages we translate</a></td><td class="n">9.5 KB</td><td class="n">2.6 KB</td></tr><tr><td>Shared stylesheet, fonts and motion script</td><td class="n">185.6 KB</td><td class="n">–</td></tr><tr><td>3D scenes (three.js), loaded after the page</td><td class="n">707.2 KB</td><td class="n">176.3 KB</td></tr></tbody></table></div></section>
+<section><p>Check it yourself with <a href="https://pagespeed.web.dev/analysis?url=https%3A%2F%2Fkayonnecreatives.com%2F">PageSpeed Insights</a>.</p></section><section class="cta card" data-scene="ring"><p>Tell us what you need. You get a written quote before any work starts.</p><p><a class="btn" href="/contact/">Get a quote</a></p></section></main>
 <footer><div class="shell foot">
     <div>
       <p class="mark">Kayonne Creatives</p>
@@ -82,5 +83,6 @@
   }
 })();
 </script>
+<script src="/js/motion.js" defer></script>
 </body>
 </html>
