@@ -47,8 +47,6 @@ TEAMS = {
         "en_line": "The translation team: qualified linguists, a second check on every job.",
         "de_line": "Das Übersetzungsteam: qualifizierte Fachleute, zweite Prüfung bei jedem Auftrag.",
         "items": [
-            ("certified-translation", "Certified translation (UK)", "Certified Translation (UK)", "Home Office, courts, universities", "Home Office, Gerichte, Hochschulen"),
-            ("certified-translation-glasgow", "Certified translation Glasgow", "Certified Translation Glasgow", "Local, signed, accepted", "Vor Ort, unterschrieben, anerkannt"),
             ("documents", "Document translation", "Dokumentübersetzung", "Certificates, statements, manuals", "Urkunden, Zeugnisse, Handbücher"),
             ("legal", "Legal translation", "Juristische Übersetzung", "Contracts and court papers", "Verträge und Gerichtsunterlagen"),
             ("medical", "Medical translation", "Medizinische Übersetzung", "Life sciences, under NDA", "Life Sciences, mit NDA"),
@@ -56,7 +54,6 @@ TEAMS = {
             ("subtitling", "Subtitling and transcription", "Untertitelung und Transkription", "SRT, VTT, SDH, burned-in", "SRT, VTT, SDH, eingebrannt"),
             ("proofreading", "Proofreading and revision", "Korrektorat und Revision", "Check a translation you have", "Vorhandene Übersetzung prüfen"),
             ("quality", "MTPE and quality checks", "MTPE und Qualitätsprüfung", "Post-editing and LQA", "Post-Editing und LQA"),
-            ("apostille", "Apostille and legalisation", "Apostille und Legalisation", "Using UK papers abroad", "Britische Dokumente im Ausland"),
             ("languages", "All languages", "Alle Sprachen", "Into and out of English", "Aus dem und ins Englische"),
         ],
     },
@@ -274,6 +271,14 @@ SCENES = {
 }
 
 
+REDIRECTS = {
+    "certified-translation": "documents",
+    "certified-translation-glasgow": "documents",
+    "apostille": "documents",
+    "insights/home-office-certified-translation": "insights",
+}
+
+
 def intro_html(page, slug):
     scene = page.get("scene") or SCENES.get(slug, "globe" if slug.startswith("languages/") else "default")
     art = ""
@@ -439,7 +444,7 @@ def weights_table(lang):
     shared = {"en": "Shared stylesheet, fonts and motion script", "de": "Gemeinsames Stylesheet, Schriften und Animationsskript"}[lang]
     import gzip
     rows = []
-    for slug in ("", "services", "websites", "certified-translation", "contact", "languages"):
+    for slug in ("", "services", "websites", "documents", "contact", "languages"):
         data = open(out_file(lang, slug), "rb").read()
         label = LANGS[lang].PAGES[slug]["title"].split(" | ")[0] if slug else UI[lang]["home"]
         rows.append(f'<tr><td><a href="{path(lang, slug)}">{esc(label)}</a></td><td class="n">{kb(len(data))}</td>'
@@ -483,6 +488,16 @@ def main():
         with open(f, "w", encoding="utf-8") as fh:
             fh.write(render(lang, "studio", mod.PAGES["studio"], weights_table(lang)))
         written.append((lang, "studio", mod.PAGES["studio"]))
+    # Removed pages forward to the closest page that still exists.
+    for lang in LANGS:
+        for old, new in REDIRECTS.items():
+            f = out_file(lang, old)
+            os.makedirs(os.path.dirname(f), exist_ok=True)
+            target = path(lang, new)
+            with open(f, "w", encoding="utf-8") as fh:
+                fh.write(f'<!DOCTYPE html><html lang="{lang}"><head><meta charset="utf-8"><title>Kayonne Creatives</title>'
+                         f'<meta name="robots" content="noindex"><meta http-equiv="refresh" content="0; url={target}">'
+                         f'<link rel="canonical" href="{SITE + target}"></head><body><p><a href="{target}">{target}</a></p></body></html>\n')
     # 404 page, English with a German link, at the root.
     with open("404.html", "w", encoding="utf-8") as fh:
         fh.write(render("en", "404", content_en.NOT_FOUND))

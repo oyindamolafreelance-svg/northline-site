@@ -17,7 +17,7 @@ def wall(items):
 
 LANG_WALLS = (f"<h3>Europe</h3>{wall(EUROPE)}<h3>Asia</h3>{wall(ASIA)}"
               '<p class="note">Arabic and Persian are available on request. All languages are offered into and out of '
-              "English. Live interpreting is not offered.</p>")
+              "English.</p>")
 
 DIGITAL_CARDS = [
     ("websites", "Websites", "Business sites, shops and landing pages."),
@@ -29,7 +29,6 @@ DIGITAL_CARDS = [
     ("care", "Care plans", "Updates, backups and someone watching."),
 ]
 LANGUAGE_CARDS = [
-    ("certified-translation", "Certified translation (UK)", "For the Home Office, courts and universities."),
     ("documents", "Document translation", "Certificates, statements and manuals, laid out to match."),
     ("localization", "Website and app localisation", "Your product, in your buyer's language."),
     ("games", "Game localisation", "Strings, store pages and subtitles, checked in context."),
@@ -100,8 +99,8 @@ PAGES[""] = dict(
   <a class="team team-l" href="/language/">
     <p class="kicker">Kayonne Language</p>
     <h2>The translation team</h2>
-    <p>Qualified translators for certified, legal, medical and patent work, subtitles and proofreading, with a second check on every job.</p>
-    <ul class="ticks"><li>Certified for the Home Office</li><li>Legal, medical, patents</li><li>Subtitling and transcription</li><li>Proofreading and revision</li></ul>
+    <p>Qualified translators for legal, medical, patent and business work, documents, subtitles and proofreading, with a second check on every job.</p>
+    <ul class="ticks"><li>Documents laid out like the original</li><li>Legal, medical, patents</li><li>Subtitling and transcription</li><li>Proofreading and revision</li></ul>
     <span class="team-more">Meet the translation team →</span>
   </a>
 </section>
@@ -133,15 +132,13 @@ PAGES[""] = dict(
     faq=[
         ("Can one agency build and translate?", "Yes. You can also hire only the build, or only the translation."),
         ("Which languages do you cover?", "European and Asian languages, into and out of English. See the <a href=\"/languages/\">languages page</a>. The quote names who will work on your language pair."),
-        ("Do you provide certified translations?", "Yes, for use in the UK. See <a href=\"/certified-translation/\">certified translation</a>."),
         ("Where are you based?", "Glasgow, United Kingdom. Clients can be anywhere."),
-        ("Do you interpret live calls or events?", "No. We do written translation, subtitling and transcription only."),
     ],
 )
 
 PAGES["services"] = dict(
     title="Services | Kayonne Creatives",
-    desc="Websites, apps, domains and email, SEO, certified translation, localisation and subtitling from one Glasgow agency.",
+    desc="Websites, apps, domains and email, SEO, translation, localisation and subtitling from one Glasgow agency.",
     label="Services", h1="Two sides. One agency.",
     lede="Kayonne Creatives builds the product, then prepares it in the European and Asian languages your buyers use. Professional linguists do the language work. You can hire one side or both.",
     body=f"<section><h2>Digital</h2>{cards(DIGITAL_CARDS)}</section><section><h2>Language</h2>{cards(LANGUAGE_CARDS)}</section>",
@@ -277,47 +274,21 @@ PAGES["care"] = svc(
          ("Do you look after sites you did not build?", "Yes, after a short check of how the site is built and hosted.")],
 )
 
-PAGES["certified-translation"] = svc(
-    title="Certified translation UK, Home Office and UKVI | Kayonne Creatives",
-    desc="Certified translations for the Home Office, UKVI, courts, universities and banks. Birth and marriage certificates, transcripts, licences and statements.",
-    label="Certified translation (UK)", h1="Certified translations for use in the UK.",
-    lede="The UK has no sworn translators. A certified translation comes with a signed statement that it is a true and accurate translation of the original, with the date and the translator's name and contact details. We provide that statement with every certified translation.",
-    why=["Includes the confirmation, date, name and contact details the Home Office asks for",
-         "Translated by a qualified linguist, then checked by a second person",
-         "Layout follows the original, so stamps and seals are easy to match"],
-    incl=["Birth, marriage, divorce and death certificates", "Passports and identity documents", "Driving licences",
-          "Degree certificates and academic transcripts", "Bank statements and payslips", "Police certificates",
-          "Medical records and letters", "Court and solicitor papers"],
-    extra="""<section><h2>Where certified translations are used</h2><ul class="ticks cols">
-<li>Home Office and UK Visas and Immigration (UKVI)</li><li>HM Courts and Tribunals, and solicitors</li>
-<li>Universities and UCAS</li><li>NHS and employers</li><li>DVLA</li><li>Banks and the Land Registry</li></ul>
-<p class="note">Some bodies ask for more, such as a notarised translation or an apostille for use abroad. Tell us who will receive the document and we will tell you what they need. If a country requires a sworn translator, we arrange one through a vetted partner and say so in the quote. See <a href="/documents/">document translation</a>.</p></section>""",
-    steps=[("Send", "Upload a clear photo or scan on the <a href=\"/contact/\">quote form</a>."),
-           ("Quote", "You get a fixed price and a delivery date."),
-           ("Translate", "Translation, then a check against the original by a second person."),
-           ("Deliver", "A signed PDF by email, ready to upload or print.")],
-    who="People applying for visas, settlement, citizenship, university places or jobs, and the solicitors who help them.",
-    faq=[("Will the Home Office accept it?", "The Home Office asks for a confirmation from the translator that the translation is accurate, the date, and the translator's full name and contact details. Our certified translations include all of these."),
-         ("Is a certified translation the same as a sworn translation?", "No. Sworn translations exist in countries such as Germany, France and Spain. For a UK authority, a certified translation is the usual requirement. For a foreign authority, check what it asks for."),
-         ("How is it priced?", "Per document or per page, depending on how much text it has. Send the file and you get a fixed price before we start.")],
-)
-
 PAGES["documents"] = svc(
     title="Document translation services UK | Kayonne Creatives",
-    desc="Document translation with the layout kept: certificates, statements, manuals and reports. Certified for UK use, or sworn through a partner abroad.",
+    desc="Document translation with the layout kept: certificates, statements, manuals and reports, in European and Asian languages.",
     label="Document translation", h1="Documents translated, and formatted to match.",
-    lede="We translate documents and format the result so it still looks like the original. For UK use we certify the translation ourselves. Where another country requires a sworn translator, we arrange one through a vetted partner.",
-    why=["Clear handling of stamps, tables and scans", "Certified wording only where it is accurate", "Desktop publishing when the layout matters, including Asian scripts"],
-    incl=["Document translation", "<a href=\"/certified-translation/\">Certified translation for UK use</a>", "Birth and marriage certificates",
+    lede="We translate documents and format the result so it still looks like the original, with stamps, tables and handwriting translated in place.",
+    why=["Clear handling of stamps, tables and scans", "Names spelled exactly as on your passport", "Desktop publishing when the layout matters, including Asian scripts"],
+    incl=["Document translation", "Birth and marriage certificates",
           "Driving licences", "Academic transcripts", "Business statements and reports", "Technical manuals",
           "Multilingual desktop publishing", "Translation, editing and proofreading"],
     steps=[("File", "Upload a clear scan or the original file on the quote form. For very sensitive files, ask us for a private transfer link."),
-           ("Use", "Tell us who will read it and whether a certified or sworn translation is required."),
+           ("Use", "Tell us who will read it and how the layout should look."),
            ("Work", "Translate, edit, then a final check."),
            ("Delivery", "You receive the file type we agreed.")],
     who="People and firms who need certificates, statements or manuals in another language.",
-    faq=[("Are you sworn translators?", "No. The UK has no sworn translators. We certify translations for UK use. If an authority abroad requires a sworn translator, we work with a vetted partner and say so in the quote."),
-         ("Which file formats do you accept?", "Word, Excel, PowerPoint, PDF, InDesign, and photos or scans. Ask about any other format."),
+    faq=[("Which file formats do you accept?", "Word, Excel, PowerPoint, PDF, InDesign, and photos or scans. Ask about any other format."),
          ("Do you translate into English?", "Yes. Most document work is into English, from any of the languages we cover.")],
 )
 
@@ -395,14 +366,14 @@ PAGES["legal"] = svc(
     label="Legal translation", h1="Legal translation your counsel can review.",
     lede="We translate legal documents. We do not give legal advice and we do not replace your lawyer. The wording stays close to the source.",
     why=["Close translation, not a rewrite", "Defined terms kept consistent", "An NDA before confidential papers are sent"],
-    incl=["Contracts", "Policies and terms", "Court and registry papers", "Legal correspondence", "<a href=\"/certified-translation/\">Certified translations</a> for UK courts"],
+    incl=["Contracts", "Policies and terms", "Court and registry papers", "Legal correspondence"],
     steps=[("Counsel", "Tell us who must review the result."),
            ("Terms", "We list the defined terms."),
            ("Translate", "Translation and editing."),
            ("Return", "Queries are listed, not hidden.")],
     who="Law firms, in-house legal teams and companies with cross-border papers.",
     faq=[("Is this legal advice?", "No."),
-         ("Do you certify the translation?", "Yes, for use in the UK. If an authority abroad requires a sworn translation, we arrange it through a partner.")],
+         ("Do you keep the formatting?", "Yes. Clause numbers, defined terms and layout follow the source.")],
 )
 
 PAGES["subtitling"] = svc(
@@ -420,7 +391,6 @@ PAGES["subtitling"] = svc(
            ("Watch", "A linguistic check against the picture once the cut is final.")],
     who="Studios, training teams, YouTubers and product teams with video in more than one language.",
     faq=[("How is it priced?", "Per minute of video or audio. Language pair, speed of speech and turnaround change the price."),
-         ("Do you interpret meetings?", "No. Live interpreting is not offered."),
          ("Can you book a voice?", "We coordinate it. The recording partner is named in the quote.")],
 )
 
@@ -486,7 +456,7 @@ PAGES["industries"] = dict(
 <li><a class="card" href="/localization/"><strong>Software and apps</strong></a></li>
 <li><a class="card" href="/websites/"><strong>Ecommerce and marketing</strong></a></li>
 <li><a class="card" href="/documents/"><strong>Technical manuals</strong></a></li>
-<li><a class="card" href="/certified-translation/"><strong>Official documents</strong></a></li>
+<li><a class="card" href="/documents/"><strong>Official documents</strong></a></li>
 <li><a class="card" href="/subtitling/"><strong>Media and training video</strong></a></li>
 </ul></section>""",
 )
@@ -524,13 +494,12 @@ PAGES["process"] = dict(
 
 PAGES["pricing"] = dict(
     title="Pricing | Kayonne Creatives",
-    desc="How we price websites, care plans, certified translation, document translation, subtitling and proofreading. Every job gets a fixed written quote.",
+    desc="How we price websites, care plans, document translation, subtitling and proofreading. Every job gets a fixed written quote.",
     label="Pricing", h1="How we price.",
     lede="Every job gets a fixed written quote before work starts. Here is what each price is based on and what makes it go up or down.",
     body="""<section><div class="table-wrap"><table>
 <thead><tr><th scope="col">Service</th><th scope="col">Priced by</th><th scope="col">What changes the price</th></tr></thead>
 <tbody>
-<tr><td><a href="/certified-translation/">Certified translation</a></td><td>Per document or page</td><td>Amount of text, language pair, deadline</td></tr>
 <tr><td><a href="/documents/">Document translation</a></td><td>Per word</td><td>Language pair, subject, file format and layout work, deadline</td></tr>
 <tr><td><a href="/proofreading/">Proofreading and revision</a></td><td>Per 1,000 words or per hour</td><td>Proofreading or full revision, quality of the existing translation</td></tr>
 <tr><td><a href="/subtitling/">Subtitling and transcription</a></td><td>Per minute of video or audio</td><td>Language pair, speed of speech, timing from scratch or from a template, SDH</td></tr>
@@ -549,28 +518,26 @@ PAGES["about"] = dict(
     label="About", h1="An agency team. One project lead.",
     lede="Kayonne Creatives is led from Glasgow by its founder, a qualified translator. Professional linguists cover European and Asian languages, and digital specialists build the sites and apps. You speak to one project lead throughout.",
     body="""<section class="grid-2">
-<div class="card"><h2>The founder</h2><p>MA in Translation Studies, Middlebury Institute of International Studies at Monterey.</p><p>CIOL Diploma in Translation, Merit.</p><p class="note">The founder leads every project and signs our certified translations.</p></div>
+<div class="card"><h2>The founder</h2><p>MA in Translation Studies, Middlebury Institute of International Studies at Monterey.</p><p>CIOL Diploma in Translation, Merit.</p><p class="note">The founder leads every project.</p></div>
 <div class="card"><h2>The team</h2><ul class="ticks"><li>Project lead in Glasgow</li><li>Professional linguists for European languages</li><li>Professional linguists for Asian languages</li><li>Editors and final readers</li><li>Digital specialists for sites, apps, search and speed</li></ul></div>
 </section>
-<section><h2>How we work</h2><ul class="ticks"><li>Every translation is checked by a second person before delivery.</li><li>Your files are seen only by the people on your job, and an NDA is available.</li><li>We do not use your files to train public AI models.</li><li>We say what we do not do: we are not sworn translators and we do not interpret live.</li></ul></section>""",
+<section><h2>How we work</h2><ul class="ticks"><li>Every translation is checked by a second person before delivery.</li><li>Your files are seen only by the people on your job, and an NDA is available.</li><li>We do not use your files to train public AI models.</li></ul></section>""",
 )
 
 PAGES["faq"] = dict(
     title="FAQ | Kayonne Creatives",
-    desc="Answers about languages, turnaround, file formats, certified translation, confidentiality, revisions, payment and ownership.",
+    desc="Answers about languages, turnaround, file formats, confidentiality, revisions, payment and ownership.",
     label="FAQ", h1="Questions clients ask.",
     lede="Short answers. If your case is different, the quote will say so.",
     body="",
     faq=[("Which languages do you cover?", "European and Asian languages, into and out of English. See the <a href=\"/languages/\">languages page</a>. The quote names who will work on your pair."),
          ("How fast is a translation?", "It depends on length, language and subject. A short, clear document often takes a few working days. A product localisation is scheduled. The quote gives a date."),
          ("Which formats do you accept?", "Word, Excel, PowerPoint, PDF, web exports, string files, subtitle files, and photos or scans. Design files such as InDesign by agreement."),
-         ("Do you provide certified translations?", "Yes, for use in the UK. Where a foreign authority requires a sworn translator, we use a vetted partner. See <a href=\"/certified-translation/\">certified translation</a>."),
          ("Is the work confidential?", "Yes. We sign an NDA on request. Only the people on your job see the files. We do not train public AI models on your content."),
          ("How do revisions work?", "One round is included on the delivered files, within the period stated in the quote. New text is quoted again."),
          ("How do you take payment?", "The quote states the amount, the currency, any deposit, the due date and how to pay."),
          ("Who owns the website code and the translated text?", "You do, once the agreed fees are paid. See the <a href=\"/terms/\">terms</a>."),
-         ("Can you set up our domain and email?", "Yes. See <a href=\"/domains-email/\">domains and business email</a>."),
-         ("Do you interpret calls or events?", "No. Live interpreting is not offered.")],
+         ("Can you set up our domain and email?", "Yes. See <a href=\"/domains-email/\">domains and business email</a>.")],
 )
 
 PAGES["insights"] = dict(
@@ -610,7 +577,7 @@ PAGES["insights/speed-mistakes"] = dict(
 )
 
 FORM_SERVICES = [
-    ("Language", ["Certified translation (UK)", "Document translation", "Website or app localisation", "Game localisation",
+    ("Language", ["Document translation", "Website or app localisation", "Game localisation",
                   "Medical translation", "Patent translation", "Legal translation", "Subtitling or transcription",
                   "Proofreading or revision", "MTPE or LQA"]),
     ("Digital", ["Website", "Online shop", "Web app", "Mobile app", "Domain and business email", "SEO", "Speed or accessibility audit", "Care plan"]),
@@ -665,7 +632,7 @@ FORM_EN = dict(
 
 PAGES["contact"] = dict(
     title="Get a quote | Kayonne Creatives",
-    desc="Ask for a quote for translation, certified translation, subtitling, a website, or domain and email setup. Attach your file and get a fixed price.",
+    desc="Ask for a quote for translation, subtitling, a website, or domain and email setup. Attach your file and get a fixed price.",
     label="Contact", h1="Tell us the job.",
     lede=f'Tell us the service, the languages and the deadline, and attach the file if you have one. We reply by email with a fixed quote or any questions. You can also write to <a href="mailto:{EMAIL}">{EMAIL}</a>.',
     body=quote_form("en", FORM_EN), no_cta=True,
@@ -750,8 +717,8 @@ PAGES["terms"] = dict(
 <p>Once the agreed fees are paid in full, you own the translations, website code and designs made for you, except third-party software, fonts, plugins and stock assets, which stay under their own licences. We may keep translation memories and glossaries for your future jobs and will delete them if you ask.</p>
 <h2>8. Confidentiality</h2>
 <p>We keep your material confidential and share it only with the people working on your job, who are bound by confidentiality. We sign a separate NDA on request.</p>
-<h2>9. Certified and specialist translations</h2>
-<p>A certified translation confirms that the translation is accurate. It does not guarantee that a third party will accept it, as each authority sets its own rules. We do not give legal, medical or patent filing advice.</p>
+<h2>9. Specialist translations</h2>
+<p>We translate legal, medical and patent texts. We do not give legal, medical or patent filing advice, and acceptance of a translation by a third party depends on that party's own rules.</p>
 <h2>10. Websites, hosting and care plans</h2>
 <p>Domains, hosting and email accounts are registered in your name and paid by you to the provider. Care plans run monthly and can be cancelled with the notice stated in the plan. We are not responsible for outages or changes made by third-party providers.</p>
 <h2>11. Liability</h2>
@@ -863,14 +830,6 @@ def team_video(key, caption, label):
     return video(f"team-{key}", caption, 1280, 720, label)
 
 
-STATEMENT_EN = """<figure class="statement" aria-label="Example of the statement attached to a certified translation">
-<p class="kicker">Example statement</p>
-<p class="st-title">Certificate of translation accuracy</p>
-<p>I confirm that the attached document is a true and accurate translation of the original birth certificate from Polish into English.</p>
-<dl><dt>Translator</dt><dd>Full name and signature</dd><dt>Date</dt><dd>Date of translation</dd><dt>Contact</dt><dd>hello@kayonnecreatives.com</dd><dt>Company</dt><dd>Kayonne Creatives, Glasgow</dd></dl>
-<figcaption class="note">These are the four things the Home Office asks to see: confirmation of accuracy, the date, the translator's full name and signature, and contact details.</figcaption>
-</figure>"""
-
 PAGES["digital"] = dict(
     title="Kayonne Digital | Web design, apps and SEO, Glasgow",
     desc="The Kayonne Digital team builds websites, online shops and apps, sets up domains and business email, and handles SEO, speed and care.",
@@ -892,12 +851,12 @@ PAGES["digital"] = dict(
 )
 
 PAGES["language"] = dict(
-    title="Kayonne Language | Certified and specialist translation, UK",
-    desc="The Kayonne Language team: qualified translators for certified, legal, medical and patent translation, subtitling and proofreading, with a second check on every job.",
+    title="Kayonne Language | Professional and specialist translation, UK",
+    desc="The Kayonne Language team: qualified translators for documents, legal, medical and patent translation, subtitling and proofreading, with a second check on every job.",
     label="Kayonne Language", h1="The translation team.",
     lede="Qualified translators led from Glasgow by a translator with an MA in Translation Studies and the CIOL Diploma in Translation. Every job is checked by a second linguist before it leaves us.",
     body="""<section data-scene="sheets"><h2>What the team translates</h2>{{TEAM:language}}</section>
-<section data-scene="seal" class="grid-2 split-copy"><div><h2>Certified for the Home Office</h2><p>The UK has no sworn translators. A certified translation carries a signed statement that it is accurate, with the date and the translator's details. Ours include everything the Home Office asks for.</p><p><a class="btn magnetic" href="/certified-translation/">Certified translation</a></p></div>""" + STATEMENT_EN + """</section>
+<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Documents that look like the original</h2><p>Certificates, statements, contracts and manuals come back in the same layout as the source, with stamps, tables and handwritten notes translated where they appear.</p><p><a class="btn magnetic" href="/documents/">Document translation</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>
 <section data-scene="path"><h2>How a translator joins the team</h2><ol class="grid-4 steps">
 <li class="card"><h3>Qualified</h3><p>A translation degree or a professional qualification such as the CIOL Diploma.</p></li>
 <li class="card"><h3>Native</h3><p>They translate into their own first language.</p></li>
@@ -905,10 +864,10 @@ PAGES["language"] = dict(
 <li class="card"><h3>Checked</h3><p>A second linguist revises every job before delivery.</p></li>
 </ol></section>
 <section data-scene="film" class="grid-2 split-copy"><div><h2>Languages</h2><p>European and Asian languages, into and out of English. The most requested have their own pages: <a href="/languages/polish/">Polish</a>, <a href="/languages/romanian/">Romanian</a>, <a href="/languages/arabic/">Arabic</a>, <a href="/languages/urdu/">Urdu</a>, <a href="/languages/chinese/">Chinese</a>, <a href="/languages/spanish/">Spanish</a>, <a href="/languages/french/">French</a>, <a href="/languages/german/">German</a>, <a href="/languages/ukrainian/">Ukrainian</a> and <a href="/languages/portuguese/">Portuguese</a>.</p><p><a class="btn ghost" href="/languages/">All languages</a></p></div>"""
-    + team_video("language", "The Language team's work in 3D: a certified seal, documents and subtitles.", "Kayonne Language reel") + """</section>
+    + team_video("language", "The Language team's work in 3D: documents, scales and subtitles.", "Kayonne Language reel") + """</section>
 <section data-scene="shield"><h2>Your documents stay private</h2><ul class="ticks"><li>Only the people on your job see the files.</li><li>NDA on request, before you send anything.</li><li>Files deleted within 90 days of delivery unless you ask us to keep them.</li><li>Never used to train public AI models.</li></ul></section>""",
-    faq=[("Do you translate into English or out of it?", "Both. Most certified work is into English, for UK authorities."),
-         ("Is a certified translation the same as a sworn one?", "No. See <a href=\"/certified-translation/\">certified translation</a> and <a href=\"/apostille/\">apostille and legalisation</a>."),
+    faq=[("Do you translate into English or out of it?", "Both, for every language we cover."),
+         ("Can you check a translation we already have?", "Yes. See <a href=\"/proofreading/\">proofreading and revision</a>."),
          ("How do I get a price?", "Upload the document on the <a href=\"/contact/\">quote form</a>. You get a fixed price before we start.")],
 )
 
@@ -987,43 +946,6 @@ PAGES["readiness-check"] = dict(
 <section data-scene="plane" class="offer card"><div><h2>Request your check</h2><p>Choose "Free readiness check" on the form, add your website address and the markets you're thinking about.</p></div><p><a class="btn magnetic" href="/contact/?service=Free+readiness+check">Request a check</a></p></section>""",
 )
 
-PAGES["certified-translation-glasgow"] = svc(
-    title="Certified translation Glasgow | Kayonne Language",
-    desc="Certified translation in Glasgow for the Home Office, UKVI, Scottish courts, universities and banks. Signed statement, checked by a second linguist.",
-    label="Certified translation Glasgow", h1="Certified translation in Glasgow.",
-    lede="Certified translations from a Glasgow team, for visas, settlement, citizenship, Scottish courts, universities, employers and banks. Each one comes with a signed statement of accuracy, the date and the translator's details.",
-    why=["Led by a CIOL-qualified translator in Glasgow", "A second linguist checks every certified translation", "Upload a photo or scan from anywhere in Scotland"],
-    incl=["Birth, marriage and divorce certificates", "Passports and ID", "Driving licences", "Degrees and transcripts", "Bank statements", "Court and solicitor papers"],
-    extra=f"<section data-scene=\"seal\" class=\"grid-2 split-copy\"><div><h2>What you receive</h2><p>A translation laid out like the original, and a signed statement like this one. Delivered as a PDF you can upload or print.</p></div>{STATEMENT_EN}</section>",
-    steps=[("Upload", "A clear photo or scan on the <a href=\"/contact/?service=Certified+translation+(UK)\">quote form</a>."),
-           ("Quote", "A fixed price and a delivery date."),
-           ("Translate", "Translated, then checked against the original by a second linguist."),
-           ("Deliver", "Signed PDF by email.")],
-    who="People in Glasgow and across Scotland applying to the Home Office, universities or employers, and the solicitors who help them.",
-    faq=[("Will it be accepted by the Home Office?", "It includes the confirmation of accuracy, date, full name and signature, and contact details that the Home Office asks for. Read <a href=\"/insights/home-office-certified-translation/\">what the Home Office needs</a>."),
-         ("Do Scottish courts accept it?", "Courts usually accept a certified translation. Some cases need a sworn affidavit or notarisation; your solicitor will know, and we can arrange it."),
-         ("Can I drop the document off?", "Send a scan or photo; you keep your original.")],
-)
-
-PAGES["apostille"] = dict(
-    title="Apostille and legalisation for UK documents | Kayonne Language",
-    desc="How to use UK documents and translations abroad: what an apostille is, who issues it, when a translation needs notarising, and when embassy legalisation is needed.",
-    label="Kayonne Language · Guide", h1="Apostille and legalisation, in plain words.",
-    lede="If a UK document or translation will be used abroad, the receiving country may want proof that the signature or stamp on it is genuine. That proof is usually an apostille.",
-    body="""<article class="prose">
-<h2>What an apostille is</h2>
-<p>An apostille is a certificate attached to a public document that confirms the signature, seal or stamp on it is genuine. In the UK, apostilles are issued by the Legalisation Office of the Foreign, Commonwealth and Development Office (FCDO).</p>
-<h2>Which countries accept it</h2>
-<p>Countries that have joined the Hague Apostille Convention accept an apostille without further steps. Countries outside the Convention may also ask for the document to be legalised by their embassy or consulate.</p>
-<h2>Where translation comes in</h2>
-<p>An apostille confirms a signature, not a translation. If the receiving country needs a translation, it may ask for the translation to be certified and then notarised by a UK solicitor or notary public, so that the apostille can be attached to the notary's signature.</p>
-<h2>A typical order of steps</h2>
-<ol><li>Ask the receiving authority exactly what it needs.</li><li>Get the translation certified.</li><li>Have it notarised if required.</li><li>Get the apostille from the FCDO.</li><li>Legalise at the embassy if the country is outside the Convention.</li></ol>
-<p>We can produce the certified translation and arrange the notary and apostille steps through partners. The quote lists each step and who does it.</p>
-<p class="note">Rules and fees change. Check the current guidance on gov.uk before you apply.</p>
-</article>""",
-)
-
 PAGES["multilingual-seo"] = svc(
     title="Multilingual SEO agency | Kayonne Global",
     desc="Multilingual and international SEO: keyword research by native speakers in each market, hreflang, translated metadata and locale URLs, from a team that builds and translates.",
@@ -1096,7 +1018,7 @@ LANG_PAIRS = {
         note="French from France, Belgium, Switzerland, Canada and Africa differs in terms and formats. We follow the country of the document or its reader.",
         docs=["Birth certificates (acte de naissance)", "Marriage certificates", "Diplomas", "Contracts", "Company documents"]),
     "german": dict(name="German", native="Deutsch",
-        note="Swiss documents use ss instead of ß. For German authorities that need a sworn translation (beglaubigte Übersetzung), we arrange an authorised partner.",
+        note="Swiss documents use ss instead of ß, and we keep German, Austrian and Swiss terms apart.",
         docs=["Birth certificates (Geburtsurkunde)", "Marriage certificates", "Certificates of good conduct", "Degrees and transcripts", "Employment references"]),
     "ukrainian": dict(name="Ukrainian", native="Українська",
         note="Names are transliterated exactly as in the Ukrainian passport so every document matches. We also translate Russian-language documents issued in Ukraine.",
@@ -1109,42 +1031,21 @@ LANG_PAIRS = {
 for _slug, _l in LANG_PAIRS.items():
     PAGES[f"languages/{_slug}"] = svc(
         title=f"{_l['name']} translation services UK | {_l['name']} to English | Kayonne",
-        desc=f"Certified and professional {_l['name']} translation, into and out of English: documents for the Home Office, legal, medical and business texts, websites and subtitles.",
+        desc=f"Professional {_l['name']} translation, into and out of English: documents, legal, medical and business texts, websites and subtitles.",
         label=f"{_l['name']} · <span lang=\"und\">{_l['native']}</span>", h1=f"{_l['name']} translation, into and out of English.",
-        lede=f"Qualified {_l['name']} translators for certified documents, legal and medical texts, business content, websites and subtitles. Every job checked by a second linguist.",
-        why=[_l["note"], "Certified translations with the statement the Home Office asks for", "A second linguist checks every job"],
-        incl=[f"{_l['name']} to English certified translation", f"English to {_l['name']} translation"] + _l["docs"],
+        lede=f"Qualified {_l['name']} translators for documents, legal and medical texts, business content, websites and subtitles. Every job checked by a second linguist.",
+        why=[_l["note"], "Layout kept close to the original document", "A second linguist checks every job"],
+        incl=[f"{_l['name']} to English translation", f"English to {_l['name']} translation"] + _l["docs"],
         steps=[("Upload", "Send a photo, scan or file on the quote form."),
                ("Quote", "A fixed price and a date."),
                ("Translate", f"A native {_l['name']} translator works on it."),
                ("Check", "A second linguist revises before delivery.")],
         who=f"People and businesses who need {_l['name']} documents in English, or English content in {_l['name']}.",
-        faq=[(f"Do you provide certified {_l['name']} translations?", f"Yes. Certified {_l['name']} to English translations come with a signed statement of accuracy. See <a href=\"/certified-translation/\">certified translation</a>."),
+        faq=[(f"Which {_l['name']} documents do you translate?", f"Personal, legal, medical, business and technical documents, in both directions. See <a href=\"/documents/\">document translation</a>."),
              ("How do I get a price?", f"Upload the document on the <a href=\"/contact/\">quote form</a> and choose {_l['name']} as the language.")],
     )
 
 # ---------- articles ----------
-PAGES["insights/home-office-certified-translation"] = dict(
-    title="What the Home Office needs from a certified translation | Kayonne",
-    desc="What a certified translation for a UK visa or settlement application must include, common mistakes that cause problems, and an example statement.",
-    label="Insights · Certified translation", h1="What the Home Office needs from a certified translation",
-    lede="If a document for your visa, settlement or citizenship application is not in English or Welsh, you need a translation that the Home Office can check. Here is what it should include.",
-    body="""<article class="prose">
-<p class="byline">By the Kayonne Language team, led by a CIOL-qualified translator.</p>
-<h2>The short answer</h2>
-<p>Home Office guidance asks for a translation that includes: confirmation from the translator that it is an accurate translation of the original document, the date of the translation, the translator's full name and signature, and the translator's contact details.</p>
-<h2>Who can translate it</h2>
-<p>The UK has no sworn translators, so a professional translator or translation company certifies the translation. You cannot translate and certify your own documents.</p>
-<h2>Mistakes that cause delays</h2>
-<ul><li><b>Names spelled differently</b> from the passport. Give your translator the passport spelling.</li><li><b>Stamps and handwriting left out.</b> Everything on the page should be translated or described.</li><li><b>Missing pages</b>, including the back of a certificate.</li><li><b>No contact details</b>, so the translation cannot be verified.</li></ul>
-<h2>An example statement</h2>
-""" + STATEMENT_EN + """
-<h2>How we handle it</h2>
-<p>We translate the full document, keep the layout close to the original, check names against your passport, and have a second linguist review it. You receive a signed PDF. See <a href="/certified-translation/">certified translation</a>.</p>
-<p class="note">Guidance can change. Check the current requirements on gov.uk for your application.</p>
-</article>""",
-)
-
 PAGES["insights/website-cost-glasgow"] = dict(
     title="How much does a website cost in Glasgow in 2026? | Kayonne",
     desc="Website prices in Glasgow in 2026: templates, small business sites, custom builds and shops, what changes the price, and the running costs people forget.",

@@ -353,7 +353,7 @@ const makers = {
       c.strokeStyle = "#7d4620"; c.lineWidth = 6;
       [230, 170].forEach((rr) => { c.beginPath(); c.arc(w / 2, w / 2, rr, 0, TAU); c.stroke(); });
       c.fillStyle = "#6b3a17"; c.font = "600 34px Outfit, Arial, sans-serif"; c.textAlign = "center";
-      const text = "CERTIFIED TRANSLATION · KAYONNE CREATIVES · ";
+      const text = "KAYONNE LANGUAGE · CHECKED TWICE · ";
       Array.from(text).forEach((ch, i) => {
         c.save(); c.translate(w / 2, w / 2); c.rotate((i / text.length) * TAU); c.fillText(ch, 0, -186); c.restore();
       });

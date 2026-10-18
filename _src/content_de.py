@@ -19,7 +19,7 @@ def wall(items):
 
 LANG_WALLS = (f"<h3>Europa</h3>{wall(EUROPE)}<h3>Asien</h3>{wall(ASIA)}"
               '<p class="note">Arabisch und Persisch auf Anfrage. Alle Sprachen übersetzen wir aus dem Englischen und ins '
-              "Englische. Live-Dolmetschen bieten wir nicht an.</p>")
+              "Englische.</p>")
 
 DIGITAL_CARDS = [
     ("websites", "Websites", "Unternehmensseiten, Onlineshops und Landingpages."),
@@ -31,7 +31,6 @@ DIGITAL_CARDS = [
     ("care", "Wartungspläne", "Updates, Backups und jemand, der aufpasst."),
 ]
 LANGUAGE_CARDS = [
-    ("certified-translation", "Certified Translation (UK)", "Für britische Behörden, Gerichte und Hochschulen."),
     ("documents", "Dokumentübersetzung", "Urkunden, Abschlüsse und Handbücher, im Layout des Originals."),
     ("localization", "Website- und App-Lokalisierung", "Ihr Produkt in der Sprache Ihrer Kunden."),
     ("games", "Spielelokalisierung", "Strings, Store-Seiten und Untertitel, im Kontext geprüft."),
@@ -88,8 +87,8 @@ PAGES[""] = dict(
   <a class="team team-l" href="/de/language/">
     <p class="kicker">Kayonne Language</p>
     <h2>Das Übersetzungsteam</h2>
-    <p>Qualifizierte Übersetzer für Certified Translations, Recht, Medizin und Patente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.</p>
-    <ul class="ticks"><li>Anerkannt vom Home Office</li><li>Recht, Medizin, Patente</li><li>Untertitelung und Transkription</li><li>Korrektorat und Revision</li></ul>
+    <p>Qualifizierte Übersetzer für Recht, Medizin, Patente und Geschäftstexte, Dokumente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.</p>
+    <ul class="ticks"><li>Dokumente im Layout des Originals</li><li>Recht, Medizin, Patente</li><li>Untertitelung und Transkription</li><li>Korrektorat und Revision</li></ul>
     <span class="team-more">Zum Übersetzungsteam →</span>
   </a>
 </section>
@@ -121,9 +120,7 @@ PAGES[""] = dict(
     faq=[
         ("Kann eine Agentur entwickeln und übersetzen?", "Ja. Sie können auch nur die Entwicklung oder nur die Übersetzung buchen."),
         ("Welche Sprachen übersetzen Sie?", "Europäische und asiatische Sprachen, aus dem und ins Englische. Siehe <a href=\"/de/languages/\">Sprachen</a>. Im Angebot steht, wer Ihr Sprachpaar übernimmt."),
-        ("Bieten Sie beglaubigte Übersetzungen an?", "Für britische Stellen ja, als Certified Translation. Für deutsche Behörden arbeiten wir mit ermächtigten Übersetzern zusammen. Siehe <a href=\"/de/certified-translation/\">Certified Translation</a>."),
         ("Wo sitzen Sie?", "In Glasgow, Vereinigtes Königreich. Unsere Kunden sitzen überall."),
-        ("Dolmetschen Sie Gespräche oder Veranstaltungen?", "Nein. Wir übernehmen schriftliche Übersetzung, Untertitelung und Transkription."),
     ],
 )
 
@@ -265,45 +262,21 @@ PAGES["care"] = svc(
          ("Betreuen Sie auch Websites, die Sie nicht gebaut haben?", "Ja, nach einer kurzen Prüfung von Aufbau und Hosting.")],
 )
 
-PAGES["certified-translation"] = svc(
-    title="Certified Translation für Großbritannien | Kayonne Creatives",
-    desc="Certified Translations für das Home Office, UKVI, britische Gerichte, Hochschulen und Banken. Urkunden, Zeugnisse, Führerscheine und Kontoauszüge.",
-    label="Certified Translation (UK)", h1="Certified Translations für britische Stellen.",
-    lede="Im Vereinigten Königreich gibt es keine vereidigten Übersetzer. Eine Certified Translation enthält eine unterschriebene Erklärung, dass die Übersetzung vollständig und richtig ist, mit Datum, Namen und Kontaktdaten des Übersetzers. Diese Erklärung liegt jeder unserer Certified Translations bei.",
-    why=["Enthält Bestätigung, Datum, Namen und Kontaktdaten, wie vom Home Office verlangt",
-         "Übersetzt von einer qualifizierten Fachkraft und von einer zweiten Person geprüft",
-         "Das Layout folgt dem Original, Stempel und Siegel sind leicht zuzuordnen"],
-    incl=["Geburts-, Heirats-, Scheidungs- und Sterbeurkunden", "Pässe und Ausweise", "Führerscheine",
-          "Abschlusszeugnisse und Notenübersichten", "Kontoauszüge und Gehaltsabrechnungen", "Führungszeugnisse",
-          "Arztbriefe und medizinische Unterlagen", "Gerichts- und Anwaltsschreiben"],
-    extra="""<section><h2>Nicht dasselbe wie eine beglaubigte Übersetzung in Deutschland</h2><p>Deutsche Behörden verlangen meist eine beglaubigte Übersetzung durch einen öffentlich bestellten oder ermächtigten Übersetzer. Eine britische Certified Translation ersetzt das nicht. Für deutsche, österreichische oder Schweizer Stellen arbeiten wir mit ermächtigten Partnern zusammen und nennen das im Angebot. Siehe <a href="/de/documents/">Dokumentübersetzung</a>.</p></section>
-<section><h2>Wo Certified Translations verwendet werden</h2><ul class="ticks cols">
-<li>Home Office und UK Visas and Immigration (UKVI)</li><li>Britische Gerichte und Anwaltskanzleien</li>
-<li>Hochschulen und UCAS</li><li>NHS und Arbeitgeber</li><li>DVLA (Führerscheinbehörde)</li><li>Banken und das Land Registry</li></ul></section>""",
-    steps=[("Senden", "Laden Sie ein gut lesbares Foto oder einen Scan über das <a href=\"/de/contact/\">Anfrageformular</a> hoch."),
-           ("Angebot", "Sie erhalten einen Festpreis und einen Liefertermin."),
-           ("Übersetzung", "Übersetzung, dann Abgleich mit dem Original durch eine zweite Person."),
-           ("Lieferung", "Ein unterschriebenes PDF per E-Mail, bereit zum Hochladen oder Ausdrucken.")],
-    who="Menschen, die ein Visum, eine Niederlassungserlaubnis, die Einbürgerung, einen Studienplatz oder eine Stelle in Großbritannien beantragen, und die Kanzleien, die sie dabei begleiten.",
-    faq=[("Akzeptiert das Home Office die Übersetzung?", "Das Home Office verlangt eine Bestätigung des Übersetzers, dass die Übersetzung richtig ist, das Datum sowie den vollständigen Namen und die Kontaktdaten des Übersetzers. Unsere Certified Translations enthalten all das."),
-         ("Wie wird der Preis berechnet?", "Pro Dokument oder pro Seite, je nach Textmenge. Schicken Sie die Datei, und Sie erhalten einen Festpreis, bevor wir beginnen.")],
-)
-
 PAGES["documents"] = svc(
     title="Dokumentübersetzung | Kayonne Creatives",
-    desc="Übersetzung von Urkunden, Zeugnissen, Handbüchern und Berichten im Layout des Originals. Certified für Großbritannien, beglaubigt über Partner.",
+    desc="Übersetzung von Urkunden, Zeugnissen, Handbüchern und Berichten im Layout des Originals, in europäischen und asiatischen Sprachen.",
     label="Dokumentübersetzung", h1="Dokumente übersetzt und im Layout des Originals.",
-    lede="Wir übersetzen Dokumente und gestalten das Ergebnis so, dass es wie das Original aussieht. Für britische Stellen zertifizieren wir selbst. Wo ein Land eine beglaubigte Übersetzung durch einen ermächtigten Übersetzer verlangt, beauftragen wir einen geprüften Partner.",
+    lede="Wir übersetzen Dokumente und gestalten das Ergebnis so, dass es wie das Original aussieht, mit Stempeln, Tabellen und Handschrift an Ort und Stelle übersetzt.",
     why=["Klarer Umgang mit Stempeln, Tabellen und Scans", "Bestätigungen nur, wo sie zutreffen", "Desktop-Publishing, wenn das Layout zählt, auch für asiatische Schriften"],
-    incl=["Dokumentübersetzung", "<a href=\"/de/certified-translation/\">Certified Translation für Großbritannien</a>", "Geburts- und Heiratsurkunden",
+    incl=["Dokumentübersetzung", "Geburts- und Heiratsurkunden",
           "Führerscheine", "Zeugnisse und Notenübersichten", "Geschäftsberichte und Bilanzen", "Technische Handbücher",
           "Mehrsprachiges Desktop-Publishing", "Übersetzung, Lektorat und Korrektorat"],
     steps=[("Datei", "Laden Sie einen Scan oder die Originaldatei über das Formular hoch. Für sehr vertrauliche Dateien senden wir Ihnen einen privaten Upload-Link."),
-           ("Zweck", "Sagen Sie uns, wer das Dokument liest und ob eine Certified oder beglaubigte Übersetzung nötig ist."),
+           ("Zweck", "Sagen Sie uns, wer das Dokument liest und wie das Layout aussehen soll."),
            ("Arbeit", "Übersetzung, Lektorat, dann eine Schlussprüfung."),
            ("Lieferung", "Sie erhalten das vereinbarte Dateiformat.")],
     who="Privatpersonen und Unternehmen, die Urkunden, Abschlüsse oder Handbücher in einer anderen Sprache brauchen.",
-    faq=[("Sind Sie vereidigte Übersetzer?", "Nein. In Großbritannien gibt es keine vereidigten Übersetzer. Wir zertifizieren Übersetzungen für britische Stellen. Verlangt eine Behörde im Ausland einen ermächtigten Übersetzer, arbeiten wir mit einem geprüften Partner und nennen das im Angebot."),
+    faq=[
          ("Welche Dateiformate nehmen Sie an?", "Word, Excel, PowerPoint, PDF, InDesign sowie Fotos oder Scans. Fragen Sie bei anderen Formaten nach."),
          ("Übersetzen Sie ins Englische?", "Ja. Die meisten Dokumente übersetzen wir ins Englische, aus allen Sprachen, die wir anbieten.")],
 )
@@ -382,14 +355,14 @@ PAGES["legal"] = svc(
     label="Juristische Übersetzung", h1="Juristische Übersetzung, die Ihre Anwälte prüfen können.",
     lede="Wir übersetzen juristische Dokumente. Wir geben keine Rechtsberatung und ersetzen nicht Ihre Kanzlei. Die Formulierung bleibt nah am Ausgangstext.",
     why=["Genaue Übersetzung statt Umformulierung", "Definierte Begriffe einheitlich", "NDA, bevor vertrauliche Unterlagen gesendet werden"],
-    incl=["Verträge", "Richtlinien und AGB", "Gerichts- und Registerunterlagen", "Juristische Korrespondenz", "<a href=\"/de/certified-translation/\">Certified Translations</a> für britische Gerichte"],
+    incl=["Verträge", "Richtlinien und AGB", "Gerichts- und Registerunterlagen", "Juristische Korrespondenz"],
     steps=[("Prüfer", "Sagen Sie uns, wer das Ergebnis prüfen muss."),
            ("Begriffe", "Wir listen die definierten Begriffe auf."),
            ("Übersetzung", "Übersetzung und Lektorat."),
            ("Rückgabe", "Rückfragen werden aufgelistet, nicht versteckt.")],
     who="Kanzleien, Rechtsabteilungen und Unternehmen mit grenzüberschreitenden Unterlagen.",
     faq=[("Ist das Rechtsberatung?", "Nein."),
-         ("Beglaubigen Sie die Übersetzung?", "Für britische Stellen zertifizieren wir selbst. Verlangt eine Behörde im Ausland eine beglaubigte Übersetzung, beauftragen wir einen ermächtigten Partner.")],
+         ("Behalten Sie die Formatierung bei?", "Ja. Klauselnummern, definierte Begriffe und Layout folgen dem Ausgangstext.")],
 )
 
 PAGES["subtitling"] = svc(
@@ -407,7 +380,6 @@ PAGES["subtitling"] = svc(
            ("Sichtung", "Sprachliche Prüfung am Bild, sobald der Schnitt final ist.")],
     who="Studios, Schulungsteams, Creator und Produktteams mit Videos in mehr als einer Sprache.",
     faq=[("Wie wird der Preis berechnet?", "Pro Minute Video oder Audio. Sprachpaar, Sprechtempo und Lieferzeit beeinflussen den Preis."),
-         ("Dolmetschen Sie Besprechungen?", "Nein. Live-Dolmetschen bieten wir nicht an."),
          ("Können Sie eine Sprecherin oder einen Sprecher buchen?", "Wir koordinieren das. Das Partnerstudio steht im Angebot.")],
 )
 
@@ -473,7 +445,7 @@ PAGES["industries"] = dict(
 <li><a class="card" href="/de/localization/"><strong>Software und Apps</strong></a></li>
 <li><a class="card" href="/de/websites/"><strong>E-Commerce und Marketing</strong></a></li>
 <li><a class="card" href="/de/documents/"><strong>Technische Dokumentation</strong></a></li>
-<li><a class="card" href="/de/certified-translation/"><strong>Amtliche Dokumente</strong></a></li>
+<li><a class="card" href="/de/documents/"><strong>Amtliche Dokumente</strong></a></li>
 <li><a class="card" href="/de/subtitling/"><strong>Medien und Schulungsvideos</strong></a></li>
 </ul></section>""",
 )
@@ -511,13 +483,12 @@ PAGES["process"] = dict(
 
 PAGES["pricing"] = dict(
     title="Preise | Kayonne Creatives",
-    desc="Wie wir Websites, Wartung, Certified Translations, Dokumentübersetzung, Untertitelung und Korrektorat berechnen. Jeder Auftrag erhält ein schriftliches Festpreisangebot.",
+    desc="Wie wir Websites, Wartung, Dokumentübersetzung, Untertitelung und Korrektorat berechnen. Jeder Auftrag erhält ein schriftliches Festpreisangebot.",
     label="Preise", h1="So berechnen wir.",
     lede="Jeder Auftrag erhält ein schriftliches Festpreisangebot, bevor die Arbeit beginnt. Hier sehen Sie, worauf der Preis basiert und was ihn verändert.",
     body="""<section><div class="table-wrap"><table>
 <thead><tr><th scope="col">Leistung</th><th scope="col">Abrechnung</th><th scope="col">Was den Preis verändert</th></tr></thead>
 <tbody>
-<tr><td><a href="/de/certified-translation/">Certified Translation</a></td><td>Pro Dokument oder Seite</td><td>Textmenge, Sprachpaar, Liefertermin</td></tr>
 <tr><td><a href="/de/documents/">Dokumentübersetzung</a></td><td>Pro Wort</td><td>Sprachpaar, Fachgebiet, Dateiformat und Layoutarbeit, Termin</td></tr>
 <tr><td><a href="/de/proofreading/">Korrektorat und Revision</a></td><td>Pro 1.000 Wörter oder pro Stunde</td><td>Korrektorat oder Revision, Qualität der vorhandenen Übersetzung</td></tr>
 <tr><td><a href="/de/subtitling/">Untertitelung und Transkription</a></td><td>Pro Minute Video oder Audio</td><td>Sprachpaar, Sprechtempo, Timing neu oder aus Template, SDH</td></tr>
@@ -536,28 +507,26 @@ PAGES["about"] = dict(
     label="Über uns", h1="Ein Agenturteam. Eine Projektleitung.",
     lede="Kayonne Creatives wird von Glasgow aus von der Gründungsperson geleitet, einer qualifizierten Fachkraft für Übersetzung. Professionelle Übersetzer decken europäische und asiatische Sprachen ab, Digitalspezialisten bauen Websites und Apps. Sie sprechen die ganze Zeit mit einer Projektleitung.",
     body="""<section class="grid-2">
-<div class="card"><h2>Gründung und Leitung</h2><p>MA in Translation Studies, Middlebury Institute of International Studies in Monterey.</p><p>CIOL Diploma in Translation, mit Auszeichnung (Merit).</p><p class="note">Die Gründungsperson leitet jedes Projekt und unterzeichnet unsere Certified Translations.</p></div>
+<div class="card"><h2>Gründung und Leitung</h2><p>MA in Translation Studies, Middlebury Institute of International Studies in Monterey.</p><p>CIOL Diploma in Translation, mit Auszeichnung (Merit).</p><p class="note">Die Gründungsperson leitet jedes Projekt.</p></div>
 <div class="card"><h2>Das Team</h2><ul class="ticks"><li>Projektleitung in Glasgow</li><li>Professionelle Übersetzer für europäische Sprachen</li><li>Professionelle Übersetzer für asiatische Sprachen</li><li>Lektorat und Schlussprüfung</li><li>Digitalspezialisten für Websites, Apps, Suche und Ladezeit</li></ul></div>
 </section>
-<section><h2>Wie wir arbeiten</h2><ul class="ticks"><li>Jede Übersetzung wird vor der Lieferung von einer zweiten Person geprüft.</li><li>Ihre Dateien sehen nur die Personen in Ihrem Auftrag, und eine NDA ist möglich.</li><li>Wir nutzen Ihre Dateien nicht zum Training öffentlicher KI-Modelle.</li><li>Wir sagen, was wir nicht tun: Wir sind keine vereidigten Übersetzer und dolmetschen nicht live.</li></ul></section>""",
+<section><h2>Wie wir arbeiten</h2><ul class="ticks"><li>Jede Übersetzung wird vor der Lieferung von einer zweiten Person geprüft.</li><li>Ihre Dateien sehen nur die Personen in Ihrem Auftrag, und eine NDA ist möglich.</li><li>Wir nutzen Ihre Dateien nicht zum Training öffentlicher KI-Modelle.</li></ul></section>""",
 )
 
 PAGES["faq"] = dict(
     title="FAQ | Kayonne Creatives",
-    desc="Antworten zu Sprachen, Lieferzeit, Dateiformaten, beglaubigten Übersetzungen, Vertraulichkeit, Korrekturen, Zahlung und Eigentum.",
+    desc="Antworten zu Sprachen, Lieferzeit, Dateiformaten, Vertraulichkeit, Korrekturen, Zahlung und Eigentum.",
     label="FAQ", h1="Fragen unserer Kunden.",
     lede="Kurze Antworten. Wenn Ihr Fall anders liegt, steht es im Angebot.",
     body="",
     faq=[("Welche Sprachen übersetzen Sie?", "Europäische und asiatische Sprachen, aus dem und ins Englische. Siehe <a href=\"/de/languages/\">Sprachen</a>. Im Angebot steht, wer Ihr Sprachpaar übernimmt."),
          ("Wie schnell ist eine Übersetzung fertig?", "Das hängt von Umfang, Sprache und Fachgebiet ab. Ein kurzes, klares Dokument dauert oft einige Werktage. Eine Produktlokalisierung wird geplant. Im Angebot steht ein Termin."),
          ("Welche Formate nehmen Sie an?", "Word, Excel, PowerPoint, PDF, Web-Exporte, String-Dateien, Untertiteldateien sowie Fotos und Scans. Designdateien wie InDesign nach Absprache."),
-         ("Bieten Sie beglaubigte Übersetzungen an?", "Für britische Stellen erstellen wir Certified Translations. Für deutsche und andere Behörden, die eine beglaubigte Übersetzung durch einen ermächtigten Übersetzer verlangen, arbeiten wir mit geprüften Partnern. Siehe <a href=\"/de/certified-translation/\">Certified Translation</a>."),
          ("Ist die Arbeit vertraulich?", "Ja. Auf Wunsch unterzeichnen wir eine NDA. Nur die Personen in Ihrem Auftrag sehen die Dateien. Wir trainieren keine öffentlichen KI-Modelle mit Ihren Inhalten."),
          ("Wie funktionieren Korrekturen?", "Eine Runde an den gelieferten Dateien ist innerhalb der im Angebot genannten Frist enthalten. Neuer Text wird neu angeboten."),
          ("Wie bezahle ich?", "Im Angebot stehen Betrag, Währung, eine eventuelle Anzahlung, Fälligkeit und Zahlungsweise."),
          ("Wem gehören der Website-Code und die übersetzten Texte?", "Ihnen, sobald die vereinbarten Honorare bezahlt sind. Siehe <a href=\"/de/terms/\">AGB</a>."),
-         ("Können Sie Domain und E-Mail einrichten?", "Ja. Siehe <a href=\"/de/domains-email/\">Domains und geschäftliche E-Mail</a>."),
-         ("Dolmetschen Sie Gespräche oder Veranstaltungen?", "Nein. Live-Dolmetschen bieten wir nicht an.")],
+         ("Können Sie Domain und E-Mail einrichten?", "Ja. Siehe <a href=\"/de/domains-email/\">Domains und geschäftliche E-Mail</a>.")],
 )
 
 PAGES["insights"] = dict(
@@ -607,7 +576,7 @@ FORM_DE = dict(
     consent='Ich bin einverstanden, dass Kayonne Creatives diese Angaben verwendet, um auf meine Anfrage zu antworten. Siehe <a href="/de/privacy/">Datenschutzerklärung</a>.',
     send="Anfrage senden", after=f"Das Formular wird über unseren Formulardienst an {EMAIL} zugestellt. Sie können uns auch direkt schreiben.",
     services=[
-        ("Sprache", ["Certified Translation (UK)", "Dokumentübersetzung", "Website- oder App-Lokalisierung", "Spielelokalisierung",
+        ("Sprache", ["Dokumentübersetzung", "Website- oder App-Lokalisierung", "Spielelokalisierung",
                      "Medizinische Übersetzung", "Patentübersetzung", "Juristische Übersetzung", "Untertitelung oder Transkription",
                      "Korrektorat oder Revision", "MTPE oder LQA"]),
         ("Digital", ["Website", "Onlineshop", "Web-App", "Mobile App", "Domain und geschäftliche E-Mail", "SEO", "Ladezeit- oder Barrierefreiheits-Audit", "Wartungsplan"]),
@@ -619,7 +588,7 @@ FORM_DE = dict(
 
 PAGES["contact"] = dict(
     title="Angebot anfragen | Kayonne Creatives",
-    desc="Angebot für Übersetzung, Certified Translation, Untertitelung, Website oder Domain und E-Mail anfragen. Datei anhängen und Festpreis erhalten.",
+    desc="Angebot für Übersetzung, Untertitelung, Website oder Domain und E-Mail anfragen. Datei anhängen und Festpreis erhalten.",
     label="Kontakt", h1="Beschreiben Sie den Auftrag.",
     lede=f'Nennen Sie Leistung, Sprachen und Termin und hängen Sie die Datei an, falls vorhanden. Wir antworten per E-Mail mit einem Festpreisangebot oder Rückfragen. Sie erreichen uns auch unter <a href="mailto:{EMAIL}">{EMAIL}</a>.',
     body=quote_form("de", FORM_DE), no_cta=True,
@@ -705,8 +674,8 @@ PAGES["terms"] = dict(
 <p>Nach vollständiger Zahlung gehören Ihnen die für Sie erstellten Übersetzungen, der Website-Code und die Designs, mit Ausnahme von Software, Schriften, Plugins und Stockmaterial Dritter, die unter ihren eigenen Lizenzen bleiben. Translation Memories und Glossare dürfen wir für Ihre künftigen Aufträge aufbewahren und löschen sie auf Ihren Wunsch.</p>
 <h2>8. Vertraulichkeit</h2>
 <p>Wir behandeln Ihr Material vertraulich und geben es nur an die Personen in Ihrem Auftrag weiter, die zur Vertraulichkeit verpflichtet sind. Auf Wunsch unterzeichnen wir eine gesonderte NDA.</p>
-<h2>9. Certified und Fachübersetzungen</h2>
-<p>Eine Certified Translation bestätigt die Richtigkeit der Übersetzung. Sie garantiert nicht, dass eine Stelle sie annimmt, denn jede Behörde legt ihre eigenen Regeln fest. Wir geben keine Rechts-, Medizin- oder Patentberatung.</p>
+<h2>9. Fachübersetzungen</h2>
+<p>Wir übersetzen juristische, medizinische und Patenttexte. Wir geben keine Rechts-, Medizin- oder Patentberatung, und ob eine Stelle eine Übersetzung annimmt, richtet sich nach deren eigenen Regeln.</p>
 <h2>10. Websites, Hosting und Wartung</h2>
 <p>Domains, Hosting und E-Mail-Konten werden auf Ihren Namen registriert und von Ihnen direkt beim Anbieter bezahlt. Wartungspläne laufen monatlich und sind mit der im Plan genannten Frist kündbar. Für Ausfälle oder Änderungen durch Drittanbieter haften wir nicht.</p>
 <h2>11. Haftung</h2>
@@ -759,14 +728,6 @@ def team_video(key, caption, label):
     return video(f"team-{key}", caption, 1280, 720, label)
 
 
-STATEMENT_DE = """<figure class="statement" aria-label="Beispiel für die Erklärung zu einer Certified Translation">
-<p class="kicker">Beispiel</p>
-<p class="st-title">Certificate of translation accuracy</p>
-<p>I confirm that the attached document is a true and accurate translation of the original birth certificate from Polish into English.</p>
-<dl><dt>Translator</dt><dd>Vollständiger Name und Unterschrift</dd><dt>Date</dt><dd>Datum der Übersetzung</dd><dt>Contact</dt><dd>hello@kayonnecreatives.com</dd><dt>Company</dt><dd>Kayonne Creatives, Glasgow</dd></dl>
-<figcaption class="note">Die Erklärung ist auf Englisch, weil sie für britische Stellen bestimmt ist. Das Home Office verlangt vier Angaben: Bestätigung der Richtigkeit, Datum, vollständiger Name mit Unterschrift und Kontaktdaten.</figcaption>
-</figure>"""
-
 PAGES["digital"] = dict(
     title="Kayonne Digital | Webdesign, Apps und SEO aus Glasgow",
     desc="Das Team Kayonne Digital entwickelt Websites, Onlineshops und Apps, richtet Domains und geschäftliche E-Mail ein und kümmert sich um SEO, Ladezeit und Wartung.",
@@ -788,12 +749,12 @@ PAGES["digital"] = dict(
 )
 
 PAGES["language"] = dict(
-    title="Kayonne Language | Certified und Fachübersetzungen",
-    desc="Das Team Kayonne Language: qualifizierte Übersetzer für Certified Translations, Recht, Medizin, Patente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.",
+    title="Kayonne Language | Professionelle Fachübersetzungen",
+    desc="Das Team Kayonne Language: qualifizierte Übersetzer für Dokumente, Recht, Medizin, Patente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.",
     label="Kayonne Language", h1="Das Übersetzungsteam.",
     lede="Qualifizierte Übersetzer, geleitet von Glasgow aus von einer Fachkraft mit MA in Translation Studies und CIOL Diploma in Translation. Jeder Auftrag wird vor der Lieferung von einer zweiten Fachkraft geprüft.",
     body="""<section data-scene="sheets"><h2>Was das Team übersetzt</h2>{{TEAM:language}}</section>
-<section data-scene="seal" class="grid-2 split-copy"><div><h2>Anerkannt vom Home Office</h2><p>Großbritannien kennt keine vereidigten Übersetzer. Eine Certified Translation trägt eine unterschriebene Erklärung über ihre Richtigkeit mit Datum und Angaben zum Übersetzer. Unsere enthalten alles, was das Home Office verlangt.</p><p><a class="btn magnetic" href="/de/certified-translation/">Certified Translation</a></p></div>""" + STATEMENT_DE + """</section>
+<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Dokumente wie das Original</h2><p>Urkunden, Kontoauszüge, Verträge und Handbücher kommen im Layout des Ausgangstexts zurück, mit Stempeln, Tabellen und handschriftlichen Vermerken dort übersetzt, wo sie stehen.</p><p><a class="btn magnetic" href="/de/documents/">Dokumentübersetzung</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>
 <section data-scene="path"><h2>Wer bei uns übersetzt</h2><ol class="grid-4 steps">
 <li class="card"><h3>Qualifiziert</h3><p>Studium der Übersetzung oder eine Berufsqualifikation wie das CIOL Diploma.</p></li>
 <li class="card"><h3>Muttersprachlich</h3><p>Übersetzt wird in die eigene Muttersprache.</p></li>
@@ -801,10 +762,10 @@ PAGES["language"] = dict(
 <li class="card"><h3>Geprüft</h3><p>Eine zweite Fachkraft revidiert jeden Auftrag.</p></li>
 </ol></section>
 <section data-scene="film" class="grid-2 split-copy"><div><h2>Sprachen</h2><p>Europäische und asiatische Sprachen, aus dem und ins Englische. Die meistgefragten haben eigene Seiten: <a href="/de/languages/polish/">Polnisch</a>, <a href="/de/languages/romanian/">Rumänisch</a>, <a href="/de/languages/arabic/">Arabisch</a>, <a href="/de/languages/urdu/">Urdu</a>, <a href="/de/languages/chinese/">Chinesisch</a>, <a href="/de/languages/spanish/">Spanisch</a>, <a href="/de/languages/french/">Französisch</a>, <a href="/de/languages/german/">Deutsch</a>, <a href="/de/languages/ukrainian/">Ukrainisch</a> und <a href="/de/languages/portuguese/">Portugiesisch</a>.</p><p><a class="btn ghost" href="/de/languages/">Alle Sprachen</a></p></div>"""
-    + team_video("language", "Die Arbeit des Sprachteams in 3D: Siegel, Dokumente und Untertitel.", "Kayonne Language Showreel") + """</section>
+    + team_video("language", "Die Arbeit des Sprachteams in 3D: Dokumente, Waage und Untertitel.", "Kayonne Language Showreel") + """</section>
 <section data-scene="shield"><h2>Ihre Dokumente bleiben vertraulich</h2><ul class="ticks"><li>Nur die Personen im Auftrag sehen die Dateien.</li><li>NDA auf Wunsch, bevor Sie etwas senden.</li><li>Löschung innerhalb von 90 Tagen nach Lieferung, außer Sie wünschen etwas anderes.</li><li>Nie zum Training öffentlicher KI-Modelle genutzt.</li></ul></section>""",
-    faq=[("Übersetzen Sie ins Englische oder aus dem Englischen?", "Beides. Certified Translations gehen meist ins Englische, für britische Stellen."),
-         ("Ist eine Certified Translation eine beglaubigte Übersetzung?", "Nein. Siehe <a href=\"/de/certified-translation/\">Certified Translation</a> und <a href=\"/de/apostille/\">Apostille und Legalisation</a>."),
+    faq=[("Übersetzen Sie ins Englische oder aus dem Englischen?", "Beides, für alle Sprachen, die wir anbieten."),
+         ("Können Sie eine vorhandene Übersetzung prüfen?", "Ja. Siehe <a href=\"/de/proofreading/\">Korrektorat und Revision</a>."),
          ("Wie erhalte ich einen Preis?", "Laden Sie das Dokument über das <a href=\"/de/contact/\">Anfrageformular</a> hoch. Sie erhalten einen Festpreis vor Beginn.")],
 )
 
@@ -883,43 +844,6 @@ PAGES["readiness-check"] = dict(
 <section data-scene="plane" class="offer card"><div><h2>Check anfordern</h2><p>Wählen Sie im Formular „Kostenloser Readiness-Check“, fügen Sie Ihre Website-Adresse und die geplanten Märkte hinzu.</p></div><p><a class="btn magnetic" href="/de/contact/?service=Kostenloser+Readiness-Check">Check anfordern</a></p></section>""",
 )
 
-PAGES["certified-translation-glasgow"] = svc(
-    title="Certified Translation Glasgow | Kayonne Language",
-    desc="Certified Translations in Glasgow für Home Office, UKVI, schottische Gerichte, Hochschulen und Banken. Unterschriebene Erklärung, von einer zweiten Fachkraft geprüft.",
-    label="Certified Translation Glasgow", h1="Certified Translations in Glasgow.",
-    lede="Certified Translations von einem Team in Glasgow, für Visa, Niederlassung, Einbürgerung, schottische Gerichte, Hochschulen, Arbeitgeber und Banken. Jede mit unterschriebener Erklärung, Datum und Angaben zum Übersetzer.",
-    why=["Geleitet von einer CIOL-qualifizierten Fachkraft in Glasgow", "Eine zweite Fachkraft prüft jede Certified Translation", "Foto oder Scan von überall in Schottland hochladen"],
-    incl=["Geburts-, Heirats- und Scheidungsurkunden", "Pässe und Ausweise", "Führerscheine", "Abschlüsse und Notenübersichten", "Kontoauszüge", "Gerichts- und Anwaltsschreiben"],
-    extra=f"<section data-scene=\"seal\" class=\"grid-2 split-copy\"><div><h2>Was Sie erhalten</h2><p>Eine Übersetzung im Layout des Originals und eine unterschriebene Erklärung wie diese. Als PDF zum Hochladen oder Ausdrucken.</p></div>{STATEMENT_DE}</section>",
-    steps=[("Hochladen", "Ein gut lesbares Foto oder einen Scan über das <a href=\"/de/contact/?service=Certified+Translation+(UK)\">Anfrageformular</a>."),
-           ("Angebot", "Festpreis und Liefertermin."),
-           ("Übersetzung", "Übersetzt und von einer zweiten Fachkraft mit dem Original abgeglichen."),
-           ("Lieferung", "Unterschriebenes PDF per E-Mail.")],
-    who="Menschen in Glasgow und ganz Schottland mit Anträgen beim Home Office, bei Hochschulen oder Arbeitgebern, und die Kanzleien, die sie begleiten.",
-    faq=[("Akzeptiert das Home Office die Übersetzung?", "Sie enthält Bestätigung, Datum, vollständigen Namen mit Unterschrift und Kontaktdaten, wie vom Home Office verlangt. Lesen Sie <a href=\"/de/insights/home-office-certified-translation/\">was das Home Office verlangt</a>."),
-         ("Akzeptieren schottische Gerichte sie?", "In der Regel ja. Manche Verfahren verlangen eine eidesstattliche Erklärung oder Notarisierung; Ihre Kanzlei weiß es, und wir können es organisieren."),
-         ("Kann ich das Original vorbeibringen?", "Ein Scan oder Foto genügt; Sie behalten Ihr Original.")],
-)
-
-PAGES["apostille"] = dict(
-    title="Apostille und Legalisation britischer Dokumente | Kayonne Language",
-    desc="Britische Dokumente und Übersetzungen im Ausland verwenden: was eine Apostille ist, wer sie ausstellt, wann eine Übersetzung notarisiert werden muss und wann Legalisation nötig ist.",
-    label="Kayonne Language · Ratgeber", h1="Apostille und Legalisation, einfach erklärt.",
-    lede="Wird ein britisches Dokument oder eine Übersetzung im Ausland verwendet, will das Empfängerland oft einen Nachweis, dass Unterschrift oder Stempel echt sind. Dieser Nachweis ist meist eine Apostille.",
-    body="""<article class="prose">
-<h2>Was eine Apostille ist</h2>
-<p>Eine Apostille ist eine Bescheinigung auf einer öffentlichen Urkunde, die bestätigt, dass Unterschrift, Siegel oder Stempel echt sind. Im Vereinigten Königreich stellt sie das Legalisation Office des Foreign, Commonwealth and Development Office (FCDO) aus.</p>
-<h2>Welche Länder sie anerkennen</h2>
-<p>Mitgliedstaaten des Haager Apostille-Übereinkommens erkennen die Apostille ohne weitere Schritte an. Andere Länder verlangen eventuell zusätzlich eine Legalisation durch ihre Botschaft oder ihr Konsulat.</p>
-<h2>Wo die Übersetzung ins Spiel kommt</h2>
-<p>Eine Apostille bestätigt eine Unterschrift, nicht eine Übersetzung. Braucht das Empfängerland eine Übersetzung, verlangt es eventuell, dass sie zertifiziert und dann von einem britischen Solicitor oder Notar notarisiert wird, damit die Apostille auf die Unterschrift des Notars ausgestellt werden kann.</p>
-<h2>Eine typische Reihenfolge</h2>
-<ol><li>Fragen Sie die Empfängerstelle, was genau sie braucht.</li><li>Lassen Sie die Übersetzung zertifizieren.</li><li>Lassen Sie sie bei Bedarf notarisieren.</li><li>Beantragen Sie die Apostille beim FCDO.</li><li>Lassen Sie bei Nicht-Mitgliedstaaten bei der Botschaft legalisieren.</li></ol>
-<p>Wir erstellen die Certified Translation und organisieren Notar und Apostille über Partner. Im Angebot steht jeder Schritt und wer ihn übernimmt.</p>
-<p class="note">Regeln und Gebühren ändern sich. Prüfen Sie vor dem Antrag die aktuellen Hinweise auf gov.uk.</p>
-</article>""",
-)
-
 PAGES["multilingual-seo"] = svc(
     title="Mehrsprachige SEO-Agentur | Kayonne Global",
     desc="Mehrsprachige und internationale SEO: Keyword-Recherche durch Muttersprachler in jedem Markt, hreflang, übersetzte Metadaten und Sprach-URLs, von einem Team, das baut und übersetzt.",
@@ -983,7 +907,7 @@ LANG_DE = {
                 ["Geburtsurkunden (partida de nacimiento)", "Heiratsurkunden", "Studiennachweise", "Verträge", "Arztberichte"]),
     "french": ("Französisch", "Französisch aus Frankreich, Belgien, der Schweiz, Kanada und Afrika unterscheidet sich in Begriffen und Formaten. Wir richten uns nach dem Land des Dokuments oder der Leser.",
                ["Geburtsurkunden (acte de naissance)", "Heiratsurkunden", "Diplome", "Verträge", "Unternehmensdokumente"]),
-    "german": ("Deutsch", "Schweizer Dokumente verwenden ss statt ß. Für deutsche Behörden, die eine beglaubigte Übersetzung verlangen, beauftragen wir einen ermächtigten Partner.",
+    "german": ("Deutsch", "Schweizer Dokumente verwenden ss statt ß, und wir halten deutsche, österreichische und Schweizer Begriffe auseinander.",
                ["Geburtsurkunden", "Heiratsurkunden", "Führungszeugnisse", "Abschlüsse und Notenübersichten", "Arbeitszeugnisse"]),
     "ukrainian": ("Ukrainisch", "Namen werden genau wie im ukrainischen Pass transliteriert, damit alle Dokumente übereinstimmen. Wir übersetzen auch russischsprachige Dokumente aus der Ukraine.",
                   ["Geburtsurkunden", "Heiratsurkunden", "Diplome und Notenübersichten", "Führerscheine", "Krankenakten"]),
@@ -995,40 +919,19 @@ for _slug, (_name, _note, _docs) in LANG_DE.items():
     _native = LANG_PAIRS[_slug]["native"]
     PAGES[f"languages/{_slug}"] = svc(
         title=f"Übersetzung {_name}–Englisch | Kayonne Language",
-        desc=f"Certified und Fachübersetzungen {_name}–Englisch und Englisch–{_name}: Dokumente für britische Behörden, Recht, Medizin, Business, Websites und Untertitel.",
+        desc=f"Fachübersetzungen {_name}–Englisch und Englisch–{_name}: Dokumente, Recht, Medizin, Business, Websites und Untertitel.",
         label=f"{_name} · <span lang=\"und\">{_native}</span>", h1=f"{_name}, ins Englische und aus dem Englischen.",
-        lede=f"Qualifizierte Übersetzer für {_name}: zertifizierte Dokumente, Recht und Medizin, Geschäftstexte, Websites und Untertitel. Jeder Auftrag wird von einer zweiten Fachkraft geprüft.",
-        why=[_note, "Certified Translations mit der Erklärung, die das Home Office verlangt", "Eine zweite Fachkraft prüft jeden Auftrag"],
-        incl=[f"Certified Translation {_name}–Englisch", f"Übersetzung Englisch–{_name}"] + _docs,
+        lede=f"Qualifizierte Übersetzer für {_name}: Dokumente, Recht und Medizin, Geschäftstexte, Websites und Untertitel. Jeder Auftrag wird von einer zweiten Fachkraft geprüft.",
+        why=[_note, "Layout nah am Originaldokument", "Eine zweite Fachkraft prüft jeden Auftrag"],
+        incl=[f"Übersetzung {_name}–Englisch", f"Übersetzung Englisch–{_name}"] + _docs,
         steps=[("Hochladen", "Foto, Scan oder Datei über das Anfrageformular senden."),
                ("Angebot", "Festpreis und Termin."),
                ("Übersetzung", f"Eine muttersprachliche Fachkraft für {_name} übernimmt."),
                ("Prüfung", "Eine zweite Fachkraft revidiert vor der Lieferung.")],
         who=f"Menschen und Unternehmen, die {_name.lower()}e Dokumente auf Englisch oder englische Inhalte auf {_name} brauchen." if _name.endswith("isch") else f"Menschen und Unternehmen, die Dokumente auf {_name} ins Englische oder englische Inhalte auf {_name} brauchen.",
-        faq=[(f"Erstellen Sie Certified Translations für {_name}?", f"Ja. Certified Translations {_name}–Englisch erhalten eine unterschriebene Erklärung über die Richtigkeit. Siehe <a href=\"/de/certified-translation/\">Certified Translation</a>."),
+        faq=[(f"Welche Dokumente auf {_name} übersetzen Sie?", f"Private, juristische, medizinische, geschäftliche und technische Dokumente, in beide Richtungen. Siehe <a href=\"/de/documents/\">Dokumentübersetzung</a>."),
              ("Wie erhalte ich einen Preis?", f"Laden Sie das Dokument über das <a href=\"/de/contact/\">Anfrageformular</a> hoch und wählen Sie {_name} als Sprache.")],
     )
-
-PAGES["insights/home-office-certified-translation"] = dict(
-    title="Was das Home Office von einer Certified Translation verlangt | Kayonne",
-    desc="Was eine Certified Translation für einen britischen Visums- oder Niederlassungsantrag enthalten muss, typische Fehler und eine Beispielerklärung.",
-    label="Ratgeber · Certified Translation", h1="Was das Home Office von einer Certified Translation verlangt",
-    lede="Ist ein Dokument für Ihren Visums-, Niederlassungs- oder Einbürgerungsantrag nicht auf Englisch oder Walisisch, brauchen Sie eine Übersetzung, die das Home Office überprüfen kann. Das sollte sie enthalten.",
-    body="""<article class="prose">
-<p class="byline">Vom Team Kayonne Language, geleitet von einer CIOL-qualifizierten Fachkraft.</p>
-<h2>Die kurze Antwort</h2>
-<p>Laut Hinweisen des Home Office muss die Übersetzung enthalten: eine Bestätigung des Übersetzers, dass sie eine richtige Übersetzung des Originals ist, das Datum der Übersetzung, den vollständigen Namen und die Unterschrift des Übersetzers sowie seine Kontaktdaten.</p>
-<h2>Wer übersetzen darf</h2>
-<p>Großbritannien kennt keine vereidigten Übersetzer. Ein professioneller Übersetzer oder ein Übersetzungsbüro zertifiziert die Übersetzung. Eigene Dokumente selbst zu übersetzen und zu zertifizieren ist nicht zulässig.</p>
-<h2>Fehler, die Verzögerungen verursachen</h2>
-<ul><li><b>Namen anders geschrieben</b> als im Pass. Geben Sie die Schreibweise aus dem Pass an.</li><li><b>Stempel und Handschrift weggelassen.</b> Alles auf der Seite wird übersetzt oder beschrieben.</li><li><b>Fehlende Seiten</b>, auch die Rückseite einer Urkunde.</li><li><b>Keine Kontaktdaten</b>, sodass die Übersetzung nicht überprüft werden kann.</li></ul>
-<h2>Eine Beispielerklärung</h2>
-""" + STATEMENT_DE + """
-<h2>So gehen wir vor</h2>
-<p>Wir übersetzen das ganze Dokument, halten das Layout nah am Original, prüfen Namen gegen Ihren Pass und lassen eine zweite Fachkraft revidieren. Sie erhalten ein unterschriebenes PDF. Siehe <a href="/de/certified-translation/">Certified Translation</a>.</p>
-<p class="note">Hinweise können sich ändern. Prüfen Sie die aktuellen Anforderungen für Ihren Antrag auf gov.uk.</p>
-</article>""",
-)
 
 PAGES["insights/website-cost-glasgow"] = dict(
     title="Was kostet eine Website in Glasgow 2026? | Kayonne",
