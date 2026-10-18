@@ -63,19 +63,37 @@ PAGES[""] = dict(
     body=f"""
 <section class="hero" data-scene="hero">
   <div>
-    <p class="kicker">Glasgow · weltweit</p>
+    <p class="kicker">Agentur in Glasgow · Digital und Sprache</p>
     <h1>Wir bauen es. Dann bringen wir es in jeden Markt.</h1>
-    <p class="lede">Kayonne Creatives ist eine Digital- und Sprachagentur in Glasgow. Wir entwickeln Websites und Apps, und professionelle Übersetzer bringen sie in europäische und asiatische Sprachen. Sie buchen die Entwicklung, die Übersetzung oder beides.</p>
-    <p class="actions"><a class="btn magnetic" href="/de/digital/">Website bauen</a> <a class="btn magnetic" href="/de/language/">Dokument übersetzen</a> <a class="btn ghost magnetic" href="/de/global/">Ins Ausland starten</a></p>
+    <p class="lede">Kayonne Creatives entwickelt Websites und Apps, und professionelle Übersetzer bringen sie in europäische und asiatische Sprachen. Sie buchen die Entwicklung, die Übersetzung oder beides, mit einer Projektleitung vom Briefing bis zum Start.</p>
+    <ul class="ticks cols intro-ticks"><li>Websites, Shops und Apps</li><li>Dokument- und Fachübersetzung</li><li>Lokalisierung und mehrsprachige SEO</li><li>Schriftliches Angebot vor Arbeitsbeginn</li></ul>
+    <p class="actions"><a class="btn magnetic" href="/de/contact/">Angebot anfragen</a> <a class="btn ghost magnetic" href="/de/services/">Alle Leistungen</a></p>
   </div>
-  <div class="orbit" aria-hidden="true"><div class="ring"><span>ä</span><span>あ</span><span>中</span><span>é</span><span>ø</span></div></div>
+  <ul class="hero-facts" aria-label="Kayonne in Zahlen">
+    <li><strong>2</strong><span>Teams, eine Projektleitung</span></li>
+    <li><strong>{len(EUROPE) + len(ASIA)}</strong><span>Sprachen, aus dem und ins Englische</span></li>
+    <li><strong>2</strong><span>Fachkräfte bei jeder Übersetzung</span></li>
+    <li><strong>0</strong><span>Übergaben zwischen Entwicklung und Übersetzung</span></li>
+  </ul>
 </section>
-<section data-scene="shards"><ul class="grid-4 creds">
-  <li class="card note">MA in Translation Studies, Middlebury Institute in Monterey</li>
-  <li class="card note">CIOL Diploma in Translation, mit Auszeichnung (Merit)</li>
-  <li class="card note">Professionelle Übersetzer in Europa und Asien</li>
-  <li class="card note">Abläufe nach ISO 17100, wenn ein Auftrag es verlangt</li>
-</ul></section>
+<section class="trust" data-scene="shards" aria-label="Qualifikationen und Standards">
+  <p class="kicker">Qualifikationen und Standards</p>
+  <ul>
+    <li>MA in Translation Studies, Middlebury Institute in Monterey</li>
+    <li>CIOL Diploma in Translation, mit Auszeichnung (Merit)</li>
+    <li>Abläufe nach ISO 17100 auf Wunsch</li>
+    <li>Websites geprüft nach Core Web Vitals und WCAG 2.2 AA</li>
+  </ul>
+</section>
+<section class="split" data-scene="orbit">
+  <h2>Wer wir sind</h2>
+  <div>
+    <p class="lede">Eine Agentur in Glasgow mit zwei Teams unter einem Dach: eines entwickelt, eines übersetzt.</p>
+    <p>Viele Unternehmen beauftragen eine Webagentur, suchen dann ein Übersetzungsbüro und schicken wochenlang Dateien hin und her. Bei uns arbeiten beide Teams am selben Projekt. Die Website wird mit Platz für lange deutsche Wörter und arabische Schrift von rechts nach links gebaut, und die Übersetzer arbeiten direkt darin, nicht in einer Tabelle.</p>
+    <p>Sie können auch nur ein Team buchen. Ein Shop kommt für die Website, eine Kanzlei für die Vertragsübersetzung. In jedem Fall erhalten Sie zuerst ein schriftliches Angebot und eine feste Ansprechperson.</p>
+    <p><a class="text-link" href="/de/about/">Mehr über uns →</a></p>
+  </div>
+</section>
 <section class="teams" data-scene="windows" aria-label="Unsere zwei Teams">
   <a class="team team-d" href="/de/digital/">
     <p class="kicker">Kayonne Digital</p>
@@ -92,6 +110,10 @@ PAGES[""] = dict(
     <span class="team-more">Zum Übersetzungsteam →</span>
   </a>
 </section>
+<section class="tint" data-scene="tiles">
+  <div class="sec-head"><h2>Wie wir Ihr Wachstum unterstützen</h2><a class="text-link" href="/de/services/">Alle Leistungen →</a></div>
+  {{{{SERVICES}}}}
+</section>
 <section class="global-band card" data-scene="globe">
   <div>
     <p class="kicker">Kayonne Global</p>
@@ -102,20 +124,27 @@ PAGES[""] = dict(
   </div>
   {LOC_VIDEO}
 </section>
+<section class="split band" data-scene="path">
+  <div>
+    <h2>Ein klarer, nachvollziehbarer Ablauf</h2>
+    <p class="note">Dieselben fünf Schritte bei einer One-Page-Website und bei einem Start in zehn Sprachen.</p>
+  </div>
+  <ol class="num-list">
+    <li><h3>Briefing</h3><p class="note">Wir halten Auftrag, Zielgruppe, Sprachen und Termin fest, und Sie erhalten ein schriftliches Angebot.</p></li>
+    <li><h3>Planung</h3><p class="note">Seiten, Glossar und Suchbegriffe stehen fest, bevor gestaltet oder übersetzt wird.</p></li>
+    <li><h3>Umsetzung</h3><p class="note">Design, Entwicklung oder Übersetzung, mit Entwürfen, die Sie unterwegs prüfen.</p></li>
+    <li><h3>Prüfung</h3><p class="note">Ein Bericht zu Ladezeit und Barrierefreiheit für Websites, eine zweite Fachkraft für Übersetzungen.</p></li>
+    <li><h3>Übergabe</h3><p class="note">Dateien, Code und Domain gehören Ihnen. Laufende Betreuung ist optional.</p></li>
+  </ol>
+</section>
 <section data-scene="network">
-  <h2>Europa und Asien, mit einem Team.</h2>
+  <div class="sec-head"><h2>Europa und Asien, mit einem Team.</h2><a class="text-link" href="/de/languages/">Alle Sprachen →</a></div>
   <p class="lede">Professionelle Übersetzer decken die folgenden Sprachen ab. Ihr Ansprechpartner ist eine Projektleitung in Glasgow.</p>
   {LANG_WALLS}
-  <p><a class="btn ghost" href="/de/languages/">Alle Sprachen</a></p>
 </section>
-<section data-scene="path">
-  <h2>So läuft ein Projekt</h2>
-  <ol class="grid-4 steps">
-    <li class="card"><h3>Briefing</h3><p class="note">Wir halten Auftrag, Sprachen und Termin schriftlich fest.</p></li>
-    <li class="card"><h3>Umsetzung</h3><p class="note">Design, Entwicklung oder Übersetzung, und Sie können jederzeit prüfen.</p></li>
-    <li class="card"><h3>Prüfung</h3><p class="note">Ein Ladezeitbericht für Websites, eine zweite Fachkraft für Übersetzungen.</p></li>
-    <li class="card"><h3>Übergabe</h3><p class="note">Die Dateien gehören Ihnen. Laufende Betreuung ist optional.</p></li>
-  </ol>
+<section data-scene="sheets">
+  <div class="sec-head"><h2>Ratgeber</h2><a class="text-link" href="/de/insights/">Alle Artikel →</a></div>
+  {{{{INSIGHTS3}}}}
 </section>""",
     faq=[
         ("Kann eine Agentur entwickeln und übersetzen?", "Ja. Sie können auch nur die Entwicklung oder nur die Übersetzung buchen."),
@@ -534,10 +563,7 @@ PAGES["insights"] = dict(
     desc="Praktische Hinweise zu Website-Lokalisierung, mehrsprachiger SEO und Ladezeit, für alle, die solche Leistungen einkaufen.",
     label="Ratgeber", h1="Hinweise für alle, die diese Arbeit einkaufen.",
     lede="Kurze, praktische Artikel zu Lokalisierung, Suche und Ladezeit.",
-    body="""<section><ul class="grid-2 link-cards">
-<li><a class="card" href="/de/insights/localise-a-website/"><strong>Eine Website lokalisieren</strong><span class="note">Fünf Entscheidungen vor der ersten übersetzten Seite.</span></a></li>
-<li><a class="card" href="/de/insights/speed-mistakes/"><strong>Typische Ladezeit-Fehler</strong><span class="note">Was eine kleine Unternehmenswebsite auf dem Smartphone meist langsam macht.</span></a></li>
-</ul></section>""",
+    body="<section>{{INSIGHTS}}</section>",
 )
 
 PAGES["insights/localise-a-website"] = dict(

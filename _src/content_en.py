@@ -75,19 +75,37 @@ PAGES[""] = dict(
     body=f"""
 <section class="hero" data-scene="hero">
   <div>
-    <p class="kicker">Glasgow · worldwide</p>
+    <p class="kicker">Glasgow agency · Digital and language</p>
     <h1>We build it. Then we take it to every market.</h1>
-    <p class="lede">Kayonne Creatives is a digital and language agency in Glasgow. We build websites and apps, and professional linguists translate them into European and Asian languages. You can hire the build, the translation, or both.</p>
-    <p class="actions"><a class="btn magnetic" href="/digital/">Build a site</a> <a class="btn magnetic" href="/language/">Translate a document</a> <a class="btn ghost magnetic" href="/global/">Launch abroad</a></p>
+    <p class="lede">Kayonne Creatives builds websites and apps, and professional linguists translate them into European and Asian languages. Hire the build, the translation, or both, with one project lead from brief to launch.</p>
+    <ul class="ticks cols intro-ticks"><li>Websites, shops and apps</li><li>Document and specialist translation</li><li>Localisation and multilingual SEO</li><li>A written quote before work starts</li></ul>
+    <p class="actions"><a class="btn magnetic" href="/contact/">Get a quote</a> <a class="btn ghost magnetic" href="/services/">All services</a></p>
   </div>
-  <div class="orbit" aria-hidden="true"><div class="ring"><span>ä</span><span>あ</span><span>中</span><span>é</span><span>ø</span></div></div>
+  <ul class="hero-facts" aria-label="Kayonne in numbers">
+    <li><strong>2</strong><span>teams, one project lead</span></li>
+    <li><strong>{len(EUROPE) + len(ASIA)}</strong><span>languages, into and out of English</span></li>
+    <li><strong>2</strong><span>linguists on every translation</span></li>
+    <li><strong>0</strong><span>hand-offs between build and translation</span></li>
+  </ul>
 </section>
-<section data-scene="shards"><ul class="grid-4 creds">
-  <li class="card note">MA in Translation Studies, Middlebury Institute at Monterey</li>
-  <li class="card note">CIOL Diploma in Translation, Merit</li>
-  <li class="card note">Professional linguists across Europe and Asia</li>
-  <li class="card note">Processes aligned with ISO 17100 when a client requires it</li>
-</ul></section>
+<section class="trust" data-scene="shards" aria-label="Qualifications and standards">
+  <p class="kicker">Qualifications and standards</p>
+  <ul>
+    <li>MA in Translation Studies, Middlebury Institute at Monterey</li>
+    <li>CIOL Diploma in Translation, Merit</li>
+    <li>Processes aligned with ISO 17100 on request</li>
+    <li>Sites tested against Core Web Vitals and WCAG 2.2 AA</li>
+  </ul>
+</section>
+<section class="split" data-scene="orbit">
+  <h2>Who we are</h2>
+  <div>
+    <p class="lede">A Glasgow agency with two teams under one roof: one that builds, one that translates.</p>
+    <p>Most companies hire a web agency, then look for a translation company, then spend weeks passing files between them. We put both teams on the same project. The site is built with room for longer German words and right-to-left Arabic, and the translators work inside it, not in a spreadsheet.</p>
+    <p>You can also hire one team on its own. A shop owner can come to us for a website, and a solicitor can come to us for a contract translation. Either way you get a written quote first and one person who answers your emails.</p>
+    <p><a class="text-link" href="/about/">More about us →</a></p>
+  </div>
+</section>
 <section class="teams" data-scene="windows" aria-label="Our two teams">
   <a class="team team-d" href="/digital/">
     <p class="kicker">Kayonne Digital</p>
@@ -104,6 +122,10 @@ PAGES[""] = dict(
     <span class="team-more">Meet the translation team →</span>
   </a>
 </section>
+<section class="tint" data-scene="tiles">
+  <div class="sec-head"><h2>How we help you grow</h2><a class="text-link" href="/services/">All services →</a></div>
+  {{{{SERVICES}}}}
+</section>
 <section class="global-band card" data-scene="globe">
   <div>
     <p class="kicker">Kayonne Global</p>
@@ -114,20 +136,27 @@ PAGES[""] = dict(
   </div>
   {LOC_VIDEO_EN}
 </section>
+<section class="split band" data-scene="path">
+  <div>
+    <h2>A clear, accountable approach</h2>
+    <p class="note">The same five steps on a one-page site and on a ten-language launch.</p>
+  </div>
+  <ol class="num-list">
+    <li><h3>Brief</h3><p class="note">We write down the job, the audience, the languages and the date, and you get a written quote.</p></li>
+    <li><h3>Plan</h3><p class="note">Pages, glossary and search terms are agreed before anyone designs or translates.</p></li>
+    <li><h3>Make</h3><p class="note">Design, build or translation, with drafts you can review on the way.</p></li>
+    <li><h3>Check</h3><p class="note">A speed and accessibility report for a site, a second linguist for a translation.</p></li>
+    <li><h3>Hand over</h3><p class="note">You own the files, the code and the domain. Ongoing care is optional.</p></li>
+  </ol>
+</section>
 <section data-scene="network">
-  <h2>Europe and Asia, with one team.</h2>
+  <div class="sec-head"><h2>Europe and Asia, with one team.</h2><a class="text-link" href="/languages/">See all languages →</a></div>
   <p class="lede">Professional linguists cover the languages below. You deal with one project lead in Glasgow.</p>
   {LANG_WALLS}
-  <p><a class="btn ghost" href="/languages/">See all languages</a></p>
 </section>
-<section data-scene="path">
-  <h2>How a project runs</h2>
-  <ol class="grid-4 steps">
-    <li class="card"><h3>Brief</h3><p class="note">We write down the job, the languages and the date.</p></li>
-    <li class="card"><h3>Make</h3><p class="note">Design, build or translate, with you able to review.</p></li>
-    <li class="card"><h3>Check</h3><p class="note">A speed report for a site, or a second linguist for a translation.</p></li>
-    <li class="card"><h3>Hand over</h3><p class="note">You own the files. Ongoing care is optional.</p></li>
-  </ol>
+<section data-scene="sheets">
+  <div class="sec-head"><h2>Insights</h2><a class="text-link" href="/insights/">All articles →</a></div>
+  {{{{INSIGHTS3}}}}
 </section>""",
     faq=[
         ("Can one agency build and translate?", "Yes. You can also hire only the build, or only the translation."),
@@ -545,10 +574,7 @@ PAGES["insights"] = dict(
     desc="Practical notes on website localisation, multilingual SEO and website speed, for people about to buy the work.",
     label="Insights", h1="Notes for people about to buy the work.",
     lede="Short, practical articles on localisation, search and speed.",
-    body="""<section><ul class="grid-2 link-cards">
-<li><a class="card" href="/insights/localise-a-website/"><strong>How to localise a website</strong><span class="note">Five decisions to make before the first page is translated.</span></a></li>
-<li><a class="card" href="/insights/speed-mistakes/"><strong>Website speed mistakes</strong><span class="note">What usually makes a small business site slow on a phone.</span></a></li>
-</ul></section>""",
+    body="<section>{{INSIGHTS}}</section>",
 )
 
 PAGES["insights/localise-a-website"] = dict(

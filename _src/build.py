@@ -77,6 +77,38 @@ DIGITAL = [(s, en, de) for s, en, de, *_ in TEAMS["digital"]["items"] if s not i
 LANGUAGE = [(s, en, de) for s, en, de, *_ in TEAMS["language"]["items"] if s not in ("languages", "certified-translation-glasgow")] + \
     [(s, en, de) for s, en, de, *_ in TEAMS["global"]["items"] if s in ("localization", "multilingual-seo")]
 
+# "What you get" on service pages. Only promises the site already makes elsewhere.
+GETS = {
+    "digital": {
+        "en": ["A written quote before work starts", "A layout to review before the build", "A speed and accessibility report at launch",
+               "The site, the code and the domain in your name", "CMS training at handover", "An optional care plan, never a requirement"],
+        "de": ["Ein schriftliches Angebot vor Arbeitsbeginn", "Ein Layout zur Prüfung vor der Entwicklung", "Ein Bericht zu Ladezeit und Barrierefreiheit zum Start",
+               "Website, Code und Domain auf Ihren Namen", "CMS-Schulung bei der Übergabe", "Ein optionaler Wartungsplan, keine Pflicht"],
+    },
+    "language": {
+        "en": ["A written quote that names who works on your language pair", "A qualified translator for the subject", "A second linguist checking every job",
+               "Layout matched to the original", "Delivery in the format you need", "One round of revisions on the delivered files"],
+        "de": ["Ein schriftliches Angebot, das die Fachkraft für Ihr Sprachpaar nennt", "Eine qualifizierte Fachkraft für das Thema", "Eine zweite Prüfung bei jedem Auftrag",
+               "Layout wie im Original", "Lieferung im gewünschten Format", "Eine Korrekturrunde an den gelieferten Dateien"],
+    },
+    "global": {
+        "en": ["One project lead for the build and the language work", "One launch plan with dates per market", "Search terms researched in each language",
+               "hreflang and locale URLs set up", "A check of every market version before launch", "Files you own, ready for the next language"],
+        "de": ["Eine Projektleitung für Entwicklung und Sprache", "Ein Startplan mit Terminen je Markt", "Suchbegriffe in jeder Sprache recherchiert",
+               "hreflang und Sprach-URLs eingerichtet", "Eine Prüfung jeder Marktversion vor dem Start", "Dateien, die Ihnen gehören, bereit für die nächste Sprache"],
+    },
+}
+
+
+def team_of(slug):
+    if slug.startswith("languages/"):
+        return "language"
+    for key, team in TEAMS.items():
+        if slug == team["hub"] or any(it[0] == slug for it in team["items"]):
+            return key
+    return None
+
+
 UI = {
     "en": {
         "skip": "Skip to content", "services": "Services", "digital": "Digital", "language": "Language",
@@ -89,6 +121,13 @@ UI = {
         "why": "Why it helps", "incl": "What is included", "steps": "How it works", "who": "Who it is for",
         "questions": "Questions", "cta_text": "Tell us what you need. You get a written quote before any work starts.",
         "locale": "en_GB", "home": "Home",
+        "handle": "What we handle", "get": "What you get", "related": "Related services", "all_team": "All {team} services",
+        "next": "Next step", "cta_h": "Tell us the job and the markets. We will scope it properly.",
+        "cta_ticks": ["Written quote before work starts", "One project lead in Glasgow", "Second linguist on every translation"],
+        "talk": "Let's talk", "talk_text": "Planning a site, a translation or a launch abroad? Send the brief and we reply by email with a quote or questions.",
+        "standards": "Qualifications and standards", "contact_h": "Contact",
+        "creds": ["MA in Translation Studies, Middlebury Institute", "CIOL Diploma in Translation, Merit",
+                  "Processes aligned with ISO 17100 on request", "Sites tested against WCAG 2.2 AA"],
     },
     "de": {
         "skip": "Zum Inhalt springen", "services": "Leistungen", "digital": "Digital", "language": "Sprache",
@@ -101,6 +140,13 @@ UI = {
         "why": "Ihr Vorteil", "incl": "Leistungsumfang", "steps": "Ablauf", "who": "Für wen", "questions": "Fragen",
         "cta_text": "Beschreiben Sie Ihr Projekt. Sie erhalten ein schriftliches Angebot, bevor die Arbeit beginnt.",
         "locale": "de_DE", "home": "Start",
+        "handle": "Was wir übernehmen", "get": "Das bekommen Sie", "related": "Verwandte Leistungen", "all_team": "Alle Leistungen: {team}",
+        "next": "Nächster Schritt", "cta_h": "Nennen Sie uns Auftrag und Märkte. Wir planen es sorgfältig.",
+        "cta_ticks": ["Schriftliches Angebot vor Arbeitsbeginn", "Eine Projektleitung in Glasgow", "Zweite Prüfung bei jeder Übersetzung"],
+        "talk": "Sprechen wir", "talk_text": "Sie planen eine Website, eine Übersetzung oder einen Marktstart im Ausland? Schicken Sie uns das Briefing, und wir antworten per E-Mail mit Angebot oder Rückfragen.",
+        "standards": "Qualifikationen und Standards", "contact_h": "Kontakt",
+        "creds": ["MA in Translation Studies, Middlebury Institute", "CIOL Diploma in Translation, Merit",
+                  "Abläufe nach ISO 17100 auf Wunsch", "Websites geprüft nach WCAG 2.2 AA"],
     },
 }
 
@@ -200,8 +246,8 @@ def footer(lang):
     cols = ""
     for key in ("digital", "language", "global"):
         team = TEAMS[key]
-        lis = "".join(f'<li><a href="{p(s)}">{esc(en if lang == "en" else de)}</a></li>' for s, en, de, *_ in team["items"])
-        cols += f'<div class="team-{team["cls"]}"><p class="kicker"><a href="{p(team["hub"])}">{team[lang]}</a></p><ul>{lis}</ul></div>'
+        links = "".join(f'<li><a href="{p(s)}">{esc(en if lang == "en" else de)}</a></li>' for s, en, de, *_ in team["items"])
+        cols += f'<div class="team-{team["cls"]}"><p class="kicker"><a href="{p(team["hub"])}">{team[lang]}</a></p><ul>{links}</ul></div>'
     comp = "".join(f'<li><a href="{p(s)}">{esc(t[k])}</a></li>' for s, k in [
         ("about", "about"), ("process", "process"), ("industries", "industries"),
         ("pricing", "pricing"), ("work", "work"), ("faq", "faq"), ("insights", "insights"), ("contact", "contact")])
@@ -215,6 +261,11 @@ def footer(lang):
     </div>
     {cols}
     <div><p class="kicker">{t['company']}</p><ul>{comp}</ul></div>
+  </div>
+  <div class="shell foot-row">
+    <div><p class="kicker">{t['contact_h']}</p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p><p class="note">{t['place']}</p></div>
+    <div><p class="kicker">{t['standards']}</p><ul class="ticks">{lis(t['creds'])}</ul></div>
+    <div class="foot-talk"><p class="kicker">{t['talk']}</p><p class="note">{t['talk_text']}</p><p><a class="btn magnetic" href="{p('contact')}">{t['quote']}</a></p></div>
   </div>
   <p class="shell wordmark" aria-hidden="true">Kayonne</p>
   <div class="shell foot-base note"><p>© {YEAR} Kayonne Creatives · {t['place']}</p><p>{legal}</p></div>
@@ -279,7 +330,7 @@ REDIRECTS = {
 }
 
 
-def intro_html(page, slug):
+def intro_html(page, slug, ticks=None, actions=""):
     scene = page.get("scene") or SCENES.get(slug, "globe" if slug.startswith("languages/") else "default")
     art = ""
     if os.path.exists(f"img/scenes/{scene}.webp"):
@@ -288,7 +339,11 @@ def intro_html(page, slug):
     inner = f'<p class="kicker">{page.get("label", "")}</p><h1>{page["h1"]}</h1>'
     if page.get("lede"):
         inner += f'<p class="lede">{page["lede"]}</p>'
-    cls = "intro has-art" if art else "intro"
+    if ticks:
+        inner += f'<ul class="ticks cols intro-ticks">{lis(ticks)}</ul>'
+    if actions:
+        inner += f'<p class="actions">{actions}</p>'
+    cls ="intro has-art" if art else "intro"
     return f'<header class="{cls}" data-scene="{scene}">{inner}{art}</header>'
 
 
@@ -368,29 +423,58 @@ def faq_html(faq, t):
     if not faq:
         return ""
     items = "".join(f'<details class="card"><summary>{q}</summary><p>{a}</p></details>' for q, a in faq)
-    return f'<section data-scene="ico"><h2>{t["questions"]}</h2><div class="stack">{items}</div></section>'
+    return f'<section class="split" data-scene="ico"><h2>{t["questions"]}</h2><div class="stack">{items}</div></section>'
 
 
 def cta(lang):
     t = UI[lang]
-    return (f'<section class="cta card" data-scene="ring"><p>{t["cta_text"]}</p>'
-            f'<p><a class="btn" href="{path(lang, "contact")}">{t["quote"]}</a></p></section>')
+    return (f'<section class="cta-band" data-scene="ring"><div><p class="kicker">{t["next"]}</p><h2>{t["cta_h"]}</h2>'
+            f'<ul class="ticks inline">{lis(t["cta_ticks"])}</ul></div>'
+            f'<p><a class="btn magnetic" href="{path(lang, "contact")}">{t["quote"]}</a></p></section>')
+
+
+def related(lang, slug):
+    key = team_of(slug)
+    if not key:
+        return ""
+    t = UI[lang]
+    team = TEAMS[key]
+    if slug.startswith("languages/"):
+        picks = [it for it in team["items"] if it[0] in ("documents", "proofreading", "subtitling")]
+    else:
+        skip = {slug, "website-check", "readiness-check", "demo", "languages", "web-design-glasgow"}
+        picks = [it for it in team["items"] if it[0] not in skip][:3]
+    cards = "".join(f'<li><a class="card team-{team["cls"]}" href="{path(lang, s_)}"><strong>{esc(en if lang == "en" else de)}</strong>'
+                    f'<span class="note">{esc(den if lang == "en" else dde)}</span></a></li>'
+                    for s_, en, de, den, dde in picks)
+    more = t["all_team"].format(team=team[lang])
+    return (f'<section data-scene="tiles"><div class="sec-head"><h2>{t["related"]}</h2>'
+            f'<a class="text-link" href="{path(lang, team["hub"])}">{esc(more)} →</a></div>'
+            f'<ul class="grid-3 link-cards accent-cards">{cards}</ul></section>')
 
 
 def service_main(lang, page, slug):
     t = UI[lang]
-    parts = [intro_html(page, slug)]
-    if page.get("why"):
-        parts.append(f'<section data-scene="orbit"><h2>{t["why"]}</h2><ul class="ticks">{lis(page["why"])}</ul></section>')
+    key = team_of(slug)
+    team = TEAMS.get(key)
+    actions = f'<a class="btn magnetic" href="{path(lang, "contact")}">{t["quote"]}</a>'
+    if team:
+        actions += f' <a class="btn ghost" href="{path(lang, team["hub"])}">{esc(t["all_team"].format(team=team[lang]))}</a>'
+    cls = f' team-{team["cls"]}' if team else ""
+    parts = [intro_html(page, slug, page.get("why"), actions)]
     if page.get("incl"):
-        parts.append(f'<section data-scene="tiles"><h2>{t["incl"]}</h2><ul class="ticks cols">{lis(page["incl"])}</ul></section>')
+        cards = "".join(f'<li class="card">{x}</li>' for x in page["incl"])
+        parts.append(f'<section class="tint{cls}" data-scene="tiles"><h2>{t["handle"]}</h2><ul class="grid-3 handle">{cards}</ul></section>')
     parts.append(page.get("extra", ""))
     if page.get("steps"):
-        steps = "".join(f'<li class="card"><h3>{a}</h3><p>{b}</p></li>' for a, b in page["steps"])
-        parts.append(f'<section data-scene="path"><h2>{t["steps"]}</h2><ol class="grid-4 steps">{steps}</ol></section>')
+        steps = "".join(f'<li><h3>{a}</h3><p class="note">{b}</p></li>' for a, b in page["steps"])
+        parts.append(f'<section class="split band{cls}" data-scene="path"><h2>{t["steps"]}</h2><ol class="num-list">{steps}</ol></section>')
+    if key:
+        parts.append(f'<section data-scene="orbit"><h2>{t["get"]}</h2><ul class="get-list{cls}">{lis(GETS[key][lang])}</ul></section>')
     if page.get("who"):
-        parts.append(f'<section data-scene="shards"><h2>{t["who"]}</h2><p>{page["who"]}</p></section>')
+        parts.append(f'<section class="split" data-scene="shards"><h2>{t["who"]}</h2><p class="lede">{page["who"]}</p></section>')
     parts.append(faq_html(page.get("faq"), t))
+    parts.append(related(lang, slug))
     parts.append(cta(lang))
     return "".join(parts)
 
@@ -414,6 +498,30 @@ def team_cards(lang, key):
     return '<ul class="grid-3 link-cards img-cards">' + "".join(out) + "</ul>"
 
 
+def service_grid(lang):
+    """Every paid service, coloured by team, for the home page."""
+    skip = {"website-check", "readiness-check", "demo", "languages", "web-design-glasgow"}
+    out = []
+    for key in ("digital", "language", "global"):
+        team = TEAMS[key]
+        for s_, en, de, den, dde in team["items"]:
+            if s_ in skip:
+                continue
+            name, desc = (en, den) if lang == "en" else (de, dde)
+            out.append(f'<li><a class="card team-{team["cls"]}" href="{path(lang, s_)}"><span class="kicker">{team[lang]}</span>'
+                       f'<strong>{esc(name)}</strong><span class="note">{esc(desc)}</span></a></li>')
+    return '<ul class="grid-4 link-cards accent-cards">' + "".join(out) + "</ul>"
+
+
+def insight_cards(lang, n=None):
+    mod = LANGS[lang]
+    items = [(s_, p_) for s_, p_ in mod.PAGES.items() if s_.startswith("insights/")][::-1][:n]
+    out = "".join(f'<li><a class="card img-card team-d" href="{path(lang, s_)}">'
+                  f'<img src="/img/scenes/{SCENES.get(s_, "default")}.webp" alt="" width="900" height="675" loading="lazy" decoding="async">'
+                  f'<strong>{strip(p_["h1"])}</strong><span class="note">{esc(p_["desc"])}</span></a></li>' for s_, p_ in items)
+    return '<ul class="grid-3 link-cards img-cards">' + out + "</ul>"
+
+
 def pair_cards(lang):
     mod = LANGS[lang]
     out = []
@@ -427,6 +535,9 @@ def pair_cards(lang):
 def render(lang, slug, page, weights=""):
     main = service_main(lang, page, slug) if page.get("kind") == "service" else raw_main(lang, page, slug)
     main = main.replace("{{WEIGHTS}}", weights).replace("{{PAIRS}}", pair_cards(lang) if "{{PAIRS}}" in main else "")
+    main = main.replace("{{SERVICES}}", service_grid(lang) if "{{SERVICES}}" in main else "")
+    main = main.replace("{{INSIGHTS3}}", insight_cards(lang, 3) if "{{INSIGHTS3}}" in main else "")
+    main = main.replace("{{INSIGHTS}}", insight_cards(lang) if "{{INSIGHTS}}" in main else "")
     main = re.sub(r"\{\{TEAM:(\w+)\}\}", lambda m: team_cards(lang, m.group(1)), main)
     cls = "page" + (" home" if slug == "" else "")
     link_slug = "" if slug == "404" else slug
