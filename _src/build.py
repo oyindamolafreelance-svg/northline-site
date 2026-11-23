@@ -801,6 +801,22 @@ def team_picker(lang):
             f'<option value="">{choose}</option>{opts}<option value="unsure">{unsure}</option></select></div>')
 
 
+def pricing(lang):
+    """The pricing page: one table per division, in menu order."""
+    mod = LANGS[lang]
+    h = mod.PRICE_HEAD
+    out = []
+    for d in divisions(lang):
+        rows = mod.PRICES.get(d["key"])
+        if not rows:
+            continue
+        body = "".join(f"<tr><td>{a}</td><td>{b}</td><td>{c}</td></tr>" for a, b, c in rows)
+        out.append(f'<div class="price-group team-{d["cls"]}"><h2><a href="{path(lang, d["slug"])}">{d["brand"][lang]}</a></h2>'
+                   f'<div class="table-wrap"><table><thead><tr><th scope="col">{h[0]}</th><th scope="col">{h[1]}</th>'
+                   f'<th scope="col">{h[2]}</th></tr></thead><tbody>{body}</tbody></table></div></div>')
+    return "".join(out)
+
+
 def insight_cards(lang, n=None):
     mod = LANGS[lang]
     items = [(s_, p_) for s_, p_ in mod.PAGES.items() if s_.startswith("insights/")][::-1][:n]
@@ -828,6 +844,8 @@ def render(lang, slug, page, weights=""):
     main = main.replace("{{SERVICES}}", service_grid(lang) if "{{SERVICES}}" in main else "")
     main = main.replace("{{SERVICES_BY_DIVISION}}", services_by_division(lang) if "{{SERVICES_BY_DIVISION}}" in main else "")
     main = main.replace("{{DIVISIONS}}", division_cards(lang) if "{{DIVISIONS}}" in main else "")
+    main = main.replace("{{BOOK}}", GROWTH_BOOK_URL)
+    main = main.replace("{{PRICING}}", pricing(lang) if "{{PRICING}}" in main else "")
     main = main.replace("{{CHOOSER}}", chooser(lang) if "{{CHOOSER}}" in main else "")
     main = main.replace("{{TEAMPICKER}}", team_picker(lang) if "{{TEAMPICKER}}" in main else "")
     main = main.replace("{{INSIGHTS3}}", insight_cards(lang, 3) if "{{INSIGHTS3}}" in main else "")

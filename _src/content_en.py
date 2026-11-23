@@ -482,24 +482,21 @@ PAGES["process"] = dict(
          ("What if you miss the date?", "We tell you as soon as we see a risk, not on the day. The <a href=\"/terms/\">terms</a> explain what happens if we miss an agreed date.")],
 )
 
+# Pricing table rows per division: (service link, priced by, what changes the price).
+PRICES = {
+    'digital': [('<a href="/websites/">Website</a>', 'Fixed project price', 'Number of pages, shop features, copywriting, number of languages'), ('<a href="/domains-email/">Domains and business email</a>', 'Fixed setup fee', 'Number of mailboxes, moving existing mail'), ('<a href="/seo/">SEO</a>', 'Monthly', 'Number of pages, markets and languages'), ('<a href="/care/">Care plan</a>', 'Monthly', 'Size of the site, update frequency, editing hours')],
+    'localize': [('<a href="/documents/">Document translation</a>', 'Per word', 'Language pair, subject, file format and layout work, deadline'), ('<a href="/proofreading/">Proofreading and revision</a>', 'Per 1,000 words or per hour', 'Proofreading or full revision, quality of the existing translation'), ('<a href="/subtitling/">Subtitling and transcription</a>', 'Per minute of video or audio', 'Language pair, speed of speech, timing from scratch or from a template, SDH'), ('<a href="/localization/">Website and app localisation</a>', 'Per word, plus a fixed fee for checks', 'Number of languages, repeated text, CMS work, right-to-left layout')],
+    'growth': [('<a href="/growth/">Customer growth for local service businesses</a>', 'Monthly fee or fee per qualified enquiry, agreed after a free call', "Your ad spend is paid directly to Meta. First 30 days: if we miss the agreed target, you don't pay our fee.")],
+}
+PRICE_HEAD = ('Service', 'Priced by', 'What changes the price')
+
 PAGES["pricing"] = dict(
     title="Pricing | Kayonne Creatives",
     desc="How we price websites, care plans, document translation, subtitling and proofreading. Every job gets a fixed written quote.",
     label="Pricing", h1="How we price.",
     lede="Every job gets a fixed written quote before work starts. Here is what each price is based on and what makes it go up or down.",
-    body="""<section><div class="table-wrap"><table>
-<thead><tr><th scope="col">Service</th><th scope="col">Priced by</th><th scope="col">What changes the price</th></tr></thead>
-<tbody>
-<tr><td><a href="/documents/">Document translation</a></td><td>Per word</td><td>Language pair, subject, file format and layout work, deadline</td></tr>
-<tr><td><a href="/proofreading/">Proofreading and revision</a></td><td>Per 1,000 words or per hour</td><td>Proofreading or full revision, quality of the existing translation</td></tr>
-<tr><td><a href="/subtitling/">Subtitling and transcription</a></td><td>Per minute of video or audio</td><td>Language pair, speed of speech, timing from scratch or from a template, SDH</td></tr>
-<tr><td><a href="/localization/">Website and app localisation</a></td><td>Per word, plus a fixed fee for checks</td><td>Number of languages, repeated text, CMS work, right-to-left layout</td></tr>
-<tr><td><a href="/websites/">Website</a></td><td>Fixed project price</td><td>Number of pages, shop features, copywriting, number of languages</td></tr>
-<tr><td><a href="/domains-email/">Domains and business email</a></td><td>Fixed setup fee</td><td>Number of mailboxes, moving existing mail</td></tr>
-<tr><td><a href="/seo/">SEO</a></td><td>Monthly</td><td>Number of pages, markets and languages</td></tr>
-<tr><td><a href="/care/">Care plan</a></td><td>Monthly</td><td>Size of the site, update frequency, editing hours</td></tr>
-</tbody></table></div></section>
-<section><h2>Getting a price</h2><p>Send the file, the URL or a short brief on the <a href="/contact/">quote form</a>. The quote states the price, the currency, the delivery date and how to pay. Nothing starts until you accept it.</p></section>""",
+    body="""<section>{{PRICING}}</section>
+<section><h2>Getting a price</h2><p>Send the file, the URL or a short brief on the <a href="/contact/">quote form</a>. The quote states the price, the currency, the delivery date and how to pay. Nothing starts until you accept it. For <a href="/growth/">Kayonne Growth</a>, start with a <a href="{{BOOK}}">free 15-minute call</a> instead.</p></section>""",
 )
 
 PAGES["about"] = dict(

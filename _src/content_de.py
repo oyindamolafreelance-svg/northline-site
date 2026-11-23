@@ -471,23 +471,19 @@ PAGES["process"] = dict(
          ("Was passiert, wenn Sie einen Termin verpassen?", "Wir melden uns, sobald wir ein Risiko sehen, nicht erst am Liefertag. Die <a href=\"/de/terms/\">AGB</a> regeln, was gilt, wenn wir einen vereinbarten Termin verfehlen.")],
 )
 
+# Pricing table rows per division: (service link, priced by, what changes the price).
+PRICES = {
+    'digital': [('<a href="/de/websites/">Website</a>', 'Projektfestpreis', 'Seitenzahl, Shopfunktionen, Texterstellung, Anzahl der Sprachen'), ('<a href="/de/domains-email/">Domains und geschäftliche E-Mail</a>', 'Einrichtungspauschale', 'Anzahl der Postfächer, Umzug bestehender Mails'), ('<a href="/de/seo/">SEO</a>', 'Monatlich', 'Anzahl der Seiten, Märkte und Sprachen'), ('<a href="/de/care/">Wartungsplan</a>', 'Monatlich', 'Größe der Website, Update-Häufigkeit, Stunden für Änderungen')],
+    'localize': [('<a href="/de/documents/">Dokumentübersetzung</a>', 'Pro Wort', 'Sprachpaar, Fachgebiet, Dateiformat und Layoutarbeit, Termin'), ('<a href="/de/proofreading/">Korrektorat und Revision</a>', 'Pro 1.000 Wörter oder pro Stunde', 'Korrektorat oder Revision, Qualität der vorhandenen Übersetzung'), ('<a href="/de/subtitling/">Untertitelung und Transkription</a>', 'Pro Minute Video oder Audio', 'Sprachpaar, Sprechtempo, Timing neu oder aus Template, SDH'), ('<a href="/de/localization/">Website- und App-Lokalisierung</a>', 'Pro Wort, plus Pauschale für Prüfungen', 'Anzahl der Sprachen, Wiederholungen, CMS-Arbeit, Rechts-nach-links-Layout')],
+}
+PRICE_HEAD = ('Leistung', 'Abrechnung', 'Was den Preis verändert')
+
 PAGES["pricing"] = dict(
     title="Preise | Kayonne Creatives",
     desc="Wie wir Websites, Wartung, Dokumentübersetzung, Untertitelung und Korrektorat berechnen. Jeder Auftrag erhält ein schriftliches Festpreisangebot.",
     label="Preise", h1="So berechnen wir.",
     lede="Jeder Auftrag erhält ein schriftliches Festpreisangebot, bevor die Arbeit beginnt. Hier sehen Sie, worauf der Preis basiert und was ihn verändert.",
-    body="""<section><div class="table-wrap"><table>
-<thead><tr><th scope="col">Leistung</th><th scope="col">Abrechnung</th><th scope="col">Was den Preis verändert</th></tr></thead>
-<tbody>
-<tr><td><a href="/de/documents/">Dokumentübersetzung</a></td><td>Pro Wort</td><td>Sprachpaar, Fachgebiet, Dateiformat und Layoutarbeit, Termin</td></tr>
-<tr><td><a href="/de/proofreading/">Korrektorat und Revision</a></td><td>Pro 1.000 Wörter oder pro Stunde</td><td>Korrektorat oder Revision, Qualität der vorhandenen Übersetzung</td></tr>
-<tr><td><a href="/de/subtitling/">Untertitelung und Transkription</a></td><td>Pro Minute Video oder Audio</td><td>Sprachpaar, Sprechtempo, Timing neu oder aus Template, SDH</td></tr>
-<tr><td><a href="/de/localization/">Website- und App-Lokalisierung</a></td><td>Pro Wort, plus Pauschale für Prüfungen</td><td>Anzahl der Sprachen, Wiederholungen, CMS-Arbeit, Rechts-nach-links-Layout</td></tr>
-<tr><td><a href="/de/websites/">Website</a></td><td>Projektfestpreis</td><td>Seitenzahl, Shopfunktionen, Texterstellung, Anzahl der Sprachen</td></tr>
-<tr><td><a href="/de/domains-email/">Domains und geschäftliche E-Mail</a></td><td>Einrichtungspauschale</td><td>Anzahl der Postfächer, Umzug bestehender Mails</td></tr>
-<tr><td><a href="/de/seo/">SEO</a></td><td>Monatlich</td><td>Anzahl der Seiten, Märkte und Sprachen</td></tr>
-<tr><td><a href="/de/care/">Wartungsplan</a></td><td>Monatlich</td><td>Größe der Website, Update-Häufigkeit, Stunden für Änderungen</td></tr>
-</tbody></table></div></section>
+    body="""<section>{{PRICING}}</section>
 <section><h2>So erhalten Sie einen Preis</h2><p>Senden Sie die Datei, die URL oder ein kurzes Briefing über das <a href="/de/contact/">Anfrageformular</a>. Im Angebot stehen Preis, Währung, Liefertermin und Zahlungsweise. Nichts beginnt, bevor Sie zustimmen.</p></section>""",
 )
 
