@@ -225,11 +225,47 @@ def person_block():
             f'<p class="person-role">{esc(p["role"])}</p><p>{esc(p["bio"])}</p>{li}</div></section>')
 
 
-def phone_line(lang):
-    if not settings.PHONE:
+def contact_details(lang):
+    """Phone, email, place, company number and LinkedIn on /contact/. Empty settings are left out."""
+    t = UI[lang]
+    rows = (f'<p>{tel(settings.PHONE)}</p>' if settings.PHONE else "") + f'<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>'
+    rows += f'<p class="note">{t["place"]}</p>' + company_line(lang) + linkedin_link()
+    return f'<section class="contact-details" aria-label="{t["contact_h"]}">{rows}</section>'
+
+
+def hero_anim():
+    """Home hero: a page built from blocks, the same page in EN, DE and JA, a phone receiving a new inquiry. CSS only."""
+    page_blocks = '<i class="b-nav"></i><i class="b-hero"></i><i class="b-col"></i><i class="b-col"></i><i class="b-btn"></i>'
+    words = ('<span class="w-en" lang="en">Book a table</span><span class="w-de" lang="de">Tisch reservieren</span>'
+             '<span class="w-ja" lang="ja">席を予約する</span>')
+    return f"""<figure class="hero-anim">
+  <div class="ha-stage" role="img" aria-label="Illustration: a web page being built from blocks, the same page switching from English to German to Japanese, and a phone receiving a new inquiry.">
+    <div class="ha-scene ha-build" aria-hidden="true"><div class="ha-browser"><span class="ha-dots"></span>{page_blocks}</div><p class="ha-cap">Built</p></div>
+    <div class="ha-scene ha-lang" aria-hidden="true"><div class="ha-browser"><span class="ha-dots"></span><i class="b-nav"></i><div class="ha-words">{words}</div><i class="b-col"></i><i class="b-col"></i><i class="b-btn"></i></div><p class="ha-cap">Understood</p></div>
+    <div class="ha-scene ha-phone" aria-hidden="true"><div class="ha-mobile"><span class="ha-notch"></span><div class="ha-toast">{icon("phone", 16)}<span><b>New inquiry</b><small>just now</small></span></div><i class="b-hero"></i><i class="b-col"></i><i class="b-col"></i></div><p class="ha-cap">Chosen</p></div>
+  </div>
+  <figcaption>Illustration</figcaption>
+</figure>"""
+
+
+def proof(lang):
+    """Real reviews, testimonials and case studies, from settings.py. Nothing is shown until they are filled in."""
+    out = ""
+    r = settings.GOOGLE_REVIEWS
+    if r:
+        out += (f'<p class="reviews"><a href="{esc(r["url"])}" rel="noopener"><b>{r["rating"]}</b> out of 5 on Google '
+                f'from {r["count"]} reviews →</a></p>')
+    if settings.TESTIMONIALS:
+        out += '<ul class="quotes">' + "".join(
+            f'<li class="card team-{TEAMS[q["team"]]["cls"] if q.get("team") in TEAMS else "d"}"><blockquote><p>{esc(q["quote"])}</p>'
+            f'<footer>{esc(q["name"])}, {esc(q["role"])}</footer></blockquote></li>' for q in settings.TESTIMONIALS) + "</ul>"
+    if settings.CASE_STUDIES:
+        out += '<ul class="grid-3 link-cards">' + "".join(
+            f'<li><a class="card" href="{esc(c.get("href", "/work/"))}"><strong>{esc(c["title"])}</strong><span class="note">{esc(c["text"])}</span></a></li>'
+            for c in settings.CASE_STUDIES) + "</ul>"
+    if not out:
         return ""
-    label = "Prefer to call?" if lang == "en" else "Lieber anrufen?"
-    return f'<p class="phone-line">{label} {tel(settings.PHONE)}</p>'
+    return f'<section class="proof"><h2>{"What clients say" if lang == "en" else "Was Kunden sagen"}</h2>{out}</section>'
 
 
 def chooser(lang):
@@ -238,7 +274,7 @@ def chooser(lang):
     cards = "".join(f'<li><a class="need team-{d["cls"]}" href="{path(lang, d["slug"])}"><span class="g-ico">{icon(d["icon"], 28)}</span>'
                     f'<strong>{esc(d["need"][lang])}</strong><span class="need-more">{esc(d["brand"][lang])} →</span></a></li>'
                     for d in divisions(lang) if d.get("need", {}).get(lang))
-    return f'<section class="chooser" aria-labelledby="need-h"><h2 id="need-h">{h}</h2><ul>{cards}</ul></section>'
+    return f'<section class="chooser" id="need" aria-labelledby="need-h"><h2 id="need-h">{h}</h2><ul>{cards}</ul></section>'
 
 
 def header(lang, slug, page=None):
@@ -302,6 +338,18 @@ LINKEDIN_ICON = ('<svg width="20" height="20" viewBox="0 0 24 24" fill="currentC
                  '2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg>')
 
 
+def company_line(lang):
+    if not settings.COMPANY_NO:
+        return ""
+    return f'<p class="note">{"Company no." if lang == "en" else "Firmennummer (UK)"} {esc(settings.COMPANY_NO)}</p>'
+
+
+def linkedin_link():
+    if not settings.LINKEDIN_COMPANY_URL:
+        return ""
+    return f'<p><a class="social" href="{esc(settings.LINKEDIN_COMPANY_URL)}" rel="noopener">{LINKEDIN_ICON}<span>LinkedIn</span></a></p>'
+
+
 def footer(lang, page=None, slug=""):
     t = UI[lang]
     plain = lean(page)
@@ -315,9 +363,7 @@ def footer(lang, page=None, slug=""):
     phone = phone_for(page)
     contact = f'<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>' + (f'<p>{tel(phone)}</p>' if phone else "")
     contact += f'<p class="note">{t["place"]}</p>'
-    if settings.LINKEDIN_URL:
-        contact += f'<p><a class="social" href="{esc(settings.LINKEDIN_URL)}" rel="noopener">{LINKEDIN_ICON}<span>LinkedIn</span></a></p>'
-    company_no = f' · {"Company number" if lang == "en" else "Handelsregisternummer"} {esc(settings.COMPANY_NO)}' if settings.COMPANY_NO else ""
+    contact += company_line(lang) + linkedin_link()
     p = lambda s: path(lang, s)  # noqa: E731
     cols = ""
     for team in divisions(lang):
@@ -344,7 +390,7 @@ def footer(lang, page=None, slug=""):
     <div class="foot-talk"><p class="kicker">{t['talk']}</p><p class="note">{talk_text}</p><p><a class="btn magnetic" href="{talk_href}">{talk_label}</a></p></div>
   </div>
   <p class="shell wordmark" aria-hidden="true">Kayonne</p>
-  <div class="shell foot-base note"><p>© {YEAR} Kayonne Creatives · {t['place']}{company_no}</p><p>{legal}</p></div>
+  <div class="shell foot-base note"><p>© {YEAR} Kayonne Creatives · {t['place']}</p><p>{legal}</p></div>
 </footer>"""
 
 
@@ -460,7 +506,9 @@ def org_schema(lang):
         "knowsLanguage": ["en", "de", "fr", "es", "it", "nl", "pl", "ja", "zh", "ko"],
         "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "email": EMAIL,
                           **({"telephone": settings.PHONE} if settings.PHONE else {})}],
-        **({"sameAs": [settings.LINKEDIN_URL]} if settings.LINKEDIN_URL else {}),
+        **({"sameAs": [settings.LINKEDIN_COMPANY_URL]} if settings.LINKEDIN_COMPANY_URL else {}),
+        **({"aggregateRating": {"@type": "AggregateRating", "ratingValue": settings.GOOGLE_REVIEWS["rating"],
+                                "reviewCount": settings.GOOGLE_REVIEWS["count"]}} if settings.GOOGLE_REVIEWS else {}),
     }
 
 
@@ -534,11 +582,12 @@ def faq_html(faq, t):
     return f'<section class="split" data-scene="ico"><h2>{t["questions"]}</h2><div class="stack">{items}</div></section>'
 
 
-def cta(lang):
+def cta(lang, page=None):
     t = UI[lang]
-    return (f'<section class="cta-band" data-scene="ring"><div><p class="kicker">{t["next"]}</p><h2>{t["cta_h"]}</h2>'
+    h, button = (page or {}).get("cta") or (t["cta_h"], t["quote"])
+    return (f'<section class="cta-band" data-scene="ring"><div><p class="kicker">{t["next"]}</p><h2>{h}</h2>'
             f'<ul class="ticks inline">{lis(t["cta_ticks"])}</ul></div>'
-            f'<p><a class="btn magnetic" href="{path(lang, "contact")}">{t["quote"]}</a></p></section>')
+            f'<p><a class="btn magnetic" href="{path(lang, "contact")}">{button}</a></p></section>')
 
 
 def related(lang, slug):
@@ -682,6 +731,17 @@ def trust_strip():
     return f'<section class="g-trust" aria-label="Why it is low risk"><ul>{items}</ul></section>'
 
 
+def founding_banner():
+    total, taken = settings.FOUNDING_TOTAL, settings.FOUNDING_TAKEN
+    if not total:
+        return ""
+    slots = "".join(f'<li class="{"taken" if i < taken else "open"}">{"Taken" if i < taken else "Open"}</li>' for i in range(total))
+    left = max(total - taken, 0)
+    return (f'<section class="founding" aria-label="Founding partners"><p>We&#39;re taking on our first {total} founding partner companies. '
+            f'Founding partners get the 30-day guarantee and a reduced first-month fee.</p>'
+            f'<ul aria-label="{left} of {total} places open">{slots}</ul></section>')
+
+
 def growth_hero(page):
     return (f'<header class="g-hero"><div class="g-copy"><p class="kicker">{page["label"]}</p><h1>{page["h1"]}</h1>'
             f'<p class="lede">{page["lede"]}</p><p class="actions">{book_btn()}</p></div>{phone_demo(page["phone"])}</header>')
@@ -713,7 +773,7 @@ def growth_faq(page):
 def growth_hub_main(lang, page, slug):
     trades = "".join(f'<li><a class="card g-trade" href="{path(lang, s_)}"><span class="g-ico">{icon(i)}</span>'
                      f'<strong>{esc(n)}</strong><span class="more">See how it works →</span></a></li>' for s_, n, i in page["trades"])
-    parts = [growth_hero(page), trust_strip(),
+    parts = [growth_hero(page), founding_banner(), trust_strip(),
              f'<section class="split"><h2>{page["who_h"]}</h2><div><p class="lede">{esc(page["who"])}</p>'
              f'<h3>{page["trades_h"]}</h3><ul class="g-trades">{trades}</ul></div></section>']
     v = page.get("video")
@@ -768,7 +828,7 @@ def calculator(page):
 
 def growth_niche_main(lang, page, slug):
     pains = "".join(f'<li class="card">{icon("x")}<p>{esc(x)}</p></li>' for x in page["pains"])
-    parts = [growth_hero(page), trust_strip(),
+    parts = [growth_hero(page), founding_banner(), trust_strip(),
              f'<section><h2>{page["pains_h"]}</h2><ul class="g-pains">{pains}</ul></section>',
              calendars(page["calendars"]),
              f'<section><h2>{page["changes_h"]}</h2>{icon_cards(page["changes"])}</section>',
@@ -784,7 +844,7 @@ def raw_main(lang, page, slug):
     t = UI[lang]
     body = page["body"]
     intro = intro_html(page, slug) if page.get("h1") else ""
-    tail = faq_html(page.get("faq"), t) + ("" if page.get("no_cta") else cta(lang))
+    tail = faq_html(page.get("faq"), t) + ("" if page.get("no_cta") else cta(lang, page))
     return intro + body + tail
 
 
@@ -838,11 +898,26 @@ def division_cards(lang):
         c = d["card"] and d["card"].get(lang)
         if not c:
             continue
+        lead = ""
+        if d.get("lead", {}).get(lang):
+            role, owns = d["lead"][lang]
+            photo = settings.LEAD_PHOTOS.get(d["key"])
+            pic = (f'<img src="{esc(photo)}" alt="" width="96" height="96" loading="lazy">' if photo else avatar())
+            lead = f'<div class="lead"><span class="lead-pic">{pic}</span><span><b>{role}</b><small>{owns}</small></span></div>'
         out.append(f'<a class="team team-{d["cls"]}" href="{path(lang, d["slug"])}"><p class="kicker">{d["brand"][lang]}</p>'
                    f'<h2>{c["title"]}</h2><p>{c["text"]}</p>' + (f'<ul class="ticks">{lis(c["ticks"])}</ul>' if c["ticks"] else "") +
-                   f'<span class="team-more">{c["button"]} →</span></a>')
+                   f'{lead}<span class="team-more">{c["button"]} →</span></a>')
     label = "Our teams" if lang == "en" else "Unsere Teams"
-    return f'<section class="teams" data-scene="windows" aria-label="{label}">' + "".join(out) + "</section>"
+    note = ("Every job has one lead, who answers your emails and signs off the work." if lang == "en" else
+            "Jeder Auftrag hat eine Leitung, die Ihre E-Mails beantwortet und die Arbeit abnimmt.")
+    return (f'<section class="teams-wrap" data-scene="windows" aria-label="{label}"><div class="teams">' + "".join(out) +
+            f'</div><p class="teams-note">{note}</p></section>')
+
+
+def avatar():
+    """An illustrated, generic person in the team colour. Not a photo of anyone."""
+    return ('<svg class="avatar" viewBox="0 0 64 64" width="64" height="64" aria-hidden="true"><circle class="av-bg" cx="32" cy="32" r="32"/>'
+            '<circle class="av-fg" cx="32" cy="25" r="10"/><path class="av-fg" d="M13 55c2-11 10-17 19-17s17 6 19 17"/></svg>')
 
 
 def team_picker(lang):
@@ -898,8 +973,10 @@ def render(lang, slug, page, weights=""):
     main = main.replace("{{SERVICES_BY_DIVISION}}", services_by_division(lang) if "{{SERVICES_BY_DIVISION}}" in main else "")
     main = main.replace("{{DIVISIONS}}", division_cards(lang) if "{{DIVISIONS}}" in main else "")
     main = main.replace("{{BOOK}}", GROWTH_BOOK_URL)
+    main = main.replace("{{HERO_ANIM}}", hero_anim() if "{{HERO_ANIM}}" in main else "")
+    main = main.replace("{{PROOF}}", proof(lang) if "{{PROOF}}" in main else "")
     main = main.replace("{{PERSON}}", person_block() if "{{PERSON}}" in main else "")
-    main = main.replace("{{PHONE_LINE}}", phone_line(lang) if "{{PHONE_LINE}}" in main else "")
+    main = main.replace("{{PHONE_LINE}}", contact_details(lang) if "{{PHONE_LINE}}" in main else "")
     main = main.replace("{{PRICING}}", pricing(lang) if "{{PRICING}}" in main else "")
     main = main.replace("{{CHOOSER}}", chooser(lang) if "{{CHOOSER}}" in main else "")
     main = main.replace("{{TEAMPICKER}}", team_picker(lang) if "{{TEAMPICKER}}" in main else "")
@@ -912,7 +989,7 @@ def render(lang, slug, page, weights=""):
         page = dict(page, schema=list(page.get("schema", [])) + [crumbs_schema(trail, lang, slug)])
     cls = "page" + (" home" if slug == "" else "")
     link_slug = "" if slug == "404" else slug
-    body_attr = " data-no3d" if lean(page) else ""
+    body_attr = " data-no3d" if lean(page) or page.get("no3d") else ""
     if kind and kind.startswith("growth"):
         cls += " growth"
     return (head(lang, slug, page) + f"\n<body{body_attr}>\n" + header(lang, link_slug, page) +

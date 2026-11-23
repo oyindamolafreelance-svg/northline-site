@@ -12,6 +12,7 @@ Fields
   langs     languages the division's pages exist in
   name      menu label            brand    "Kayonne ..." name
   tagline   one-line tagline      line     one-line description (menu preview, footer)
+  lead      the team lead shown on the home page card: (role, what they own)
   icon      icon name for the chooser card (see ICONS in build.py)
   need      the home page "What do you need?" card, e.g. "I need a website or app"
   card      home page card: title, text, ticks, button (None = no card)
@@ -27,6 +28,8 @@ GROWTH_BOOK_URL = "/contact/?team=growth"
 DIVISIONS = [
     dict(
         key="digital", slug="digital", cls="d", color="#a8582a", langs=("en", "de"),
+        lead={"en": ("Digital lead", "Owns your site or app from first sketch to launch and care."),
+              "de": ("Leitung Digital", "Verantwortet Ihre Website oder App vom ersten Entwurf bis Start und Wartung.")},
         icon="monitor", need={"en": "I need a website or app", "de": "Ich brauche eine Website oder App"},
         footer={
             "en": ("Need a website, shop or app? Send the brief and we reply by email with a quote or questions.",
@@ -65,6 +68,8 @@ DIVISIONS = [
     ),
     dict(
         key="localize", slug="localize", cls="l", color="#127569", langs=("en", "de"),
+        lead={"en": ("Localize lead", "Owns your translation or launch, from the quote to the second check."),
+              "de": ("Leitung Localize", "Verantwortet Ihre Übersetzung oder Ihren Marktstart, vom Angebot bis zur zweiten Prüfung.")},
         icon="globe", need={"en": "I need translation, or to launch abroad", "de": "Ich brauche eine Übersetzung oder will ins Ausland"},
         footer={
             "en": ("Need a translation or a launch abroad? Send the file or the brief and we reply by email with a quote or questions.",
@@ -82,11 +87,11 @@ DIVISIONS = [
         card={
             "en": dict(title="The translation and localisation team",
                        text="Qualified translators for documents, legal, medical and patent work, subtitles and proofreading, with a second check on every job. Then your website or shop, launched in new markets.",
-                       ticks=["Documents laid out like the original", "Legal, medical, patents", "Subtitling and proofreading", "Website and shop localisation"],
+                       ticks=["Documents laid out like the original", "Legal, medical, patents", "Website and shop localisation", "47 languages, see all"],
                        button="Meet the Localize team"),
             "de": dict(title="Das Übersetzungs- und Lokalisierungsteam",
                        text="Qualifizierte Übersetzer für Dokumente, Recht, Medizin und Patente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag. Dazu Ihre Website oder Ihr Shop, gestartet in neuen Märkten.",
-                       ticks=["Dokumente im Layout des Originals", "Recht, Medizin, Patente", "Untertitelung und Korrektorat", "Website- und Shop-Lokalisierung"],
+                       ticks=["Dokumente im Layout des Originals", "Recht, Medizin, Patente", "Website- und Shop-Lokalisierung", "47 Sprachen, alle ansehen"],
                        button="Zum Team Localize"),
         },
         # Translation services first, international launch services second.
@@ -110,6 +115,7 @@ DIVISIONS = [
     ),
     dict(
         key="growth", slug="growth", cls="g", color="#1f5bb8", langs=("en",), lean=True,
+        lead={"en": ("Growth lead", "Owns your inquiries, from the first call to the monthly update.")},
         icon="chart", need={"en": "I need more customers"},
         footer={"en": ("Want more customers? Book a free 15-minute call.", ["30-day guarantee", "Your leads are never shared"])},
         cta={"en": ("Book a call", GROWTH_BOOK_URL)},

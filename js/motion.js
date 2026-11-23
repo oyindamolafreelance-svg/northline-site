@@ -65,45 +65,6 @@
 
   var de = doc.lang === "de";
 
-  // The home page H1 decodes through letters from other scripts, once, in under half a second.
-  var POOL = "ÄßéøñçΩλЖБДあ中한عص日語ふअ";
-  function decode(el) {
-    if (!el || el.dataset.decoded || el.children.length) return;
-    var final = el.textContent;
-    if (!final.trim() || final.length > 90) return;
-    el.dataset.decoded = "1";
-    var len = final.length, start = performance.now(), dur = 350, frame = 0;
-    el.setAttribute("aria-label", final);
-    el.style.height = el.offsetHeight + "px";
-    el.classList.add("decoding");
-    function step() {
-      var p = (performance.now() - start) / dur;
-      if (frame++ % 2 === 0) {
-        var out = "";
-        for (var i = 0; i < len; i++) {
-          var c = final[i];
-          out += c === " " || p >= (i / len) * 0.7 + 0.3 ? c : POOL[(Math.random() * POOL.length) | 0];
-        }
-        el.textContent = out;
-      }
-      if (p < 1 && !done) requestAnimationFrame(step); else finish();
-    }
-    // A hard stop, so the real heading is back on time even when frames are slow.
-    var done = false;
-    function finish() {
-      if (done) return;
-      done = true; el.textContent = final; el.removeAttribute("aria-label"); el.style.height = ""; el.classList.remove("decoding");
-    }
-    setTimeout(finish, dur);
-    requestAnimationFrame(step);
-  }
-  // Started once the page has loaded, so the browser is free and the effect finishes on time.
-  var heroH1 = document.querySelector("main.home .hero h1");
-  if (heroH1) {
-    var go = function () { requestAnimationFrame(function () { decode(heroH1); }); };
-    if (document.readyState === "complete") go(); else window.addEventListener("load", go);
-  }
-
   // The greetings marquee speeds up and leans with scroll speed.
   var marq = [].slice.call(document.querySelectorAll(".marquee"));
   if (marq.length && document.getAnimations) {
@@ -174,7 +135,6 @@
   function start() {
     import(new URL("scene.js", base).href).then(function () { doc.classList.add("has3d"); }).catch(function () {});
   }
-  // Waits until the home page heading effect is over: loading three.js holds the browser up for a moment.
-  function idle() { setTimeout(function () { (window.requestIdleCallback || function (f) { setTimeout(f, 200); })(start, { timeout: 1500 }); }, 700); }
+  function idle() { (window.requestIdleCallback || function (f) { setTimeout(f, 200); })(start, { timeout: 1500 }); }
   if (document.readyState === "complete") idle(); else window.addEventListener("load", idle);
 })();

@@ -20,6 +20,10 @@ phone in the footer and on /contact/ (a US number for Growth pages if you set `P
 number in the footer, the LinkedIn icon in the footer and on the person block, and the photo on the
 "Who you'll work with" block on /about/ and /growth/ (initials are shown until a photo is set).
 
+The same file holds the Growth founding partner count (raise `FOUNDING_TAKEN` as partners join) and the
+trust slots: Google rating, testimonials, case studies and team lead photos. They stay hidden until filled,
+and only real details with the client's permission belong there.
+
 ## Divisions (Digital, Localize, Growth)
 
 The divisions are listed once, in `_src/divisions.py`. The menus, footer columns, home page chooser and

@@ -310,8 +310,6 @@ footer{margin-top:0}
 .cursor.hide,.cursor-dot.hide{opacity:0}
 .magnetic{transition:transform .35s cubic-bezier(.16,.84,.24,1)}
 
-/* decode effect keeps width steady */
-.decoding{font-variant-ligatures:none}
 
 @media(prefers-reduced-motion:reduce){
   .marquee-track,.offer,.team::before,.wordmark{animation:none}
@@ -629,3 +627,121 @@ main.page>.crumbs{margin-bottom:-2.2rem}
 
 /* contact page in Growth mode: the form starts on the first screen on phones */
 @media(max-width:899px){.team-growth .intro-art,.team-growth #stage{display:none}}
+
+/* ===== Home page rebuild ===== */
+/* hero animation: three scenes in turn; a still row of all three without motion */
+.hero-anim{margin:0;display:grid;gap:.5rem;justify-items:center;width:100%}
+.hero-anim figcaption{font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.ha-stage{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.8rem;align-items:end;width:100%;max-width:520px}
+.ha-scene{display:grid;gap:.4rem;justify-items:center;align-content:center}
+.ha-cap{margin:0;font-family:Fraunces,serif;font-size:.95rem;color:var(--fg)}
+.ha-browser{position:relative;width:100%;aspect-ratio:4/3;display:grid;grid-template-columns:1fr 1fr;align-content:start;gap:6%;padding:16% 8% 8%;
+  background:var(--panel);border:1px solid var(--line);border-radius:.9rem;box-shadow:0 18px 40px rgb(60 40 20 / .1)}
+.ha-dots{position:absolute;left:7%;top:6%;width:.4rem;height:.4rem;border-radius:50%;background:#e4a96e;box-shadow:.65rem 0 #e9c39b,1.3rem 0 #f0d7bd}
+.ha-browser i{display:block;border-radius:.3rem;background:#e9e2d6}
+.ha-browser .b-nav{grid-column:1/-1;height:.45rem}
+.ha-browser .b-hero{grid-column:1/-1;height:2.2rem;background:color-mix(in srgb,var(--digital) 22%,#fff)}
+.ha-browser .b-col{height:1.6rem}
+.ha-browser .b-btn{width:60%;height:.8rem;background:var(--accent)}
+.ha-words{grid-column:1/-1;position:relative;display:grid;gap:.1rem;font-family:Fraunces,"Noto Sans JP",serif;font-size:.68rem;line-height:1.25;color:var(--lang)}
+.ha-mobile{position:relative;width:62%;aspect-ratio:9/16;display:grid;align-content:start;gap:.35rem;padding:28% 10% 10%;background:var(--panel);
+  border:5px solid #1f1b16;border-radius:1rem;box-shadow:0 18px 40px rgb(31 91 184 / .14)}
+.ha-mobile i{display:block;border-radius:.25rem;background:#e9e2d6;height:.9rem}
+.ha-mobile .b-hero{height:1.6rem;background:color-mix(in srgb,#1f5bb8 18%,#fff)}
+.ha-notch{position:absolute;top:.3rem;left:50%;width:34%;height:.35rem;border-radius:99px;background:#1f1b16;transform:translateX(-50%)}
+.ha-toast{position:absolute;left:-14%;right:-14%;top:12%;display:flex;gap:.35rem;align-items:center;padding:.35rem .45rem;border-radius:.6rem;background:#fff;
+  box-shadow:0 8px 18px rgb(0 0 0 / .16);font-size:.62rem;line-height:1.2;z-index:1}
+.ha-toast .ico{flex:none;width:1.3rem;height:1.3rem;padding:.2rem;border-radius:.4rem;background:#1d8a4e;color:#fff}
+.ha-toast b{display:block;font-weight:500}.ha-toast small{color:#666}
+@media(prefers-reduced-motion:no-preference){
+  .ha-stage{display:block;position:relative;aspect-ratio:4/3.2;max-width:440px}
+  .ha-scene{position:absolute;inset:0;animation:7.5s infinite both}
+  .ha-scene .ha-browser{width:86%}
+  .ha-scene .ha-mobile{width:36%}
+  .ha-scene .ha-toast{left:6%;right:6%;font-size:.7rem}
+  .ha-scene .ha-browser{padding:14% 8% 8%}
+  .ha-cap{font-size:1.15rem}
+  .ha-build{animation-name:haA}.ha-lang{animation-name:haB}.ha-phone{animation-name:haC}
+  .ha-build .ha-browser i{animation:haBlock 7.5s infinite both}
+  .ha-build .ha-browser i:nth-of-type(2){animation-delay:.25s}.ha-build .ha-browser i:nth-of-type(3){animation-delay:.5s}
+  .ha-build .ha-browser i:nth-of-type(4){animation-delay:.65s}.ha-build .ha-browser i:nth-of-type(5){animation-delay:.85s}
+  .ha-words{display:block;height:1.3em;font-size:1.15rem}
+  .ha-words span{position:absolute;left:0;top:0;opacity:0;animation:7.5s infinite both}
+  .w-en{animation-name:wEN}.w-de{animation-name:wDE}.w-ja{animation-name:wJA}
+  .ha-toast{animation:haToast 7.5s infinite both}
+}
+@keyframes haA{0%,30%{opacity:1;transform:none}33%,97%{opacity:0;transform:translateY(8px)}100%{opacity:1}}
+@keyframes haB{0%,31%{opacity:0;transform:translateY(8px)}34%,63%{opacity:1;transform:none}66%,100%{opacity:0;transform:translateY(8px)}}
+@keyframes haC{0%,64%{opacity:0;transform:translateY(8px)}67%,97%{opacity:1;transform:none}100%{opacity:0}}
+@keyframes haBlock{0%{opacity:0;transform:translateY(-10px) scale(.96)}8%,100%{opacity:1;transform:none}}
+@keyframes wEN{0%,33%{opacity:0}35%,43%{opacity:1}45%,100%{opacity:0}}
+@keyframes wDE{0%,44%{opacity:0}46%,53%{opacity:1}55%,100%{opacity:0}}
+@keyframes wJA{0%,54%{opacity:0}56%,63%{opacity:1}65%,100%{opacity:0}}
+@keyframes haToast{0%,70%{opacity:0;transform:translateY(-120%)}74%,95%{opacity:1;transform:none}100%{opacity:0}}
+main.home .hero h1{max-width:18ch}
+@media(max-width:899px){.hero-anim{max-width:280px;justify-self:center}}
+
+/* chooser icons move once, on hover or as the section comes into view */
+@media(prefers-reduced-motion:no-preference){
+  .need:hover .g-ico svg,.motion .chooser.in .g-ico svg{animation:iconPop .6s cubic-bezier(.3,1.6,.5,1) 1}
+  .motion .chooser.in li:nth-child(2) .g-ico svg{animation-delay:.12s}.motion .chooser.in li:nth-child(3) .g-ico svg{animation-delay:.24s}
+}
+@keyframes iconPop{40%{transform:scale(1.25) rotate(-8deg)}}
+
+/* team cards: equal size, with the team lead */
+.teams-wrap{display:grid;gap:1rem}
+.teams{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:1rem;min-height:0}
+.teams .team,.teams:hover .team,.teams .team:hover{flex:none}
+.teams .team{grid-template-rows:auto auto auto 1fr auto auto}
+.teams .team h2{font-size:clamp(1.5rem,2.3vw,1.9rem)}
+.lead{display:flex;gap:.75rem;align-items:center;padding:.75rem;border-radius:1rem;background:color-mix(in srgb,var(--team) 8%,var(--panel))}
+.lead-pic{flex:none;width:3.2rem;height:3.2rem}
+.lead-pic svg,.lead-pic img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+.av-bg{fill:color-mix(in srgb,var(--team) 16%,#fff)}.av-fg{fill:var(--team)}
+.lead b{display:block;font-weight:480;color:var(--fg)}
+.lead small{display:block;color:var(--muted);font-size:.85rem;line-height:1.35}
+.teams-note{margin:0;text-align:center;justify-self:center;color:var(--muted)}
+
+/* why one studio, see it for yourself, promises */
+.why-list,.see-tiles{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+@media(min-width:800px){.why-list{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:700px){.see-tiles{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.see-tiles{grid-template-columns:repeat(4,1fr)}}
+.why-list .card h3{margin-top:0}
+.why-list .card p{margin:0}
+.see-tiles a.card{display:grid;gap:.4rem;align-content:start;height:100%;text-decoration:none;border-top:3px solid var(--team)}
+.see-tiles a.card strong{font-family:Fraunces,serif;font-weight:460;font-size:1.1rem}
+.see-tiles a.card:hover{border-color:var(--team);color:var(--fg)}
+.promises ul{list-style:none;margin:0;padding:1.2rem 1.4rem;display:grid;gap:.7rem 2rem;border-radius:1.2rem;background:var(--panel);border:1px solid var(--line)}
+@media(min-width:700px){.promises ul{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.promises ul{grid-template-columns:repeat(3,1fr)}}
+.promises li{display:flex;gap:.6rem;align-items:flex-start}
+.tick{flex:none;margin-top:.05rem}
+.tick path{fill:none;stroke:var(--lang);stroke-width:2.6;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:0}
+.motion .promises:not(.in) .tick path{stroke-dashoffset:24}
+.motion .promises.in .tick path{transition:stroke-dashoffset .45s ease;transition-delay:calc(var(--i) * .18s)}
+
+/* proof: shown only when real reviews, testimonials or case studies are filled in */
+.reviews{margin:0 0 1rem}
+.quotes{list-style:none;margin:0 0 1rem;padding:0;display:grid;gap:.9rem}
+@media(min-width:800px){.quotes{grid-template-columns:repeat(2,1fr)}}
+.quotes blockquote{margin:0}.quotes footer{color:var(--muted);font-size:.9rem;margin-top:.5rem}
+
+/* Growth: founding partners */
+.founding{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.8rem 1.5rem;padding:.9rem 1.2rem;border-radius:1rem;
+  background:var(--g-soft);border:1px solid color-mix(in srgb,var(--team) 30%,var(--line))}
+.founding p{margin:0;max-width:62ch}
+.founding ul{list-style:none;margin:0;padding:0;display:flex;gap:.4rem}
+.founding li{padding:.25rem .6rem;border-radius:999px;font-size:.8rem;font-weight:480}
+.founding li.open{background:#fff;color:#1d6b3f;border:1px solid #9fd1b2}
+.founding li.taken{background:#e6e8ec;color:#5b6270;border:1px solid #d3d7de}
+
+/* contact details on /contact/ */
+.contact-details{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;align-items:center}
+.contact-details p{margin:0}
+.teams .team .ticks{align-content:start}
+/* still row (reduced motion): each panel stays in its own column, even on a phone */
+.ha-scene,.ha-browser{min-width:0}
+.ha-words{font-size:clamp(.5rem,2.3vw,.68rem)}
+.ha-words span{white-space:nowrap;overflow:hidden}
+@media(prefers-reduced-motion:reduce) and (max-width:899px){.hero-anim{max-width:340px}.ha-toast{left:-24%;right:-24%;font-size:.55rem}}

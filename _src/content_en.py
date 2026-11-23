@@ -43,85 +43,55 @@ def svc(**kw):
 
 PAGES = {}
 
+PROMISE_LIST = ["Written quote before any work", "Reply within one working day", "No long contracts", "30-day guarantee on Growth",
+                "Your files are never used to train AI", "Every translation checked by a second linguist"]
+PROMISES = "".join(f'<li style="--i:{i}"><svg class="tick" viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">'
+                   f'<path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span>{p}</span></li>' for i, p in enumerate(PROMISE_LIST))
+
 PAGES[""] = dict(
     title="Kayonne Creatives | Websites, translation and customer growth, Glasgow",
     desc="Glasgow agency with three teams: Digital builds websites and apps, Localize translates them for new markets, Growth brings local businesses new customers.",
     body=f"""
 <section class="hero" data-scene="hero">
   <div>
-    <p class="kicker">Glasgow agency · Digital, Localize, Growth</p>
-    <h1>We build it. Then we take it to every market.</h1>
-    <p class="lede">Websites, translation and customer growth, under one roof.</p>
-    <ul class="ticks cols intro-ticks"><li>Websites, shops and apps</li><li>Translation and localisation</li><li>More customers for local service businesses</li><li>A written quote before work starts</li></ul>
-    <p class="actions"><a class="btn magnetic" href="/contact/">Get a quote</a> <a class="btn ghost magnetic" href="/services/">All services</a></p>
+    <h1>We help businesses get built, understood and chosen.</h1>
+    <p class="lede">Websites, translation and new customers, from one Glasgow studio.</p>
+    <p class="actions"><a class="btn magnetic" href="#need">What do you need?</a> <a class="btn ghost magnetic" href="/contact/">Talk to us</a></p>
   </div>
-  <ul class="hero-facts" aria-label="Kayonne in numbers">
-    <li><strong>3</strong><span>teams under one roof</span></li>
-    <li><strong>{len(EUROPE) + len(ASIA)}</strong><span>languages, into and out of English</span></li>
-    <li><strong>2</strong><span>linguists on every translation</span></li>
-    <li><strong>0</strong><span>hand-offs between build and translation</span></li>
-  </ul>
+  {{{{HERO_ANIM}}}}
 </section>
 {{{{CHOOSER}}}}
-<section class="trust" data-scene="shards" aria-label="How we work">
-  <p class="kicker">How we work</p>
-  <ul>
-    <li>Every translation checked by a second linguist</li>
-    <li>A written quote before work starts</li>
-    <li>Processes aligned with ISO 17100 on request</li>
-    <li>Sites tested against Core Web Vitals and WCAG 2.2 AA</li>
+{{{{DIVISIONS}}}}
+<section class="why">
+  <h2>Why one studio?</h2>
+  <ul class="why-list">
+    <li class="card"><h3>One point of contact</h3><p>One lead answers your emails and signs off the work, from the brief to the handover.</p></li>
+    <li class="card"><h3>Written quotes and guarantees</h3><p>A written quote before any work starts, and a 30-day guarantee on Growth.</p></li>
+    <li class="card"><h3>Every job checked twice</h3><p>A second linguist checks every translation. Every site is tested for speed and accessibility before launch.</p></li>
   </ul>
 </section>
-<section class="split" data-scene="orbit">
-  <h2>Who we are</h2>
-  <div>
-    <p class="lede">A Glasgow agency with three teams under one roof: one that builds, one that translates, and one that brings local service businesses new customers.</p>
-    <p>Most companies hire a web agency, then look for a translation company, then spend weeks passing files between them. We put both teams on the same project. The site is built with room for longer German words and right-to-left Arabic, and the translators work inside it, not in a spreadsheet.</p>
-    <p>You can also hire one team on its own. A shop owner can come to us for a website, a solicitor for a contract translation, and a local service business for more customers. Either way you get a written quote first and one person who answers your emails.</p>
-    <p><a class="text-link" href="/about/">More about us →</a></p>
-  </div>
+<section class="see">
+  <h2>See it for yourself</h2>
+  <ul class="see-tiles">
+    <li><a class="card team-l" href="/demo/"><strong>Live localisation demo</strong><span class="note">Watch one page change language, date, currency and reading direction.</span></a></li>
+    <li><a class="card team-l" href="/work/"><strong>Translation samples</strong><span class="note">Anonymised samples, clearly labelled.</span></a></li>
+    <li><a class="card team-d" href="/website-check/"><strong>Free website check</strong><span class="note">Send your address and get a short written list of what to fix first.</span></a></li>
+    <li><a class="card team-g" href="/growth/"><strong>Is your area open? Book a 15-minute call</strong><span class="note">For local service businesses that want more customers.</span></a></li>
+  </ul>
 </section>
-{{{{DIVISIONS}}}}
-<section class="tint" data-scene="tiles">
-  <div class="sec-head"><h2>How we help you grow</h2><a class="text-link" href="/services/">All services →</a></div>
-  {{{{SERVICES}}}}
-</section>
-<section class="global-band card" data-scene="globe">
-  <div>
-    <p class="kicker">Kayonne Localize</p>
-    <h2>Both teams. One launch.</h2>
-    <p>Most firms build the site or translate it. We do both on the same project, so your site is ready for the next market without a hand-off in the middle.</p>
-    <ol class="mini-steps"><li>Audit</li><li>Research</li><li>Build</li><li>Translate</li><li>Check</li><li>Launch</li></ol>
-    <p class="actions"><a class="btn magnetic" href="/localize/">See how it works</a> <a class="btn ghost" href="/readiness-check/">Free readiness check</a></p>
-  </div>
-  {LOC_VIDEO_EN}
-</section>
-<section class="split band" data-scene="path">
-  <div>
-    <h2>A clear, accountable approach</h2>
-    <p class="note">The same five steps on a one-page site and on a ten-language launch.</p>
-  </div>
-  <ol class="num-list">
-    <li><h3>Brief</h3><p class="note">We write down the job, the audience, the languages and the date, and you get a written quote.</p></li>
-    <li><h3>Plan</h3><p class="note">Pages, glossary and search terms are agreed before anyone designs or translates.</p></li>
-    <li><h3>Make</h3><p class="note">Design, build or translation, with drafts you can review on the way.</p></li>
-    <li><h3>Check</h3><p class="note">A speed and accessibility report for a site, a second linguist for a translation.</p></li>
-    <li><h3>Hand over</h3><p class="note">You own the files, the code and the domain. Ongoing care is optional.</p></li>
-  </ol>
-</section>
-<section data-scene="network">
-  <h2>Europe and Asia, with one team.</h2>
-  <p class="lede">Professional linguists cover European and Asian languages, into and out of English. <a class="text-link" href="/localize/#all-languages">{len(EUROPE) + len(ASIA)} languages, see all →</a></p>
-</section>
-<section data-scene="sheets">
-  <div class="sec-head"><h2>Insights</h2><a class="text-link" href="/insights/">All articles →</a></div>
-  {{{{INSIGHTS3}}}}
+{{{{PROOF}}}}
+<section class="promises" aria-labelledby="promises-h">
+  <h2 id="promises-h">Our promises</h2>
+  <ul>{PROMISES}</ul>
 </section>""",
     faq=[
+        ("Why do you do websites, translation and customer growth?", "Because businesses need all three to grow: a site that works, words that reach people, and customers who call. You can hire one team or all three."),
         ("Can one agency build and translate?", "Yes. You can also hire only the build, or only the translation."),
         ("Which languages do you cover?", "European and Asian languages, into and out of English. See the <a href=\"/languages/\">languages page</a>. The quote names who will work on your language pair."),
         ("Where are you based?", "Glasgow, United Kingdom. Clients can be anywhere."),
     ],
+    cta=("Tell us what you need. We&#39;ll reply within one working day.", "Get in touch"),
+    no3d=True,  # the hero has its own animation
 )
 
 PAGES["services"] = dict(
