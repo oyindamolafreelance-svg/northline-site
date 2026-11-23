@@ -97,7 +97,7 @@ UI = {
         "languages": "Languages", "pricing": "Pricing", "work": "Work", "about": "About", "insights": "Insights",
         "process": "Process", "industries": "Industries", "faq": "FAQ", "contact": "Contact",
         "quote": "Get a quote", "menu": "Menu", "switch": "Deutsch", "switch_short": "DE",
-        "tagline": "Websites and translation from Glasgow, for European and Asian markets.",
+        "tagline": "Websites, translation and customer growth, from Glasgow.",
         "place": "Glasgow, United Kingdom", "company": "Company", "legal": "Legal",
         "privacy": "Privacy", "cookies": "Cookies", "terms": "Terms",
         "why": "Why it helps", "incl": "What is included", "steps": "How it works", "who": "Who it is for",
@@ -173,6 +173,53 @@ def mega(lang, key):
       </details>"""
 
 
+COMPANY = ["about", "work", "process", "industries", "pricing", "insights", "faq", "contact"]
+
+
+def company_menu(lang):
+    t = UI[lang]
+    items = "".join(f'<li><a href="{path(lang, s_)}"><span class="roll"><span>{esc(t[s_])}</span></span></a></li>' for s_ in COMPANY)
+    return (f'<details class="menu company" data-mega><summary><span class="roll"><span>{t["company"]}</span></span></summary>'
+            f'<div class="drop simple"><ul class="mega-list">{items}</ul></div></details>')
+
+
+def crumbs(lang, slug, page):
+    """Breadcrumb trail for division pages and the pages under them, or None."""
+    key = team_of(slug)
+    if not key or page.get("noindex"):
+        return None
+    d = TEAMS[key]
+    trail = [(UI[lang]["home"], path(lang, ""))]
+    names = {s_: (en if lang == "en" else de) for s_, en, de, *_ in d["items"]}
+    if slug == d["slug"]:
+        trail.append((d["name"][lang], None))
+        return trail
+    trail.append((d["name"][lang], path(lang, d["slug"])))
+    if slug.startswith("languages/"):
+        trail.append((names["languages"], path(lang, "languages")))
+    trail.append((names.get(slug) or strip(page.get("label") or page["h1"]), None))
+    return trail
+
+
+def crumbs_html(trail):
+    lis_ = "".join(f'<li><a href="{h}">{esc(n)}</a></li>' if h else f'<li aria-current="page">{esc(n)}</li>' for n, h in trail)
+    return f'<nav class="crumbs" aria-label="Breadcrumb"><ol>{lis_}</ol></nav>'
+
+
+def crumbs_schema(trail, lang, slug):
+    return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + (h or path(lang, slug))} for i, (n, h) in enumerate(trail)]}
+
+
+def chooser(lang):
+    """The home page "What do you need?" cards, one per division."""
+    h = "What do you need?" if lang == "en" else "Was brauchen Sie?"
+    cards = "".join(f'<li><a class="need team-{d["cls"]}" href="{path(lang, d["slug"])}"><span class="g-ico">{icon(d["icon"], 28)}</span>'
+                    f'<strong>{esc(d["need"][lang])}</strong><span class="need-more">{esc(d["brand"][lang])} →</span></a></li>'
+                    for d in divisions(lang) if d.get("need", {}).get(lang))
+    return f'<section class="chooser" aria-labelledby="need-h"><h2 id="need-h">{h}</h2><ul>{cards}</ul></section>'
+
+
 def header(lang, slug, page=None):
     t = UI[lang]
     d = TEAMS.get((page or {}).get("division"))
@@ -195,7 +242,7 @@ def header(lang, slug, page=None):
     <a class="mark" href="{p('')}"><span class="roll"><span>Kayonne</span></span></a>
     <nav class="links" aria-label="{t['services']}">
       {"".join(mega(lang, d["key"]) for d in divisions(lang))}
-      {top_links}
+      {company_menu(lang)}
     </nav>
     <div class="nav-actions">
       {switch}
@@ -531,6 +578,8 @@ ICONS = {
     "building": '<path d="M4 21V5l8-3v19M12 21h8V9l-8-3"/><path d="M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2"/>',
     "users": '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>',
     "x": '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
+    "monitor": '<rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/>',
+    "globe": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>',
 }
 
 
@@ -709,9 +758,13 @@ def service_card(lang, team, item, kicker=True):
 
 
 def service_grid(lang):
-    """Every paid service, coloured by division, for the home page."""
-    out = [service_card(lang, d, it) for d in divisions(lang) for it in d["items"] if it[0] not in NOT_SERVICES]
-    return '<ul class="grid-4 link-cards accent-cards">' + "".join(out) + "</ul>"
+    """Every paid service, grouped by division, for the home page."""
+    out = []
+    for d in divisions(lang):
+        cards = "".join(service_card(lang, d, it, False) for it in d["items"] if it[0] not in NOT_SERVICES)
+        out.append(f'<div class="svc-group team-{d["cls"]}"><h3><a href="{path(lang, d["slug"])}">{d["brand"][lang]}</a></h3>'
+                   f'<ul class="grid-4 link-cards accent-cards">{cards}</ul></div>')
+    return "".join(out)
 
 
 def services_by_division(lang):
@@ -775,10 +828,15 @@ def render(lang, slug, page, weights=""):
     main = main.replace("{{SERVICES}}", service_grid(lang) if "{{SERVICES}}" in main else "")
     main = main.replace("{{SERVICES_BY_DIVISION}}", services_by_division(lang) if "{{SERVICES_BY_DIVISION}}" in main else "")
     main = main.replace("{{DIVISIONS}}", division_cards(lang) if "{{DIVISIONS}}" in main else "")
+    main = main.replace("{{CHOOSER}}", chooser(lang) if "{{CHOOSER}}" in main else "")
     main = main.replace("{{TEAMPICKER}}", team_picker(lang) if "{{TEAMPICKER}}" in main else "")
     main = main.replace("{{INSIGHTS3}}", insight_cards(lang, 3) if "{{INSIGHTS3}}" in main else "")
     main = main.replace("{{INSIGHTS}}", insight_cards(lang) if "{{INSIGHTS}}" in main else "")
     main = re.sub(r"\{\{TEAM:(\w+)\}\}", lambda m: team_cards(lang, m.group(1)), main)
+    trail = crumbs(lang, slug, page)
+    if trail:
+        main = crumbs_html(trail) + main
+        page = dict(page, schema=list(page.get("schema", [])) + [crumbs_schema(trail, lang, slug)])
     cls = "page" + (" home" if slug == "" else "")
     link_slug = "" if slug == "404" else slug
     body_attr = " data-no3d" if lean(page) else ""

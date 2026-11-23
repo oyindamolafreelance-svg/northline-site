@@ -12,6 +12,8 @@ Fields
   langs     languages the division's pages exist in
   name      menu label            brand    "Kayonne ..." name
   tagline   one-line tagline      line     one-line description (menu preview, footer)
+  icon      icon name for the chooser card (see ICONS in build.py)
+  need      the home page "What do you need?" card, e.g. "I need a website or app"
   card      home page card: title, text, ticks, button (None = no card)
   items     menu items: (slug, English name, German name, English description, German description)
   lean      optional: pages without the language switcher, greeting band, qualifications or 3D backdrop
@@ -24,6 +26,7 @@ GROWTH_BOOK_URL = "/contact/?team=growth"
 DIVISIONS = [
     dict(
         key="digital", slug="digital", cls="d", color="#a8582a", langs=("en", "de"),
+        icon="monitor", need={"en": "I need a website or app", "de": "Ich brauche eine Website oder App"},
         name={"en": "Digital", "de": "Digital"},
         brand={"en": "Kayonne Digital", "de": "Kayonne Digital"},
         tagline={"en": "The build team.", "de": "Das Entwicklungsteam."},
@@ -53,6 +56,7 @@ DIVISIONS = [
     ),
     dict(
         key="localize", slug="localize", cls="l", color="#127569", langs=("en", "de"),
+        icon="globe", need={"en": "I need translation, or to launch abroad", "de": "Ich brauche eine Übersetzung oder will ins Ausland"},
         name={"en": "Localize", "de": "Localize"},
         brand={"en": "Kayonne Localize", "de": "Kayonne Localize"},
         tagline={"en": "The translation and localisation team.", "de": "Das Übersetzungs- und Lokalisierungsteam."},
@@ -89,6 +93,7 @@ DIVISIONS = [
     ),
     dict(
         key="growth", slug="growth", cls="g", color="#1f5bb8", langs=("en",), lean=True,
+        icon="chart", need={"en": "I need more customers"},
         cta={"en": ("Book a call", GROWTH_BOOK_URL)},
         name={"en": "Growth"},
         brand={"en": "Kayonne Growth"},

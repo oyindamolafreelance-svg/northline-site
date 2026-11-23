@@ -50,19 +50,20 @@ PAGES[""] = dict(
     body=f"""
 <section class="hero" data-scene="hero">
   <div>
-    <p class="kicker">Glasgow agency · Digital and language</p>
+    <p class="kicker">Glasgow agency · Digital, Localize, Growth</p>
     <h1>We build it. Then we take it to every market.</h1>
-    <p class="lede">Kayonne Creatives builds websites and apps, and professional linguists translate them into European and Asian languages. Hire the build, the translation, or both, with one project lead from brief to launch.</p>
-    <ul class="ticks cols intro-ticks"><li>Websites, shops and apps</li><li>Document and specialist translation</li><li>Localisation and multilingual SEO</li><li>A written quote before work starts</li></ul>
+    <p class="lede">Websites, translation and customer growth, under one roof.</p>
+    <ul class="ticks cols intro-ticks"><li>Websites, shops and apps</li><li>Translation and localisation</li><li>More customers for local service businesses</li><li>A written quote before work starts</li></ul>
     <p class="actions"><a class="btn magnetic" href="/contact/">Get a quote</a> <a class="btn ghost magnetic" href="/services/">All services</a></p>
   </div>
   <ul class="hero-facts" aria-label="Kayonne in numbers">
-    <li><strong>2</strong><span>teams, one project lead</span></li>
+    <li><strong>3</strong><span>teams under one roof</span></li>
     <li><strong>{len(EUROPE) + len(ASIA)}</strong><span>languages, into and out of English</span></li>
     <li><strong>2</strong><span>linguists on every translation</span></li>
     <li><strong>0</strong><span>hand-offs between build and translation</span></li>
   </ul>
 </section>
+{{{{CHOOSER}}}}
 <section class="trust" data-scene="shards" aria-label="Qualifications and standards">
   <p class="kicker">Qualifications and standards</p>
   <ul>
@@ -75,9 +76,9 @@ PAGES[""] = dict(
 <section class="split" data-scene="orbit">
   <h2>Who we are</h2>
   <div>
-    <p class="lede">A Glasgow agency with two teams under one roof: one that builds, one that translates.</p>
+    <p class="lede">A Glasgow agency with three teams under one roof: one that builds, one that translates, and one that brings local service businesses new customers.</p>
     <p>Most companies hire a web agency, then look for a translation company, then spend weeks passing files between them. We put both teams on the same project. The site is built with room for longer German words and right-to-left Arabic, and the translators work inside it, not in a spreadsheet.</p>
-    <p>You can also hire one team on its own. A shop owner can come to us for a website, and a solicitor can come to us for a contract translation. Either way you get a written quote first and one person who answers your emails.</p>
+    <p>You can also hire one team on its own. A shop owner can come to us for a website, a solicitor for a contract translation, and a local service business for more customers. Either way you get a written quote first and one person who answers your emails.</p>
     <p><a class="text-link" href="/about/">More about us →</a></p>
   </div>
 </section>

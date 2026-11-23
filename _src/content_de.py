@@ -51,6 +51,7 @@ PAGES[""] = dict(
     <li><strong>0</strong><span>Übergaben zwischen Entwicklung und Übersetzung</span></li>
   </ul>
 </section>
+{{{{CHOOSER}}}}
 <section class="trust" data-scene="shards" aria-label="Qualifikationen und Standards">
   <p class="kicker">Qualifikationen und Standards</p>
   <ul>

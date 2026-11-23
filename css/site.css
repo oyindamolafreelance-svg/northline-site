@@ -361,7 +361,7 @@ details[open] .drop{background:var(--panel)}
 .hero-facts li:nth-child(odd){border-right:1px solid var(--line)}
 .hero-facts li:nth-last-child(-n+2){border-bottom:0}
 .hero-facts strong{font-family:Fraunces,serif;font-weight:460;font-size:clamp(2.6rem,5vw,3.6rem);line-height:1;color:var(--accent)}
-.hero-facts li:nth-child(2) strong{color:var(--lang)}.hero-facts li:nth-child(3) strong{color:var(--global)}
+.hero-facts li:nth-child(2) strong{color:var(--lang)}.hero-facts li:nth-child(3) strong{color:#1f5bb8}
 .hero-facts span{color:var(--muted);font-size:.92rem}
 
 /* trust strip */
@@ -587,3 +587,33 @@ footer{background:var(--bg)}
 }
 @media(prefers-reduced-motion:reduce){.book-bar{transition:none}}
 .phone .cal-grid b{height:2.9rem}
+
+/* ===== Home chooser, grouped services, Company menu, breadcrumbs ===== */
+.chooser h2{margin-bottom:1rem}
+.chooser ul{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+@media(min-width:800px){.chooser ul{grid-template-columns:repeat(auto-fit,minmax(0,1fr))}}
+.need{display:grid;gap:.9rem;align-content:start;height:100%;padding:1.6rem;border-radius:1.4rem;text-decoration:none;background:var(--panel);
+  border:1px solid color-mix(in srgb,var(--team) 35%,var(--line));border-top:4px solid var(--team);box-shadow:0 10px 30px rgb(60 40 20 / .06);
+  transition:transform .3s cubic-bezier(.16,.84,.24,1),box-shadow .3s,border-color .3s}
+.need .g-ico{color:var(--team);background:color-mix(in srgb,var(--team) 12%,transparent);width:3.4rem;height:3.4rem}
+.need strong{font-family:Fraunces,serif;font-weight:460;font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.2;color:var(--fg)}
+.need-more{color:var(--team);font-weight:480;margin-top:auto}
+.need:hover,.need:focus-visible{transform:translateY(-4px);box-shadow:0 18px 40px rgb(60 40 20 / .12);border-color:var(--team);color:var(--fg)}
+@media(prefers-reduced-motion:reduce){.need,.need:hover{transition:none;transform:none}}
+/* on phones the chooser comes straight after the hero copy */
+@media(max-width:899px){.home .hero-facts{display:none}}
+
+.svc-group+.svc-group{margin-top:2rem}
+.svc-group h3{margin:0 0 .8rem;font-size:1.2rem}
+.svc-group h3 a{text-decoration:none;color:var(--team)}
+.svc-group h3 a::after{content:" →"}
+
+.drop.simple{min-width:0}
+details[open] .drop.simple{grid-template-columns:1fr;width:min(280px,90vw);left:auto;right:0;transform:none;position:absolute;top:2.2rem;animation:none}
+details[open] .drop.simple .mega-list{grid-template-columns:1fr}
+
+.crumbs ol{display:flex;flex-wrap:wrap;gap:.25rem .4rem;list-style:none;margin:0;padding:0;font-size:.85rem;color:var(--muted)}
+.crumbs li+li::before{content:"›";margin-right:.4rem;color:var(--muted)}
+.crumbs a{text-decoration:none}
+.crumbs a:hover{text-decoration:underline}
+main.page>.crumbs{margin-bottom:-2.2rem}
