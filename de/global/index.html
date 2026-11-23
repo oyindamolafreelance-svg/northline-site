@@ -19,7 +19,7 @@
 <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="/css/site.css" />
-<style>.team-d{--team:#a8582a}.team-l{--team:#127569}.team-b{--team:#5a4bbd}</style>
+<style>.team-d{--team:#a8582a}.team-l{--team:#127569}.team-b{--team:#5a4bbd}.team-g{--team:#1f5bb8}</style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Welche Märkte kennen Sie am besten?", "acceptedAnswer": {"@type": "Answer", "text": "Europa und Asien, mit besonderem Fokus auf Deutschland, Österreich und die Schweiz."}}, {"@type": "Question", "name": "Arbeiten Sie mit unserem Entwickler zusammen?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Wir liefern Übersetzungen, Keyword-Recherche und hreflang-Vorgaben an Ihr Team."}}, {"@type": "Question", "name": "Übernehmen Sie auch den Shop?", "acceptedAnswer": {"@type": "Answer", "text": "Ja. Siehe Shop-Lokalisierung."}}]}</script>
 </head>
 <body>
@@ -130,6 +130,21 @@
   if(q&&sel){[].slice.call(sel.options).forEach(function(o){if(o.text===q)sel.value=o.value||o.text;});}
   var tm=new URLSearchParams(location.search).get("team"),ts=document.getElementById("f-team");
   if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
+  // Growth inquiries ask about the business instead of languages and files.
+  if(ts){
+    var form=ts.form,swap=[].slice.call(form.querySelectorAll("[data-growth]"));
+    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.textContent;});
+    var mode=function(){
+      var g=ts.value==="growth";
+      [].slice.call(form.querySelectorAll("[data-team],[data-team-not]")).forEach(function(box){
+        var show=box.hasAttribute("data-team")?g:!g;box.hidden=!show;
+        [].slice.call(box.querySelectorAll("input,select,textarea")).forEach(function(i){i.disabled=!show;});
+      });
+      var ph=document.getElementById("f-phone");if(ph)ph.required=g;
+      swap.forEach(function(el){var v=g?el.dataset.growth:el.dataset.base;if(el.tagName==="INPUT")el.value=v;else el.textContent=v;});
+    };
+    ts.addEventListener("change",mode);mode();
+  }
 })();
 </script>
 <script src="/js/motion.js" defer></script>

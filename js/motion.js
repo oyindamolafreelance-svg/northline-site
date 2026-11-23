@@ -96,7 +96,7 @@
   var hio = new IntersectionObserver(function (es) {
     es.forEach(function (e) { if (e.isIntersecting) { decode(e.target); hio.unobserve(e.target); } });
   }, { rootMargin: "0px 0px -15% 0px" });
-  [].slice.call(document.querySelectorAll("main h2")).forEach(function (h) { hio.observe(h); });
+  [].slice.call(document.querySelectorAll("main h2:not([data-growth])")).forEach(function (h) { hio.observe(h); });
 
   // The greetings marquee speeds up and leans with scroll speed.
   var marq = [].slice.call(document.querySelectorAll(".marquee"));
@@ -164,7 +164,7 @@
   }
 
   // 3D backdrop, after everything else has loaded.
-  if (saveData) return;
+  if (saveData || document.body.hasAttribute("data-no3d")) return;
   function start() {
     import(new URL("scene.js", base).href).then(function () { doc.classList.add("has3d"); }).catch(function () {});
   }

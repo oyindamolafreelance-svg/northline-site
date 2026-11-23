@@ -19,7 +19,7 @@
 <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="/css/site.css" />
-<style>.team-d{--team:#a8582a}.team-l{--team:#127569}.team-b{--team:#5a4bbd}</style>
+<style>.team-d{--team:#a8582a}.team-l{--team:#127569}.team-b{--team:#5a4bbd}.team-g{--team:#1f5bb8}</style>
 
 </head>
 <body>
@@ -75,8 +75,8 @@
   </div>
 </header>
 <main id="content" class="shell page"><header class="intro has-art" data-scene="plane"><p class="kicker">Kontakt</p><h1>Beschreiben Sie den Auftrag.</h1><p class="lede">Nennen Sie Leistung, Sprachen und Termin und hängen Sie die Datei an, falls vorhanden. Wir antworten per E-Mail mit einem Festpreisangebot oder Rückfragen. Sie erreichen uns auch unter <a href="mailto:hello@kayonnecreatives.com">hello@kayonnecreatives.com</a>.</p><figure class="intro-art"><img src="/img/scenes/plane.webp" alt="" width="900" height="675" decoding="async" fetchpriority="low"></figure></header><form class="card form" id="quote" action="https://formsubmit.co/hello@kayonnecreatives.com" method="POST" enctype="multipart/form-data">
-  <h2>Angebot anfragen</h2>
-  <input type="hidden" name="_subject" value="Neue Angebotsanfrage über kayonnecreatives.com/de" />
+  <h2 id="f-heading" data-growth="Tell us about your business">Angebot anfragen</h2>
+  <input type="hidden" name="_subject" value="Neue Angebotsanfrage über kayonnecreatives.com/de" data-growth="New Kayonne Growth inquiry from kayonnecreatives.com" />
   <input type="hidden" name="_next" value="https://kayonnecreatives.com/de/thanks/" />
   <input type="hidden" name="_template" value="table" />
   <input type="hidden" name="_autoresponse" value="Vielen Dank für Ihre Anfrage bei Kayonne Creatives. Wir haben sie erhalten und antworten per E-Mail mit einem Angebot oder Rückfragen. Weitere Dateien können Sie einfach als Antwort auf diese Mail senden." />
@@ -85,14 +85,14 @@
     <div class="full"><label for="f-team">Welches Team brauchen Sie? *</label><select id="f-team" name="team" required><option value="">Team wählen</option><option value="digital">Kayonne Digital</option><option value="language">Kayonne Language</option><option value="global">Kayonne Global</option><option value="unsure">Weiß ich noch nicht</option></select></div>
     <div><label for="f-name">Ihr Name *</label><input id="f-name" name="name" required autocomplete="name" /></div>
     <div><label for="f-email">E-Mail *</label><input id="f-email" name="email" type="email" required autocomplete="email" /></div>
-    <div><label for="f-phone">Telefon (optional)</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" /></div>
-    <div><label for="f-company">Firma (optional)</label><input id="f-company" name="company" autocomplete="organization" /></div>
-    <div class="full"><label for="f-service">Was brauchen Sie? *</label><select id="f-service" name="service" required><option value="">Leistung wählen</option><optgroup label="Sprache"><option>Dokumentübersetzung</option><option>Website- oder App-Lokalisierung</option><option>Spielelokalisierung</option><option>Medizinische Übersetzung</option><option>Patentübersetzung</option><option>Juristische Übersetzung</option><option>Untertitelung oder Transkription</option><option>Korrektorat oder Revision</option><option>MTPE oder LQA</option></optgroup><optgroup label="Digital"><option>Website</option><option>Onlineshop</option><option>Web-App</option><option>Mobile App</option><option>Domain und geschäftliche E-Mail</option><option>SEO</option><option>Ladezeit- oder Barrierefreiheits-Audit</option><option>Wartungsplan</option></optgroup><optgroup label="Beides"><option>Website und Übersetzung</option><option>Internationaler Marktstart</option><option>Shop-Lokalisierung</option><option>Mehrsprachige SEO</option><option>Etwas anderes</option></optgroup><optgroup label="Kostenlos"><option>Kostenloser Website-Check</option><option>Kostenloser Readiness-Check</option></optgroup></select></div>
-    <div><label for="f-source">Aus der Sprache</label><input id="f-source" name="source_language" list="langs" placeholder="z. B. Englisch" /></div>
-    <div><label for="f-target">In die Sprache(n)</label><input id="f-target" name="target_languages" placeholder="z. B. Deutsch, Japanisch" /></div>
-    <div><label for="f-deadline">Termin</label><input id="f-deadline" name="deadline" type="date" /></div>
-    <div><label for="f-size">Umfang</label><input id="f-size" name="size" placeholder="z. B. 3 Seiten, 2.000 Wörter, 12 Minuten" /></div>
-    <div class="full"><label for="f-file">Datei anhängen</label><input id="f-file" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.odt,.srt,.vtt,.xliff,.xlf,.json,.csv,.jpg,.jpeg,.png,.heic,.zip" /><p class="note">Eine Datei, insgesamt bis 10 MB. Für größere oder mehrere Dateien fügen Sie einen WeTransfer- oder Google-Drive-Link in die Nachricht ein.</p></div>
+    <div><label for="f-phone" data-growth="Phone *">Telefon (optional)</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" /></div>
+    <div data-team-not="growth"><label for="f-company">Firma (optional)</label><input id="f-company" name="company" autocomplete="organization" /></div>
+    <div class="full" data-team-not="growth"><label for="f-service">Was brauchen Sie? *</label><select id="f-service" name="service" required><option value="">Leistung wählen</option><optgroup label="Sprache"><option>Dokumentübersetzung</option><option>Website- oder App-Lokalisierung</option><option>Spielelokalisierung</option><option>Medizinische Übersetzung</option><option>Patentübersetzung</option><option>Juristische Übersetzung</option><option>Untertitelung oder Transkription</option><option>Korrektorat oder Revision</option><option>MTPE oder LQA</option></optgroup><optgroup label="Digital"><option>Website</option><option>Onlineshop</option><option>Web-App</option><option>Mobile App</option><option>Domain und geschäftliche E-Mail</option><option>SEO</option><option>Ladezeit- oder Barrierefreiheits-Audit</option><option>Wartungsplan</option></optgroup><optgroup label="Beides"><option>Website und Übersetzung</option><option>Internationaler Marktstart</option><option>Shop-Lokalisierung</option><option>Mehrsprachige SEO</option><option>Etwas anderes</option></optgroup><optgroup label="Kostenlos"><option>Kostenloser Website-Check</option><option>Kostenloser Readiness-Check</option></optgroup></select></div>
+    <div data-team-not="growth"><label for="f-source">Aus der Sprache</label><input id="f-source" name="source_language" list="langs" placeholder="z. B. Englisch" /></div>
+    <div data-team-not="growth"><label for="f-target">In die Sprache(n)</label><input id="f-target" name="target_languages" placeholder="z. B. Deutsch, Japanisch" /></div>
+    <div data-team-not="growth"><label for="f-deadline">Termin</label><input id="f-deadline" name="deadline" type="date" /></div>
+    <div data-team-not="growth"><label for="f-size">Umfang</label><input id="f-size" name="size" placeholder="z. B. 3 Seiten, 2.000 Wörter, 12 Minuten" /></div>
+    <div class="full" data-team-not="growth"><label for="f-file">Datei anhängen</label><input id="f-file" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.odt,.srt,.vtt,.xliff,.xlf,.json,.csv,.jpg,.jpeg,.png,.heic,.zip" /><p class="note">Eine Datei, insgesamt bis 10 MB. Für größere oder mehrere Dateien fügen Sie einen WeTransfer- oder Google-Drive-Link in die Nachricht ein.</p></div>
     <div class="full"><label for="f-message">Nachricht</label><textarea id="f-message" name="message" placeholder="Wer liest den Text, wo wird er verwendet, Website-Adresse, alles, was wir wissen sollten."></textarea></div>
   </div>
   <p class="check"><input type="checkbox" id="f-consent" name="consent" value="yes" required /><label for="f-consent">Ich bin einverstanden, dass Kayonne Creatives diese Angaben verwendet, um auf meine Anfrage zu antworten. Siehe <a href="/de/privacy/">Datenschutzerklärung</a>. *</label></p>
@@ -147,6 +147,21 @@
   if(q&&sel){[].slice.call(sel.options).forEach(function(o){if(o.text===q)sel.value=o.value||o.text;});}
   var tm=new URLSearchParams(location.search).get("team"),ts=document.getElementById("f-team");
   if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
+  // Growth inquiries ask about the business instead of languages and files.
+  if(ts){
+    var form=ts.form,swap=[].slice.call(form.querySelectorAll("[data-growth]"));
+    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.textContent;});
+    var mode=function(){
+      var g=ts.value==="growth";
+      [].slice.call(form.querySelectorAll("[data-team],[data-team-not]")).forEach(function(box){
+        var show=box.hasAttribute("data-team")?g:!g;box.hidden=!show;
+        [].slice.call(box.querySelectorAll("input,select,textarea")).forEach(function(i){i.disabled=!show;});
+      });
+      var ph=document.getElementById("f-phone");if(ph)ph.required=g;
+      swap.forEach(function(el){var v=g?el.dataset.growth:el.dataset.base;if(el.tagName==="INPUT")el.value=v;else el.textContent=v;});
+    };
+    ts.addEventListener("change",mode);mode();
+  }
 })();
 </script>
 <script src="/js/motion.js" defer></script>

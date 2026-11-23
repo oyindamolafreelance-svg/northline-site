@@ -18,13 +18,18 @@ import sys
 sys.path.insert(0, os.path.dirname(__file__))
 import content_de  # noqa: E402
 import content_en  # noqa: E402
+import content_growth  # noqa: E402
 
 SITE = "https://kayonnecreatives.com"
 EMAIL = "hello@kayonnecreatives.com"
 YEAR = datetime.date.today().year
 LANGS = {"en": content_en, "de": content_de}
 
-from divisions import DIVISIONS, NOT_SERVICES  # noqa: E402
+from divisions import DIVISIONS, GROWTH_BOOK_URL, NOT_SERVICES  # noqa: E402
+
+# Pages that exist in English only (no German version, no language switcher, no hreflang pair).
+EN_ONLY = set(content_growth.PAGES)
+content_en.PAGES.update(content_growth.PAGES)
 
 # Divisions keyed by id. The extra keys keep older code working: team["en"] is the menu label,
 # team["hub"] the landing page, team["en_line"] the one-line description.
@@ -37,6 +42,12 @@ for _d in DIVISIONS:
 
 # Each division's colour, so a new division needs no CSS edit.
 TEAM_STYLE = "<style>" + "".join(f".team-{d['cls']}{{--team:{d['color']}}}" for d in DIVISIONS) + "</style>"
+
+
+def lean(page):
+    """True for pages of a division that drops the language extras (switcher, greetings, qualifications, 3D)."""
+    d = TEAMS.get((page or {}).get("division"))
+    return bool(d and d.get("lean"))
 
 
 def divisions(lang):
@@ -158,9 +169,12 @@ def mega(lang, key):
       </details>"""
 
 
-def header(lang, slug):
+def header(lang, slug, page=None):
     t = UI[lang]
-    other = "de" if lang == "en" else "en"
+    d = TEAMS.get((page or {}).get("division"))
+    cta_label, cta_href = ((d or {}).get("cta") or {}).get(lang) or (t["quote"], path(lang, "contact"))
+    switch = "" if slug in EN_ONLY else (f'<a class="btn ghost" href="{path("de" if lang == "en" else "en", slug)}" hreflang="{"de" if lang == "en" else "en"}" '
+                                         f'lang="{"de" if lang == "en" else "en"}" title="{UI[lang]["switch"]}">{t["switch_short"]}</a>')
     p = lambda s: path(lang, s)  # noqa: E731
     top = [("work", t["work"]), ("pricing", t["pricing"]), ("about", t["about"])]
     top_links = "".join(f'<a href="{p(s)}"><span class="roll"><span>{esc(n)}</span></span></a>' for s, n in top)
@@ -180,13 +194,13 @@ def header(lang, slug):
       {top_links}
     </nav>
     <div class="nav-actions">
-      <a class="btn ghost" href="{path(other, slug)}" hreflang="{other}" lang="{other}" title="{UI[lang]['switch']}">{t['switch_short']}</a>
-      <a class="btn nav-quote magnetic" href="{p('contact')}">{t['quote']}</a>
+      {switch}
+      <a class="btn nav-quote magnetic" href="{cta_href}">{cta_label}</a>
       <button class="btn ghost burger" type="button" aria-expanded="false" aria-controls="drawer">{t['menu']}</button>
     </div>
   </div>
   <div class="shell drawer" id="drawer">
-    <p class="drawer-cta"><a class="btn" href="{p('contact')}">{t['quote']}</a></p>
+    <p class="drawer-cta"><a class="btn" href="{cta_href}">{cta_label}</a></p>
     {"".join(drawer_team(d["key"]) for d in divisions(lang))}
     <div><p class="kicker">{t['company']}</p><ul>{drawer_more}</ul></div>
   </div>
@@ -203,8 +217,13 @@ def marquee():
             f'<div class="marquee rev" aria-hidden="true"><div class="marquee-track">{words}{words}</div></div>')
 
 
-def footer(lang):
+def footer(lang, page=None):
     t = UI[lang]
+    plain = lean(page)
+    d = TEAMS.get((page or {}).get("division")) if plain else None
+    talk_text, talk_label, talk_href = (t["talk_text"], t["quote"], path(lang, "contact"))
+    if d and d.get("cta"):
+        talk_text, (talk_label, talk_href) = d["line"][lang], d["cta"][lang]
     p = lambda s: path(lang, s)  # noqa: E731
     cols = ""
     for team in divisions(lang):
@@ -214,7 +233,8 @@ def footer(lang):
         ("about", "about"), ("process", "process"), ("industries", "industries"),
         ("pricing", "pricing"), ("work", "work"), ("faq", "faq"), ("insights", "insights"), ("contact", "contact")])
     legal = " · ".join(f'<a href="{p(s)}">{esc(t[s])}</a>' for s in ("privacy", "cookies", "terms"))
-    return f"""{marquee()}<footer><div class="shell foot">
+    standards = "" if plain else f'<div><p class="kicker">{t["standards"]}</p><ul class="ticks">{lis(t["creds"])}</ul></div>'
+    return f"""{"" if plain else marquee()}<footer><div class="shell foot">
     <div>
       <p class="mark">Kayonne Creatives</p>
       <p class="note">{t['tagline']}</p>
@@ -226,8 +246,8 @@ def footer(lang):
   </div>
   <div class="shell foot-row">
     <div><p class="kicker">{t['contact_h']}</p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p><p class="note">{t['place']}</p></div>
-    <div><p class="kicker">{t['standards']}</p><ul class="ticks">{lis(t['creds'])}</ul></div>
-    <div class="foot-talk"><p class="kicker">{t['talk']}</p><p class="note">{t['talk_text']}</p><p><a class="btn magnetic" href="{p('contact')}">{t['quote']}</a></p></div>
+    {standards}
+    <div class="foot-talk"><p class="kicker">{t['talk']}</p><p class="note">{talk_text}</p><p><a class="btn magnetic" href="{talk_href}">{talk_label}</a></p></div>
   </div>
   <p class="shell wordmark" aria-hidden="true">Kayonne</p>
   <div class="shell foot-base note"><p>© {YEAR} Kayonne Creatives · {t['place']}</p><p>{legal}</p></div>
@@ -263,6 +283,21 @@ SCRIPT = """<script>
   if(q&&sel){[].slice.call(sel.options).forEach(function(o){if(o.text===q)sel.value=o.value||o.text;});}
   var tm=new URLSearchParams(location.search).get("team"),ts=document.getElementById("f-team");
   if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
+  // Growth inquiries ask about the business instead of languages and files.
+  if(ts){
+    var form=ts.form,swap=[].slice.call(form.querySelectorAll("[data-growth]"));
+    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.textContent;});
+    var mode=function(){
+      var g=ts.value==="growth";
+      [].slice.call(form.querySelectorAll("[data-team],[data-team-not]")).forEach(function(box){
+        var show=box.hasAttribute("data-team")?g:!g;box.hidden=!show;
+        [].slice.call(box.querySelectorAll("input,select,textarea")).forEach(function(i){i.disabled=!show;});
+      });
+      var ph=document.getElementById("f-phone");if(ph)ph.required=g;
+      swap.forEach(function(el){var v=g?el.dataset.growth:el.dataset.base;if(el.tagName==="INPUT")el.value=v;else el.textContent=v;});
+    };
+    ts.addEventListener("change",mode);mode();
+  }
 })();
 </script>
 <script src="/js/motion.js" defer></script>"""
@@ -345,6 +380,9 @@ def head(lang, slug, page):
     url = SITE + path(lang, slug)
     alts = "".join(f'<link rel="alternate" hreflang="{l}" href="{SITE + path(l, slug)}" />' for l in ("en", "de"))
     alts += f'<link rel="alternate" hreflang="x-default" href="{SITE + path("en", slug)}" />'
+    if slug in EN_ONLY:
+        alts = ""
+    html_lang = page.get("html_lang", lang)
     schemas = list(page.get("schema", []))
     if slug == "":
         schemas.insert(0, org_schema(lang))
@@ -355,7 +393,7 @@ def head(lang, slug, page):
     if page.get("noindex"):
         alts = ""
     return f"""<!DOCTYPE html>
-<html lang="{lang}">
+<html lang="{html_lang}">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -369,7 +407,7 @@ def head(lang, slug, page):
 <meta property="og:description" content="{esc(desc)}" />
 <meta property="og:url" content="{url}" />
 <meta property="og:image" content="{SITE}/og.png" />
-<meta property="og:locale" content="{UI[lang]['locale']}" />
+<meta property="og:locale" content="{page.get('og_locale', UI[lang]['locale'])}" />
 <meta name="twitter:card" content="summary_large_image" />
 <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
 <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
@@ -469,6 +507,168 @@ def division_main(lang, page, slug):
     return "".join(parts)
 
 
+# ---- Kayonne Growth ---------------------------------------------------------------------------
+# Small stroke icons, drawn with currentColor so they take the Growth colour.
+ICONS = {
+    "pin": '<path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/>',
+    "shield": '<path d="M12 3l8 3v6c0 4.6-3.4 8.3-8 9-4.6-.7-8-4.4-8-9V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/>',
+    "chart": '<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+    "phone": '<path d="M6 3h3l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v3a3 3 0 0 1-3 3A16 16 0 0 1 3 6a3 3 0 0 1 3-3z"/>',
+    "lock": '<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>',
+    "clock": '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    "drop": '<path d="M12 3s6 6.4 6 11a6 6 0 0 1-12 0c0-4.6 6-11 6-11z"/>',
+    "badge": '<circle cx="12" cy="9" r="6"/><path d="M8.5 13.5L7 21l5-3 5 3-1.5-7.5"/>',
+    "building": '<path d="M4 21V5l8-3v19M12 21h8V9l-8-3"/><path d="M7 8h2M7 12h2M7 16h2M15 12h2M15 16h2"/>',
+    "users": '<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>',
+    "x": '<circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/>',
+}
+
+
+def icon(name, size=24):
+    return (f'<svg class="ico" width="{size}" height="{size}" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+            f'stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{ICONS[name]}</svg>')
+
+
+def book_btn(label="Book a free 15-minute call", extra=""):
+    return f'<a class="btn magnetic book{extra}" href="{GROWTH_BOOK_URL}">{label}</a>'
+
+
+def phone_demo(ph):
+    """Looping phone mockup: an ad, a short form, a new inquiry, a calendar filling. CSS only."""
+    days = "".join(f"<i>{d}</i>" for d in "MTWTF")
+    slots = "".join(f'<b style="--i:{i}"></b>' for i in range(25))
+    label = ("Illustration: a social media ad for a local company, a homeowner filling in a short form, "
+             f"a notification reading {ph['notice']}, {ph['notice_sub']}, and a calendar filling with booked jobs.")
+    return f"""<figure class="phone-demo">
+  <div class="phone" role="img" aria-label="{esc(label)}">
+    <div class="screen s-ad" aria-hidden="true">
+      <div class="ad-head"><span class="ad-avatar">{esc(ph['company'][:1])}</span><span><b>{esc(ph['company'])}</b><small>Sponsored · {esc(ph['sub'])}</small></span></div>
+      <p class="ad-copy">{esc(ph['ad'])}</p>
+      <div class="ad-img"><svg viewBox="0 0 160 90" aria-hidden="true"><rect width="160" height="90" fill="#dfe8f7"/><circle cx="128" cy="22" r="10" fill="#f6c453"/><path d="M0 70h160v20H0z" fill="#b9d3a5"/><path d="M38 70V46l26-20 26 20v24z" fill="#fff"/><path d="M32 48l32-26 32 26" fill="none" stroke="#1f5bb8" stroke-width="5" stroke-linejoin="round"/><rect x="56" y="54" width="14" height="16" fill="#1f5bb8"/><rect x="100" y="56" width="44" height="18" rx="4" fill="#fff"/><circle cx="110" cy="76" r="5" fill="#333"/><circle cx="134" cy="76" r="5" fill="#333"/></svg></div>
+      <div class="ad-foot"><small>Local service · Book online</small><span class="ad-btn">Get a quote<span class="tap"></span></span></div>
+      <div class="ad-ghost"><i></i><i></i><i></i></div>
+    </div>
+    <div class="screen s-form" aria-hidden="true">
+      <p class="f-title">Get a quote from {esc(ph['company'])}</p>
+      <span class="f-l">Name</span><span class="f-in"><i style="--w:55%"></i></span>
+      <span class="f-l">ZIP code</span><span class="f-in"><i style="--w:30%"></i></span>
+      <span class="f-l">What's the problem?</span><span class="f-in tall"><i style="--w:80%"></i></span>
+      <span class="f-send">Send</span>
+    </div>
+    <div class="screen s-cal" aria-hidden="true">
+      <p class="f-title">This week</p>
+      <div class="cal-days">{days}</div>
+      <div class="cal-grid">{slots}</div>
+    </div>
+    <div class="toast" aria-hidden="true">{icon("phone", 18)}<span><b>{esc(ph['notice'])}</b><small>{esc(ph['notice_sub'])}</small></span></div>
+  </div>
+  <figcaption>Illustration</figcaption>
+</figure>"""
+
+
+def trust_strip():
+    icons = ["badge", "building", "lock"]
+    items = "".join(f"<li>{icon(i, 20)}<span>{esc(x)}</span></li>" for i, x in zip(icons, content_growth.TRUST))
+    return f'<section class="g-trust" aria-label="Why it is low risk"><ul>{items}</ul></section>'
+
+
+def growth_hero(page):
+    return (f'<header class="g-hero"><div class="g-copy"><p class="kicker">{page["label"]}</p><h1>{page["h1"]}</h1>'
+            f'<p class="lede">{page["lede"]}</p><p class="actions">{book_btn()}</p></div>{phone_demo(page["phone"])}</header>')
+
+
+def icon_cards(items):
+    return '<ul class="g-cards">' + "".join(f'<li class="card"><span class="g-ico">{icon(i)}</span><p>{esc(x)}</p></li>' for i, x in items) + "</ul>"
+
+
+def guarantee():
+    return (f'<section class="g-guarantee"><span class="g-seal">{icon("shield", 34)}<b>30</b><small>days</small></span>'
+            f'<div><p class="kicker">Low risk</p><p class="g-big">{esc(content_growth.GUARANTEE)}</p></div></section>')
+
+
+def closing(page):
+    small = f'<p class="note">{page["smallprint"]}</p>' if page.get("smallprint") else ""
+    return (f'<section class="g-close" id="g-close"><h2>{esc(page["closing"])}</h2>'
+            f'<p>{book_btn()}</p>{small}</section>')
+
+
+def book_bar():
+    return f'<div class="book-bar" id="book-bar"><a class="btn" href="{GROWTH_BOOK_URL}">Book a free call</a></div>'
+
+
+def growth_faq(page):
+    return faq_html(page.get("faq"), {"questions": "Questions"})
+
+
+def growth_hub_main(lang, page, slug):
+    trades = "".join(f'<li><a class="card g-trade" href="{path(lang, s_)}"><span class="g-ico">{icon(i)}</span>'
+                     f'<strong>{esc(n)}</strong><span class="more">See how it works →</span></a></li>' for s_, n, i in page["trades"])
+    parts = [growth_hero(page), trust_strip(),
+             f'<section class="split"><h2>{page["who_h"]}</h2><div><p class="lede">{esc(page["who"])}</p>'
+             f'<h3>{page["trades_h"]}</h3><ul class="g-trades">{trades}</ul></div></section>']
+    v = page.get("video")
+    if v:
+        parts.append(f'<section class="g-video"><figure class="media"><video controls preload="none" poster="{v["poster"]}" width="1280" height="720">'
+                     f'<source src="{v["src"]}" type="video/mp4"></video><figcaption>{esc(v["caption"])}</figcaption></figure></section>')
+    parts.append(f'<section><h2>{page["get_h"]}</h2>{icon_cards(page["get"])}</section>')
+    parts.append(guarantee())
+    parts.append(growth_faq(page))
+    if page.get("results"):
+        items = "".join(f'<li class="card"><h3>{esc(r["title"])}</h3><p>{esc(r["text"])}</p></li>' for r in page["results"])
+        parts.append(f'<section><h2>Results</h2><ul class="grid-3 g-results">{items}</ul></section>')
+    parts.append(closing(page))
+    return "".join(parts)
+
+
+def calendars(c):
+    # Same 20 weekday slots in both months; the right one fills as it scrolls into view.
+    left = {1, 4, 8, 13, 15, 18}
+    right = {0, 1, 2, 4, 5, 6, 8, 9, 10, 11, 13, 14, 15, 16, 17, 18, 19}
+    def month(filled, extra):
+        days = "".join(f"<i>{d}</i>" for d in "MTWTF")
+        cells = "".join((f'<b class="job" style="--i:{n}"><span>Job</span></b>' if k in filled else "<b></b>")
+                        for n, k in enumerate(range(20)))
+        return f'<div class="g-month{extra}"><div class="cal-days">{days}</div><div class="cal-grid">{cells}</div></div>'
+    label = "Illustration: a calendar with a few jobs booked from word of mouth only, next to a calendar mostly full of jobs with Kayonne Growth."
+    return (f'<section class="g-cals"><h2>{c["h"]}</h2><figure><div class="g-cal-pair" role="img" aria-label="{label}">'
+            f'<div><p class="g-cal-label">{c["left"]}</p>{month(left, "")}</div>'
+            f'<div><p class="g-cal-label">{c["right"]}</p>{month(right, " busy")}</div></div>'
+            f'<figcaption>Illustration</figcaption></figure></section>')
+
+
+def example_card(page):
+    rows = "".join(f"<li><span>{esc(k)}:</span> {esc(v)}</li>" for k, v in page["example"])
+    return (f'<section class="split g-example"><h2>{page["example_h"]}</h2><div><figure class="g-notice">'
+            f'<div class="g-notice-head">{icon("phone", 18)}<b>New inquiry</b><small>now</small></div><ul>{rows}</ul>'
+            f'<figcaption>Example</figcaption></figure></div></section>')
+
+
+def calculator(page):
+    return f"""<section class="g-calc card" aria-labelledby="calc-h">
+  <h2 id="calc-h">{page['calc_h']}</h2>
+  <div class="g-calc-fields">
+    <div><label for="calc-value">Your average job value ($)</label><input id="calc-value" type="number" inputmode="decimal" min="0" step="any" autocomplete="off"></div>
+    <div><label for="calc-jobs">Extra jobs per month you could handle</label><input id="calc-jobs" type="number" inputmode="numeric" min="0" step="1" autocomplete="off"></div>
+  </div>
+  <p class="g-calc-out" aria-live="polite"><output id="calc-out" for="calc-value calc-jobs">Enter your numbers to see the total.</output></p>
+  <p>{book_btn()}</p>
+</section>"""
+
+
+def growth_niche_main(lang, page, slug):
+    pains = "".join(f'<li class="card">{icon("x")}<p>{esc(x)}</p></li>' for x in page["pains"])
+    parts = [growth_hero(page), trust_strip(),
+             f'<section><h2>{page["pains_h"]}</h2><ul class="g-pains">{pains}</ul></section>',
+             calendars(page["calendars"]),
+             f'<section><h2>{page["changes_h"]}</h2>{icon_cards(page["changes"])}</section>',
+             example_card(page), calculator(page), guarantee(), growth_faq(page)]
+    t = page.get("testimonial")
+    if t:
+        parts.append(f'<section class="g-quote"><blockquote><p>{esc(t["quote"])}</p><footer>{esc(t["name"])}, {esc(t["company"])}</footer></blockquote></section>')
+    parts.append(closing(page))
+    return "".join(parts)
+
+
 def raw_main(lang, page, slug):
     t = UI[lang]
     body = page["body"]
@@ -521,7 +721,7 @@ def division_cards(lang):
         if not c:
             continue
         out.append(f'<a class="team team-{d["cls"]}" href="{path(lang, d["slug"])}"><p class="kicker">{d["brand"][lang]}</p>'
-                   f'<h2>{c["title"]}</h2><p>{c["text"]}</p><ul class="ticks">{lis(c["ticks"])}</ul>'
+                   f'<h2>{c["title"]}</h2><p>{c["text"]}</p>' + (f'<ul class="ticks">{lis(c["ticks"])}</ul>' if c["ticks"] else "") +
                    f'<span class="team-more">{c["button"]} →</span></a>')
     label = "Our teams" if lang == "en" else "Unsere Teams"
     return f'<section class="teams" data-scene="windows" aria-label="{label}">' + "".join(out) + "</section>"
@@ -557,7 +757,8 @@ def pair_cards(lang):
 
 def render(lang, slug, page, weights=""):
     kind = page.get("kind")
-    main = (service_main if kind == "service" else division_main if kind == "division" else raw_main)(lang, page, slug)
+    main = {"service": service_main, "division": division_main, "growth_hub": growth_hub_main,
+            "growth_niche": growth_niche_main}.get(kind, raw_main)(lang, page, slug)
     main = main.replace("{{WEIGHTS}}", weights).replace("{{PAIRS}}", pair_cards(lang) if "{{PAIRS}}" in main else "")
     main = main.replace("{{SERVICES}}", service_grid(lang) if "{{SERVICES}}" in main else "")
     main = main.replace("{{SERVICES_BY_DIVISION}}", services_by_division(lang) if "{{SERVICES_BY_DIVISION}}" in main else "")
@@ -568,8 +769,12 @@ def render(lang, slug, page, weights=""):
     main = re.sub(r"\{\{TEAM:(\w+)\}\}", lambda m: team_cards(lang, m.group(1)), main)
     cls = "page" + (" home" if slug == "" else "")
     link_slug = "" if slug == "404" else slug
-    return (head(lang, slug, page) + "\n<body>\n" + header(lang, link_slug) +
-            f'\n<main id="content" class="shell {cls}">{main}</main>\n' + footer(lang) + "\n" + SCRIPT +
+    body_attr = " data-no3d" if lean(page) else ""
+    if kind and kind.startswith("growth"):
+        cls += " growth"
+    return (head(lang, slug, page) + f"\n<body{body_attr}>\n" + header(lang, link_slug, page) +
+            f'\n<main id="content" class="shell {cls}">{main}</main>\n' + footer(lang, page) +
+            (book_bar() if kind and kind.startswith("growth") else "") + "\n" + SCRIPT +
             page.get("script", "") + "\n</body>\n</html>\n")
 
 
@@ -605,7 +810,7 @@ def out_file(lang, slug):
 
 
 def main():
-    en_slugs = set(content_en.PAGES)
+    en_slugs = set(content_en.PAGES) - EN_ONLY
     de_slugs = set(content_de.PAGES)
     if en_slugs != de_slugs:
         sys.exit(f"Page lists differ. Only EN: {sorted(en_slugs - de_slugs)} Only DE: {sorted(de_slugs - en_slugs)}")
@@ -644,7 +849,8 @@ def main():
     for lang, slug, page in written:
         if page.get("noindex"):
             continue
-        alts = "".join(f'<xhtml:link rel="alternate" hreflang="{l}" href="{SITE + path(l, slug)}"/>' for l in ("en", "de"))
+        alts = "" if slug in EN_ONLY else "".join(
+            f'<xhtml:link rel="alternate" hreflang="{l}" href="{SITE + path(l, slug)}"/>' for l in ("en", "de"))
         urls.append(f"  <url><loc>{SITE + path(lang, slug)}</loc>{alts}</url>")
     with open("sitemap.xml", "w", encoding="utf-8") as fh:
         fh.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" '

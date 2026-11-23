@@ -14,7 +14,12 @@ Fields
   tagline   one-line tagline      line     one-line description (menu preview, footer)
   card      home page card: title, text, ticks, button (None = no card)
   items     menu items: (slug, English name, German name, English description, German description)
+  lean      optional: pages without the language switcher, greeting band, qualifications or 3D backdrop
+  cta       optional: header button (label, link) in place of "Get a quote"
 """
+
+# Every "Book a free 15-minute call" button on the Growth pages. Swap in a booking calendar here.
+GROWTH_BOOK_URL = "/contact/?team=growth"
 
 DIVISIONS = [
     dict(
@@ -90,6 +95,23 @@ DIVISIONS = [
             ("games", "Game localisation", "Spielelokalisierung", "Strings, stores, subtitles", "Strings, Stores, Untertitel"),
             ("readiness-check", "Free readiness check", "Kostenloser Readiness-Check", "Is your site ready to translate?", "Ist Ihre Website übersetzungsbereit?"),
             ("demo", "Live localisation demo", "Live-Lokalisierungsdemo", "Watch a page change language", "Eine Seite wechselt die Sprache"),
+        ],
+    ),
+    dict(
+        key="growth", slug="growth", cls="g", color="#1f5bb8", langs=("en",), lean=True,
+        cta={"en": ("Book a call", GROWTH_BOOK_URL)},
+        name={"en": "Growth"},
+        brand={"en": "Kayonne Growth"},
+        tagline={"en": "More customers for local service businesses."},
+        line={"en": "We bring local service businesses a steady flow of new customers."},
+        card={
+            "en": dict(title="More customers. Less guessing.",
+                       text="We bring local service businesses a steady flow of new customers.",
+                       ticks=[], button="See how it works"),
+        },
+        items=[
+            ("growth", "How it works", "", "More customers. Less guessing.", ""),
+            ("growth/septic", "Septic companies", "", "More drain-field and replacement jobs", ""),
         ],
     ),
 ]

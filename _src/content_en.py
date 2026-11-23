@@ -572,13 +572,23 @@ FORM_SERVICES = [
 ]
 
 
+# Extra fields shown when someone picks Kayonne Growth (English site only).
+GROWTH_FIELDS = """    <div data-team="growth" hidden><label for="g-business">Business name *</label><input id="g-business" name="business_name" autocomplete="organization" required disabled /></div>
+    <div data-team="growth" hidden><label for="g-trade">Your trade *</label><input id="g-trade" name="trade" placeholder="e.g. septic service" required disabled /></div>
+    <div data-team="growth" hidden><label for="g-area">Service area *</label><input id="g-area" name="service_area" placeholder="e.g. towns or counties you cover" required disabled /></div>
+    <div data-team="growth" hidden><label for="g-site">Website (optional)</label><input id="g-site" name="website" type="url" inputmode="url" placeholder="https://" disabled /></div>
+    <div data-team="growth" hidden><label for="g-time">Best time to call *</label><input id="g-time" name="best_time_to_call" placeholder="e.g. weekdays after 4pm, Eastern" required disabled /></div>
+"""
+
+
 def quote_form(lang, L):
+    growth = GROWTH_FIELDS if lang == "en" else ""
     opts = "".join(f'<optgroup label="{g}">' + "".join(f"<option>{o}</option>" for o in items) + "</optgroup>"
                    for g, items in L["services"])
     next_url = "https://kayonnecreatives.com" + ("/de" if lang == "de" else "") + "/thanks/"
     return f"""<form class="card form" id="quote" action="https://formsubmit.co/{EMAIL}" method="POST" enctype="multipart/form-data">
-  <h2>{L['heading']}</h2>
-  <input type="hidden" name="_subject" value="{L['subject']}" />
+  <h2 id="f-heading" data-growth="Tell us about your business">{L['heading']}</h2>
+  <input type="hidden" name="_subject" value="{L['subject']}" data-growth="New Kayonne Growth inquiry from kayonnecreatives.com" />
   <input type="hidden" name="_next" value="{next_url}" />
   <input type="hidden" name="_template" value="table" />
   <input type="hidden" name="_autoresponse" value="{L['auto']}" />
@@ -587,14 +597,14 @@ def quote_form(lang, L):
     {{{{TEAMPICKER}}}}
     <div><label for="f-name">{L['name']} *</label><input id="f-name" name="name" required autocomplete="name" /></div>
     <div><label for="f-email">{L['email']} *</label><input id="f-email" name="email" type="email" required autocomplete="email" /></div>
-    <div><label for="f-phone">{L['phone']}</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" /></div>
-    <div><label for="f-company">{L['company']}</label><input id="f-company" name="company" autocomplete="organization" /></div>
-    <div class="full"><label for="f-service">{L['service']} *</label><select id="f-service" name="service" required><option value="">{L['choose']}</option>{opts}</select></div>
-    <div><label for="f-source">{L['source']}</label><input id="f-source" name="source_language" list="langs" placeholder="{L['source_ph']}" /></div>
-    <div><label for="f-target">{L['target']}</label><input id="f-target" name="target_languages" placeholder="{L['target_ph']}" /></div>
-    <div><label for="f-deadline">{L['deadline']}</label><input id="f-deadline" name="deadline" type="date" /></div>
-    <div><label for="f-size">{L['size']}</label><input id="f-size" name="size" placeholder="{L['size_ph']}" /></div>
-    <div class="full"><label for="f-file">{L['file']}</label><input id="f-file" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.odt,.srt,.vtt,.xliff,.xlf,.json,.csv,.jpg,.jpeg,.png,.heic,.zip" /><p class="note">{L['file_note']}</p></div>
+    <div><label for="f-phone" data-growth="Phone *">{L['phone']}</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" /></div>
+    <div data-team-not="growth"><label for="f-company">{L['company']}</label><input id="f-company" name="company" autocomplete="organization" /></div>
+{growth}    <div class="full" data-team-not="growth"><label for="f-service">{L['service']} *</label><select id="f-service" name="service" required><option value="">{L['choose']}</option>{opts}</select></div>
+    <div data-team-not="growth"><label for="f-source">{L['source']}</label><input id="f-source" name="source_language" list="langs" placeholder="{L['source_ph']}" /></div>
+    <div data-team-not="growth"><label for="f-target">{L['target']}</label><input id="f-target" name="target_languages" placeholder="{L['target_ph']}" /></div>
+    <div data-team-not="growth"><label for="f-deadline">{L['deadline']}</label><input id="f-deadline" name="deadline" type="date" /></div>
+    <div data-team-not="growth"><label for="f-size">{L['size']}</label><input id="f-size" name="size" placeholder="{L['size_ph']}" /></div>
+    <div class="full" data-team-not="growth"><label for="f-file">{L['file']}</label><input id="f-file" name="attachment" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx,.ppt,.pptx,.txt,.rtf,.odt,.srt,.vtt,.xliff,.xlf,.json,.csv,.jpg,.jpeg,.png,.heic,.zip" /><p class="note">{L['file_note']}</p></div>
     <div class="full"><label for="f-message">{L['message']}</label><textarea id="f-message" name="message" placeholder="{L['message_ph']}"></textarea></div>
   </div>
   <p class="check"><input type="checkbox" id="f-consent" name="consent" value="yes" required /><label for="f-consent">{L['consent']} *</label></p>
