@@ -1,0 +1,99 @@
+"""The divisions of Kayonne Creatives, in menu order.
+
+Everything that lists the divisions is generated from DIVISIONS: the mega menu, the mobile drawer,
+the footer columns, the home page division cards, the "How we help you grow" grid and the team picker
+on the quote form. To add a division, add one entry here, give it a landing page in content_en.py
+(and content_de.py if "langs" includes "de") with kind="division", and add its service pages.
+
+Fields
+  key       short id, also used in ?team=<key> on the quote form
+  slug      URL of the landing page
+  cls       CSS class suffix (team-<cls>); color is the team color
+  langs     languages the division's pages exist in
+  name      menu label            brand    "Kayonne ..." name
+  tagline   one-line tagline      line     one-line description (menu preview, footer)
+  card      home page card: title, text, ticks, button (None = no card)
+  items     menu items: (slug, English name, German name, English description, German description)
+"""
+
+DIVISIONS = [
+    dict(
+        key="digital", slug="digital", cls="d", color="#a8582a", langs=("en", "de"),
+        name={"en": "Digital", "de": "Digital"},
+        brand={"en": "Kayonne Digital", "de": "Kayonne Digital"},
+        tagline={"en": "The build team.", "de": "Das Entwicklungsteam."},
+        line={"en": "The build team: sites, shops, apps and the plumbing behind them.",
+              "de": "Das Entwicklungsteam: Websites, Shops, Apps und die Technik dahinter."},
+        card={
+            "en": dict(title="The build team",
+                       text="Websites, online shops and apps, the domain and email behind them, and the SEO that gets them found.",
+                       ticks=["Websites and shops", "Web and mobile apps", "Domains and business email", "SEO, speed and care"],
+                       button="Meet the build team"),
+            "de": dict(title="Das Entwicklungsteam",
+                       text="Websites, Onlineshops und Apps, Domain und E-Mail dahinter und die SEO, die für Auffindbarkeit sorgt.",
+                       ticks=["Websites und Shops", "Web- und Mobile-Apps", "Domains und geschäftliche E-Mail", "SEO, Ladezeit und Wartung"],
+                       button="Zum Entwicklungsteam"),
+        },
+        items=[
+            ("websites", "Websites", "Websites", "Business sites, shops, landing pages", "Unternehmensseiten, Shops, Landingpages"),
+            ("web-design-glasgow", "Web design Glasgow", "Webdesign Glasgow", "A local team you can meet", "Ein Team vor Ort in Glasgow"),
+            ("web-apps", "Web apps", "Web-Apps", "Custom tools and PWAs", "Individuelle Tools und PWAs"),
+            ("mobile-apps", "Mobile apps", "Mobile Apps", "iOS and Android", "iOS und Android"),
+            ("domains-email", "Domains and business email", "Domains und geschäftliche E-Mail", "Domain, inbox, SPF/DKIM/DMARC", "Domain, Postfach, SPF/DKIM/DMARC"),
+            ("seo", "SEO", "SEO", "Technical, local, multilingual", "Technisch, lokal, mehrsprachig"),
+            ("speed", "Speed and accessibility", "Ladezeit und Barrierefreiheit", "Core Web Vitals, WCAG 2.2 AA", "Core Web Vitals, WCAG 2.2 AA"),
+            ("care", "Care plans", "Wartungspläne", "Updates, backups, monitoring", "Updates, Backups, Monitoring"),
+            ("website-check", "Free website check", "Kostenloser Website-Check", "Speed, mobile and SEO basics", "Ladezeit, Mobilansicht, SEO-Grundlagen"),
+        ],
+    ),
+    dict(
+        key="language", slug="language", cls="l", color="#127569", langs=("en", "de"),
+        name={"en": "Language", "de": "Sprache"},
+        brand={"en": "Kayonne Language", "de": "Kayonne Language"},
+        tagline={"en": "The translation team.", "de": "Das Übersetzungsteam."},
+        line={"en": "The translation team: qualified linguists, a second check on every job.",
+              "de": "Das Übersetzungsteam: qualifizierte Fachleute, zweite Prüfung bei jedem Auftrag."},
+        card={
+            "en": dict(title="The translation team",
+                       text="Qualified translators for legal, medical, patent and business work, documents, subtitles and proofreading, with a second check on every job.",
+                       ticks=["Documents laid out like the original", "Legal, medical, patents", "Subtitling and transcription", "Proofreading and revision"],
+                       button="Meet the translation team"),
+            "de": dict(title="Das Übersetzungsteam",
+                       text="Qualifizierte Übersetzer für Recht, Medizin, Patente und Geschäftstexte, Dokumente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.",
+                       ticks=["Dokumente im Layout des Originals", "Recht, Medizin, Patente", "Untertitelung und Transkription", "Korrektorat und Revision"],
+                       button="Zum Übersetzungsteam"),
+        },
+        items=[
+            ("documents", "Document translation", "Dokumentübersetzung", "Certificates, statements, manuals", "Urkunden, Zeugnisse, Handbücher"),
+            ("legal", "Legal translation", "Juristische Übersetzung", "Contracts and court papers", "Verträge und Gerichtsunterlagen"),
+            ("medical", "Medical translation", "Medizinische Übersetzung", "Life sciences, under NDA", "Life Sciences, mit NDA"),
+            ("patents", "Patent translation", "Patentübersetzung", "Claims kept consistent", "Einheitliche Ansprüche"),
+            ("subtitling", "Subtitling and transcription", "Untertitelung und Transkription", "SRT, VTT, SDH, burned-in", "SRT, VTT, SDH, eingebrannt"),
+            ("proofreading", "Proofreading and revision", "Korrektorat und Revision", "Check a translation you have", "Vorhandene Übersetzung prüfen"),
+            ("quality", "MTPE and quality checks", "MTPE und Qualitätsprüfung", "Post-editing and LQA", "Post-Editing und LQA"),
+            ("languages", "All languages", "Alle Sprachen", "Into and out of English", "Aus dem und ins Englische"),
+        ],
+    ),
+    dict(
+        key="global", slug="global", cls="b", color="#5a4bbd", langs=("en", "de"),
+        name={"en": "Global", "de": "Global"},
+        brand={"en": "Kayonne Global", "de": "Kayonne Global"},
+        tagline={"en": "Both teams. One launch.", "de": "Beide Teams. Ein Marktstart."},
+        line={"en": "Both teams together: your site and your words, ready for the next market.",
+              "de": "Beide Teams zusammen: Website und Texte, bereit für den nächsten Markt."},
+        card=None,  # shown on the home page as the launch band instead
+        items=[
+            ("international-launch", "International launch", "Internationaler Marktstart", "One team, one launch plan", "Ein Team, ein Startplan"),
+            ("localization", "Website and app localisation", "Website- und App-Lokalisierung", "Your product, in their language", "Ihr Produkt in ihrer Sprache"),
+            ("multilingual-seo", "Multilingual SEO", "Mehrsprachige SEO", "Found in every market", "In jedem Markt gefunden"),
+            ("ecommerce-localisation", "Shop localisation", "Shop-Lokalisierung", "Shopify and WooCommerce", "Shopify und WooCommerce"),
+            ("games", "Game localisation", "Spielelokalisierung", "Strings, stores, subtitles", "Strings, Stores, Untertitel"),
+            ("readiness-check", "Free readiness check", "Kostenloser Readiness-Check", "Is your site ready to translate?", "Ist Ihre Website übersetzungsbereit?"),
+            ("demo", "Live localisation demo", "Live-Lokalisierungsdemo", "Watch a page change language", "Eine Seite wechselt die Sprache"),
+        ],
+    ),
+]
+
+# Menu items that are free offers or pages about a place or a list, not paid services.
+# They stay in the menus but are left out of service grids and "Related services".
+NOT_SERVICES = {"website-check", "readiness-check", "demo", "languages", "web-design-glasgow"}

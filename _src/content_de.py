@@ -21,32 +21,7 @@ LANG_WALLS = (f"<h3>Europa</h3>{wall(EUROPE)}<h3>Asien</h3>{wall(ASIA)}"
               '<p class="note">Arabisch und Persisch auf Anfrage. Alle Sprachen übersetzen wir aus dem Englischen und ins '
               "Englische.</p>")
 
-DIGITAL_CARDS = [
-    ("websites", "Websites", "Unternehmensseiten, Onlineshops und Landingpages."),
-    ("web-apps", "Web-Apps", "Individuelle Anwendungen und Progressive Web Apps."),
-    ("mobile-apps", "Mobile Apps", "iOS und Android, bis zum Store-Eintrag."),
-    ("domains-email", "Domains und geschäftliche E-Mail", "Domain, Postfach und DNS richtig eingerichtet."),
-    ("seo", "SEO", "Technische, lokale und mehrsprachige Suchmaschinenoptimierung."),
-    ("speed", "Ladezeit und Barrierefreiheit", "Core Web Vitals und WCAG 2.2 AA, mit Bericht."),
-    ("care", "Wartungspläne", "Updates, Backups und jemand, der aufpasst."),
-]
-LANGUAGE_CARDS = [
-    ("documents", "Dokumentübersetzung", "Urkunden, Abschlüsse und Handbücher, im Layout des Originals."),
-    ("localization", "Website- und App-Lokalisierung", "Ihr Produkt in der Sprache Ihrer Kunden."),
-    ("games", "Spielelokalisierung", "Strings, Store-Seiten und Untertitel, im Kontext geprüft."),
-    ("medical", "Medizinische Übersetzung", "Texte aus Medizin und Life Sciences, mit NDA."),
-    ("patents", "Patentübersetzung", "Einheitliche Ansprüche über die ganze Patentfamilie."),
-    ("legal", "Juristische Übersetzung", "Verträge und Schriftsätze, die Ihre Anwälte prüfen können."),
-    ("subtitling", "Untertitelung und Transkription", "Getimt, lesbar und im gewünschten Format."),
-    ("proofreading", "Korrektorat und Revision", "Eine zweite Fachkraft prüft Ihre vorhandene Übersetzung."),
-    ("quality", "MTPE und Qualitätsprüfung", "Post-Editing, LQA und Terminologiepflege."),
-]
 
-
-def cards(items):
-    return '<ul class="grid-3 link-cards">' + "".join(
-        f'<li><a class="card" href="/de/{s}/"><strong>{n}</strong><span class="note">{d}</span></a></li>'
-        for s, n, d in items) + "</ul>"
 
 
 def svc(**kw):
@@ -94,22 +69,7 @@ PAGES[""] = dict(
     <p><a class="text-link" href="/de/about/">Mehr über uns →</a></p>
   </div>
 </section>
-<section class="teams" data-scene="windows" aria-label="Unsere zwei Teams">
-  <a class="team team-d" href="/de/digital/">
-    <p class="kicker">Kayonne Digital</p>
-    <h2>Das Entwicklungsteam</h2>
-    <p>Websites, Onlineshops und Apps, Domain und E-Mail dahinter und die SEO, die für Auffindbarkeit sorgt.</p>
-    <ul class="ticks"><li>Websites und Shops</li><li>Web- und Mobile-Apps</li><li>Domains und geschäftliche E-Mail</li><li>SEO, Ladezeit und Wartung</li></ul>
-    <span class="team-more">Zum Entwicklungsteam →</span>
-  </a>
-  <a class="team team-l" href="/de/language/">
-    <p class="kicker">Kayonne Language</p>
-    <h2>Das Übersetzungsteam</h2>
-    <p>Qualifizierte Übersetzer für Recht, Medizin, Patente und Geschäftstexte, Dokumente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.</p>
-    <ul class="ticks"><li>Dokumente im Layout des Originals</li><li>Recht, Medizin, Patente</li><li>Untertitelung und Transkription</li><li>Korrektorat und Revision</li></ul>
-    <span class="team-more">Zum Übersetzungsteam →</span>
-  </a>
-</section>
+{{{{DIVISIONS}}}}
 <section class="tint" data-scene="tiles">
   <div class="sec-head"><h2>Wie wir Ihr Wachstum unterstützen</h2><a class="text-link" href="/de/services/">Alle Leistungen →</a></div>
   {{{{SERVICES}}}}
@@ -158,7 +118,7 @@ PAGES["services"] = dict(
     desc="Websites, Apps, Domains und E-Mail, SEO, Übersetzung, Lokalisierung und Untertitelung aus einer Agentur in Glasgow.",
     label="Leistungen", h1="Zwei Säulen. Eine Agentur.",
     lede="Kayonne Creatives baut das Produkt und bereitet es in den europäischen und asiatischen Sprachen Ihrer Kunden auf. Professionelle Übersetzer übernehmen die Sprache. Sie buchen eine Säule oder beide.",
-    body=f"<section><h2>Digital</h2>{cards(DIGITAL_CARDS)}</section><section><h2>Sprache</h2>{cards(LANGUAGE_CARDS)}</section>",
+    body="{{SERVICES_BY_DIVISION}}",
 )
 
 PAGES["websites"] = svc(
@@ -755,62 +715,55 @@ def team_video(key, caption, label):
 
 
 PAGES["digital"] = dict(
-    title="Kayonne Digital | Webdesign, Apps und SEO aus Glasgow",
-    desc="Das Team Kayonne Digital entwickelt Websites, Onlineshops und Apps, richtet Domains und geschäftliche E-Mail ein und kümmert sich um SEO, Ladezeit und Wartung.",
-    label="Kayonne Digital", h1="Das Entwicklungsteam.",
-    lede="Designer und Entwickler, die Websites, Shops und Apps bauen, Domain und E-Mail dahinter einrichten und dafür sorgen, dass alles schnell und auffindbar bleibt. In Glasgow, für Unternehmen in ganz Großbritannien und Europa.",
-    body="""<section data-scene="windows"><h2>Was das Team baut</h2>{{TEAM:digital}}</section>
-<section data-scene="tiles" class="grid-2 split-copy"><div><h2>Mit wem Sie arbeiten</h2><p>Eine Projektleitung in Glasgow, ein Designer und ein Entwickler bei jedem Projekt. Sie sehen das Design, bevor programmiert wird, eine Testseite vor dem Start und einen Ladezeitbericht bei der Übergabe.</p><p>Braucht Ihre Website eine weitere Sprache, sitzt das <a href="/de/language/">Sprachteam</a> nebenan. Keine zweite Agentur, keine Übergabe per E-Mail.</p></div>"""
-    + team_video("digital", "Die Arbeit des Digital-Teams in 3D: Browserfenster, App-Raster und Smartphones.", "Kayonne Digital Showreel") + """</section>
-<section data-scene="bars"><h2>Pakete</h2><ul class="grid-4 link-cards plain-cards">
+    kind="division", division="digital",
+    title='Kayonne Digital | Webdesign, Apps und SEO aus Glasgow',
+    desc='Das Team Kayonne Digital entwickelt Websites, Onlineshops und Apps, richtet Domains und geschäftliche E-Mail ein und kümmert sich um SEO, Ladezeit und Wartung.',
+    label='Kayonne Digital',
+    h1='Das Entwicklungsteam.',
+    lede='Designer und Entwickler, die Websites, Shops und Apps bauen, Domain und E-Mail dahinter einrichten und dafür sorgen, dass alles schnell und auffindbar bleibt. In Glasgow, für Unternehmen in ganz Großbritannien und Europa.',
+    services_h='Was das Team baut', services_scene='windows',
+    before="""<section data-scene="tiles" class="grid-2 split-copy"><div><h2>Mit wem Sie arbeiten</h2><p>Eine Projektleitung in Glasgow, ein Designer und ein Entwickler bei jedem Projekt. Sie sehen das Design, bevor programmiert wird, eine Testseite vor dem Start und einen Ladezeitbericht bei der Übergabe.</p><p>Braucht Ihre Website eine weitere Sprache, sitzt das <a href="/de/language/">Sprachteam</a> nebenan. Keine zweite Agentur, keine Übergabe per E-Mail.</p></div>"""
+    + team_video("digital", "Die Arbeit des Digital-Teams in 3D: Browserfenster, App-Raster und Smartphones.", "Kayonne Digital Showreel") + """</section>""" + """<section data-scene="bars"><h2>Pakete</h2><ul class="grid-4 link-cards plain-cards">
 <li class="card"><strong>One-Pager</strong><span class="note">Angebot, Kontaktformular, Karte. Für einen Start oder Selbstständige.</span></li>
 <li class="card"><strong>Unternehmenswebsite</strong><span class="note">Fünf bis acht Seiten, Blog, lokale SEO.</span></li>
 <li class="card"><strong>Onlineshop</strong><span class="note">Shopify oder WooCommerce, Zahlungen, Versandregeln.</span></li>
 <li class="card"><strong>Mehrsprachige Website</strong><span class="note">Jedes Paket in zwei oder mehr Sprachen.</span></li>
-</ul><p><a class="btn ghost" href="/de/pricing/">So berechnen wir</a></p></section>
-<section data-scene="lens" class="offer card"><div><p class="kicker">Kostenlos</p><h2>Website-Check</h2><p>Senden Sie uns Ihre Adresse. Wir prüfen Ladezeit auf dem Smartphone, mobile Ansicht, SEO-Grundlagen und Kontaktformular und schicken Ihnen eine kurze Liste, was zuerst zu tun ist.</p></div><p><a class="btn magnetic" href="/de/website-check/">Kostenlosen Check anfordern</a></p></section>""",
-    faq=[("Arbeiten Sie nur in Glasgow?", "Nein. Das Team sitzt in Glasgow und arbeitet für Kunden in Großbritannien und im Ausland."),
-         ("Wem gehört die Website?", "Ihnen, sobald die vereinbarten Honorare bezahlt sind. Domain, Hosting und E-Mail laufen auf Ihren Namen."),
-         ("Können Sie die Website auch übersetzen?", "Ja. Dafür gibt es <a href=\"/de/global/\">Global</a>.")],
+</ul><p><a class="btn ghost" href="/de/pricing/">So berechnen wir</a></p></section>""",
+    how_h='So läuft ein Projekt',
+    how=[('Briefing', 'Wir legen Zielgruppe, Angebot und die nötigen Seiten fest.'), ('Design', 'Sie prüfen das Layout, bevor die Entwicklung beginnt.'), ('Entwicklung', 'Wir bauen die Website, die Formulare und das Inhaltsmodell.'), ('Prüfung', 'Jeder Start wird gegen die Core-Web-Vitals-Grenzwerte getestet. Sie erhalten den Bericht.')],
+    after="",
+    offer=dict(scene='lens', kicker='Kostenlos', title='Website-Check', text='Senden Sie uns Ihre Adresse. Wir prüfen Ladezeit auf dem Smartphone, mobile Ansicht, SEO-Grundlagen und Kontaktformular und schicken Ihnen eine kurze Liste, was zuerst zu tun ist.', href='/de/website-check/', button='Kostenlosen Check anfordern'),
+    faq=[('Arbeiten Sie nur in Glasgow?', 'Nein. Das Team sitzt in Glasgow und arbeitet für Kunden in Großbritannien und im Ausland.'), ('Wem gehört die Website?', 'Ihnen, sobald die vereinbarten Honorare bezahlt sind. Domain, Hosting und E-Mail laufen auf Ihren Namen.'), ('Können Sie die Website auch übersetzen?', 'Ja. Dafür gibt es <a href="/de/global/">Global</a>.')],
 )
 
 PAGES["language"] = dict(
-    title="Kayonne Language | Professionelle Fachübersetzungen",
-    desc="Das Team Kayonne Language: qualifizierte Übersetzer für Dokumente, Recht, Medizin, Patente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.",
-    label="Kayonne Language", h1="Das Übersetzungsteam.",
-    lede="Qualifizierte Übersetzer, geleitet von Glasgow aus von einer Fachkraft mit MA in Translation Studies und CIOL Diploma in Translation. Jeder Auftrag wird vor der Lieferung von einer zweiten Fachkraft geprüft.",
-    body="""<section data-scene="sheets"><h2>Was das Team übersetzt</h2>{{TEAM:language}}</section>
-<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Dokumente wie das Original</h2><p>Urkunden, Kontoauszüge, Verträge und Handbücher kommen im Layout des Ausgangstexts zurück, mit Stempeln, Tabellen und handschriftlichen Vermerken dort übersetzt, wo sie stehen.</p><p><a class="btn magnetic" href="/de/documents/">Dokumentübersetzung</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>
-<section data-scene="path"><h2>Wer bei uns übersetzt</h2><ol class="grid-4 steps">
-<li class="card"><h3>Qualifiziert</h3><p>Studium der Übersetzung oder eine Berufsqualifikation wie das CIOL Diploma.</p></li>
-<li class="card"><h3>Muttersprachlich</h3><p>Übersetzt wird in die eigene Muttersprache.</p></li>
-<li class="card"><h3>Fachkundig</h3><p>Recht, Medizin und Patente nur mit Erfahrung im Fachgebiet.</p></li>
-<li class="card"><h3>Geprüft</h3><p>Eine zweite Fachkraft revidiert jeden Auftrag.</p></li>
-</ol></section>
-<section data-scene="film" class="grid-2 split-copy"><div><h2>Sprachen</h2><p>Europäische und asiatische Sprachen, aus dem und ins Englische. Die meistgefragten haben eigene Seiten: <a href="/de/languages/polish/">Polnisch</a>, <a href="/de/languages/romanian/">Rumänisch</a>, <a href="/de/languages/arabic/">Arabisch</a>, <a href="/de/languages/urdu/">Urdu</a>, <a href="/de/languages/chinese/">Chinesisch</a>, <a href="/de/languages/spanish/">Spanisch</a>, <a href="/de/languages/french/">Französisch</a>, <a href="/de/languages/german/">Deutsch</a>, <a href="/de/languages/ukrainian/">Ukrainisch</a> und <a href="/de/languages/portuguese/">Portugiesisch</a>.</p><p><a class="btn ghost" href="/de/languages/">Alle Sprachen</a></p></div>"""
-    + team_video("language", "Die Arbeit des Sprachteams in 3D: Dokumente, Waage und Untertitel.", "Kayonne Language Showreel") + """</section>
-<section data-scene="shield"><h2>Ihre Dokumente bleiben vertraulich</h2><ul class="ticks"><li>Nur die Personen im Auftrag sehen die Dateien.</li><li>NDA auf Wunsch, bevor Sie etwas senden.</li><li>Löschung innerhalb von 90 Tagen nach Lieferung, außer Sie wünschen etwas anderes.</li><li>Nie zum Training öffentlicher KI-Modelle genutzt.</li></ul></section>""",
-    faq=[("Übersetzen Sie ins Englische oder aus dem Englischen?", "Beides, für alle Sprachen, die wir anbieten."),
-         ("Können Sie eine vorhandene Übersetzung prüfen?", "Ja. Siehe <a href=\"/de/proofreading/\">Korrektorat und Revision</a>."),
-         ("Wie erhalte ich einen Preis?", "Laden Sie das Dokument über das <a href=\"/de/contact/\">Anfrageformular</a> hoch. Sie erhalten einen Festpreis vor Beginn.")],
+    kind="division", division="language",
+    title='Kayonne Language | Professionelle Fachübersetzungen',
+    desc='Das Team Kayonne Language: qualifizierte Übersetzer für Dokumente, Recht, Medizin, Patente, Untertitel und Korrektorat, mit zweiter Prüfung bei jedem Auftrag.',
+    label='Kayonne Language',
+    h1='Das Übersetzungsteam.',
+    lede='Qualifizierte Übersetzer, geleitet von Glasgow aus von einer Fachkraft mit MA in Translation Studies und CIOL Diploma in Translation. Jeder Auftrag wird vor der Lieferung von einer zweiten Fachkraft geprüft.',
+    services_h='Was das Team übersetzt', services_scene='sheets',
+    before="""<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Dokumente wie das Original</h2><p>Urkunden, Kontoauszüge, Verträge und Handbücher kommen im Layout des Ausgangstexts zurück, mit Stempeln, Tabellen und handschriftlichen Vermerken dort übersetzt, wo sie stehen.</p><p><a class="btn magnetic" href="/de/documents/">Dokumentübersetzung</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>""",
+    how_h='Wer bei uns übersetzt',
+    how=[('Qualifiziert', 'Studium der Übersetzung oder eine Berufsqualifikation wie das CIOL Diploma.'), ('Muttersprachlich', 'Übersetzt wird in die eigene Muttersprache.'), ('Fachkundig', 'Recht, Medizin und Patente nur mit Erfahrung im Fachgebiet.'), ('Geprüft', 'Eine zweite Fachkraft revidiert jeden Auftrag.')],
+    after="""<section data-scene="film" class="grid-2 split-copy"><div><h2>Sprachen</h2><p>Europäische und asiatische Sprachen, aus dem und ins Englische. Die meistgefragten haben eigene Seiten: <a href="/de/languages/polish/">Polnisch</a>, <a href="/de/languages/romanian/">Rumänisch</a>, <a href="/de/languages/arabic/">Arabisch</a>, <a href="/de/languages/urdu/">Urdu</a>, <a href="/de/languages/chinese/">Chinesisch</a>, <a href="/de/languages/spanish/">Spanisch</a>, <a href="/de/languages/french/">Französisch</a>, <a href="/de/languages/german/">Deutsch</a>, <a href="/de/languages/ukrainian/">Ukrainisch</a> und <a href="/de/languages/portuguese/">Portugiesisch</a>.</p><p><a class="btn ghost" href="/de/languages/">Alle Sprachen</a></p></div>"""
+    + team_video("language", "Die Arbeit des Sprachteams in 3D: Dokumente, Waage und Untertitel.", "Kayonne Language Showreel") + """</section>""" + """<section data-scene="shield"><h2>Ihre Dokumente bleiben vertraulich</h2><ul class="ticks"><li>Nur die Personen im Auftrag sehen die Dateien.</li><li>NDA auf Wunsch, bevor Sie etwas senden.</li><li>Löschung innerhalb von 90 Tagen nach Lieferung, außer Sie wünschen etwas anderes.</li><li>Nie zum Training öffentlicher KI-Modelle genutzt.</li></ul></section>""",
+    faq=[('Übersetzen Sie ins Englische oder aus dem Englischen?', 'Beides, für alle Sprachen, die wir anbieten.'), ('Können Sie eine vorhandene Übersetzung prüfen?', 'Ja. Siehe <a href="/de/proofreading/">Korrektorat und Revision</a>.'), ('Wie erhalte ich einen Preis?', 'Laden Sie das Dokument über das <a href="/de/contact/">Anfrageformular</a> hoch. Sie erhalten einen Festpreis vor Beginn.')],
 )
 
 PAGES["global"] = dict(
-    title="Kayonne Global | Website-Lokalisierung und internationaler Marktstart",
-    desc="Kayonne Global vereint Entwicklungs- und Übersetzungsteam: lokalisierte Websites und Shops, mehrsprachige SEO und internationale Markteinführungen aus einer Hand.",
-    label="Kayonne Global", h1="Beide Teams. Ein Marktstart.",
-    lede="Die meisten Anbieter machen eine Hälfte: Sie bauen die Website oder sie übersetzen sie. Bei Kayonne Global arbeiten Entwicklungs- und Übersetzungsteam am selben Projekt, damit Ihre Website ohne Bruch in der Mitte für den nächsten Markt bereit ist.",
-    body="""<section data-scene="globe"><h2>Was wir ins Ausland bringen</h2>{{TEAM:global}}</section>
-<section data-scene="plane"><h2>So läuft ein Marktstart</h2><ol class="grid-3 steps">
-<li class="card"><h3>Analyse</h3><p>Ist die Website übersetzungsbereit? Text in Bildern, feste Schaltflächenbreiten, fest codierte Daten.</p></li>
-<li class="card"><h3>Recherche</h3><p>Suchbegriffe von Muttersprachlern im Zielmarkt recherchiert, nicht aus dem Englischen übersetzt.</p></li>
-<li class="card"><h3>Entwicklung</h3><p>Sprachordner, hreflang, lokale Währung und Formate, Layout für längere Wörter.</p></li>
-<li class="card"><h3>Übersetzung</h3><p>Eine Fachkraft übersetzt im Kontext, eine zweite revidiert.</p></li>
-<li class="card"><h3>Prüfung</h3><p>Jede Seite in jeder Sprache im Browser und auf dem Smartphone geprüft.</p></li>
-<li class="card"><h3>Start</h3><p>Sitemaps und Search Console je Markt, dazu ein Bericht, worauf zu achten ist.</p></li>
-</ol></section>
-<section data-scene="film" class="grid-2 split-copy"><div><h2>Sehen Sie selbst</h2><p>Eine Produktkarte auf Englisch, Deutsch, Japanisch und Arabisch. Es ändern sich die Wörter, aber auch Datum, Währung und Leserichtung.</p><p><a class="btn ghost" href="/de/demo/">Live-Demo ausprobieren</a></p></div>""" + LOC_VIDEO + """</section>
-<section data-scene="check"><h2>Warum nicht einfach ein Übersetzungs-Plugin?</h2><div class="table-wrap"><table>
+    kind="division", division="global",
+    title='Kayonne Global | Website-Lokalisierung und internationaler Marktstart',
+    desc='Kayonne Global vereint Entwicklungs- und Übersetzungsteam: lokalisierte Websites und Shops, mehrsprachige SEO und internationale Markteinführungen aus einer Hand.',
+    label='Kayonne Global',
+    h1='Beide Teams. Ein Marktstart.',
+    lede='Die meisten Anbieter machen eine Hälfte: Sie bauen die Website oder sie übersetzen sie. Bei Kayonne Global arbeiten Entwicklungs- und Übersetzungsteam am selben Projekt, damit Ihre Website ohne Bruch in der Mitte für den nächsten Markt bereit ist.',
+    services_h='Was wir ins Ausland bringen', services_scene='globe',
+    before="",
+    how_h='So läuft ein Marktstart',
+    how=[('Analyse', 'Ist die Website übersetzungsbereit? Text in Bildern, feste Schaltflächenbreiten, fest codierte Daten.'), ('Recherche', 'Suchbegriffe von Muttersprachlern im Zielmarkt recherchiert, nicht aus dem Englischen übersetzt.'), ('Entwicklung', 'Sprachordner, hreflang, lokale Währung und Formate, Layout für längere Wörter.'), ('Übersetzung', 'Eine Fachkraft übersetzt im Kontext, eine zweite revidiert.'), ('Prüfung', 'Jede Seite in jeder Sprache im Browser und auf dem Smartphone geprüft.'), ('Start', 'Sitemaps und Search Console je Markt, dazu ein Bericht, worauf zu achten ist.')],
+    after="""<section data-scene="film" class="grid-2 split-copy"><div><h2>Sehen Sie selbst</h2><p>Eine Produktkarte auf Englisch, Deutsch, Japanisch und Arabisch. Es ändern sich die Wörter, aber auch Datum, Währung und Leserichtung.</p><p><a class="btn ghost" href="/de/demo/">Live-Demo ausprobieren</a></p></div>""" + LOC_VIDEO + """</section>""" + """<section data-scene="check"><h2>Warum nicht einfach ein Übersetzungs-Plugin?</h2><div class="table-wrap"><table>
 <thead><tr><th scope="col"></th><th scope="col">Nur maschinelles Plugin</th><th scope="col">Kayonne Global</th></tr></thead>
 <tbody>
 <tr><td>Zeit bis zum ersten Entwurf</td><td>Minuten</td><td>Tage</td></tr>
@@ -818,11 +771,9 @@ PAGES["global"] = dict(
 <tr><td>Markennamen, Tonalität, rechtliche Aussagen</td><td>Nicht geprüft</td><td>Glossar vorab, Revision durch eine zweite Fachkraft</td></tr>
 <tr><td>Layout bei längeren Wörtern</td><td>Nicht geprüft</td><td>Auf Desktop und Smartphone geprüft</td></tr>
 <tr><td>Geeignet für</td><td>Unkritische Seiten, interne Tools</td><td>Verkaufsseiten, Rechtstexte, Checkout</td></tr>
-</tbody></table></div><p class="note">Ein Plugin kann ein guter erster Schritt sein. Wir können maschinelle Übersetzungen auch überarbeiten, statt neu anzufangen. Siehe <a href="/de/quality/">MTPE</a>.</p></section>
-<section data-scene="check" class="offer card"><div><p class="kicker">Kostenlos</p><h2>Readiness-Check</h2><p>Wir prüfen Ihre Website und sagen Ihnen, was bei einer Übersetzung kaputtgehen würde, mit welchem Markt Sie beginnen sollten und was es ungefähr braucht.</p></div><p><a class="btn magnetic" href="/de/readiness-check/">Website prüfen lassen</a></p></section>""",
-    faq=[("Welche Märkte kennen Sie am besten?", "Europa und Asien, mit besonderem Fokus auf Deutschland, Österreich und die Schweiz."),
-         ("Arbeiten Sie mit unserem Entwickler zusammen?", "Ja. Wir liefern Übersetzungen, Keyword-Recherche und hreflang-Vorgaben an Ihr Team."),
-         ("Übernehmen Sie auch den Shop?", "Ja. Siehe <a href=\"/de/ecommerce-localisation/\">Shop-Lokalisierung</a>.")],
+</tbody></table></div><p class="note">Ein Plugin kann ein guter erster Schritt sein. Wir können maschinelle Übersetzungen auch überarbeiten, statt neu anzufangen. Siehe <a href="/de/quality/">MTPE</a>.</p></section>""",
+    offer=dict(scene='check', kicker='Kostenlos', title='Readiness-Check', text='Wir prüfen Ihre Website und sagen Ihnen, was bei einer Übersetzung kaputtgehen würde, mit welchem Markt Sie beginnen sollten und was es ungefähr braucht.', href='/de/readiness-check/', button='Website prüfen lassen'),
+    faq=[('Welche Märkte kennen Sie am besten?', 'Europa und Asien, mit besonderem Fokus auf Deutschland, Österreich und die Schweiz.'), ('Arbeiten Sie mit unserem Entwickler zusammen?', 'Ja. Wir liefern Übersetzungen, Keyword-Recherche und hreflang-Vorgaben an Ihr Team.'), ('Übernehmen Sie auch den Shop?', 'Ja. Siehe <a href="/de/ecommerce-localisation/">Shop-Lokalisierung</a>.')],
 )
 
 PAGES["web-design-glasgow"] = svc(

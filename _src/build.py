@@ -24,58 +24,25 @@ EMAIL = "hello@kayonnecreatives.com"
 YEAR = datetime.date.today().year
 LANGS = {"en": content_en, "de": content_de}
 
-# The three teams. Each item: (slug, English name, German name, English blurb, German blurb).
-TEAMS = {
-    "digital": {
-        "en": "Digital", "de": "Digital", "hub": "digital", "cls": "d",
-        "en_line": "The build team: sites, shops, apps and the plumbing behind them.",
-        "de_line": "Das Entwicklungsteam: Websites, Shops, Apps und die Technik dahinter.",
-        "items": [
-            ("websites", "Websites", "Websites", "Business sites, shops, landing pages", "Unternehmensseiten, Shops, Landingpages"),
-            ("web-design-glasgow", "Web design Glasgow", "Webdesign Glasgow", "A local team you can meet", "Ein Team vor Ort in Glasgow"),
-            ("web-apps", "Web apps", "Web-Apps", "Custom tools and PWAs", "Individuelle Tools und PWAs"),
-            ("mobile-apps", "Mobile apps", "Mobile Apps", "iOS and Android", "iOS und Android"),
-            ("domains-email", "Domains and business email", "Domains und geschäftliche E-Mail", "Domain, inbox, SPF/DKIM/DMARC", "Domain, Postfach, SPF/DKIM/DMARC"),
-            ("seo", "SEO", "SEO", "Technical, local, multilingual", "Technisch, lokal, mehrsprachig"),
-            ("speed", "Speed and accessibility", "Ladezeit und Barrierefreiheit", "Core Web Vitals, WCAG 2.2 AA", "Core Web Vitals, WCAG 2.2 AA"),
-            ("care", "Care plans", "Wartungspläne", "Updates, backups, monitoring", "Updates, Backups, Monitoring"),
-            ("website-check", "Free website check", "Kostenloser Website-Check", "Speed, mobile and SEO basics", "Ladezeit, Mobilansicht, SEO-Grundlagen"),
-        ],
-    },
-    "language": {
-        "en": "Language", "de": "Sprache", "hub": "language", "cls": "l",
-        "en_line": "The translation team: qualified linguists, a second check on every job.",
-        "de_line": "Das Übersetzungsteam: qualifizierte Fachleute, zweite Prüfung bei jedem Auftrag.",
-        "items": [
-            ("documents", "Document translation", "Dokumentübersetzung", "Certificates, statements, manuals", "Urkunden, Zeugnisse, Handbücher"),
-            ("legal", "Legal translation", "Juristische Übersetzung", "Contracts and court papers", "Verträge und Gerichtsunterlagen"),
-            ("medical", "Medical translation", "Medizinische Übersetzung", "Life sciences, under NDA", "Life Sciences, mit NDA"),
-            ("patents", "Patent translation", "Patentübersetzung", "Claims kept consistent", "Einheitliche Ansprüche"),
-            ("subtitling", "Subtitling and transcription", "Untertitelung und Transkription", "SRT, VTT, SDH, burned-in", "SRT, VTT, SDH, eingebrannt"),
-            ("proofreading", "Proofreading and revision", "Korrektorat und Revision", "Check a translation you have", "Vorhandene Übersetzung prüfen"),
-            ("quality", "MTPE and quality checks", "MTPE und Qualitätsprüfung", "Post-editing and LQA", "Post-Editing und LQA"),
-            ("languages", "All languages", "Alle Sprachen", "Into and out of English", "Aus dem und ins Englische"),
-        ],
-    },
-    "global": {
-        "en": "Global", "de": "Global", "hub": "global", "cls": "b",
-        "en_line": "Both teams together: your site and your words, ready for the next market.",
-        "de_line": "Beide Teams zusammen: Website und Texte, bereit für den nächsten Markt.",
-        "items": [
-            ("international-launch", "International launch", "Internationaler Marktstart", "One team, one launch plan", "Ein Team, ein Startplan"),
-            ("localization", "Website and app localisation", "Website- und App-Lokalisierung", "Your product, in their language", "Ihr Produkt in ihrer Sprache"),
-            ("multilingual-seo", "Multilingual SEO", "Mehrsprachige SEO", "Found in every market", "In jedem Markt gefunden"),
-            ("ecommerce-localisation", "Shop localisation", "Shop-Lokalisierung", "Shopify and WooCommerce", "Shopify und WooCommerce"),
-            ("games", "Game localisation", "Spielelokalisierung", "Strings, stores, subtitles", "Strings, Stores, Untertitel"),
-            ("readiness-check", "Free readiness check", "Kostenloser Readiness-Check", "Is your site ready to translate?", "Ist Ihre Website übersetzungsbereit?"),
-            ("demo", "Live localisation demo", "Live-Lokalisierungsdemo", "Watch a page change language", "Eine Seite wechselt die Sprache"),
-        ],
-    },
-}
-# Footer and older code use these flat lists.
-DIGITAL = [(s, en, de) for s, en, de, *_ in TEAMS["digital"]["items"] if s not in ("website-check", "web-design-glasgow")]
-LANGUAGE = [(s, en, de) for s, en, de, *_ in TEAMS["language"]["items"] if s not in ("languages", "certified-translation-glasgow")] + \
-    [(s, en, de) for s, en, de, *_ in TEAMS["global"]["items"] if s in ("localization", "multilingual-seo")]
+from divisions import DIVISIONS, NOT_SERVICES  # noqa: E402
+
+# Divisions keyed by id. The extra keys keep older code working: team["en"] is the menu label,
+# team["hub"] the landing page, team["en_line"] the one-line description.
+TEAMS = {}
+for _d in DIVISIONS:
+    _d.update(hub=_d["slug"], en=_d["name"]["en"], de=_d["name"].get("de", ""),
+              en_line=_d["line"]["en"], de_line=_d["line"].get("de", ""))
+    TEAMS[_d["key"]] = _d
+
+
+# Each division's colour, so a new division needs no CSS edit.
+TEAM_STYLE = "<style>" + "".join(f".team-{d['cls']}{{--team:{d['color']}}}" for d in DIVISIONS) + "</style>"
+
+
+def divisions(lang):
+    """The divisions that have pages in this language, in menu order."""
+    return [d for d in DIVISIONS if lang in d["langs"]]
+
 
 # "What you get" on service pages. Only promises the site already makes elsewhere.
 GETS = {
@@ -209,9 +176,7 @@ def header(lang, slug):
   <div class="shell nav-row">
     <a class="mark" href="{p('')}"><span class="roll"><span>Kayonne</span></span></a>
     <nav class="links" aria-label="{t['services']}">
-      {mega(lang, "digital")}
-      {mega(lang, "language")}
-      {mega(lang, "global")}
+      {"".join(mega(lang, d["key"]) for d in divisions(lang))}
       {top_links}
     </nav>
     <div class="nav-actions">
@@ -222,9 +187,7 @@ def header(lang, slug):
   </div>
   <div class="shell drawer" id="drawer">
     <p class="drawer-cta"><a class="btn" href="{p('contact')}">{t['quote']}</a></p>
-    {drawer_team("digital")}
-    {drawer_team("language")}
-    {drawer_team("global")}
+    {"".join(drawer_team(d["key"]) for d in divisions(lang))}
     <div><p class="kicker">{t['company']}</p><ul>{drawer_more}</ul></div>
   </div>
 </header>"""
@@ -244,8 +207,7 @@ def footer(lang):
     t = UI[lang]
     p = lambda s: path(lang, s)  # noqa: E731
     cols = ""
-    for key in ("digital", "language", "global"):
-        team = TEAMS[key]
+    for team in divisions(lang):
         links = "".join(f'<li><a href="{p(s)}">{esc(en if lang == "en" else de)}</a></li>' for s, en, de, *_ in team["items"])
         cols += f'<div class="team-{team["cls"]}"><p class="kicker"><a href="{p(team["hub"])}">{team[lang]}</a></p><ul>{links}</ul></div>'
     comp = "".join(f'<li><a href="{p(s)}">{esc(t[k])}</a></li>' for s, k in [
@@ -299,6 +261,8 @@ SCRIPT = """<script>
   document.addEventListener("keydown",function(e){if(e.key==="Escape"){menus.forEach(function(m){if(m.open){m.open=false;m.querySelector("summary").focus();}});}});
   var q=new URLSearchParams(location.search).get("service"),sel=document.getElementById("f-service");
   if(q&&sel){[].slice.call(sel.options).forEach(function(o){if(o.text===q)sel.value=o.value||o.text;});}
+  var tm=new URLSearchParams(location.search).get("team"),ts=document.getElementById("f-team");
+  if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
 })();
 </script>
 <script src="/js/motion.js" defer></script>"""
@@ -411,6 +375,7 @@ def head(lang, slug, page):
 <link rel="preload" href="/fonts/outfit-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="/css/site.css" />
+{TEAM_STYLE}
 {ld}
 </head>"""
 
@@ -442,8 +407,7 @@ def related(lang, slug):
     if slug.startswith("languages/"):
         picks = [it for it in team["items"] if it[0] in ("documents", "proofreading", "subtitling")]
     else:
-        skip = {slug, "website-check", "readiness-check", "demo", "languages", "web-design-glasgow"}
-        picks = [it for it in team["items"] if it[0] not in skip][:3]
+        picks = [it for it in team["items"] if it[0] not in NOT_SERVICES | {slug}][:3]
     cards = "".join(f'<li><a class="card team-{team["cls"]}" href="{path(lang, s_)}"><strong>{esc(en if lang == "en" else de)}</strong>'
                     f'<span class="note">{esc(den if lang == "en" else dde)}</span></a></li>'
                     for s_, en, de, den, dde in picks)
@@ -479,6 +443,32 @@ def service_main(lang, page, slug):
     return "".join(parts)
 
 
+def division_main(lang, page, slug):
+    """Landing page for a division: hero, service cards, how it works, offer, FAQ, CTA.
+    Optional "before" and "after" hold extra sections, placed before and after "how it works"."""
+    t = UI[lang]
+    d = TEAMS[page["division"]]
+    cls = f' team-{d["cls"]}'
+    page = dict(page, label=page.get("label") or d["brand"][lang], h1=page.get("h1") or d["tagline"][lang])
+    actions = f'<a class="btn magnetic" href="{path(lang, "contact")}?team={d["key"]}">{t["quote"]}</a>'
+    if page.get("secondary"):
+        actions += f' <a class="btn ghost" href="{page["secondary"][1]}">{page["secondary"][0]}</a>'
+    parts = [intro_html(page, slug, page.get("ticks"), actions)]
+    parts.append(f'<section data-scene="{page.get("services_scene", "windows")}"><h2>{page["services_h"]}</h2>{team_cards(lang, d["key"])}</section>')
+    parts.append(page.get("before", ""))
+    if page.get("how"):
+        steps = "".join(f'<li><h3>{a}</h3><p class="note">{b}</p></li>' for a, b in page["how"])
+        parts.append(f'<section class="split band{cls}" data-scene="path"><h2>{page["how_h"]}</h2><ol class="num-list">{steps}</ol></section>')
+    parts.append(page.get("after", ""))
+    o = page.get("offer")
+    if o:
+        parts.append(f'<section data-scene="{o.get("scene", "check")}" class="offer card"><div><p class="kicker">{o["kicker"]}</p><h2>{o["title"]}</h2>'
+                     f'<p>{o["text"]}</p></div><p><a class="btn magnetic" href="{o["href"]}">{o["button"]}</a></p></section>')
+    parts.append(faq_html(page.get("faq"), t))
+    parts.append(cta(lang))
+    return "".join(parts)
+
+
 def raw_main(lang, page, slug):
     t = UI[lang]
     body = page["body"]
@@ -498,19 +488,52 @@ def team_cards(lang, key):
     return '<ul class="grid-3 link-cards img-cards">' + "".join(out) + "</ul>"
 
 
+def service_card(lang, team, item, kicker=True):
+    s_, en, de, den, dde = item
+    name, desc = (en, den) if lang == "en" else (de, dde)
+    k = f'<span class="kicker">{team[lang]}</span>' if kicker else ""
+    return (f'<li><a class="card team-{team["cls"]}" href="{path(lang, s_)}">{k}'
+            f'<strong>{esc(name)}</strong><span class="note">{esc(desc)}</span></a></li>')
+
+
 def service_grid(lang):
-    """Every paid service, coloured by team, for the home page."""
-    skip = {"website-check", "readiness-check", "demo", "languages", "web-design-glasgow"}
-    out = []
-    for key in ("digital", "language", "global"):
-        team = TEAMS[key]
-        for s_, en, de, den, dde in team["items"]:
-            if s_ in skip:
-                continue
-            name, desc = (en, den) if lang == "en" else (de, dde)
-            out.append(f'<li><a class="card team-{team["cls"]}" href="{path(lang, s_)}"><span class="kicker">{team[lang]}</span>'
-                       f'<strong>{esc(name)}</strong><span class="note">{esc(desc)}</span></a></li>')
+    """Every paid service, coloured by division, for the home page."""
+    out = [service_card(lang, d, it) for d in divisions(lang) for it in d["items"] if it[0] not in NOT_SERVICES]
     return '<ul class="grid-4 link-cards accent-cards">' + "".join(out) + "</ul>"
+
+
+def services_by_division(lang):
+    """The services page: one section per division."""
+    out = []
+    for d in divisions(lang):
+        cards = "".join(service_card(lang, d, it, False) for it in d["items"] if it[0] not in NOT_SERVICES)
+        out.append(f'<section class="team-{d["cls"]}"><div class="sec-head"><h2>{d["brand"][lang]}</h2>'
+                   f'<a class="text-link" href="{path(lang, d["slug"])}">{esc(d["tagline"][lang])} →</a></div>'
+                   f'<ul class="grid-3 link-cards accent-cards">{cards}</ul></section>')
+    return "".join(out)
+
+
+def division_cards(lang):
+    """Home page cards for divisions that have one."""
+    out = []
+    for d in divisions(lang):
+        c = d["card"] and d["card"].get(lang)
+        if not c:
+            continue
+        out.append(f'<a class="team team-{d["cls"]}" href="{path(lang, d["slug"])}"><p class="kicker">{d["brand"][lang]}</p>'
+                   f'<h2>{c["title"]}</h2><p>{c["text"]}</p><ul class="ticks">{lis(c["ticks"])}</ul>'
+                   f'<span class="team-more">{c["button"]} →</span></a>')
+    label = "Our teams" if lang == "en" else "Unsere Teams"
+    return f'<section class="teams" data-scene="windows" aria-label="{label}">' + "".join(out) + "</section>"
+
+
+def team_picker(lang):
+    """The required team field on the quote form."""
+    label, unsure = ("Which team do you need?", "Not sure") if lang == "en" else ("Welches Team brauchen Sie?", "Weiß ich noch nicht")
+    opts = "".join(f'<option value="{d["key"]}">{d["brand"][lang]}</option>' for d in divisions(lang))
+    choose = "Choose a team" if lang == "en" else "Team wählen"
+    return (f'<div class="full"><label for="f-team">{label} *</label><select id="f-team" name="team" required>'
+            f'<option value="">{choose}</option>{opts}<option value="unsure">{unsure}</option></select></div>')
 
 
 def insight_cards(lang, n=None):
@@ -533,9 +556,13 @@ def pair_cards(lang):
 
 
 def render(lang, slug, page, weights=""):
-    main = service_main(lang, page, slug) if page.get("kind") == "service" else raw_main(lang, page, slug)
+    kind = page.get("kind")
+    main = (service_main if kind == "service" else division_main if kind == "division" else raw_main)(lang, page, slug)
     main = main.replace("{{WEIGHTS}}", weights).replace("{{PAIRS}}", pair_cards(lang) if "{{PAIRS}}" in main else "")
     main = main.replace("{{SERVICES}}", service_grid(lang) if "{{SERVICES}}" in main else "")
+    main = main.replace("{{SERVICES_BY_DIVISION}}", services_by_division(lang) if "{{SERVICES_BY_DIVISION}}" in main else "")
+    main = main.replace("{{DIVISIONS}}", division_cards(lang) if "{{DIVISIONS}}" in main else "")
+    main = main.replace("{{TEAMPICKER}}", team_picker(lang) if "{{TEAMPICKER}}" in main else "")
     main = main.replace("{{INSIGHTS3}}", insight_cards(lang, 3) if "{{INSIGHTS3}}" in main else "")
     main = main.replace("{{INSIGHTS}}", insight_cards(lang) if "{{INSIGHTS}}" in main else "")
     main = re.sub(r"\{\{TEAM:(\w+)\}\}", lambda m: team_cards(lang, m.group(1)), main)
