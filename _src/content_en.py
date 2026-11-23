@@ -63,11 +63,11 @@ PAGES[""] = dict(
   </ul>
 </section>
 {{{{CHOOSER}}}}
-<section class="trust" data-scene="shards" aria-label="Qualifications and standards">
-  <p class="kicker">Qualifications and standards</p>
+<section class="trust" data-scene="shards" aria-label="How we work">
+  <p class="kicker">How we work</p>
   <ul>
-    <li>MA in Translation Studies, Middlebury Institute at Monterey</li>
-    <li>CIOL Diploma in Translation, Merit</li>
+    <li>Every translation checked by a second linguist</li>
+    <li>A written quote before work starts</li>
     <li>Processes aligned with ISO 17100 on request</li>
     <li>Sites tested against Core Web Vitals and WCAG 2.2 AA</li>
   </ul>
@@ -500,11 +500,11 @@ PAGES["pricing"] = dict(
 
 PAGES["about"] = dict(
     title="About Kayonne Creatives | Glasgow",
-    desc="Kayonne Creatives is a Glasgow digital and language agency, led by a qualified translator, with professional linguists and digital specialists.",
+    desc="Kayonne Creatives is a Glasgow agency with three teams, Digital, Localize and Growth, made up of professional linguists and digital specialists.",
     label="About", h1="An agency team. One project lead.",
-    lede="Kayonne Creatives is led from Glasgow by its founder, a qualified translator. Professional linguists cover European and Asian languages, and digital specialists build the sites and apps. You speak to one project lead throughout.",
+    lede="Kayonne Creatives is a Glasgow agency with three teams. Digital builds sites and apps, Localize translates them and launches them abroad, and Growth brings local service businesses new customers. You speak to one project lead throughout.",
     body="""<section class="grid-2">
-<div class="card"><h2>The founder</h2><p>MA in Translation Studies, Middlebury Institute of International Studies at Monterey.</p><p>CIOL Diploma in Translation, Merit.</p><p class="note">The founder leads every project.</p></div>
+<div class="card"><h2>Our teams</h2><ul class="ticks"><li><a href="/digital/">Kayonne Digital</a>: websites, shops, apps, SEO and care</li><li><a href="/localize/">Kayonne Localize</a>: translation, localisation and launches abroad</li><li><a href="/growth/">Kayonne Growth</a>: new customers for local service businesses</li></ul><p class="note">One project lead runs each job from brief to handover.</p></div>
 <div class="card"><h2>The team</h2><ul class="ticks"><li>Project lead in Glasgow</li><li>Professional linguists for European languages</li><li>Professional linguists for Asian languages</li><li>Editors and final readers</li><li>Digital specialists for sites, apps, search and speed</li></ul></div>
 </section>
 <section><h2>How we work</h2><ul class="ticks"><li>Every translation is checked by a second person before delivery.</li><li>Your files are seen only by the people on your job, and an NDA is available.</li><li>We do not use your files to train public AI models.</li></ul></section>""",
@@ -856,7 +856,7 @@ PAGES["localize"] = dict(
     desc='Kayonne Localize: qualified translators for documents, legal, medical and patent work, plus website localisation and launches abroad.',
     label="Kayonne Localize",
     h1='The translation and localisation team.',
-    lede='Qualified translators led from Glasgow by a translator with an MA in Translation Studies and the CIOL Diploma in Translation, with a second linguist checking every job. When your website or shop goes abroad, the same team works alongside our build team, so it launches without a hand-off in the middle.',
+    lede='Qualified translators for European and Asian languages, with a second linguist checking every job. When your website or shop goes abroad, the same team works alongside our build team, so it launches without a hand-off in the middle.',
     # Translation first, international launch second.
     groups=[('What we translate', TRANSLATE, "sheets"), ('What we take abroad', LAUNCH, "globe")],
     before="""<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Documents that look like the original</h2><p>Certificates, statements, contracts and manuals come back in the same layout as the source, with stamps, tables and handwritten notes translated where they appear.</p><p><a class="btn magnetic" href="/documents/">Document translation</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>""" + '<section data-scene="path"><h2>How a translator joins the team</h2><ol class="grid-4 steps"><li class="card"><h3>Qualified</h3><p>A translation degree or a professional qualification such as the CIOL Diploma.</p></li><li class="card"><h3>Native</h3><p>They translate into their own first language.</p></li><li class="card"><h3>Specialist</h3><p>Legal, medical and patent work goes only to linguists with experience in that field.</p></li><li class="card"><h3>Checked</h3><p>A second linguist revises every job before delivery.</p></li></ol></section>' + """<section data-scene="film" class="grid-2 split-copy"><div><h2>Languages</h2><p>European and Asian languages, into and out of English. The most requested have their own pages: <a href="/languages/polish/">Polish</a>, <a href="/languages/romanian/">Romanian</a>, <a href="/languages/arabic/">Arabic</a>, <a href="/languages/urdu/">Urdu</a>, <a href="/languages/chinese/">Chinese</a>, <a href="/languages/spanish/">Spanish</a>, <a href="/languages/french/">French</a>, <a href="/languages/german/">German</a>, <a href="/languages/ukrainian/">Ukrainian</a> and <a href="/languages/portuguese/">Portuguese</a>.</p><p><a class="btn ghost" href="/languages/">All languages</a></p></div>"""

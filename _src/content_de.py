@@ -51,11 +51,11 @@ PAGES[""] = dict(
   </ul>
 </section>
 {{{{CHOOSER}}}}
-<section class="trust" data-scene="shards" aria-label="Qualifikationen und Standards">
-  <p class="kicker">Qualifikationen und Standards</p>
+<section class="trust" data-scene="shards" aria-label="So arbeiten wir">
+  <p class="kicker">So arbeiten wir</p>
   <ul>
-    <li>MA in Translation Studies, Middlebury Institute in Monterey</li>
-    <li>CIOL Diploma in Translation, mit Auszeichnung (Merit)</li>
+    <li>Jede Übersetzung von einer zweiten Fachkraft geprüft</li>
+    <li>Ein schriftliches Angebot vor Arbeitsbeginn</li>
     <li>Abläufe nach ISO 17100 auf Wunsch</li>
     <li>Websites geprüft nach Core Web Vitals und WCAG 2.2 AA</li>
   </ul>
@@ -488,11 +488,11 @@ PAGES["pricing"] = dict(
 
 PAGES["about"] = dict(
     title="Über Kayonne Creatives | Glasgow",
-    desc='Kayonne Creatives ist eine Digital- und Sprachagentur in Glasgow, geleitet von einer qualifizierten Übersetzungsfachkraft.',
+    desc='Kayonne Creatives ist eine Agentur in Glasgow mit zwei Teams, Digital und Localize, aus professionellen Übersetzern und Digitalspezialisten.',
     label="Über uns", h1="Ein Agenturteam. Eine Projektleitung.",
-    lede="Kayonne Creatives wird von Glasgow aus von der Gründungsperson geleitet, einer qualifizierten Fachkraft für Übersetzung. Professionelle Übersetzer decken europäische und asiatische Sprachen ab, Digitalspezialisten bauen Websites und Apps. Sie sprechen die ganze Zeit mit einer Projektleitung.",
+    lede="Kayonne Creatives ist eine Agentur in Glasgow. Kayonne Digital baut Websites und Apps, Kayonne Localize übersetzt sie und bringt sie ins Ausland. Professionelle Übersetzer decken europäische und asiatische Sprachen ab. Sie sprechen die ganze Zeit mit einer Projektleitung.",
     body="""<section class="grid-2">
-<div class="card"><h2>Gründung und Leitung</h2><p>MA in Translation Studies, Middlebury Institute of International Studies in Monterey.</p><p>CIOL Diploma in Translation, mit Auszeichnung (Merit).</p><p class="note">Die Gründungsperson leitet jedes Projekt.</p></div>
+<div class="card"><h2>Unsere Teams</h2><ul class="ticks"><li><a href="/de/digital/">Kayonne Digital</a>: Websites, Shops, Apps, SEO und Wartung</li><li><a href="/de/localize/">Kayonne Localize</a>: Übersetzung, Lokalisierung und Marktstarts im Ausland</li></ul><p class="note">Eine Projektleitung betreut jeden Auftrag vom Briefing bis zur Übergabe.</p></div>
 <div class="card"><h2>Das Team</h2><ul class="ticks"><li>Projektleitung in Glasgow</li><li>Professionelle Übersetzer für europäische Sprachen</li><li>Professionelle Übersetzer für asiatische Sprachen</li><li>Lektorat und Schlussprüfung</li><li>Digitalspezialisten für Websites, Apps, Suche und Ladezeit</li></ul></div>
 </section>
 <section><h2>Wie wir arbeiten</h2><ul class="ticks"><li>Jede Übersetzung wird vor der Lieferung von einer zweiten Person geprüft.</li><li>Ihre Dateien sehen nur die Personen in Ihrem Auftrag, und eine NDA ist möglich.</li><li>Wir nutzen Ihre Dateien nicht zum Training öffentlicher KI-Modelle.</li></ul></section>""",
@@ -742,7 +742,7 @@ PAGES["localize"] = dict(
     desc='Kayonne Localize: qualifizierte Übersetzer für Dokumente, Recht, Medizin und Patente, dazu Website-Lokalisierung und Marktstarts im Ausland.',
     label="Kayonne Localize",
     h1='Das Übersetzungs- und Lokalisierungsteam.',
-    lede='Qualifizierte Übersetzer, geleitet von Glasgow aus von einer Fachkraft mit MA in Translation Studies und CIOL Diploma in Translation, mit zweiter Prüfung bei jedem Auftrag. Geht Ihre Website oder Ihr Shop ins Ausland, arbeitet dasselbe Team mit unserem Entwicklungsteam zusammen, damit der Start ohne Bruch in der Mitte gelingt.',
+    lede='Qualifizierte Übersetzer für europäische und asiatische Sprachen, mit zweiter Prüfung bei jedem Auftrag. Geht Ihre Website oder Ihr Shop ins Ausland, arbeitet dasselbe Team mit unserem Entwicklungsteam zusammen, damit der Start ohne Bruch in der Mitte gelingt.',
     # Translation first, international launch second.
     groups=[('Was wir übersetzen', TRANSLATE, "sheets"), ('Was wir ins Ausland bringen', LAUNCH, "globe")],
     before="""<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Dokumente wie das Original</h2><p>Urkunden, Kontoauszüge, Verträge und Handbücher kommen im Layout des Ausgangstexts zurück, mit Stempeln, Tabellen und handschriftlichen Vermerken dort übersetzt, wo sie stehen.</p><p><a class="btn magnetic" href="/de/documents/">Dokumentübersetzung</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>""" + '<section data-scene="path"><h2>Wer bei uns übersetzt</h2><ol class="grid-4 steps"><li class="card"><h3>Qualifiziert</h3><p>Studium der Übersetzung oder eine Berufsqualifikation wie das CIOL Diploma.</p></li><li class="card"><h3>Muttersprachlich</h3><p>Übersetzt wird in die eigene Muttersprache.</p></li><li class="card"><h3>Fachkundig</h3><p>Recht, Medizin und Patente nur mit Erfahrung im Fachgebiet.</p></li><li class="card"><h3>Geprüft</h3><p>Eine zweite Fachkraft revidiert jeden Auftrag.</p></li></ol></section>' + """<section data-scene="film" class="grid-2 split-copy"><div><h2>Sprachen</h2><p>Europäische und asiatische Sprachen, aus dem und ins Englische. Die meistgefragten haben eigene Seiten: <a href="/de/languages/polish/">Polnisch</a>, <a href="/de/languages/romanian/">Rumänisch</a>, <a href="/de/languages/arabic/">Arabisch</a>, <a href="/de/languages/urdu/">Urdu</a>, <a href="/de/languages/chinese/">Chinesisch</a>, <a href="/de/languages/spanish/">Spanisch</a>, <a href="/de/languages/french/">Französisch</a>, <a href="/de/languages/german/">Deutsch</a>, <a href="/de/languages/ukrainian/">Ukrainisch</a> und <a href="/de/languages/portuguese/">Portugiesisch</a>.</p><p><a class="btn ghost" href="/de/languages/">Alle Sprachen</a></p></div>"""

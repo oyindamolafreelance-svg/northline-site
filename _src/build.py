@@ -107,8 +107,8 @@ UI = {
         "next": "Next step", "cta_h": "Tell us the job and the markets. We will scope it properly.",
         "cta_ticks": ["Written quote before work starts", "One project lead in Glasgow", "Second linguist on every translation"],
         "talk": "Let's talk", "talk_text": "Planning a site, a translation or a launch abroad? Send the brief and we reply by email with a quote or questions.",
-        "standards": "Qualifications and standards", "contact_h": "Contact",
-        "creds": ["MA in Translation Studies, Middlebury Institute", "CIOL Diploma in Translation, Merit",
+        "standards": "How we work", "contact_h": "Contact",
+        "creds": ["Every translation checked by a second linguist", "A written quote before work starts",
                   "Processes aligned with ISO 17100 on request", "Sites tested against WCAG 2.2 AA"],
     },
     "de": {
@@ -126,8 +126,8 @@ UI = {
         "next": "Nächster Schritt", "cta_h": "Nennen Sie uns Auftrag und Märkte. Wir planen es sorgfältig.",
         "cta_ticks": ["Schriftliches Angebot vor Arbeitsbeginn", "Eine Projektleitung in Glasgow", "Zweite Prüfung bei jeder Übersetzung"],
         "talk": "Sprechen wir", "talk_text": "Sie planen eine Website, eine Übersetzung oder einen Marktstart im Ausland? Schicken Sie uns das Briefing, und wir antworten per E-Mail mit Angebot oder Rückfragen.",
-        "standards": "Qualifikationen und Standards", "contact_h": "Kontakt",
-        "creds": ["MA in Translation Studies, Middlebury Institute", "CIOL Diploma in Translation, Merit",
+        "standards": "So arbeiten wir", "contact_h": "Kontakt",
+        "creds": ["Jede Übersetzung von einer zweiten Fachkraft geprüft", "Ein schriftliches Angebot vor Arbeitsbeginn",
                   "Abläufe nach ISO 17100 auf Wunsch", "Websites geprüft nach WCAG 2.2 AA"],
     },
 }
@@ -626,8 +626,7 @@ def phone_demo(ph):
 
 
 def trust_strip():
-    icons = ["badge", "building", "lock"]
-    items = "".join(f"<li>{icon(i, 20)}<span>{esc(x)}</span></li>" for i, x in zip(icons, content_growth.TRUST))
+    items = "".join(f"<li>{icon(i, 20)}<span>{esc(x)}</span></li>" for i, x in content_growth.TRUST)
     return f'<section class="g-trust" aria-label="Why it is low risk"><ul>{items}</ul></section>'
 
 

@@ -49,7 +49,6 @@ or the form will not deliver anything.
 
 - Company details for the footer: registered name, legal form, company number and registered office
   (or the owner's name and business address if a sole trader), VAT number if registered
-- Founder's name and photo for the About page
 - Phone or WhatsApp number, if you want one shown
 - Starting prices, if you want them on the pricing page
 - A solicitor's review of the privacy notice and terms

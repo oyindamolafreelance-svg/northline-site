@@ -7,7 +7,7 @@ items in divisions.py so it shows in the menu, the footer and the "Who we work w
 Sections set to None are hidden: fill "video", "results" or "testimonial" to show them.
 """
 
-TRUST = ["30-day guarantee", "UK registered company", "Your leads are never shared"]
+TRUST = [("badge", "30-day guarantee"), ("lock", "Your leads are never shared")]
 GUARANTEE = "If we don't deliver in your first 30 days, you don't pay our fee."
 
 PAGES = {}
