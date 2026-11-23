@@ -147,12 +147,9 @@ main,footer{position:relative;z-index:1}
 .has3d .orbit .ring{visibility:hidden}
 .has3d .orbit{background:transparent;border-color:transparent}
 @media(max-width:899px){.has3d #stage{opacity:.42}}
-.motion .rv{opacity:0;transform:perspective(1200px) rotateX(18deg) translateY(70px) scale(.96);transform-origin:50% 0}
-.motion .rv,.motion .in{transition:opacity .9s ease,transform 1.1s cubic-bezier(.16,.84,.24,1)}
+.motion .rv{opacity:.6}
+.motion .rv,.motion .in{transition:opacity .15s ease}
 .motion .rv.in{opacity:1;transform:none}
-.motion .rv:not(.in) :is(.link-cards>li,.steps>li,.stack>details,.lang-wall>li,.creds>li,.ticks>li){opacity:0}
-.motion .rv.in :is(.link-cards>li,.steps>li,.stack>details,.creds>li,.ticks>li){animation:pop .9s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:calc(var(--n,0)*55ms + .15s)}
-.motion .rv.in .lang-wall>li{animation:chip .6s cubic-bezier(.3,1.6,.5,1) backwards;animation-delay:calc(var(--n,0)*18ms + .2s)}
 @keyframes pop{from{opacity:0;transform:perspective(800px) rotateX(-35deg) rotateY(12deg) translateY(40px) translateZ(-60px)}}
 @keyframes chip{from{opacity:0;transform:scale(.3) rotate(-12deg)}}
 .tilt{position:relative;transition:transform .25s ease,border-color .25s;transform-style:preserve-3d;will-change:transform}
@@ -256,10 +253,6 @@ details[open] .mega-list li:nth-child(n+9){animation-delay:.36s}
 .mini-steps{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;padding:0;margin:.4rem 0 1rem;counter-reset:ms}
 .mini-steps li{counter-increment:ms;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--line);font-size:.88rem;background:var(--bg)}
 .mini-steps li::before{content:counter(ms) " ";color:var(--lang)}
-.motion .rv.in .mini-steps li{animation:chip .6s cubic-bezier(.3,1.6,.5,1) backwards}
-.motion .rv.in .mini-steps li:nth-child(2){animation-delay:.08s}.motion .rv.in .mini-steps li:nth-child(3){animation-delay:.16s}
-.motion .rv.in .mini-steps li:nth-child(4){animation-delay:.24s}.motion .rv.in .mini-steps li:nth-child(5){animation-delay:.32s}
-.motion .rv.in .mini-steps li:nth-child(6){animation-delay:.4s}
 
 /* image cards */
 .img-cards a.card{padding:0;overflow:hidden;gap:.2rem;padding-bottom:1rem;border-top:3px solid var(--team)}
@@ -267,8 +260,6 @@ details[open] .mega-list li:nth-child(n+9){animation-delay:.36s}
   background:radial-gradient(70% 80% at 50% 45%,color-mix(in srgb,var(--team) 18%,transparent),transparent 70%);transition:transform .7s cubic-bezier(.16,.84,.24,1)}
 .img-cards a.card:hover img{transform:scale(1.08) rotate(-3deg)}
 .img-cards strong,.img-cards .note{padding:0 1rem}
-.motion .rv:not(.in) .img-cards img{clip-path:inset(0 0 100% 0)}
-.motion .rv.in .img-cards img{clip-path:inset(0);transition:clip-path 1s cubic-bezier(.16,.84,.24,1),transform .7s cubic-bezier(.16,.84,.24,1)}
 
 /* split copy blocks */
 .split-copy{align-items:center;gap:1.6rem}
@@ -428,9 +419,6 @@ ul.ticks.inline{display:flex;flex-wrap:wrap;gap:.4rem 1.6rem;font-size:.92rem;co
 
 /* intro with art: the extra rows (ticks, buttons) stay in the left column */
 @media(min-width:1000px){.intro.has-art .intro-art{grid-row:1 / span 6}}
-.motion .rv:not(.in) :is(.num-list>li,.get-list>li,.handle>li,.hero-facts>li,.trust li){opacity:0}
-.motion .rv.in :is(.num-list>li,.get-list>li,.handle>li,.hero-facts>li,.trust li){animation:pop .9s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:calc(var(--n,0)*70ms + .15s)}
-.motion .in .hero-facts>li{animation:pop .9s cubic-bezier(.16,.84,.24,1) backwards;animation-delay:calc(var(--n,0)*90ms + .3s)}
 footer{background:var(--bg)}
 .has3d footer :is(p,li,a){text-shadow:none}
 @media(max-width:699px){.tint .grid-4.accent-cards{grid-template-columns:1fr 1fr;gap:.6rem}.tint .accent-cards a.card{padding:.85rem}.tint .accent-cards .note{font-size:.82rem}}
@@ -520,12 +508,6 @@ footer{background:var(--bg)}
 .split h3{margin-top:.6rem}
 
 /* gentle fade for Growth sections instead of the 3D fold */
-.motion .growth>.rv{transform:translateY(28px)}
-.motion .growth>.rv.in{transform:none}
-.motion .growth .rv:not(.in) :is(.g-cards>li,.g-pains>li,.g-trust li){opacity:0}
-.motion .growth .rv.in :is(.g-cards>li,.g-pains>li){animation:gfade .7s ease backwards}
-.motion .growth .rv.in :is(.g-cards,.g-pains)>li:nth-child(2){animation-delay:.12s}
-.motion .growth .rv.in :is(.g-cards,.g-pains)>li:nth-child(3){animation-delay:.24s}
 @keyframes gfade{from{opacity:0;transform:translateY(16px)}}
 
 /* guarantee banner */
@@ -548,8 +530,8 @@ footer{background:var(--bg)}
 .g-month .job{background:#e4dccd;border-color:#d6cbb8;color:#5d554a}
 .g-month.busy .job{background:var(--team);border-color:var(--team);color:#fff}
 @media(max-width:600px){.g-month .job span{display:none}}
-.motion .g-cals:not(.in) .busy .job{opacity:0;transform:scale(.5)}
-.motion .g-cals.in .busy .job{animation:jobin .5s cubic-bezier(.3,1.5,.5,1) backwards;animation-delay:calc(var(--i) * 60ms + .3s)}
+.motion .g-cals:not(.in) .busy .job{background:#f1f3f6;border-color:#e3e7ed;color:transparent}
+.motion .g-cals.in .busy .job{transition:background .3s ease,border-color .3s ease,color .3s ease;transition-delay:calc(var(--i) * 40ms)}
 @keyframes jobin{from{opacity:0;transform:scale(.5)}}
 
 /* example inquiry */
@@ -559,8 +541,8 @@ footer{background:var(--bg)}
 .g-notice-head small{margin-left:auto;color:var(--muted)}
 .g-notice ul{list-style:none;margin:0;padding:0;display:grid;gap:.3rem}
 .g-notice li span{color:var(--muted)}
-.motion .g-example:not(.in) .g-notice{opacity:0;transform:translateX(70px)}
-.motion .g-example.in .g-notice{transition:opacity .7s ease .2s,transform .8s cubic-bezier(.16,.84,.24,1) .2s}
+.motion .g-example:not(.in) .g-notice{transform:translateX(24px)}
+.motion .g-example.in .g-notice{transition:transform .3s ease}
 
 /* calculator */
 .g-calc{display:grid;gap:1rem;padding:clamp(1.2rem,3vw,2rem);border-top:3px solid var(--team)}
@@ -603,10 +585,6 @@ footer{background:var(--bg)}
 /* on phones the chooser comes straight after the hero copy */
 @media(max-width:899px){.home .hero-facts{display:none}}
 
-.svc-group+.svc-group{margin-top:2rem}
-.svc-group h3{margin:0 0 .8rem;font-size:1.2rem}
-.svc-group h3 a{text-decoration:none;color:var(--team)}
-.svc-group h3 a::after{content:" →"}
 
 .drop.simple{min-width:0}
 details[open] .drop.simple{grid-template-columns:1fr;width:min(280px,90vw);left:auto;right:0;transform:none;position:absolute;top:2.2rem;animation:none}
@@ -621,4 +599,33 @@ main.page>.crumbs{margin-bottom:-2.2rem}
 .price-group h2 a{text-decoration:none;color:var(--team)}
 .price-group h2 a::after{content:" →";font-size:.8em}
 /* copper text on the beige band needs a deeper shade for 4.5:1 contrast */
-.tint .text-link,.tint .svc-group.team-d h3 a,.tint .team-d .kicker{color:#954c22}
+.tint .text-link,.tint .svc-row.team-d h3 a,.tint .team-d .kicker{color:#954c22}
+
+/* home: one row of service links per division */
+.svc-row{display:grid;gap:.5rem;padding:1rem 0;border-top:1px solid var(--line)}
+.svc-row:first-of-type{border-top:0}
+.svc-row h3{margin:0;font-size:1.15rem}
+.svc-row h3 a{text-decoration:none;color:var(--team)}
+.svc-row h3 a::after{content:" →"}
+.svc-row ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.4rem .6rem}
+.svc-row li a{display:inline-block;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--line);background:var(--panel);text-decoration:none;font-size:.92rem}
+.svc-row li a:hover{border-color:var(--team);color:var(--fg)}
+@media(min-width:900px){.svc-row{grid-template-columns:14rem 1fr;align-items:baseline}}
+
+/* languages, moved to /localize/ */
+.lang-list{scroll-margin-top:6rem}
+
+/* "Who you'll work with" */
+.person{display:grid;gap:1.2rem 2rem;align-items:center;padding:1.6rem;border-radius:1.4rem;background:var(--panel);border:1px solid var(--line)}
+@media(min-width:700px){.person{grid-template-columns:auto 1fr}}
+.person-pic img,.person-initials{display:grid;place-items:center;width:9rem;height:9rem;border-radius:50%;object-fit:cover}
+.person-initials{background:color-mix(in srgb,var(--team,var(--accent)) 14%,var(--panel));color:var(--team,var(--accent));font-family:Fraunces,serif;font-size:2.6rem;letter-spacing:.02em}
+.person h2{margin:.2rem 0 0}
+.person p{margin:.3rem 0 0}
+.person-role{color:var(--muted)}
+.social{display:inline-flex;align-items:center;gap:.4rem;text-decoration:none}
+.social:hover{text-decoration:underline}
+.phone-line{margin:0}
+
+/* contact page in Growth mode: the form starts on the first screen on phones */
+@media(max-width:899px){.team-growth .intro-art,.team-growth #stage{display:none}}

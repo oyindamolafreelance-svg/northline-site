@@ -146,8 +146,8 @@
   if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
   // Growth inquiries ask about the business instead of languages and files.
   if(ts){
-    var form=ts.form,swap=[].slice.call(form.querySelectorAll("[data-growth]"));
-    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.textContent;});
+    var form=ts.form,swap=[].slice.call(document.querySelectorAll(".intro [data-growth],#quote [data-growth]"));
+    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.innerHTML;});
     var mode=function(){
       var g=ts.value==="growth";
       [].slice.call(form.querySelectorAll("[data-team],[data-team-not]")).forEach(function(box){
@@ -155,7 +155,8 @@
         [].slice.call(box.querySelectorAll("input,select,textarea")).forEach(function(i){i.disabled=!show;});
       });
       var ph=document.getElementById("f-phone");if(ph)ph.required=g;
-      swap.forEach(function(el){var v=g?el.dataset.growth:el.dataset.base;if(el.tagName==="INPUT")el.value=v;else el.textContent=v;});
+      swap.forEach(function(el){if(el.tagName==="INPUT")el.value=g?el.dataset.growth:el.dataset.base;else if(g)el.textContent=el.dataset.growth;else el.innerHTML=el.dataset.base;});
+      document.documentElement.classList.toggle("team-growth",g);
     };
     ts.addEventListener("change",mode);mode();
   }

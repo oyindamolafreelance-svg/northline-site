@@ -44,8 +44,8 @@ def svc(**kw):
 PAGES = {}
 
 PAGES[""] = dict(
-    title="Kayonne Creatives | Websites and translation, Glasgow",
-    desc='Glasgow agency for websites, translation and customer growth. We build your site, take it into new languages, and bring local businesses new customers.',
+    title="Kayonne Creatives | Websites, translation and customer growth, Glasgow",
+    desc="Glasgow agency with three teams: Digital builds websites and apps, Localize translates them for new markets, Growth brings local businesses new customers.",
     body=f"""
 <section class="hero" data-scene="hero">
   <div>
@@ -110,9 +110,8 @@ PAGES[""] = dict(
   </ol>
 </section>
 <section data-scene="network">
-  <div class="sec-head"><h2>Europe and Asia, with one team.</h2><a class="text-link" href="/languages/">See all languages →</a></div>
-  <p class="lede">Professional linguists cover the languages below. You deal with one project lead in Glasgow.</p>
-  {LANG_WALLS}
+  <h2>Europe and Asia, with one team.</h2>
+  <p class="lede">Professional linguists cover European and Asian languages, into and out of English. <a class="text-link" href="/localize/#all-languages">{len(EUROPE) + len(ASIA)} languages, see all →</a></p>
 </section>
 <section data-scene="sheets">
   <div class="sec-head"><h2>Insights</h2><a class="text-link" href="/insights/">All articles →</a></div>
@@ -485,7 +484,7 @@ PAGES["process"] = dict(
 PRICES = {
     'digital': [('<a href="/websites/">Website</a>', 'Fixed project price', 'Number of pages, shop features, copywriting, number of languages'), ('<a href="/domains-email/">Domains and business email</a>', 'Fixed setup fee', 'Number of mailboxes, moving existing mail'), ('<a href="/seo/">SEO</a>', 'Monthly', 'Number of pages, markets and languages'), ('<a href="/care/">Care plan</a>', 'Monthly', 'Size of the site, update frequency, editing hours')],
     'localize': [('<a href="/documents/">Document translation</a>', 'Per word', 'Language pair, subject, file format and layout work, deadline'), ('<a href="/proofreading/">Proofreading and revision</a>', 'Per 1,000 words or per hour', 'Proofreading or full revision, quality of the existing translation'), ('<a href="/subtitling/">Subtitling and transcription</a>', 'Per minute of video or audio', 'Language pair, speed of speech, timing from scratch or from a template, SDH'), ('<a href="/localization/">Website and app localisation</a>', 'Per word, plus a fixed fee for checks', 'Number of languages, repeated text, CMS work, right-to-left layout')],
-    'growth': [('<a href="/growth/">Customer growth for local service businesses</a>', 'Monthly fee or fee per qualified enquiry, agreed after a free call', "Your ad spend is paid directly to Meta. First 30 days: if we miss the agreed target, you don't pay our fee.")],
+    'growth': [('<a href="/growth/">Customer growth for local service businesses</a>', 'Monthly fee or fee per qualified inquiry, agreed after a free call', "Your ad budget is paid directly to the ad platform. First 30 days: if we miss the agreed target, you don't pay our fee.")],
 }
 PRICE_HEAD = ('Service', 'Priced by', 'What changes the price')
 
@@ -503,7 +502,7 @@ PAGES["about"] = dict(
     desc="Kayonne Creatives is a Glasgow agency with three teams, Digital, Localize and Growth, made up of professional linguists and digital specialists.",
     label="About", h1="An agency team. One project lead.",
     lede="Kayonne Creatives is a Glasgow agency with three teams. Digital builds sites and apps, Localize translates them and launches them abroad, and Growth brings local service businesses new customers. You speak to one project lead throughout.",
-    body="""<section class="grid-2">
+    body="""{{PERSON}}<section class="grid-2">
 <div class="card"><h2>Our teams</h2><ul class="ticks"><li><a href="/digital/">Kayonne Digital</a>: websites, shops, apps, SEO and care</li><li><a href="/localize/">Kayonne Localize</a>: translation, localisation and launches abroad</li><li><a href="/growth/">Kayonne Growth</a>: new customers for local service businesses</li></ul><p class="note">One project lead runs each job from brief to handover.</p></div>
 <div class="card"><h2>The team</h2><ul class="ticks"><li>Project lead in Glasgow</li><li>Professional linguists for European languages</li><li>Professional linguists for Asian languages</li><li>Editors and final readers</li><li>Digital specialists for sites, apps, search and speed</li></ul></div>
 </section>
@@ -628,8 +627,10 @@ PAGES["contact"] = dict(
     title="Get a quote | Kayonne Creatives",
     desc="Ask for a quote for translation, subtitling, a website, or domain and email setup. Attach your file and get a fixed price.",
     label="Contact", h1="Tell us the job.",
+    growth_h1="Let's talk about your business.",
+    growth_lede="Tell us a little about your company and your area. We'll reply within one working day to set up a quick 15-minute call.",
     lede=f'Tell us the service, the languages and the deadline, and attach the file if you have one. We reply by email with a fixed quote or any questions. You can also write to <a href="mailto:{EMAIL}">{EMAIL}</a>.',
-    body=quote_form("en", FORM_EN), no_cta=True,
+    body="{{PHONE_LINE}}" + quote_form("en", FORM_EN), no_cta=True,
 )
 
 PAGES["thanks"] = dict(
@@ -860,7 +861,8 @@ PAGES["localize"] = dict(
     # Translation first, international launch second.
     groups=[('What we translate', TRANSLATE, "sheets"), ('What we take abroad', LAUNCH, "globe")],
     before="""<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Documents that look like the original</h2><p>Certificates, statements, contracts and manuals come back in the same layout as the source, with stamps, tables and handwritten notes translated where they appear.</p><p><a class="btn magnetic" href="/documents/">Document translation</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>""" + '<section data-scene="path"><h2>How a translator joins the team</h2><ol class="grid-4 steps"><li class="card"><h3>Qualified</h3><p>A translation degree or a professional qualification such as the CIOL Diploma.</p></li><li class="card"><h3>Native</h3><p>They translate into their own first language.</p></li><li class="card"><h3>Specialist</h3><p>Legal, medical and patent work goes only to linguists with experience in that field.</p></li><li class="card"><h3>Checked</h3><p>A second linguist revises every job before delivery.</p></li></ol></section>' + """<section data-scene="film" class="grid-2 split-copy"><div><h2>Languages</h2><p>European and Asian languages, into and out of English. The most requested have their own pages: <a href="/languages/polish/">Polish</a>, <a href="/languages/romanian/">Romanian</a>, <a href="/languages/arabic/">Arabic</a>, <a href="/languages/urdu/">Urdu</a>, <a href="/languages/chinese/">Chinese</a>, <a href="/languages/spanish/">Spanish</a>, <a href="/languages/french/">French</a>, <a href="/languages/german/">German</a>, <a href="/languages/ukrainian/">Ukrainian</a> and <a href="/languages/portuguese/">Portuguese</a>.</p><p><a class="btn ghost" href="/languages/">All languages</a></p></div>"""
-    + team_video("language", "The Localize team's work in 3D: documents, scales and subtitles.", "Kayonne Localize reel") + """</section>""" + """<section data-scene="shield"><h2>Your documents stay private</h2><ul class="ticks"><li>Only the people on your job see the files.</li><li>NDA on request, before you send anything.</li><li>Files deleted within 90 days of delivery unless you ask us to keep them.</li><li>Never used to train public AI models.</li></ul></section>""",
+    + team_video("language", "The Localize team's work in 3D: documents, scales and subtitles.", "Kayonne Localize reel") + """</section>"""
+    + """<section id="all-languages" class="lang-list" aria-label="All languages">""" + LANG_WALLS + """</section>""" + """<section data-scene="shield"><h2>Your documents stay private</h2><ul class="ticks"><li>Only the people on your job see the files.</li><li>NDA on request, before you send anything.</li><li>Files deleted within 90 days of delivery unless you ask us to keep them.</li><li>Never used to train public AI models.</li></ul></section>""",
     how_h='How a launch runs',
     how=[('Audit', 'Is the site ready to translate? Text in images, fixed-width buttons, hard-coded dates.'), ('Research', 'Search terms researched in each market by a native speaker, not translated from English.'), ('Build', 'Language folders, hreflang, local currency and dates, layout that survives longer words.'), ('Translate', 'A specialist translates in context. A second linguist revises.'), ('Check', 'Every page checked in the browser, in every language, on a phone.'), ('Launch', 'Sitemaps and Search Console for each market, plus a report on what to watch.')],
     after="""<section data-scene="film" class="grid-2 split-copy"><div><h2>See it happen</h2><p>One product card in English, German, Japanese and Arabic. The words change, and so do the date, the currency and the reading direction.</p><p><a class="btn ghost" href="/demo/">Try the live demo</a></p></div>""" + LOC_VIDEO_EN + """</section>""" + """<section data-scene="check"><h2>Why not just use a translation plugin?</h2><div class="table-wrap"><table>

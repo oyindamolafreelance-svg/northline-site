@@ -98,9 +98,8 @@ PAGES[""] = dict(
   </ol>
 </section>
 <section data-scene="network">
-  <div class="sec-head"><h2>Europa und Asien, mit einem Team.</h2><a class="text-link" href="/de/languages/">Alle Sprachen →</a></div>
-  <p class="lede">Professionelle Übersetzer decken die folgenden Sprachen ab. Ihr Ansprechpartner ist eine Projektleitung in Glasgow.</p>
-  {LANG_WALLS}
+  <h2>Europa und Asien, mit einem Team.</h2>
+  <p class="lede">Professionelle Übersetzer decken europäische und asiatische Sprachen ab, aus dem und ins Englische. <a class="text-link" href="/de/localize/#all-languages">{len(EUROPE) + len(ASIA)} Sprachen, alle ansehen →</a></p>
 </section>
 <section data-scene="sheets">
   <div class="sec-head"><h2>Ratgeber</h2><a class="text-link" href="/de/insights/">Alle Artikel →</a></div>
@@ -573,7 +572,7 @@ PAGES["contact"] = dict(
     desc="Angebot für Übersetzung, Untertitelung, Website oder Domain und E-Mail anfragen. Datei anhängen und Festpreis erhalten.",
     label="Kontakt", h1="Beschreiben Sie den Auftrag.",
     lede=f'Nennen Sie Leistung, Sprachen und Termin und hängen Sie die Datei an, falls vorhanden. Wir antworten per E-Mail mit einem Festpreisangebot oder Rückfragen. Sie erreichen uns auch unter <a href="mailto:{EMAIL}">{EMAIL}</a>.',
-    body=quote_form("de", FORM_DE), no_cta=True,
+    body="{{PHONE_LINE}}" + quote_form("de", FORM_DE), no_cta=True,
 )
 
 PAGES["thanks"] = dict(
@@ -746,7 +745,8 @@ PAGES["localize"] = dict(
     # Translation first, international launch second.
     groups=[('Was wir übersetzen', TRANSLATE, "sheets"), ('Was wir ins Ausland bringen', LAUNCH, "globe")],
     before="""<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Dokumente wie das Original</h2><p>Urkunden, Kontoauszüge, Verträge und Handbücher kommen im Layout des Ausgangstexts zurück, mit Stempeln, Tabellen und handschriftlichen Vermerken dort übersetzt, wo sie stehen.</p><p><a class="btn magnetic" href="/de/documents/">Dokumentübersetzung</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>""" + '<section data-scene="path"><h2>Wer bei uns übersetzt</h2><ol class="grid-4 steps"><li class="card"><h3>Qualifiziert</h3><p>Studium der Übersetzung oder eine Berufsqualifikation wie das CIOL Diploma.</p></li><li class="card"><h3>Muttersprachlich</h3><p>Übersetzt wird in die eigene Muttersprache.</p></li><li class="card"><h3>Fachkundig</h3><p>Recht, Medizin und Patente nur mit Erfahrung im Fachgebiet.</p></li><li class="card"><h3>Geprüft</h3><p>Eine zweite Fachkraft revidiert jeden Auftrag.</p></li></ol></section>' + """<section data-scene="film" class="grid-2 split-copy"><div><h2>Sprachen</h2><p>Europäische und asiatische Sprachen, aus dem und ins Englische. Die meistgefragten haben eigene Seiten: <a href="/de/languages/polish/">Polnisch</a>, <a href="/de/languages/romanian/">Rumänisch</a>, <a href="/de/languages/arabic/">Arabisch</a>, <a href="/de/languages/urdu/">Urdu</a>, <a href="/de/languages/chinese/">Chinesisch</a>, <a href="/de/languages/spanish/">Spanisch</a>, <a href="/de/languages/french/">Französisch</a>, <a href="/de/languages/german/">Deutsch</a>, <a href="/de/languages/ukrainian/">Ukrainisch</a> und <a href="/de/languages/portuguese/">Portugiesisch</a>.</p><p><a class="btn ghost" href="/de/languages/">Alle Sprachen</a></p></div>"""
-    + team_video("language", "Die Arbeit des Teams Localize in 3D: Dokumente, Waage und Untertitel.", "Kayonne Localize Showreel") + """</section>""" + """<section data-scene="shield"><h2>Ihre Dokumente bleiben vertraulich</h2><ul class="ticks"><li>Nur die Personen im Auftrag sehen die Dateien.</li><li>NDA auf Wunsch, bevor Sie etwas senden.</li><li>Löschung innerhalb von 90 Tagen nach Lieferung, außer Sie wünschen etwas anderes.</li><li>Nie zum Training öffentlicher KI-Modelle genutzt.</li></ul></section>""",
+    + team_video("language", "Die Arbeit des Teams Localize in 3D: Dokumente, Waage und Untertitel.", "Kayonne Localize Showreel") + """</section>"""
+    + """<section id="all-languages" class="lang-list" aria-label="Alle Sprachen">""" + LANG_WALLS + """</section>""" + """<section data-scene="shield"><h2>Ihre Dokumente bleiben vertraulich</h2><ul class="ticks"><li>Nur die Personen im Auftrag sehen die Dateien.</li><li>NDA auf Wunsch, bevor Sie etwas senden.</li><li>Löschung innerhalb von 90 Tagen nach Lieferung, außer Sie wünschen etwas anderes.</li><li>Nie zum Training öffentlicher KI-Modelle genutzt.</li></ul></section>""",
     how_h='So läuft ein Marktstart',
     how=[('Analyse', 'Ist die Website übersetzungsbereit? Text in Bildern, feste Schaltflächenbreiten, fest codierte Daten.'), ('Recherche', 'Suchbegriffe von Muttersprachlern im Zielmarkt recherchiert, nicht aus dem Englischen übersetzt.'), ('Entwicklung', 'Sprachordner, hreflang, lokale Währung und Formate, Layout für längere Wörter.'), ('Übersetzung', 'Eine Fachkraft übersetzt im Kontext, eine zweite revidiert.'), ('Prüfung', 'Jede Seite in jeder Sprache im Browser und auf dem Smartphone geprüft.'), ('Start', 'Sitemaps und Search Console je Markt, dazu ein Bericht, worauf zu achten ist.')],
     after="""<section data-scene="film" class="grid-2 split-copy"><div><h2>Sehen Sie selbst</h2><p>Eine Produktkarte auf Englisch, Deutsch, Japanisch und Arabisch. Es ändern sich die Wörter, aber auch Datum, Währung und Leserichtung.</p><p><a class="btn ghost" href="/de/demo/">Live-Demo ausprobieren</a></p></div>""" + LOC_VIDEO + """</section>""" + """<section data-scene="check"><h2>Warum nicht einfach ein Übersetzungs-Plugin?</h2><div class="table-wrap"><table>

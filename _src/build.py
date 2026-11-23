@@ -19,6 +19,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 import content_de  # noqa: E402
 import content_en  # noqa: E402
 import content_growth  # noqa: E402
+import settings  # noqa: E402
 
 SITE = "https://kayonnecreatives.com"
 EMAIL = "hello@kayonnecreatives.com"
@@ -197,7 +198,7 @@ def crumbs(lang, slug, page):
     trail.append((d["name"][lang], path(lang, d["slug"])))
     if slug.startswith("languages/"):
         trail.append((names["languages"], path(lang, "languages")))
-    trail.append((names.get(slug) or strip(page.get("label") or page["h1"]), None))
+    trail.append((page.get("crumb") or names.get(slug) or strip(page.get("label") or page["h1"]), None))
     return trail
 
 
@@ -209,6 +210,26 @@ def crumbs_html(trail):
 def crumbs_schema(trail, lang, slug):
     return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
         {"@type": "ListItem", "position": i + 1, "name": n, "item": SITE + (h or path(lang, slug))} for i, (n, h) in enumerate(trail)]}
+
+
+def person_block():
+    """ "Who you'll work with": photo (or initials until a photo is set), name, role, bio, LinkedIn."""
+    p = settings.PERSON
+    initials = "".join(w[0] for w in p["name"].split()[:2])
+    pic = (f'<img src="{esc(p["photo"])}" alt="{esc(p["name"])}" width="400" height="400" loading="lazy">' if p["photo"]
+           else f'<span class="person-initials" aria-hidden="true">{initials}</span>')
+    li = (f'<p><a class="social" href="{esc(settings.LINKEDIN_URL)}" rel="noopener">{LINKEDIN_ICON}<span>{esc(p["name"].split()[0])} on LinkedIn</span></a></p>'
+          if settings.LINKEDIN_URL else "")
+    return (f'<section class="person" aria-labelledby="person-h"><div class="person-pic">{pic}</div><div>'
+            f'<p class="kicker">Who you&#39;ll work with</p><h2 id="person-h">{esc(p["name"])}</h2>'
+            f'<p class="person-role">{esc(p["role"])}</p><p>{esc(p["bio"])}</p>{li}</div></section>')
+
+
+def phone_line(lang):
+    if not settings.PHONE:
+        return ""
+    label = "Prefer to call?" if lang == "en" else "Lieber anrufen?"
+    return f'<p class="phone-line">{label} {tel(settings.PHONE)}</p>'
 
 
 def chooser(lang):
@@ -268,13 +289,35 @@ def marquee():
             f'<div class="marquee rev" aria-hidden="true"><div class="marquee-track">{words}{words}</div></div>')
 
 
-def footer(lang, page=None):
+def phone_for(page):
+    """The phone number for this page: the US number on Growth pages when there is one."""
+    return settings.PHONE_US if lean(page) and settings.PHONE_US else settings.PHONE
+
+
+def tel(number):
+    return f'<a href="tel:{re.sub(r"[^0-9+]", "", number)}">{esc(number)}</a>' if number else ""
+
+
+LINKEDIN_ICON = ('<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 '
+                 '2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg>')
+
+
+def footer(lang, page=None, slug=""):
     t = UI[lang]
     plain = lean(page)
-    d = TEAMS.get((page or {}).get("division")) if plain else None
-    talk_text, talk_label, talk_href = (t["talk_text"], t["quote"], path(lang, "contact"))
+    # The "Let's talk" text and "How we work" points follow the division of the current page.
+    d = TEAMS.get((page or {}).get("division") or team_of(slug))
+    talk_text, talk_label, talk_href, points = t["talk_text"], t["quote"], path(lang, "contact"), t["creds"]
+    if d and d.get("footer", {}).get(lang):
+        talk_text, points = d["footer"][lang]
     if d and d.get("cta"):
-        talk_text, (talk_label, talk_href) = d["line"][lang], d["cta"][lang]
+        talk_label, talk_href = d["cta"][lang]
+    phone = phone_for(page)
+    contact = f'<p><a href="mailto:{EMAIL}">{EMAIL}</a></p>' + (f'<p>{tel(phone)}</p>' if phone else "")
+    contact += f'<p class="note">{t["place"]}</p>'
+    if settings.LINKEDIN_URL:
+        contact += f'<p><a class="social" href="{esc(settings.LINKEDIN_URL)}" rel="noopener">{LINKEDIN_ICON}<span>LinkedIn</span></a></p>'
+    company_no = f' · {"Company number" if lang == "en" else "Handelsregisternummer"} {esc(settings.COMPANY_NO)}' if settings.COMPANY_NO else ""
     p = lambda s: path(lang, s)  # noqa: E731
     cols = ""
     for team in divisions(lang):
@@ -284,7 +327,7 @@ def footer(lang, page=None):
         ("about", "about"), ("process", "process"), ("industries", "industries"),
         ("pricing", "pricing"), ("work", "work"), ("faq", "faq"), ("insights", "insights"), ("contact", "contact")])
     legal = " · ".join(f'<a href="{p(s)}">{esc(t[s])}</a>' for s in ("privacy", "cookies", "terms"))
-    standards = "" if plain else f'<div><p class="kicker">{t["standards"]}</p><ul class="ticks">{lis(t["creds"])}</ul></div>'
+    standards = f'<div><p class="kicker">{t["standards"]}</p><ul class="ticks">{lis(points)}</ul></div>'
     return f"""{"" if plain else marquee()}<footer><div class="shell foot">
     <div>
       <p class="mark">Kayonne Creatives</p>
@@ -296,12 +339,12 @@ def footer(lang, page=None):
     <div><p class="kicker">{t['company']}</p><ul>{comp}</ul></div>
   </div>
   <div class="shell foot-row">
-    <div><p class="kicker">{t['contact_h']}</p><p><a href="mailto:{EMAIL}">{EMAIL}</a></p><p class="note">{t['place']}</p></div>
+    <div><p class="kicker">{t['contact_h']}</p>{contact}</div>
     {standards}
     <div class="foot-talk"><p class="kicker">{t['talk']}</p><p class="note">{talk_text}</p><p><a class="btn magnetic" href="{talk_href}">{talk_label}</a></p></div>
   </div>
   <p class="shell wordmark" aria-hidden="true">Kayonne</p>
-  <div class="shell foot-base note"><p>© {YEAR} Kayonne Creatives · {t['place']}</p><p>{legal}</p></div>
+  <div class="shell foot-base note"><p>© {YEAR} Kayonne Creatives · {t['place']}{company_no}</p><p>{legal}</p></div>
 </footer>"""
 
 
@@ -336,8 +379,8 @@ SCRIPT = """<script>
   if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
   // Growth inquiries ask about the business instead of languages and files.
   if(ts){
-    var form=ts.form,swap=[].slice.call(form.querySelectorAll("[data-growth]"));
-    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.textContent;});
+    var form=ts.form,swap=[].slice.call(document.querySelectorAll(".intro [data-growth],#quote [data-growth]"));
+    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.innerHTML;});
     var mode=function(){
       var g=ts.value==="growth";
       [].slice.call(form.querySelectorAll("[data-team],[data-team-not]")).forEach(function(box){
@@ -345,7 +388,8 @@ SCRIPT = """<script>
         [].slice.call(box.querySelectorAll("input,select,textarea")).forEach(function(i){i.disabled=!show;});
       });
       var ph=document.getElementById("f-phone");if(ph)ph.required=g;
-      swap.forEach(function(el){var v=g?el.dataset.growth:el.dataset.base;if(el.tagName==="INPUT")el.value=v;else el.textContent=v;});
+      swap.forEach(function(el){if(el.tagName==="INPUT")el.value=g?el.dataset.growth:el.dataset.base;else if(g)el.textContent=el.dataset.growth;else el.innerHTML=el.dataset.base;});
+      document.documentElement.classList.toggle("team-growth",g);
     };
     ts.addEventListener("change",mode);mode();
   }
@@ -388,9 +432,11 @@ def intro_html(page, slug, ticks=None, actions=""):
     if os.path.exists(f"img/scenes/{scene}.webp"):
         art = (f'<figure class="intro-art"><img src="/img/scenes/{scene}.webp" alt="" width="900" height="675" '
                f'decoding="async" fetchpriority="low"></figure>')
-    inner = f'<p class="kicker">{page.get("label", "")}</p><h1>{page["h1"]}</h1>'
+    g1 = f' data-growth="{esc(page["growth_h1"])}"' if page.get("growth_h1") else ""
+    g2 = f' data-growth="{esc(page["growth_lede"])}"' if page.get("growth_lede") else ""
+    inner = f'<p class="kicker">{page.get("label", "")}</p><h1{g1}>{page["h1"]}</h1>'
     if page.get("lede"):
-        inner += f'<p class="lede">{page["lede"]}</p>'
+        inner += f'<p class="lede"{g2}>{page["lede"]}</p>'
     if ticks:
         inner += f'<ul class="ticks cols intro-ticks">{lis(ticks)}</ul>'
     if actions:
@@ -412,6 +458,9 @@ def org_schema(lang):
         "address": {"@type": "PostalAddress", "addressLocality": "Glasgow", "addressCountry": "GB"},
         "areaServed": ["GB", "Europe", "Asia"],
         "knowsLanguage": ["en", "de", "fr", "es", "it", "nl", "pl", "ja", "zh", "ko"],
+        "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "email": EMAIL,
+                          **({"telephone": settings.PHONE} if settings.PHONE else {})}],
+        **({"sameAs": [settings.LINKEDIN_URL]} if settings.LINKEDIN_URL else {}),
     }
 
 
@@ -437,8 +486,11 @@ def head(lang, slug, page):
         alts = ""
     html_lang = page.get("html_lang", lang)
     schemas = list(page.get("schema", []))
-    if slug == "":
+    if slug in ("", "contact", "pricing"):
         schemas.insert(0, org_schema(lang))
+    if slug == "contact":
+        schemas.append({"@context": "https://schema.org", "@type": "ContactPage", "name": title, "url": url,
+                        "about": {"@type": "Organization", "name": "Kayonne Creatives", "url": SITE + "/"}})
     if page.get("faq"):
         schemas.append(faq_schema(page["faq"]))
     ld = "".join(f'<script type="application/ld+json">{json.dumps(s, ensure_ascii=False)}</script>' for s in schemas)
@@ -669,6 +721,7 @@ def growth_hub_main(lang, page, slug):
         parts.append(f'<section class="g-video"><figure class="media"><video controls preload="none" poster="{v["poster"]}" width="1280" height="720">'
                      f'<source src="{v["src"]}" type="video/mp4"></video><figcaption>{esc(v["caption"])}</figcaption></figure></section>')
     parts.append(f'<section><h2>{page["get_h"]}</h2>{icon_cards(page["get"])}</section>')
+    parts.append(person_block())
     parts.append(guarantee())
     parts.append(growth_faq(page))
     if page.get("results"):
@@ -757,12 +810,13 @@ def service_card(lang, team, item, kicker=True):
 
 
 def service_grid(lang):
-    """Every paid service, grouped by division, for the home page."""
+    """Home page: one short row of service links per division."""
     out = []
     for d in divisions(lang):
-        cards = "".join(service_card(lang, d, it, False) for it in d["items"] if it[0] not in NOT_SERVICES)
-        out.append(f'<div class="svc-group team-{d["cls"]}"><h3><a href="{path(lang, d["slug"])}">{d["brand"][lang]}</a></h3>'
-                   f'<ul class="grid-4 link-cards accent-cards">{cards}</ul></div>')
+        links = "".join(f'<li><a href="{path(lang, s_)}">{esc(en if lang == "en" else de)}</a></li>'
+                        for s_, en, de, *_ in d["items"] if s_ not in NOT_SERVICES and s_ != d["slug"])
+        out.append(f'<div class="svc-row team-{d["cls"]}"><h3><a href="{path(lang, d["slug"])}">{d["brand"][lang]}</a></h3>'
+                   f'<ul>{links}</ul></div>')
     return "".join(out)
 
 
@@ -844,6 +898,8 @@ def render(lang, slug, page, weights=""):
     main = main.replace("{{SERVICES_BY_DIVISION}}", services_by_division(lang) if "{{SERVICES_BY_DIVISION}}" in main else "")
     main = main.replace("{{DIVISIONS}}", division_cards(lang) if "{{DIVISIONS}}" in main else "")
     main = main.replace("{{BOOK}}", GROWTH_BOOK_URL)
+    main = main.replace("{{PERSON}}", person_block() if "{{PERSON}}" in main else "")
+    main = main.replace("{{PHONE_LINE}}", phone_line(lang) if "{{PHONE_LINE}}" in main else "")
     main = main.replace("{{PRICING}}", pricing(lang) if "{{PRICING}}" in main else "")
     main = main.replace("{{CHOOSER}}", chooser(lang) if "{{CHOOSER}}" in main else "")
     main = main.replace("{{TEAMPICKER}}", team_picker(lang) if "{{TEAMPICKER}}" in main else "")
@@ -860,7 +916,7 @@ def render(lang, slug, page, weights=""):
     if kind and kind.startswith("growth"):
         cls += " growth"
     return (head(lang, slug, page) + f"\n<body{body_attr}>\n" + header(lang, link_slug, page) +
-            f'\n<main id="content" class="shell {cls}">{main}</main>\n' + footer(lang, page) +
+            f'\n<main id="content" class="shell {cls}">{main}</main>\n' + footer(lang, page, slug) +
             (book_bar() if kind and kind.startswith("growth") else "") + "\n" + SCRIPT +
             page.get("script", "") + "\n</body>\n</html>\n")
 

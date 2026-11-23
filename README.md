@@ -13,6 +13,13 @@ The pages are generated. Do not edit the HTML files by hand.
 
 Shared header, footer, menus and page head live in `_src/build.py`. Styles are in `css/site.css`.
 
+## Your details (phone, LinkedIn, company number, photo)
+
+Fill them in `_src/settings.py` and rebuild. Each one appears on the site only once it is filled in:
+phone in the footer and on /contact/ (a US number for Growth pages if you set `PHONE_US`), the company
+number in the footer, the LinkedIn icon in the footer and on the person block, and the photo on the
+"Who you'll work with" block on /about/ and /growth/ (initials are shown until a photo is set).
+
 ## Divisions (Digital, Localize, Growth)
 
 The divisions are listed once, in `_src/divisions.py`. The menus, footer columns, home page chooser and

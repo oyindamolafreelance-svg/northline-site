@@ -77,8 +77,8 @@
   </div>
   <div class="shell foot-row">
     <div><p class="kicker">Kontakt</p><p><a href="mailto:hello@kayonnecreatives.com">hello@kayonnecreatives.com</a></p><p class="note">Glasgow, Vereinigtes Königreich</p></div>
-    <div><p class="kicker">So arbeiten wir</p><ul class="ticks"><li>Jede Übersetzung von einer zweiten Fachkraft geprüft</li><li>Ein schriftliches Angebot vor Arbeitsbeginn</li><li>Abläufe nach ISO 17100 auf Wunsch</li><li>Websites geprüft nach WCAG 2.2 AA</li></ul></div>
-    <div class="foot-talk"><p class="kicker">Sprechen wir</p><p class="note">Sie planen eine Website, eine Übersetzung oder einen Marktstart im Ausland? Schicken Sie uns das Briefing, und wir antworten per E-Mail mit Angebot oder Rückfragen.</p><p><a class="btn magnetic" href="/de/contact/">Angebot anfragen</a></p></div>
+    <div><p class="kicker">So arbeiten wir</p><ul class="ticks"><li>Ein schriftliches Angebot vor Arbeitsbeginn</li><li>Ein Layout zur Prüfung vor der Entwicklung</li><li>Websites geprüft nach Core Web Vitals und WCAG 2.2 AA</li><li>Website und Domain auf Ihren Namen</li></ul></div>
+    <div class="foot-talk"><p class="kicker">Sprechen wir</p><p class="note">Sie brauchen eine Website, einen Shop oder eine App? Schicken Sie uns das Briefing, wir antworten per E-Mail mit Angebot oder Rückfragen.</p><p><a class="btn magnetic" href="/de/contact/">Angebot anfragen</a></p></div>
   </div>
   <p class="shell wordmark" aria-hidden="true">Kayonne</p>
   <div class="shell foot-base note"><p>© 2026 Kayonne Creatives · Glasgow, Vereinigtes Königreich</p><p><a href="/de/privacy/">Datenschutz</a> · <a href="/de/cookies/">Cookies</a> · <a href="/de/terms/">AGB</a></p></div>
@@ -114,8 +114,8 @@
   if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
   // Growth inquiries ask about the business instead of languages and files.
   if(ts){
-    var form=ts.form,swap=[].slice.call(form.querySelectorAll("[data-growth]"));
-    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.textContent;});
+    var form=ts.form,swap=[].slice.call(document.querySelectorAll(".intro [data-growth],#quote [data-growth]"));
+    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.innerHTML;});
     var mode=function(){
       var g=ts.value==="growth";
       [].slice.call(form.querySelectorAll("[data-team],[data-team-not]")).forEach(function(box){
@@ -123,7 +123,8 @@
         [].slice.call(box.querySelectorAll("input,select,textarea")).forEach(function(i){i.disabled=!show;});
       });
       var ph=document.getElementById("f-phone");if(ph)ph.required=g;
-      swap.forEach(function(el){var v=g?el.dataset.growth:el.dataset.base;if(el.tagName==="INPUT")el.value=v;else el.textContent=v;});
+      swap.forEach(function(el){if(el.tagName==="INPUT")el.value=g?el.dataset.growth:el.dataset.base;else if(g)el.textContent=el.dataset.growth;else el.innerHTML=el.dataset.base;});
+      document.documentElement.classList.toggle("team-growth",g);
     };
     ts.addEventListener("change",mode);mode();
   }

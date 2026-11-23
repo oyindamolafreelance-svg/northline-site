@@ -20,7 +20,7 @@
 <link rel="preload" href="/fonts/fraunces-latin.woff2" as="font" type="font/woff2" crossorigin />
 <link rel="stylesheet" href="/css/site.css" />
 <style>.team-d{--team:#a8582a}.team-l{--team:#127569}.team-g{--team:#1f5bb8}</style>
-
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "ProfessionalService", "name": "Kayonne Creatives", "url": "https://kayonnecreatives.com/", "email": "hello@kayonnecreatives.com", "logo": "https://kayonnecreatives.com/favicon.svg", "image": "https://kayonnecreatives.com/og.png", "description": "Websites und Übersetzungen aus Glasgow, für europäische und asiatische Märkte.", "address": {"@type": "PostalAddress", "addressLocality": "Glasgow", "addressCountry": "GB"}, "areaServed": ["GB", "Europe", "Asia"], "knowsLanguage": ["en", "de", "fr", "es", "it", "nl", "pl", "ja", "zh", "ko"], "contactPoint": [{"@type": "ContactPoint", "contactType": "customer service", "email": "hello@kayonnecreatives.com"}]}</script>
 </head>
 <body>
 <a class="skip" href="#content">Zum Inhalt springen</a>
@@ -115,8 +115,8 @@
   if(tm&&ts){[].slice.call(ts.options).forEach(function(o){if(o.value===tm)ts.value=tm;});}
   // Growth inquiries ask about the business instead of languages and files.
   if(ts){
-    var form=ts.form,swap=[].slice.call(form.querySelectorAll("[data-growth]"));
-    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.textContent;});
+    var form=ts.form,swap=[].slice.call(document.querySelectorAll(".intro [data-growth],#quote [data-growth]"));
+    swap.forEach(function(el){el.dataset.base=el.tagName==="INPUT"?el.value:el.innerHTML;});
     var mode=function(){
       var g=ts.value==="growth";
       [].slice.call(form.querySelectorAll("[data-team],[data-team-not]")).forEach(function(box){
@@ -124,7 +124,8 @@
         [].slice.call(box.querySelectorAll("input,select,textarea")).forEach(function(i){i.disabled=!show;});
       });
       var ph=document.getElementById("f-phone");if(ph)ph.required=g;
-      swap.forEach(function(el){var v=g?el.dataset.growth:el.dataset.base;if(el.tagName==="INPUT")el.value=v;else el.textContent=v;});
+      swap.forEach(function(el){if(el.tagName==="INPUT")el.value=g?el.dataset.growth:el.dataset.base;else if(g)el.textContent=el.dataset.growth;else el.innerHTML=el.dataset.base;});
+      document.documentElement.classList.toggle("team-growth",g);
     };
     ts.addEventListener("change",mode);mode();
   }

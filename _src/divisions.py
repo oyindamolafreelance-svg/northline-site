@@ -15,6 +15,7 @@ Fields
   icon      icon name for the chooser card (see ICONS in build.py)
   need      the home page "What do you need?" card, e.g. "I need a website or app"
   card      home page card: title, text, ticks, button (None = no card)
+  footer    footer "Let's talk" text and "How we work" points on this division's pages
   items     menu items: (slug, English name, German name, English description, German description)
   lean      optional: pages without the language switcher, greeting band, qualifications or 3D backdrop
   cta       optional: header button (label, link) in place of "Get a quote"
@@ -27,6 +28,14 @@ DIVISIONS = [
     dict(
         key="digital", slug="digital", cls="d", color="#a8582a", langs=("en", "de"),
         icon="monitor", need={"en": "I need a website or app", "de": "Ich brauche eine Website oder App"},
+        footer={
+            "en": ("Need a website, shop or app? Send the brief and we reply by email with a quote or questions.",
+                   ["A written quote before work starts", "A layout to review before the build",
+                    "Sites tested against Core Web Vitals and WCAG 2.2 AA", "The site and domain in your name"]),
+            "de": ("Sie brauchen eine Website, einen Shop oder eine App? Schicken Sie uns das Briefing, wir antworten per E-Mail mit Angebot oder Rückfragen.",
+                   ["Ein schriftliches Angebot vor Arbeitsbeginn", "Ein Layout zur Prüfung vor der Entwicklung",
+                    "Websites geprüft nach Core Web Vitals und WCAG 2.2 AA", "Website und Domain auf Ihren Namen"]),
+        },
         name={"en": "Digital", "de": "Digital"},
         brand={"en": "Kayonne Digital", "de": "Kayonne Digital"},
         tagline={"en": "The build team.", "de": "Das Entwicklungsteam."},
@@ -57,6 +66,14 @@ DIVISIONS = [
     dict(
         key="localize", slug="localize", cls="l", color="#127569", langs=("en", "de"),
         icon="globe", need={"en": "I need translation, or to launch abroad", "de": "Ich brauche eine Übersetzung oder will ins Ausland"},
+        footer={
+            "en": ("Need a translation or a launch abroad? Send the file or the brief and we reply by email with a quote or questions.",
+                   ["Every translation checked by a second linguist", "A written quote before work starts",
+                    "Processes aligned with ISO 17100 on request", "Your files seen only by the people on your job"]),
+            "de": ("Sie brauchen eine Übersetzung oder wollen ins Ausland? Schicken Sie Datei oder Briefing, wir antworten per E-Mail mit Angebot oder Rückfragen.",
+                   ["Jede Übersetzung von einer zweiten Fachkraft geprüft", "Ein schriftliches Angebot vor Arbeitsbeginn",
+                    "Abläufe nach ISO 17100 auf Wunsch", "Ihre Dateien sehen nur die Personen im Auftrag"]),
+        },
         name={"en": "Localize", "de": "Localize"},
         brand={"en": "Kayonne Localize", "de": "Kayonne Localize"},
         tagline={"en": "The translation and localisation team.", "de": "Das Übersetzungs- und Lokalisierungsteam."},
@@ -94,6 +111,7 @@ DIVISIONS = [
     dict(
         key="growth", slug="growth", cls="g", color="#1f5bb8", langs=("en",), lean=True,
         icon="chart", need={"en": "I need more customers"},
+        footer={"en": ("Want more customers? Book a free 15-minute call.", ["30-day guarantee", "Your leads are never shared"])},
         cta={"en": ("Book a call", GROWTH_BOOK_URL)},
         name={"en": "Growth"},
         brand={"en": "Kayonne Growth"},
@@ -102,11 +120,14 @@ DIVISIONS = [
         card={
             "en": dict(title="More customers. Less guessing.",
                        text="We bring local service businesses a steady flow of new customers.",
-                       ticks=[], button="See how it works"),
+                       ticks=["New inquiries from homeowners in your area", "Only serious inquiries", "30-day guarantee",
+                              "Built for one trade at a time"],
+                       button="See how it works"),
         },
         items=[
             ("growth", "How it works", "", "More customers. Less guessing.", ""),
-            ("growth/septic", "Septic companies", "", "More drain-field and replacement jobs", ""),
+            # Shown as "Local service businesses" in menus and lists; the page itself is for septic companies.
+            ("growth/septic", "Local service businesses", "", "One trade at a time", ""),
         ],
     ),
 ]

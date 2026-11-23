@@ -43,7 +43,7 @@ PAGES["growth/septic"] = dict(
     kind="growth_niche", division="growth",
     title="Kayonne Growth | More jobs for septic companies",
     desc="More drain-field and replacement jobs for your septic company: homeowners in your area with real septic problems, ready to book an estimate.",
-    label="Kayonne Growth · Septic companies",
+    label="Kayonne Growth · Septic companies", crumb="Septic companies",
     h1="More drain-field and replacement jobs for your septic company.",
     lede="We bring you homeowners in your area with real septic problems, ready to book an estimate.",
     phone=dict(company="Your Septic Co.", sub="Septic service and repair",
