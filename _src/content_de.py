@@ -33,8 +33,7 @@ PAGES = {}
 
 PAGES[""] = dict(
     title="Kayonne Creatives | Websites und Übersetzungen aus Glasgow",
-    desc="Agentur in Glasgow für Websites, Apps und Übersetzungen. Wir bauen Ihre Website, und professionelle Übersetzer "
-         "bringen sie in europäische und asiatische Sprachen. Einzeln oder zusammen buchbar.",
+    desc='Agentur in Glasgow für Websites, Apps und Übersetzungen. Wir bauen Ihre Website und bringen sie in europäische und asiatische Sprachen.',
     body=f"""
 <section class="hero" data-scene="hero">
   <div>
@@ -273,7 +272,7 @@ PAGES["documents"] = svc(
 
 PAGES["localization"] = svc(
     title="Website- und App-Lokalisierung | Kayonne Creatives",
-    desc="Lokalisierung von Websites, Software und App-Store-Einträgen in europäische und asiatische Sprachen. Glossar, Übersetzung im Kontext, Layoutprüfung und SEO.",
+    desc='Lokalisierung von Websites, Software und App-Store-Einträgen in europäische und asiatische Sprachen, mit Glossar, Kontext und Layoutprüfung.',
     label="Website- und App-Lokalisierung", h1="Dasselbe Produkt, in ihrer Sprache.",
     lede="Wir lokalisieren Websites, Software-Oberflächen und Store-Einträge. Zuerst wird das Glossar abgestimmt, und ein Mensch prüft alles, was veröffentlicht wird.",
     why=["Layout geprüft, wenn der Text länger wird", "Suchbegriffe in der Zielsprache recherchiert", "Ein Angebot auf Basis einer URL oder Datei"],
@@ -375,7 +374,7 @@ PAGES["subtitling"] = svc(
 
 PAGES["proofreading"] = svc(
     title="Korrektorat und Revision von Übersetzungen | Kayonne Creatives",
-    desc="Korrektorat und zweisprachige Revision vorhandener Übersetzungen. Eine zweite Fachkraft prüft Richtigkeit, Terminologie und Sprache, mit Änderungsverfolgung.",
+    desc='Korrektorat und zweisprachige Revision vorhandener Übersetzungen: Eine zweite Fachkraft prüft Richtigkeit, Terminologie und Sprache.',
     label="Korrektorat und Revision", h1="Eine zweite Fachkraft prüft Ihre vorhandene Übersetzung.",
     lede="Sie haben eine Übersetzung von einer freien Übersetzerin, einem Kollegen oder einer Maschine und wollen sicher sein, dass sie stimmt. Wir prüfen sie und liefern die Änderungen nachverfolgbar, mit einer kurzen Zusammenfassung.",
     why=["Sie sehen genau, was geändert wurde und warum", "Fehler werden nach Art eingeordnet, nicht übergangen", "Der Prüfumfang wird vorher festgelegt"],
@@ -412,7 +411,7 @@ PAGES["quality"] = svc(
 
 PAGES["languages"] = dict(
     title="Sprachen | Kayonne Creatives",
-    desc="Übersetzungen aus dem und ins Englische für europäische und asiatische Sprachen, von Deutsch, Französisch und Polnisch bis Japanisch, Chinesisch und Koreanisch.",
+    desc='Übersetzungen aus dem und ins Englische für europäische und asiatische Sprachen, von Deutsch und Polnisch bis Japanisch und Koreanisch.',
     label="Sprachen", h1="Europäische und asiatische Sprachen, mit einem Team.",
     lede="Professionelle Übersetzer decken die folgenden Sprachen ab, aus dem und ins Englische. Ihr Ansprechpartner ist eine Projektleitung in Glasgow, keine Gruppe einzelner Freelancer.",
     body=f"<section>{LANG_WALLS}</section>"
@@ -489,7 +488,7 @@ PAGES["pricing"] = dict(
 
 PAGES["about"] = dict(
     title="Über Kayonne Creatives | Glasgow",
-    desc="Kayonne Creatives ist eine Digital- und Sprachagentur in Glasgow, geleitet von einer qualifizierten Übersetzerin bzw. einem qualifizierten Übersetzer, mit professionellen Übersetzern und Digitalspezialisten.",
+    desc='Kayonne Creatives ist eine Digital- und Sprachagentur in Glasgow, geleitet von einer qualifizierten Übersetzungsfachkraft.',
     label="Über uns", h1="Ein Agenturteam. Eine Projektleitung.",
     lede="Kayonne Creatives wird von Glasgow aus von der Gründungsperson geleitet, einer qualifizierten Fachkraft für Übersetzung. Professionelle Übersetzer decken europäische und asiatische Sprachen ab, Digitalspezialisten bauen Websites und Apps. Sie sprechen die ganze Zeit mit einer Projektleitung.",
     body="""<section class="grid-2">
@@ -500,7 +499,7 @@ PAGES["about"] = dict(
 )
 
 PAGES["faq"] = dict(
-    title="FAQ | Kayonne Creatives",
+    title="Häufige Fragen | Kayonne Creatives",
     desc="Antworten zu Sprachen, Lieferzeit, Dateiformaten, Vertraulichkeit, Korrekturen, Zahlung und Eigentum.",
     label="FAQ", h1="Fragen unserer Kunden.",
     lede="Kurze Antworten. Wenn Ihr Fall anders liegt, steht es im Angebot.",
@@ -714,7 +713,7 @@ def team_video(key, caption, label):
 PAGES["digital"] = dict(
     kind="division", division="digital",
     title='Kayonne Digital | Webdesign, Apps und SEO aus Glasgow',
-    desc='Das Team Kayonne Digital entwickelt Websites, Onlineshops und Apps, richtet Domains und geschäftliche E-Mail ein und kümmert sich um SEO, Ladezeit und Wartung.',
+    desc='Das Team Kayonne Digital entwickelt Websites, Shops und Apps, richtet Domain und E-Mail ein und kümmert sich um SEO, Ladezeit und Wartung.',
     label='Kayonne Digital',
     h1='Das Entwicklungsteam.',
     lede='Designer und Entwickler, die Websites, Shops und Apps bauen, Domain und E-Mail dahinter einrichten und dafür sorgen, dass alles schnell und auffindbar bleibt. In Glasgow, für Unternehmen in ganz Großbritannien und Europa.',
@@ -796,7 +795,7 @@ PAGES["website-check"] = dict(
 
 PAGES["readiness-check"] = dict(
     title="Kostenloser Readiness-Check für den Auslandsstart | Kayonne Localize",
-    desc="Erfahren Sie, was bei der Übersetzung Ihrer Website kaputtgehen würde, mit welchem Markt Sie beginnen sollten und was es braucht. Kostenloser Check von Kayonne Localize.",
+    desc='Was würde bei der Übersetzung Ihrer Website kaputtgehen, und mit welchem Markt beginnen? Kostenloser Check von Kayonne Localize.',
     label="Kayonne Localize · Kostenlos", h1="Ist Ihre Website bereit für eine weitere Sprache?",
     lede="Wir sehen uns Ihre Website mit den Augen eines Entwicklers und eines Übersetzers an und sagen Ihnen, was bei einer Übersetzung kaputtgehen würde und welcher Markt sich zuerst lohnt.",
     body="""<section data-scene="check"><h2>Was wir prüfen</h2><ul class="grid-4 link-cards plain-cards">
@@ -810,7 +809,7 @@ PAGES["readiness-check"] = dict(
 
 PAGES["multilingual-seo"] = svc(
     title="Mehrsprachige SEO-Agentur | Kayonne Localize",
-    desc="Mehrsprachige und internationale SEO: Keyword-Recherche durch Muttersprachler in jedem Markt, hreflang, übersetzte Metadaten und Sprach-URLs, von einem Team, das baut und übersetzt.",
+    desc='Mehrsprachige SEO: Keyword-Recherche durch Muttersprachler je Markt, hreflang, übersetzte Metadaten und Sprach-URLs aus einer Hand.',
     label="Mehrsprachige SEO", h1="Gefunden in jeder Sprache, in der Sie verkaufen.",
     lede="In Deutschland sucht man anders als in Glasgow, auch wenn man dasselbe will. Wir recherchieren Suchbegriffe in jedem Markt mit Muttersprachlern und bauen die Seiten passend dazu.",
     why=["Keyword-Recherche durch Muttersprachler statt übersetzter Keywords", "Dasselbe Team korrigiert den Code, schreibt die Seiten und übersetzt sie", "Berichte je Markt aus der Search Console"],
@@ -826,7 +825,7 @@ PAGES["multilingual-seo"] = svc(
 
 PAGES["international-launch"] = svc(
     title="Internationaler Website-Start | Kayonne Localize",
-    desc="Bringen Sie Ihre Website mit einem Team in einen neuen Markt: Analyse, Keyword-Recherche, Entwicklung, Übersetzung, Prüfung und Start, gesteuert aus Glasgow.",
+    desc='Mit einem Team in einen neuen Markt: Analyse, Keyword-Recherche, Entwicklung, Übersetzung, Prüfung und Start, gesteuert aus Glasgow.',
     label="Internationaler Marktstart", h1="Ihr nächster Markt, gestartet von einem Team.",
     lede="Ein fester Plan, um Ihre Website oder Ihren Shop in eine neue Sprache zu bringen: Das Entwicklungsteam bereitet die Website vor, das Übersetzungsteam schreibt sie in der neuen Sprache, und eine Projektleitung steuert beides.",
     why=["Eine Projektleitung statt Agentur plus Übersetzer", "Suchbegriffe recherchiert, bevor ein Wort übersetzt wird", "Jede Seite in jeder Sprache auf dem Smartphone geprüft"],
@@ -842,7 +841,7 @@ PAGES["international-launch"] = svc(
 
 PAGES["ecommerce-localisation"] = svc(
     title="Shopify- und WooCommerce-Shop lokalisieren | Kayonne Localize",
-    desc="Übersetzen und lokalisieren Sie Ihren Shopify- oder WooCommerce-Shop: Produkte, Checkout, E-Mails, Währung und SEO, mit menschlicher Übersetzung und zweiter Prüfung.",
+    desc='Shopify- oder WooCommerce-Shop lokalisieren: Produkte, Checkout, E-Mails, Währung und SEO, menschlich übersetzt und zweifach geprüft.',
     label="Shop-Lokalisierung", h1="Ihr Shop, geöffnet in einer weiteren Sprache.",
     lede="Wir lokalisieren Shopify- und WooCommerce-Shops vollständig: Produktseiten, Kategorien, Checkout, Bestellmails, Währung und die Suchbegriffe, mit denen man Sie findet.",
     why=["Produkte, Checkout und E-Mails übersetzt, nicht nur die Startseite", "Preise, Währung und Formate je Markt", "Produkttitel für die Suche im jeweiligen Markt recherchiert"],
@@ -899,7 +898,7 @@ for _slug, (_name, _note, _docs) in LANG_DE.items():
 
 PAGES["insights/website-cost-glasgow"] = dict(
     title="Was kostet eine Website in Glasgow 2026? | Kayonne",
-    desc="Website-Preise in Glasgow 2026: Vorlagen, kleine Unternehmensseiten, individuelle Entwicklung und Shops, was den Preis verändert und welche laufenden Kosten man vergisst.",
+    desc='Website-Preise in Glasgow 2026: Vorlagen, kleine Firmenseiten, individuelle Entwicklung und Shops, und welche laufenden Kosten man vergisst.',
     label="Ratgeber · Websites", h1="Was kostet eine Website in Glasgow 2026?",
     lede="Eine Website in Glasgow kostet zwischen einigen hundert und weit über zehntausend Pfund. Das bekommen Sie auf jeder Stufe, und das verändert den Preis.",
     body="""<article class="prose">

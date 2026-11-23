@@ -45,8 +45,7 @@ PAGES = {}
 
 PAGES[""] = dict(
     title="Kayonne Creatives | Websites and translation, Glasgow",
-    desc="Glasgow agency for websites, apps and translation. We build your site, then professional linguists "
-         "take it into European and Asian languages. Hire one service or both.",
+    desc='Glasgow agency for websites, translation and customer growth. We build your site, take it into new languages, and bring local businesses new customers.',
     body=f"""
 <section class="hero" data-scene="hero">
   <div>
@@ -492,7 +491,7 @@ PRICE_HEAD = ('Service', 'Priced by', 'What changes the price')
 
 PAGES["pricing"] = dict(
     title="Pricing | Kayonne Creatives",
-    desc="How we price websites, care plans, document translation, subtitling and proofreading. Every job gets a fixed written quote.",
+    desc='How we price websites, care plans, translation, subtitling, localisation and customer growth. Every job is priced in writing first.',
     label="Pricing", h1="How we price.",
     lede="Every job gets a fixed written quote before work starts. Here is what each price is based on and what makes it go up or down.",
     body="""<section>{{PRICING}}</section>
@@ -924,7 +923,7 @@ PAGES["readiness-check"] = dict(
 
 PAGES["multilingual-seo"] = svc(
     title="Multilingual SEO agency | Kayonne Localize",
-    desc="Multilingual and international SEO: keyword research by native speakers in each market, hreflang, translated metadata and locale URLs, from a team that builds and translates.",
+    desc='Multilingual SEO: keyword research by native speakers in each market, hreflang, translated metadata and locale URLs, from one team.',
     label="Multilingual SEO", h1="Found in every language you sell in.",
     lede="People in Germany don't search for what people in Glasgow search for, even when they want the same thing. We research search terms in each market with native speakers, then build the pages to match.",
     why=["Keyword research by native speakers, not translated keywords", "The same team fixes the code, writes the pages and translates them", "Reports per market from Search Console"],
