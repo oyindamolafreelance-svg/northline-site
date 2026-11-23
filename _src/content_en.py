@@ -88,11 +88,11 @@ PAGES[""] = dict(
 </section>
 <section class="global-band card" data-scene="globe">
   <div>
-    <p class="kicker">Kayonne Global</p>
+    <p class="kicker">Kayonne Localize</p>
     <h2>Both teams. One launch.</h2>
     <p>Most firms build the site or translate it. We do both on the same project, so your site is ready for the next market without a hand-off in the middle.</p>
     <ol class="mini-steps"><li>Audit</li><li>Research</li><li>Build</li><li>Translate</li><li>Check</li><li>Launch</li></ol>
-    <p class="actions"><a class="btn magnetic" href="/global/">See how it works</a> <a class="btn ghost" href="/readiness-check/">Free readiness check</a></p>
+    <p class="actions"><a class="btn magnetic" href="/localize/">See how it works</a> <a class="btn ghost" href="/readiness-check/">Free readiness check</a></p>
   </div>
   {LOC_VIDEO_EN}
 </section>
@@ -835,7 +835,7 @@ PAGES["digital"] = dict(
     h1='The build team.',
     lede='Designers and developers who build websites, shops and apps, set up the domain and email behind them, and keep them fast and found. Based in Glasgow, working with businesses across the UK.',
     services_h='What the team builds', services_scene='windows',
-    before="""<section data-scene="tiles" class="grid-2 split-copy"><div><h2>Who you work with</h2><p>A project lead in Glasgow, a designer and a developer on every build. You see designs before anything is coded, a test site before launch, and a speed report at handover.</p><p>When your site needs another language, the <a href="/language/">language team</a> sits next door. No second agency, no hand-off by email.</p></div>"""
+    before="""<section data-scene="tiles" class="grid-2 split-copy"><div><h2>Who you work with</h2><p>A project lead in Glasgow, a designer and a developer on every build. You see designs before anything is coded, a test site before launch, and a speed report at handover.</p><p>When your site needs another language, the <a href="/localize/">Localize team</a> sits next door. No second agency, no hand-off by email.</p></div>"""
     + team_video("digital", "The Digital team's work in 3D: browser windows, an app grid and phones.", "Kayonne Digital reel") + """</section>""" + """<section data-scene="bars"><h2>Packages</h2><ul class="grid-4 link-cards plain-cards">
 <li class="card"><strong>One-page site</strong><span class="note">Offer, contact form, map. For a launch or a sole trader.</span></li>
 <li class="card"><strong>Business site</strong><span class="note">Five to eight pages, blog, local SEO setup.</span></li>
@@ -846,38 +846,28 @@ PAGES["digital"] = dict(
     how=[('Brief', 'We agree the audience, the offer and the pages that must exist.'), ('Design', 'You review the layout before the build starts.'), ('Build', 'We develop the site, the forms and the content model.'), ('Check', 'Every launch is tested against the Core Web Vitals thresholds. You receive the report.')],
     after="",
     offer=dict(scene='lens', kicker='Free', title='Website check', text='Send your address. We look at speed on a phone, mobile layout, search basics and the contact form, and email you a short written list of what to fix first.', href='/website-check/', button='Get a free check'),
-    faq=[('Do you only work in Glasgow?', 'No. The team is in Glasgow and works with clients across the UK and abroad. Local clients can meet in person.'), ('Who owns the site?', 'You do, once the agreed fees are paid. Domain, hosting and email accounts are in your name.'), ('Can you translate the site too?', 'Yes. That is what the <a href="/global/">Global</a> service is for.')],
+    faq=[('Do you only work in Glasgow?', 'No. The team is in Glasgow and works with clients across the UK and abroad. Local clients can meet in person.'), ('Who owns the site?', 'You do, once the agreed fees are paid. Domain, hosting and email accounts are in your name.'), ('Can you translate the site too?', 'Yes. That is what <a href="/localize/">Kayonne Localize</a> is for.')],
 )
 
-PAGES["language"] = dict(
-    kind="division", division="language",
-    title='Kayonne Language | Professional and specialist translation, UK',
-    desc='The Kayonne Language team: qualified translators for documents, legal, medical and patent translation, subtitling and proofreading, with a second check on every job.',
-    label='Kayonne Language',
-    h1='The translation team.',
-    lede='Qualified translators led from Glasgow by a translator with an MA in Translation Studies and the CIOL Diploma in Translation. Every job is checked by a second linguist before it leaves us.',
-    services_h='What the team translates', services_scene='sheets',
-    before="""<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Documents that look like the original</h2><p>Certificates, statements, contracts and manuals come back in the same layout as the source, with stamps, tables and handwritten notes translated where they appear.</p><p><a class="btn magnetic" href="/documents/">Document translation</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>""",
-    how_h='How a translator joins the team',
-    how=[('Qualified', 'A translation degree or a professional qualification such as the CIOL Diploma.'), ('Native', 'They translate into their own first language.'), ('Specialist', 'Legal, medical and patent work goes only to linguists with experience in that field.'), ('Checked', 'A second linguist revises every job before delivery.')],
-    after="""<section data-scene="film" class="grid-2 split-copy"><div><h2>Languages</h2><p>European and Asian languages, into and out of English. The most requested have their own pages: <a href="/languages/polish/">Polish</a>, <a href="/languages/romanian/">Romanian</a>, <a href="/languages/arabic/">Arabic</a>, <a href="/languages/urdu/">Urdu</a>, <a href="/languages/chinese/">Chinese</a>, <a href="/languages/spanish/">Spanish</a>, <a href="/languages/french/">French</a>, <a href="/languages/german/">German</a>, <a href="/languages/ukrainian/">Ukrainian</a> and <a href="/languages/portuguese/">Portuguese</a>.</p><p><a class="btn ghost" href="/languages/">All languages</a></p></div>"""
-    + team_video("language", "The Language team's work in 3D: documents, scales and subtitles.", "Kayonne Language reel") + """</section>""" + """<section data-scene="shield"><h2>Your documents stay private</h2><ul class="ticks"><li>Only the people on your job see the files.</li><li>NDA on request, before you send anything.</li><li>Files deleted within 90 days of delivery unless you ask us to keep them.</li><li>Never used to train public AI models.</li></ul></section>""",
-    faq=[('Do you translate into English or out of it?', 'Both, for every language we cover.'), ('Can you check a translation we already have?', 'Yes. See <a href="/proofreading/">proofreading and revision</a>.'), ('How do I get a price?', 'Upload the document on the <a href="/contact/">quote form</a>. You get a fixed price before we start.')],
-)
+# The two groups of services on the Localize page, in menu order.
+TRANSLATE = ["documents", "legal", "medical", "patents", "subtitling", "proofreading", "quality", "languages"]
+LAUNCH = ["international-launch", "localization", "multilingual-seo", "ecommerce-localisation", "games", "readiness-check", "demo"]
 
-PAGES["global"] = dict(
-    kind="division", division="global",
-    title='Kayonne Global | Website localisation and international launch',
-    desc='Kayonne Global brings the build and translation teams together: localised websites and shops, multilingual SEO and international launches, from one Glasgow team.',
-    label='Kayonne Global',
-    h1='Both teams. One launch.',
-    lede='Most firms do one half: they build the site, or they translate it. Kayonne Global puts the build team and the translation team on the same project, so your site is ready for the next market without a hand-off in the middle.',
-    services_h='What we take abroad', services_scene='globe',
-    before="",
+PAGES["localize"] = dict(
+    kind="division", division="localize",
+    title='Kayonne Localize | Translation and international launch, UK',
+    desc='Kayonne Localize: qualified translators for documents, legal, medical and patent work, plus website localisation and launches abroad.',
+    label="Kayonne Localize",
+    h1='The translation and localisation team.',
+    lede='Qualified translators led from Glasgow by a translator with an MA in Translation Studies and the CIOL Diploma in Translation, with a second linguist checking every job. When your website or shop goes abroad, the same team works alongside our build team, so it launches without a hand-off in the middle.',
+    # Translation first, international launch second.
+    groups=[('What we translate', TRANSLATE, "sheets"), ('What we take abroad', LAUNCH, "globe")],
+    before="""<section data-scene="sheets" class="grid-2 split-copy"><div><h2>Documents that look like the original</h2><p>Certificates, statements, contracts and manuals come back in the same layout as the source, with stamps, tables and handwritten notes translated where they appear.</p><p><a class="btn magnetic" href="/documents/">Document translation</a></p></div><figure class="media"><img src="/img/scenes/sheets.webp" alt="" width="900" height="675" loading="lazy" decoding="async"></figure></section>""" + '<section data-scene="path"><h2>How a translator joins the team</h2><ol class="grid-4 steps"><li class="card"><h3>Qualified</h3><p>A translation degree or a professional qualification such as the CIOL Diploma.</p></li><li class="card"><h3>Native</h3><p>They translate into their own first language.</p></li><li class="card"><h3>Specialist</h3><p>Legal, medical and patent work goes only to linguists with experience in that field.</p></li><li class="card"><h3>Checked</h3><p>A second linguist revises every job before delivery.</p></li></ol></section>' + """<section data-scene="film" class="grid-2 split-copy"><div><h2>Languages</h2><p>European and Asian languages, into and out of English. The most requested have their own pages: <a href="/languages/polish/">Polish</a>, <a href="/languages/romanian/">Romanian</a>, <a href="/languages/arabic/">Arabic</a>, <a href="/languages/urdu/">Urdu</a>, <a href="/languages/chinese/">Chinese</a>, <a href="/languages/spanish/">Spanish</a>, <a href="/languages/french/">French</a>, <a href="/languages/german/">German</a>, <a href="/languages/ukrainian/">Ukrainian</a> and <a href="/languages/portuguese/">Portuguese</a>.</p><p><a class="btn ghost" href="/languages/">All languages</a></p></div>"""
+    + team_video("language", "The Localize team's work in 3D: documents, scales and subtitles.", "Kayonne Localize reel") + """</section>""" + """<section data-scene="shield"><h2>Your documents stay private</h2><ul class="ticks"><li>Only the people on your job see the files.</li><li>NDA on request, before you send anything.</li><li>Files deleted within 90 days of delivery unless you ask us to keep them.</li><li>Never used to train public AI models.</li></ul></section>""",
     how_h='How a launch runs',
     how=[('Audit', 'Is the site ready to translate? Text in images, fixed-width buttons, hard-coded dates.'), ('Research', 'Search terms researched in each market by a native speaker, not translated from English.'), ('Build', 'Language folders, hreflang, local currency and dates, layout that survives longer words.'), ('Translate', 'A specialist translates in context. A second linguist revises.'), ('Check', 'Every page checked in the browser, in every language, on a phone.'), ('Launch', 'Sitemaps and Search Console for each market, plus a report on what to watch.')],
     after="""<section data-scene="film" class="grid-2 split-copy"><div><h2>See it happen</h2><p>One product card in English, German, Japanese and Arabic. The words change, and so do the date, the currency and the reading direction.</p><p><a class="btn ghost" href="/demo/">Try the live demo</a></p></div>""" + LOC_VIDEO_EN + """</section>""" + """<section data-scene="check"><h2>Why not just use a translation plugin?</h2><div class="table-wrap"><table>
-<thead><tr><th scope="col"></th><th scope="col">Machine plugin alone</th><th scope="col">Kayonne Global</th></tr></thead>
+<thead><tr><th scope="col"></th><th scope="col">Machine plugin alone</th><th scope="col">Kayonne Localize</th></tr></thead>
 <tbody>
 <tr><td>Speed to first draft</td><td>Minutes</td><td>Days</td></tr>
 <tr><td>Search terms per market</td><td>Translated from English</td><td>Researched by a native speaker</td></tr>
@@ -885,8 +875,8 @@ PAGES["global"] = dict(
 <tr><td>Layout with longer words</td><td>Not checked</td><td>Checked on desktop and phone</td></tr>
 <tr><td>Best for</td><td>Low-risk pages, internal tools</td><td>Pages that sell, legal pages, checkout</td></tr>
 </tbody></table></div><p class="note">A plugin can be the right first step. We can also review and fix machine output instead of starting again. See <a href="/quality/">MTPE</a>.</p></section>""",
-    offer=dict(scene='check', kicker='Free', title='International readiness check', text='We look at your site and tell you what would break in translation, which market to start with, and roughly what it would take.', href='/readiness-check/', button='Check my site'),
-    faq=[('Which markets do you know best?', 'Europe and Asia. Germany and the German-speaking countries are a particular focus.'), ('Can you work with our existing developer?', 'Yes. We can supply translations, keyword research and hreflang specifications to your team.'), ('Do you handle the shop too?', 'Yes. See <a href="/ecommerce-localisation/">shop localisation</a>.')],
+    offer={'scene': 'check', 'kicker': 'Free', 'title': 'International readiness check', 'text': 'We look at your site and tell you what would break in translation, which market to start with, and roughly what it would take.', 'href': '/readiness-check/', 'button': 'Check my site'},
+    faq=[('Do you translate into English or out of it?', 'Both, for every language we cover.'), ('Can you check a translation we already have?', 'Yes. See <a href="/proofreading/">proofreading and revision</a>.'), ('How do I get a price?', 'Upload the document on the <a href="/contact/">quote form</a>. You get a fixed price before we start.'), ('Which markets do you know best?', 'Europe and Asia. Germany and the German-speaking countries are a particular focus.'), ('Can you work with our existing developer?', 'Yes. We can supply translations, keyword research and hreflang specifications to your team.'), ('Do you handle the shop too?', 'Yes. See <a href="/ecommerce-localisation/">shop localisation</a>.')],
 )
 
 PAGES["web-design-glasgow"] = svc(
@@ -921,9 +911,9 @@ PAGES["website-check"] = dict(
 )
 
 PAGES["readiness-check"] = dict(
-    title="Free international readiness check | Kayonne Global",
-    desc="Find out what would break when your website is translated, which market to start with, and what it would take. Free check from Kayonne Global.",
-    label="Kayonne Global · Free", h1="Is your website ready for another language?",
+    title="Free international readiness check | Kayonne Localize",
+    desc="Find out what would break when your website is translated, which market to start with, and what it would take. Free check from Kayonne Localize.",
+    label="Kayonne Localize · Free", h1="Is your website ready for another language?",
     lede="We look at your site with a developer's eyes and a translator's eyes, then tell you what would break in translation and which market makes sense first.",
     body="""<section data-scene="check"><h2>What we look at</h2><ul class="grid-4 link-cards plain-cards">
 <li class="card"><strong>Text in images</strong><span class="note">Words baked into pictures can't be translated.</span></li>
@@ -935,7 +925,7 @@ PAGES["readiness-check"] = dict(
 )
 
 PAGES["multilingual-seo"] = svc(
-    title="Multilingual SEO agency | Kayonne Global",
+    title="Multilingual SEO agency | Kayonne Localize",
     desc="Multilingual and international SEO: keyword research by native speakers in each market, hreflang, translated metadata and locale URLs, from a team that builds and translates.",
     label="Multilingual SEO", h1="Found in every language you sell in.",
     lede="People in Germany don't search for what people in Glasgow search for, even when they want the same thing. We research search terms in each market with native speakers, then build the pages to match.",
@@ -951,7 +941,7 @@ PAGES["multilingual-seo"] = svc(
 )
 
 PAGES["international-launch"] = svc(
-    title="International website launch | Kayonne Global",
+    title="International website launch | Kayonne Localize",
     desc="Take your website into a new market with one team: audit, keyword research, build, translation, checks and launch, managed from Glasgow.",
     label="International launch", h1="Your next market, launched by one team.",
     lede="A fixed plan to take your site or shop into a new language: the build team prepares the site, the translation team writes it in the new language, and one project lead runs both.",
@@ -967,7 +957,7 @@ PAGES["international-launch"] = svc(
 )
 
 PAGES["ecommerce-localisation"] = svc(
-    title="Shopify and WooCommerce store localisation | Kayonne Global",
+    title="Shopify and WooCommerce store localisation | Kayonne Localize",
     desc="Translate and localise your Shopify or WooCommerce store: products, checkout, emails, currency and SEO, with human translation and a second-linguist check.",
     label="Shop localisation", h1="Your shop, open in another language.",
     lede="We localise Shopify and WooCommerce stores end to end: product pages, collections, checkout, order emails, currency and the search terms people use to find you.",
@@ -1065,7 +1055,7 @@ PAGES["insights/multilingual-seo-keywords"] = dict(
     label="Insights · Multilingual SEO", h1="Multilingual SEO: why you can't just translate your keywords",
     lede="A keyword that brings you customers in the UK can bring nobody in Germany once it is translated word for word. Here is why, and what to do instead.",
     body="""<article class="prose">
-<p class="byline">By the Kayonne Global team.</p>
+<p class="byline">By the Kayonne Localize team.</p>
 <h2>People search in their own words</h2>
 <p>A British shopper looks for <i>trainers</i>, an American for <i>sneakers</i>. In Germany a mobile phone is a <i>Handy</i>, a word a dictionary would never give you. A direct translation is often correct and still not what anyone types.</p>
 <h2>The same intent, different searches</h2>

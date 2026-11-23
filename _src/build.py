@@ -63,13 +63,13 @@ GETS = {
         "de": ["Ein schriftliches Angebot vor Arbeitsbeginn", "Ein Layout zur Prüfung vor der Entwicklung", "Ein Bericht zu Ladezeit und Barrierefreiheit zum Start",
                "Website, Code und Domain auf Ihren Namen", "CMS-Schulung bei der Übergabe", "Ein optionaler Wartungsplan, keine Pflicht"],
     },
-    "language": {
+    "localize": {
         "en": ["A written quote that names who works on your language pair", "A qualified translator for the subject", "A second linguist checking every job",
                "Layout matched to the original", "Delivery in the format you need", "One round of revisions on the delivered files"],
         "de": ["Ein schriftliches Angebot, das die Fachkraft für Ihr Sprachpaar nennt", "Eine qualifizierte Fachkraft für das Thema", "Eine zweite Prüfung bei jedem Auftrag",
                "Layout wie im Original", "Lieferung im gewünschten Format", "Eine Korrekturrunde an den gelieferten Dateien"],
     },
-    "global": {
+    "launch": {
         "en": ["One project lead for the build and the language work", "One launch plan with dates per market", "Search terms researched in each language",
                "hreflang and locale URLs set up", "A check of every market version before launch", "Files you own, ready for the next language"],
         "de": ["Eine Projektleitung für Entwicklung und Sprache", "Ein Startplan mit Terminen je Markt", "Suchbegriffe in jeder Sprache recherchiert",
@@ -78,9 +78,13 @@ GETS = {
 }
 
 
+# Localize services that take a website or product abroad, as opposed to translation work.
+LAUNCH = set(content_en.LAUNCH)
+
+
 def team_of(slug):
     if slug.startswith("languages/"):
-        return "language"
+        return "localize"
     for key, team in TEAMS.items():
         if slug == team["hub"] or any(it[0] == slug for it in team["items"]):
             return key
@@ -312,7 +316,7 @@ SCENES = {
     "insights": "sheets", "insights/localise-a-website": "globe", "insights/speed-mistakes": "tunnel",
     "contact": "plane", "thanks": "plane", "privacy": "shield", "cookies": "shield", "terms": "scales",
     "studio": "cubes", "demo": "globe", "404": "ico",
-    "digital": "windows", "language": "sheets", "global": "globe", "web-design-glasgow": "windows",
+    "digital": "windows", "localize": "globe", "web-design-glasgow": "windows",
     "website-check": "lens", "certified-translation-glasgow": "seal", "apostille": "scales",
     "multilingual-seo": "bars", "international-launch": "plane", "ecommerce-localisation": "tiles",
     "readiness-check": "check",
@@ -322,6 +326,8 @@ SCENES = {
 
 
 REDIRECTS = {
+    "language": "localize",
+    "global": "localize",
     "certified-translation": "documents",
     "certified-translation-glasgow": "documents",
     "apostille": "documents",
@@ -445,7 +451,8 @@ def related(lang, slug):
     if slug.startswith("languages/"):
         picks = [it for it in team["items"] if it[0] in ("documents", "proofreading", "subtitling")]
     else:
-        picks = [it for it in team["items"] if it[0] not in NOT_SERVICES | {slug}][:3]
+        same = [it for it in team["items"] if (it[0] in LAUNCH) == (slug in LAUNCH)]
+        picks = [it for it in same if it[0] not in NOT_SERVICES | {slug}][:3]
     cards = "".join(f'<li><a class="card team-{team["cls"]}" href="{path(lang, s_)}"><strong>{esc(en if lang == "en" else de)}</strong>'
                     f'<span class="note">{esc(den if lang == "en" else dde)}</span></a></li>'
                     for s_, en, de, den, dde in picks)
@@ -472,7 +479,8 @@ def service_main(lang, page, slug):
         steps = "".join(f'<li><h3>{a}</h3><p class="note">{b}</p></li>' for a, b in page["steps"])
         parts.append(f'<section class="split band{cls}" data-scene="path"><h2>{t["steps"]}</h2><ol class="num-list">{steps}</ol></section>')
     if key:
-        parts.append(f'<section data-scene="orbit"><h2>{t["get"]}</h2><ul class="get-list{cls}">{lis(GETS[key][lang])}</ul></section>')
+        gets = GETS["launch" if slug in LAUNCH else key][lang]
+        parts.append(f'<section data-scene="orbit"><h2>{t["get"]}</h2><ul class="get-list{cls}">{lis(gets)}</ul></section>')
     if page.get("who"):
         parts.append(f'<section class="split" data-scene="shards"><h2>{t["who"]}</h2><p class="lede">{page["who"]}</p></section>')
     parts.append(faq_html(page.get("faq"), t))
@@ -492,7 +500,9 @@ def division_main(lang, page, slug):
     if page.get("secondary"):
         actions += f' <a class="btn ghost" href="{page["secondary"][1]}">{page["secondary"][0]}</a>'
     parts = [intro_html(page, slug, page.get("ticks"), actions)]
-    parts.append(f'<section data-scene="{page.get("services_scene", "windows")}"><h2>{page["services_h"]}</h2>{team_cards(lang, d["key"])}</section>')
+    # Service cards: all of the division's items, or named groups of them.
+    for h, only, scene in page.get("groups") or [(page["services_h"], None, page.get("services_scene", "windows"))]:
+        parts.append(f'<section data-scene="{scene}"><h2>{h}</h2>{team_cards(lang, d["key"], only)}</section>')
     parts.append(page.get("before", ""))
     if page.get("how"):
         steps = "".join(f'<li><h3>{a}</h3><p class="note">{b}</p></li>' for a, b in page["how"])
@@ -677,10 +687,12 @@ def raw_main(lang, page, slug):
     return intro + body + tail
 
 
-def team_cards(lang, key):
+def team_cards(lang, key, only=None):
     team = TEAMS[key]
     out = []
     for s_, en, de, den, dde in team["items"]:
+        if only is not None and s_ not in only:
+            continue
         name, desc = (en, den) if lang == "en" else (de, dde)
         out.append(f'<li><a class="card img-card team-{team["cls"]}" href="{path(lang, s_)}">'
                    f'<img src="/img/scenes/{SCENES.get(s_, "default")}.webp" alt="" width="900" height="675" loading="lazy" decoding="async">'

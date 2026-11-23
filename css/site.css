@@ -249,13 +249,13 @@ details[open] .mega-list li:nth-child(n+9){animation-delay:.36s}
 @keyframes spin{to{--spin:360deg}}
 
 /* global band */
-.global-band{display:grid;gap:1.6rem;align-items:center;--team:var(--global);border-color:color-mix(in srgb,var(--global) 40%,var(--line));
-  background:radial-gradient(80% 120% at 0% 0%,color-mix(in srgb,var(--global) 14%,transparent),transparent 60%),var(--panel)}
-.global-band .kicker{color:var(--global)}
+.global-band{display:grid;gap:1.6rem;align-items:center;--team:var(--lang);border-color:color-mix(in srgb,var(--lang) 40%,var(--line));
+  background:radial-gradient(80% 120% at 0% 0%,color-mix(in srgb,var(--lang) 14%,transparent),transparent 60%),var(--panel)}
+.global-band .kicker{color:var(--lang)}
 @media(min-width:1000px){.global-band{grid-template-columns:1fr 1.1fr;padding:2rem}}
 .mini-steps{list-style:none;display:flex;flex-wrap:wrap;gap:.4rem;padding:0;margin:.4rem 0 1rem;counter-reset:ms}
 .mini-steps li{counter-increment:ms;padding:.3rem .75rem;border-radius:999px;border:1px solid var(--line);font-size:.88rem;background:var(--bg)}
-.mini-steps li::before{content:counter(ms) " ";color:var(--global)}
+.mini-steps li::before{content:counter(ms) " ";color:var(--lang)}
 .motion .rv.in .mini-steps li{animation:chip .6s cubic-bezier(.3,1.6,.5,1) backwards}
 .motion .rv.in .mini-steps li:nth-child(2){animation-delay:.08s}.motion .rv.in .mini-steps li:nth-child(3){animation-delay:.16s}
 .motion .rv.in .mini-steps li:nth-child(4){animation-delay:.24s}.motion .rv.in .mini-steps li:nth-child(5){animation-delay:.32s}
