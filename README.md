@@ -12,6 +12,21 @@ The pages are generated. Do not edit the HTML files by hand.
 3. Commit the content files and the generated HTML together.
 
 Shared header, footer, menus and page head live in `_src/build.py`. Styles are in `css/site.css`.
+
+## Divisions (Digital, Localize, Growth)
+
+The divisions are listed once, in `_src/divisions.py`. The menus, footer columns, home page chooser and
+cards, service grids, pricing tables and the quote form's team picker are all generated from that list.
+To add a "Kayonne Something" division: add an entry there, add its landing page with `kind="division"`
+(and its rows to `PRICES`), then add its service pages.
+
+- Kayonne Growth is English only (US English). Its pages are in `_src/content_growth.py`; a new trade is a
+  copy of the `growth/septic` entry plus a menu item in `divisions.py`. Sections set to `None` (video,
+  results, testimonial) stay hidden until filled.
+- Every Growth booking button uses `GROWTH_BOOK_URL` in `_src/divisions.py`. Change it there to switch to a
+  booking calendar.
+- Old addresses that moved (`REDIRECTS` in `_src/build.py`) get a forwarding page. GitHub Pages cannot send
+  real 301 redirects; the forwarding page tells browsers and search engines where the page went.
 Fonts are self-hosted in `fonts/`, so no visitor data goes to Google.
 
 ## 3D, images and video

@@ -620,3 +620,5 @@ main.page>.crumbs{margin-bottom:-2.2rem}
 .price-group+.price-group{margin-top:2.2rem}
 .price-group h2 a{text-decoration:none;color:var(--team)}
 .price-group h2 a::after{content:" →";font-size:.8em}
+/* copper text on the beige band needs a deeper shade for 4.5:1 contrast */
+.tint .text-link,.tint .svc-group.team-d h3 a,.tint .team-d .kicker{color:#954c22}
